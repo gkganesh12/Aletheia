@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aletheia-ai.com/sitemap.xml

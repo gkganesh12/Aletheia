@@ -1,0 +1,20 @@
+{
+  "name": "aletheia-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aletheia AI — Dev Workflow Agents & Marketing Website",
+  "workspaces": [
+    "agents",
+    "website"
+  ],
+  "scripts": {
+    "agents": "npm run --workspace=agents",
+    "dev": "npm run dev --workspace=website",
+    "build": "npm run build --workspace=website",
+    "storybook": "npm run storybook --workspace=website",
+    "test": "npm run test --workspace=website"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

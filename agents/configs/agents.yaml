@@ -1,0 +1,210 @@
+agents:
+  scaffold:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 50000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      packageManager: "npm"
+      cssApproach: "tailwind"
+      animationLib: "both"
+      storybook: true
+
+  design-system:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 80000
+    temperature: 0.2
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      colorMode: "dark"
+      brandDescription: "AI engineering and cybersecurity agency. Futuristic, trustworthy, technically sophisticated. Dark theme primary."
+
+  theme:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 60000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      defaultTheme: "dark"
+      persistPreference: true
+      respectSystemPreference: true
+
+  asset-gen:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 80000
+    temperature: 0.3
+    timeout: 600
+    retries: 2
+    approval_required: true
+    config:
+      generateSvgIcons: true
+      generateFavicons: true
+      generateOgImages: true
+      generateProductLogos: true
+      generateHeroVisuals: true
+
+  component-gen:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 150000
+    temperature: 0
+    timeout: 600
+    retries: 2
+    approval_required: true
+    config:
+      sections: "all"
+      generateStories: true
+      componentStyle: "arrow"
+      stateManagement: "local"
+
+  animation:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 100000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      intensity: "moderate"
+      customCursor: true
+      respectReducedMotion: true
+      libraries:
+        - "gsap"
+        - "framer-motion"
+
+  content:
+    enabled: true
+    model: "claude-opus-4-20250514"
+    max_tokens: 80000
+    temperature: 0.7
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      brandVoice: "Professional, technically authoritative, innovative yet trustworthy"
+      targetAudience: "CTOs, CISOs, VP Engineering at mid-market to enterprise companies"
+      domain: "aletheia-ai.com"
+
+  i18n:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 80000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      framework: "react-i18next"
+      defaultLocale: "en"
+      supportedLocales:
+        - "en"
+        - "es"
+        - "fr"
+        - "de"
+      namespaces:
+        - "common"
+        - "hero"
+        - "services"
+        - "products"
+        - "contact"
+
+  cms:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 80000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      provider: "sanity"
+      dataset: "production"
+      schemas:
+        - "service"
+        - "product"
+        - "caseStudy"
+        - "testimonial"
+        - "teamMember"
+        - "blogPost"
+
+  seo-perf:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 60000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      targetScores:
+        performance: 90
+        accessibility: 95
+        bestPractices: 90
+        seo: 95
+      maxBundleSize: 300
+      setupAnalytics: true
+
+  testing:
+    enabled: true
+    model: "claude-sonnet-4-20250514"
+    max_tokens: 100000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: true
+    config:
+      testTypes:
+        - "unit"
+        - "a11y"
+        - "visual"
+      coverageTarget: 80
+      runTests: true
+      frameworks:
+        - "vitest"
+        - "testing-library"
+        - "axe-core"
+
+  deploy:
+    enabled: true
+    model: "claude-haiku-35-20241022"
+    max_tokens: 30000
+    temperature: 0
+    timeout: 300
+    retries: 2
+    approval_required: false
+    config:
+      platform: "vercel"
+      ciProvider: "github-actions"
+      nodeVersion: "20"
+      enablePreviewDeploys: true
+
+  code-review:
+    enabled: true
+    model: "claude-opus-4-20250514"
+    max_tokens: 80000
+    temperature: 0
+    timeout: 600
+    retries: 1
+    approval_required: true
+    config:
+      severity: "moderate"
+      autoFix: false
+      focus:
+        - "typescript"
+        - "react"
+        - "a11y"
+        - "performance"
+        - "security"
+        - "i18n"
+        - "theme"

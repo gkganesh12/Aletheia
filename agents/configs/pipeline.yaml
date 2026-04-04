@@ -1,0 +1,59 @@
+pipeline:
+  name: "aletheia-ai-website"
+  version: "1.0"
+
+  stages:
+    - id: "init"
+      agents:
+        - "scaffold"
+      parallel: false
+      depends_on: []
+
+    - id: "foundation"
+      agents:
+        - "design-system"
+        - "theme"
+        - "asset-gen"
+        - "deploy"
+      parallel: true
+      depends_on:
+        - "init"
+
+    - id: "build"
+      agents:
+        - "component-gen"
+      parallel: false
+      depends_on:
+        - "foundation"
+
+    - id: "enhance"
+      agents:
+        - "animation"
+        - "content"
+        - "i18n"
+      parallel: true
+      depends_on:
+        - "build"
+
+    - id: "quality"
+      agents:
+        - "seo-perf"
+        - "cms"
+        - "testing"
+      parallel: true
+      depends_on:
+        - "enhance"
+
+    - id: "review"
+      agents:
+        - "code-review"
+      parallel: false
+      depends_on:
+        - "quality"
+
+    - id: "finalize"
+      agents:
+        - "deploy"
+      parallel: false
+      depends_on:
+        - "review"

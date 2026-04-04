@@ -1,0 +1,72 @@
+project:
+  name: "aletheia-ai-website"
+  version: "1.0.0"
+  outputDir: "./website"
+
+company:
+  name: "Aletheia AI"
+  domain: "aletheia-ai.com"
+  tagline: "AI Engineering & Cybersecurity"
+
+products:
+  - id: "inscrape"
+    name: "Inscrape"
+    tagline: "AI-Powered Web Scraping & Data Extraction"
+    description: "Intelligent web scraping that adapts to site changes, extracts structured data, and scales to millions of pages."
+    features:
+      - "AI-adaptive selectors that survive site redesigns"
+      - "Structured data extraction with schema inference"
+      - "Distributed crawling at scale"
+      - "Built-in proxy rotation and rate limiting"
+      - "Real-time data pipeline integration"
+    icon: "inscrape-icon"
+    gradient:
+      - "#00D4FF"
+      - "#0066FF"
+
+  - id: "nirvana"
+    name: "Nirvana"
+    tagline: "Autonomous Security Monitoring"
+    description: "24/7 autonomous threat detection and response powered by multi-agent AI that never sleeps."
+    features:
+      - "Real-time threat detection across all vectors"
+      - "Autonomous incident response and containment"
+      - "Multi-agent correlation engine"
+      - "Zero-day anomaly detection"
+      - "Compliance-aware reporting"
+    icon: "nirvana-icon"
+    gradient:
+      - "#FF6B6B"
+      - "#FF2D55"
+
+  - id: "swarmscope"
+    name: "SwarmScope"
+    tagline: "Multi-Agent AI Observability"
+    description: "Full observability for multi-agent AI systems — trace, debug, and optimize agent interactions in real-time."
+    features:
+      - "Agent interaction tracing and visualization"
+      - "Token usage analytics and cost optimization"
+      - "Latency and throughput monitoring"
+      - "Error chain analysis across agents"
+      - "Custom alert rules and dashboards"
+    icon: "swarmscope-icon"
+    gradient:
+      - "#7B61FF"
+      - "#00D4FF"
+
+services:
+  - "AI Strategy & Consulting"
+  - "Custom AI/ML Development"
+  - "Cybersecurity Auditing"
+  - "Threat Intelligence"
+  - "Data Engineering & Pipelines"
+  - "AI Agent Development"
+
+analytics:
+  ga4Id: ""
+  hotjarId: ""
+
+claude:
+  apiKeyEnvVar: "ANTHROPIC_API_KEY"
+  defaultModel: "claude-sonnet-4-20250514"
+  maxTokensPerAgent: 100000
