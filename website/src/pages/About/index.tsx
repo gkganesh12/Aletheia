@@ -146,7 +146,7 @@ export default function AboutPage() {
                 {/* Social links */}
                 <div className="flex items-center gap-6 pt-4">
                   <a
-                    href="https://www.linkedin.com/in/ganeshkhetawat/"
+                    href="https://www.linkedin.com/company/aletheiaaitech"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-white/40 transition-colors hover:text-white"
@@ -157,7 +157,7 @@ export default function AboutPage() {
                     LinkedIn
                   </a>
                   <a
-                    href="https://github.com/gkganesh12"
+                    href="https://github.com/Aletheia-Ai-tech"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-white/40 transition-colors hover:text-white"

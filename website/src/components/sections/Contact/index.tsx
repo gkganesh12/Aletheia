@@ -190,7 +190,7 @@ export default function Contact() {
             <div className="flex items-center gap-4 mt-4">
               {[
                 { Icon: TwitterIcon, href: "https://x.com/ai_aletheia", label: "Twitter" },
-                { Icon: LinkedInIcon, href: "https://www.linkedin.com/company/aletheiaaitech/", label: "LinkedIn" },
+                { Icon: LinkedInIcon, href: "https://www.linkedin.com/company/aletheiaaitech", label: "LinkedIn" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}

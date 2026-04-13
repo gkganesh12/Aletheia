@@ -162,8 +162,8 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { Icon: GitHubIcon, href: "https://github.com/gkganesh12", label: "GitHub" },
-  { Icon: LinkedInIcon, href: "https://www.linkedin.com/in/ganeshkhetawat/", label: "LinkedIn" },
+  { Icon: GitHubIcon, href: "https://github.com/Aletheia-Ai-tech", label: "GitHub" },
+  { Icon: LinkedInIcon, href: "https://www.linkedin.com/company/aletheiaaitech", label: "LinkedIn" },
   { Icon: TwitterIcon, href: "https://x.com/ai_aletheia", label: "Twitter" },
 ];
 
