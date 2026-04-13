@@ -15,13 +15,7 @@ import { serviceDetails } from "@/data/serviceDetails";
 /* ── Service icons ─────────────────────────────────────────────────── */
 
 const serviceIcons: Record<string, React.ReactNode> = {
-  "ai-strategy-consulting": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  ),
-  "custom-ai-ml": (
+  "ai-products": (
     <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z" />
       <path d="M16 14v2a4 4 0 0 1-8 0v-2" />
@@ -29,28 +23,35 @@ const serviceIcons: Record<string, React.ReactNode> = {
       <line x1="8" y1="22" x2="16" y2="22" />
     </svg>
   ),
-  "cybersecurity-auditing": (
+  "mvp-development": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
+    </svg>
+  ),
+  "full-stack": (
+    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+      <line x1="8" y1="21" x2="16" y2="21" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+    </svg>
+  ),
+  "cybersecurity": (
     <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       <path d="M9 12l2 2 4-4" />
     </svg>
   ),
-  "threat-intelligence": (
+  "blockchain": (
     <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="2" />
-      <path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14" />
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
     </svg>
   ),
-  "data-engineering": (
+  "data-ml": (
     <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
       <ellipse cx="12" cy="5" rx="9" ry="3" />
       <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
       <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-    </svg>
-  ),
-  "ai-agent-development": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
     </svg>
   ),
 };
@@ -62,25 +63,25 @@ const processPhases = [
     number: "01",
     title: "Discovery",
     description:
-      "We map your threat landscape, audit existing defences and identify the gaps that matter most.",
+      "We understand your problem, your users and your constraints. No assumptions — just the facts that shape the right solution.",
   },
   {
     number: "02",
-    title: "Strategy",
+    title: "Architecture",
     description:
-      "A tailored roadmap aligning AI capabilities to your risk profile, compliance needs and business goals.",
+      "Tech stack, database design, API structure, deployment strategy. We make the big decisions early so development moves fast.",
   },
   {
     number: "03",
     title: "Build",
     description:
-      "Rapid, iterative deployment of production-grade AI security systems — integrated with your existing stack.",
+      "Focused development sprints with regular deliverables. You see progress every few days, not after months of silence.",
   },
   {
     number: "04",
-    title: "Scale",
+    title: "Ship & Iterate",
     description:
-      "Continuous optimisation, model retraining and expanding coverage as your organisation and threat landscape evolve.",
+      "Deployed to production, monitored and ready for users. Then we iterate based on real feedback and real data.",
   },
 ];
 
@@ -93,9 +94,9 @@ const differentiators = [
       "Every system we build is designed for production from day one. No throwaway prototypes, no demo-ware.",
   },
   {
-    title: "Domain Expertise",
+    title: "Polyglot Engineering",
     description:
-      "Deep knowledge across healthcare, finance, insurance, education and legal — not just tech for tech's sake.",
+      "Python, TypeScript, React, Rust, Go, Solidity — we pick the right tool for the job, not the one we're most comfortable with.",
   },
   {
     title: "Full Ownership",
@@ -124,12 +125,12 @@ export default function ServicesPage() {
       <section className="border-b border-white/[0.04] py-12">
         <Container>
           <AnimatedSection>
-            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-8 text-center md:grid-cols-4">
+            <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 text-center sm:gap-8 md:grid-cols-4">
               {[
                 { value: "6", label: "Core Service Lines" },
-                { value: "200+", label: "Models Shipped" },
-                { value: "500+", label: "Audits Completed" },
-                { value: "97.4%", label: "Avg Model Accuracy" },
+                { value: "3", label: "Products Shipped" },
+                { value: "10+", label: "Projects Delivered" },
+                { value: "2", label: "Published Packages" },
               ].map((stat) => (
                 <div key={stat.label}>
                   <div className="text-3xl font-bold text-white lg:text-4xl">
@@ -175,7 +176,7 @@ export default function ServicesPage() {
                     {/* Number + icon row */}
                     <div className="relative flex items-center justify-between">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-accent-400)]/10 text-[var(--color-accent-400)] transition-colors duration-300 group-hover:bg-[var(--color-accent-400)]/15">
-                        {serviceIcons[service.slug] || serviceIcons["cybersecurity-auditing"]}
+                        {serviceIcons[service.slug] || serviceIcons["cybersecurity"]}
                       </div>
                       <span className="text-4xl font-black text-white/[0.04] transition-colors duration-500 group-hover:text-[var(--color-accent-400)]/[0.08]">
                         {String(i + 1).padStart(2, "0")}
@@ -292,7 +293,7 @@ export default function ServicesPage() {
       <section className="py-24 lg:py-32">
         <Container>
           <div className="mx-auto max-w-6xl">
-            <div className="grid items-start gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
+            <div className="grid items-start gap-8 sm:gap-16 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
               {/* Left — statement */}
               <AnimatedSection>
                 <div>

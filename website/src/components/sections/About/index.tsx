@@ -52,7 +52,15 @@ function HighlightedParagraph({
   return (
     <p className={className}>
       {text.slice(0, idx)}
-      <span className="text-[var(--color-accent-400)] font-medium">
+      <span
+        className="font-medium"
+        style={{
+          backgroundImage: "linear-gradient(90deg, #8b5cf6, #06b6d4)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}
+      >
         {text.slice(idx, idx + highlight.length)}
       </span>
       {text.slice(idx + highlight.length)}
@@ -68,10 +76,10 @@ export default function About() {
     target: sectionRef,
     offset: ["start end", "end start"],
   });
-  const textY = useTransform(scrollYProgress, [0, 1], [30, -30]);
+  const textY = useTransform(scrollYProgress, [0, 1], [15, -15]);
 
   return (
-    <section id="about" ref={sectionRef} className="relative py-24 lg:py-36">
+    <section id="about" ref={sectionRef} className="relative py-16 sm:py-24 lg:py-36">
       <Container>
         <motion.div
           style={{ y: textY }}
@@ -114,36 +122,28 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="mt-16 grid grid-cols-2 gap-8 sm:grid-cols-4"
+            className="mt-10 grid grid-cols-2 gap-4 sm:mt-16 sm:grid-cols-4 sm:gap-8"
           >
             {[
-              { value: "3", label: "Products Live" },
-              { value: "Full-Stack", label: "AI to Deploy" },
-              { value: "99.99%", label: "Uptime" },
-              { value: "Fast", label: "Idea → MVP" },
+              { value: "3", label: "Products Shipped", color: "#8b5cf6" },
+              { value: "10+", label: "Projects Delivered", color: "#6366f1" },
+              { value: "Full-Stack", label: "AI to Deploy", color: "#818cf8" },
+              { value: "Fast", label: "Idea → MVP", color: "#06b6d4" },
             ].map((stat) => (
               <motion.div key={stat.label} variants={statItem} className="text-center">
-                <span className="text-2xl font-bold text-[var(--color-accent-400)] lg:text-3xl">
+                <span
+                  className="mono text-2xl font-bold lg:text-3xl"
+                  style={{ color: stat.color }}
+                >
                   {stat.value}
                 </span>
-                <p className="mt-1 text-xs font-medium uppercase tracking-wider text-white/40">
+                <p className="mono mt-1 text-[11px] uppercase tracking-wider text-white/40">
                   {stat.label}
                 </p>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Accent divider */}
-          <motion.div
-            initial={{ scaleX: 0, opacity: 0 }}
-            whileInView={{ scaleX: 1, opacity: 0.4 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mx-auto mt-12 h-px w-48 origin-center"
-            style={{
-              background: "linear-gradient(90deg, transparent, var(--color-accent-400), transparent)",
-            }}
-          />
         </motion.div>
       </Container>
     </section>

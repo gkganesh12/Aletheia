@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { Container, Button } from "@/components/ui";
 
 const trustBadges = [
-  { icon: "💬", label: "Free Consultation" },
-  { icon: "🤝", label: "No Commitment" },
-  { icon: "⚡", label: "24h Response" },
+  { label: "Free Consultation", color: "#8b5cf6" },
+  { label: "No Commitment", color: "#6366f1" },
+  { label: "24h Response", color: "#06b6d4" },
 ];
 
 interface CTASectionProps {
@@ -15,7 +15,7 @@ interface CTASectionProps {
 }
 
 export default function CTASection({
-  heading = "Ready to Secure Your Future?",
+  heading = "Ready to Build Something Great?",
   description = "Get in touch and a member of our team will respond within 24 hours.",
   className = "",
 }: CTASectionProps) {
@@ -23,11 +23,16 @@ export default function CTASection({
     <section
       className={`relative overflow-hidden py-24 sm:py-32 ${className}`}
     >
-      {/* Subtle accent gradient background */}
+      {/* Multi-color gradient background */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--color-accent-400)]/[0.03] to-transparent" />
-        <div className="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[var(--color-accent-400)]/20 to-transparent" />
-        <div className="absolute bottom-0 left-1/2 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-[var(--color-accent-400)]/20 to-transparent" />
+        <div
+          className="absolute left-1/3 top-1/2 h-[400px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.06]"
+          style={{ background: "radial-gradient(ellipse, #8b5cf6, transparent 70%)" }}
+        />
+        <div
+          className="absolute right-1/3 top-1/2 h-[400px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.05]"
+          style={{ background: "radial-gradient(ellipse, #6366f1, transparent 70%)" }}
+        />
       </div>
 
       <Container size="narrow" className="relative z-10">
@@ -38,8 +43,16 @@ export default function CTASection({
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center"
         >
-          {/* Heading */}
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          {/* Heading — gradient */}
+          <h2
+            className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl"
+            style={{
+              backgroundImage: "linear-gradient(135deg, #ffffff 30%, #8b5cf6 60%, #06b6d4 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             {heading}
           </h2>
 
@@ -48,7 +61,7 @@ export default function CTASection({
             {description}
           </p>
 
-          {/* Trust badges */}
+          {/* Trust badges — colored dots */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,9 +72,13 @@ export default function CTASection({
             {trustBadges.map((badge) => (
               <div
                 key={badge.label}
-                className="flex items-center gap-2 text-sm text-white/40"
+                className="flex items-center gap-2 text-sm text-white/45"
               >
-                <span aria-hidden="true">{badge.icon}</span>
+                <span
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: badge.color }}
+                  aria-hidden="true"
+                />
                 <span>{badge.label}</span>
               </div>
             ))}

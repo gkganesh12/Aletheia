@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LinkedIn Banner — Aletheia AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .banner {
+    width: 1128px;
+    height: 191px;
+    background: #09090b;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtle dot grid */
+  .banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Gradient glow — left side (behind logo area) */
+  .glow-left {
+    position: absolute;
+    left: -40px;
+    top: -30px;
+    width: 350px;
+    height: 250px;
+    background: radial-gradient(ellipse, rgba(139, 92, 246, 0.1), transparent 70%);
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .text-block {
+    text-align: right;
+  }
+
+  .headline {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+  }
+
+  .headline .gradient {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 10px;
+  }
+
+  .products {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
+  }
+
+  .product-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 16px;
+    white-space: nowrap;
+  }
+
+  .p1 {
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    background: rgba(139, 92, 246, 0.08);
+    color: rgba(139, 92, 246, 0.7);
+  }
+  .p2 {
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(99, 102, 241, 0.08);
+    color: rgba(99, 102, 241, 0.7);
+  }
+  .p3 {
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    background: rgba(6, 182, 212, 0.08);
+    color: rgba(6, 182, 212, 0.7);
+  }
+
+  /* Bottom accent line */
+  .bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 20%, #8b5cf6, #6366f1, #06b6d4);
+  }
+</style>
+</head>
+<body style="background: #1a1a1a; display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+
+<div class="banner">
+  <div class="glow-left"></div>
+
+  <div class="content">
+    <div class="text-block">
+      <div class="headline">
+        We <span class="gradient">Build</span> What <span class="gradient">Others Pitch.</span>
+      </div>
+      <div class="subtitle">aletheiaai.tech</div>
+    </div>
+
+    <div class="products">
+      <span class="product-pill p1">Inscrape</span>
+      <span class="product-pill p2">Nirvana</span>
+      <span class="product-pill p3">SwarmScope</span>
+    </div>
+  </div>
+
+  <div class="bottom-line"></div>
+</div>
+
+</body>
+</html>

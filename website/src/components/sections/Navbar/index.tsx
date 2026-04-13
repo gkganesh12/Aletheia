@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Container } from "@/components/ui";
+import { Container, ShieldLogo } from "@/components/ui";
 import { Button } from "@/components/ui";
 import { navLinks, mobileNavLinks } from "@/data/navigation";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
@@ -70,7 +70,7 @@ function NavDropdown({ link }: { link: (typeof navLinks)[number] }) {
       onMouseLeave={handleLeave}
     >
       <button
-        className="flex items-center gap-1 rounded-lg px-4 py-2 text-[15px] font-medium text-white/60 transition-colors duration-200 hover:bg-white/[0.05] hover:text-white"
+        className="flex items-center gap-1 rounded-lg px-4 py-2 text-lg font-medium text-white/60 transition-colors duration-200 hover:bg-white/[0.05] hover:text-white"
         onClick={() => setOpen((prev) => !prev)}
       >
         {link.label}
@@ -92,7 +92,7 @@ function NavDropdown({ link }: { link: (typeof navLinks)[number] }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.96 }}
             transition={{ duration: 0.15 }}
-            className="absolute left-0 top-full z-50 mt-1 min-w-[220px] rounded-xl border border-white/[0.08] bg-[var(--color-primary-900)]/95 p-2 backdrop-blur-2xl"
+            className="absolute left-0 top-full z-50 mt-1 min-w-[220px] rounded-xl border border-white/[0.07] bg-[#141414]/95 p-2 backdrop-blur-2xl"
           >
             {link.children.map((child) => (
               <Link
@@ -153,7 +153,7 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 z-40 w-full transition-colors duration-300",
           isScrolled
-            ? "backdrop-blur-xl bg-white/[0.03] border-b border-white/[0.08]"
+            ? "backdrop-blur-xl bg-[#0a0a0a]/80 border-b border-white/[0.06]"
             : "bg-transparent border-b border-transparent",
         )}
       >
@@ -162,9 +162,12 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               to="/"
-              className="relative z-50 font-[var(--font-heading)] text-base font-bold tracking-widest text-white lg:text-lg"
+              className="relative z-50 flex items-center gap-2.5"
             >
-              ALETHEIA
+              <ShieldLogo size={34} />
+              <span className="font-[var(--font-heading)] text-lg font-bold tracking-widest text-white lg:text-xl">
+                ALETHEIA
+              </span>
             </Link>
 
             {/* Desktop nav */}
@@ -180,7 +183,7 @@ export default function Navbar() {
                     key={link.id}
                     to={link.href}
                     className={cn(
-                      "relative rounded-lg px-4 py-2 text-[15px] font-medium transition-colors duration-200 hover:bg-white/[0.05] hover:text-white",
+                      "relative rounded-lg px-4 py-2 text-lg font-medium transition-colors duration-200 hover:bg-white/[0.05] hover:text-white",
                       isActive ? "text-white" : "text-white/60",
                     )}
                   >
@@ -234,7 +237,7 @@ export default function Navbar() {
               initial="closed"
               animate="open"
               exit="exit"
-              className="fixed inset-y-0 right-0 z-40 flex w-[280px] flex-col border-l border-white/[0.08] bg-[var(--color-primary-900)]/95 px-6 pt-24 backdrop-blur-2xl lg:hidden"
+              className="fixed inset-y-0 right-0 z-40 flex w-[85vw] max-w-[300px] flex-col border-l border-white/[0.07] bg-[#111111]/95 px-6 pt-24 backdrop-blur-2xl lg:hidden"
             >
               <nav className="flex flex-col gap-1">
                 {mobileNavLinks.map((link, i) => {

@@ -12,452 +12,435 @@ export interface ServiceDetail {
 
 export const serviceDetails: ServiceDetail[] = [
   {
-    slug: "ai-strategy-consulting",
-    name: "AI Strategy & Consulting",
-    overline: "Strategic Advisory",
-    headline: "Turn AI Ambition into Operational Advantage",
+    slug: "ai-products",
+    name: "AI Product Engineering",
+    overline: "Build Intelligence",
+    headline: "AI Products Built for the Real World",
     description:
-      "Most organisations know they need AI — few know where to start or how to avoid the pitfalls. Our strategy consultants combine deep technical expertise with business acumen to build AI roadmaps that deliver measurable ROI. From executive workshops to full transformation programmes, we help you identify high-impact use cases, assess readiness, navigate regulatory complexity and build the organisational muscle to execute at scale.",
+      "We design and build AI-powered products from the ground up — LLM applications, multi-agent systems, RAG pipelines, computer vision and NLP. Not proof-of-concepts that look good in demos. Production systems that handle real users, real data and real edge cases. Our own products (Inscrape, Nirvana, SwarmScope) are the proof.",
     features: [
       {
-        title: "AI Readiness Assessment",
+        title: "LLM Application Development",
         description:
-          "A comprehensive audit of your data infrastructure, talent, governance and culture to establish a clear baseline and identify the gaps standing between you and production-grade AI.",
+          "Custom applications built on top of large language models — chatbots, copilots, content generation systems, document analysis tools. Prompt engineering, fine-tuning and guardrails included.",
       },
       {
-        title: "Use Case Prioritisation",
+        title: "Multi-Agent Systems",
         description:
-          "We score and rank dozens of potential AI applications against feasibility, impact and strategic alignment — so you invest in the initiatives that move the needle fastest.",
+          "Architectures where specialised AI agents collaborate to handle complex workflows. We built SwarmScope with 5,000+ concurrent agents — we know how to make multi-agent systems work at scale.",
       },
       {
-        title: "Responsible AI Governance",
+        title: "RAG Pipelines",
         description:
-          "Frameworks for bias detection, explainability, privacy compliance and ethical oversight that keep your AI initiatives trustworthy, auditable and regulation-ready.",
+          "Retrieval-Augmented Generation systems that ground AI responses in your data. Vector databases, embedding strategies, chunk optimisation and hybrid search — built for accuracy.",
       },
       {
-        title: "Transformation Roadmapping",
+        title: "Production MLOps",
         description:
-          "A phased, milestone-driven plan that connects your AI strategy to concrete engineering workstreams, org design changes and KPIs — turning vision into velocity.",
-      },
-      {
-        title: "Executive Education & Enablement",
-        description:
-          "Tailored workshops for C-suite and senior leadership that demystify AI, build internal champions and ensure strategic decisions are grounded in technical reality.",
+          "Model deployment, monitoring, versioning and retraining pipelines. We don't just build models — we build the infrastructure that keeps them performing in production.",
       },
     ],
     technologies: [
-      "Wardley Mapping",
-      "TOGAF",
-      "NIST AI RMF",
-      "EU AI Act Compliance",
-      "MLOps Maturity Models",
-      "Responsible AI Toolkits",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Discovery & Landscape Analysis",
-        description:
-          "We conduct stakeholder interviews, audit your existing data and technology stack, map competitive dynamics and benchmark your AI maturity against industry peers.",
-      },
-      {
-        step: 2,
-        title: "Opportunity Identification",
-        description:
-          "Our team identifies and scores AI use cases across every business unit, evaluating each against data availability, technical feasibility, regulatory risk and projected ROI.",
-      },
-      {
-        step: 3,
-        title: "Strategy Design & Validation",
-        description:
-          "We synthesise findings into a multi-horizon roadmap with clear milestones, resource plans, governance structures and quick-win pilots to build early momentum.",
-      },
-      {
-        step: 4,
-        title: "Execution Support & Iteration",
-        description:
-          "Our consultants remain embedded through initial pilot delivery, measuring outcomes against KPIs and iterating the strategy based on real-world learnings.",
-      },
-    ],
-    stats: [
-      { value: "120+", label: "Strategy engagements delivered" },
-      { value: "3.2x", label: "Average ROI on AI initiatives we advise" },
-      { value: "89%", label: "Pilot-to-production conversion rate" },
-      { value: "< 90 days", label: "Average time to first pilot deployment" },
-    ],
-  },
-  {
-    slug: "custom-ai-ml",
-    name: "Custom AI/ML Development",
-    overline: "Bespoke Intelligence",
-    headline: "Models Built for Your Problem — Not Someone Else's",
-    description:
-      "Off-the-shelf models get you 80% of the way. The last 20% — where competitive advantage lives — demands custom work. Our ML engineering team designs, trains, validates and deploys bespoke models tailored to your domain, your data and your constraints. Whether you need a computer vision pipeline for manufacturing QA, an NLP system for contract analysis or a reinforcement learning agent for dynamic pricing, we build it to production spec from day one.",
-    features: [
-      {
-        title: "Custom Model Architecture",
-        description:
-          "Purpose-built neural architectures and training pipelines designed around your specific data characteristics, latency requirements and accuracy thresholds — not generic templates.",
-      },
-      {
-        title: "Data Strategy & Feature Engineering",
-        description:
-          "We help you unlock the value hidden in raw data through expert feature engineering, synthetic data generation and data augmentation strategies that maximise model performance.",
-      },
-      {
-        title: "Model Hardening & Robustness",
-        description:
-          "Adversarial testing, distribution shift detection and ensemble techniques that ensure your models perform reliably in production — not just on held-out test sets.",
-      },
-      {
-        title: "MLOps & Continuous Training",
-        description:
-          "Automated retraining pipelines, model versioning, A/B testing infrastructure and drift monitoring that keep your models sharp as the world changes around them.",
-      },
-    ],
-    technologies: [
+      "Python",
       "PyTorch",
-      "TensorFlow",
-      "JAX",
-      "Hugging Face Transformers",
-      "Ray",
-      "MLflow",
-      "Weights & Biases",
-      "ONNX Runtime",
+      "LangChain",
+      "OpenAI API",
+      "Anthropic Claude API",
+      "Pinecone",
+      "FastAPI",
+      "Docker",
     ],
     process: [
       {
         step: 1,
-        title: "Problem Framing & Data Audit",
+        title: "Problem Framing",
         description:
-          "We rigorously define the ML problem, success metrics and deployment constraints, then audit your available data for quality, volume, bias and labelling completeness.",
+          "We define the AI problem clearly — what data you have, what outcome you need, what constraints exist. No AI for AI's sake.",
       },
       {
         step: 2,
-        title: "Rapid Prototyping",
+        title: "Rapid Prototype",
         description:
-          "Our team builds and benchmarks multiple model architectures in a time-boxed sprint, using your real data to validate feasibility and establish performance baselines.",
+          "A working prototype in days, not months. We validate the approach with real data before investing in production engineering.",
       },
       {
         step: 3,
-        title: "Production Engineering",
+        title: "Production Build",
         description:
-          "The winning architecture is hardened, optimised for inference speed and memory footprint, wrapped in production APIs and integrated with your existing systems.",
+          "The validated approach gets hardened — error handling, edge cases, scalability, monitoring. Built to handle real-world traffic.",
       },
       {
         step: 4,
-        title: "Deployment & Monitoring",
+        title: "Deploy & Monitor",
         description:
-          "We deploy with full observability — latency tracking, accuracy monitoring, data drift alerts and automated rollback — ensuring the model delivers value from day one.",
+          "Deployed with full observability — latency tracking, accuracy monitoring, cost controls. We don't ship and forget.",
       },
     ],
     stats: [
-      { value: "200+", label: "Custom models shipped to production" },
-      { value: "97.4%", label: "Average model accuracy across projects" },
-      { value: "40%", label: "Average inference cost reduction post-optimisation" },
-      { value: "< 8 weeks", label: "Typical prototype-to-production timeline" },
+      { value: "3", label: "AI products shipped to production" },
+      { value: "5,000+", label: "Concurrent agents in SwarmScope" },
+      { value: "Dual-Engine", label: "RAG+HAG system built (HeuriSight)" },
+      { value: "< 4 weeks", label: "Typical prototype-to-production" },
     ],
   },
   {
-    slug: "cybersecurity-auditing",
-    name: "Cybersecurity Auditing",
-    overline: "Defence Validation",
-    headline: "Know Exactly Where You Stand — Before Attackers Do",
+    slug: "mvp-development",
+    name: "MVP & Rapid Prototyping",
+    overline: "Ship Fast",
+    headline: "From Idea to Working Product — Fast",
     description:
-      "Assumptions are the enemy of security. Our auditing practice delivers unflinching, evidence-based assessments of your security posture across infrastructure, applications, cloud environments and human processes. We combine automated scanning with expert manual testing, threat modelling and compliance gap analysis to give you a prioritised, actionable roadmap for hardening your defences. Whether you need a point-in-time penetration test or a continuous assurance programme, we expose what others miss.",
+      "You have an idea. You need it built, deployed and in front of users — without burning months or getting a codebase you'll have to throw away. We scope tightly, build fast and ship clean. Every MVP we deliver has production-grade architecture because we don't believe in throwaway code.",
+    features: [
+      {
+        title: "Tight Scoping",
+        description:
+          "We help you identify the core problem and the simplest product that validates it. No feature creep, no gold plating — just the thing that matters.",
+      },
+      {
+        title: "Scalable Architecture",
+        description:
+          "Clean code from day one. Modular components, proper API design, database schemas that won't need rewriting when you scale. We've done this enough to get it right the first time.",
+      },
+      {
+        title: "Full Deployment",
+        description:
+          "We don't hand you a zip file. Your MVP ships on real infrastructure — CI/CD, monitoring, domain, SSL. Ready for users.",
+      },
+      {
+        title: "Post-Launch Support",
+        description:
+          "We stick around for the first wave. Bug fixes, user feedback integration, performance tuning — we help you through the critical early days.",
+      },
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Python",
+      "PostgreSQL",
+      "Redis",
+      "Vercel",
+      "Docker",
+    ],
+    process: [
+      {
+        step: 1,
+        title: "Discovery & Scoping",
+        description:
+          "We understand your problem, your users and your constraints. Then we define the smallest product that validates the idea.",
+      },
+      {
+        step: 2,
+        title: "Design & Architecture",
+        description:
+          "Tech stack selection, database design, API structure. We make the big decisions early so development moves fast.",
+      },
+      {
+        step: 3,
+        title: "Sprint Build",
+        description:
+          "Focused development sprints with regular demos. You see progress every few days, not after months of silence.",
+      },
+      {
+        step: 4,
+        title: "Ship & Iterate",
+        description:
+          "Deployed to production, monitored and ready for users. Then we iterate based on real feedback.",
+      },
+    ],
+    stats: [
+      { value: "10+", label: "Projects shipped" },
+      { value: "< 6 weeks", label: "Typical MVP delivery" },
+      { value: "0", label: "Throwaway codebases" },
+      { value: "100%", label: "Deployed to production" },
+    ],
+  },
+  {
+    slug: "full-stack",
+    name: "Full-Stack Development",
+    overline: "End-to-End Engineering",
+    headline: "Frontend to Backend to Deploy",
+    description:
+      "We build complete applications — responsive frontends, robust backends, APIs, real-time systems, databases and deployment. Whatever the tech stack demands, we handle it. React, Next.js, Node, Python, Go, Rust, PostgreSQL, Redis, Docker, Kubernetes — we pick the right tool for the job and build it properly.",
+    features: [
+      {
+        title: "Modern Frontends",
+        description:
+          "React, Next.js, TypeScript, Tailwind CSS. Responsive, accessible, performant UIs that work across devices. We care about the details.",
+      },
+      {
+        title: "Robust APIs & Backends",
+        description:
+          "RESTful and GraphQL APIs built on Node.js, Python, Go or Rust. Proper error handling, validation, authentication and rate limiting.",
+      },
+      {
+        title: "Database Design",
+        description:
+          "PostgreSQL, MongoDB, Redis, Neo4j — we pick the right database for your data model and design schemas that scale.",
+      },
+      {
+        title: "Infrastructure & DevOps",
+        description:
+          "Docker, CI/CD pipelines, cloud deployment (AWS, GCP, Vercel). We don't just write code — we make sure it runs reliably.",
+      },
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Python",
+      "Go",
+      "Rust",
+      "PostgreSQL",
+    ],
+    process: [
+      {
+        step: 1,
+        title: "Requirements & Architecture",
+        description:
+          "We understand the full scope — features, integrations, scale requirements — and design an architecture that fits.",
+      },
+      {
+        step: 2,
+        title: "Foundation Sprint",
+        description:
+          "Core architecture, database schema, authentication, deployment pipeline. The foundation everything else builds on.",
+      },
+      {
+        step: 3,
+        title: "Feature Development",
+        description:
+          "Iterative feature development with regular deliverables. Frontend and backend built in parallel for speed.",
+      },
+      {
+        step: 4,
+        title: "QA, Deploy & Handover",
+        description:
+          "Thorough testing, production deployment, documentation and clean handover. Code you can maintain and extend.",
+      },
+    ],
+    stats: [
+      { value: "7+", label: "Tech stacks we ship in" },
+      { value: "Full-Stack", label: "Frontend to deployment" },
+      { value: "Clean", label: "Maintainable, documented code" },
+      { value: "Production", label: "Always deployed, never prototype-only" },
+    ],
+  },
+  {
+    slug: "cybersecurity",
+    name: "Cybersecurity & Auditing",
+    overline: "Defence Validation",
+    headline: "Know Where You Stand Before Attackers Do",
+    description:
+      "Security audits, penetration testing, vulnerability assessments and secure architecture design. Our founder is CEH-certified with hands-on experience in both offensive and defensive security. We combine automated scanning with manual testing to find what automated tools miss — and we give you a prioritised, actionable remediation plan, not a 200-page PDF nobody reads.",
     features: [
       {
         title: "Penetration Testing",
         description:
-          "Black-box, grey-box and white-box assessments across network, web application, mobile and API attack surfaces — conducted by certified offensive security professionals.",
+          "Black-box and grey-box assessments across web applications, APIs, networks and cloud infrastructure. We think like attackers to find what they'd exploit.",
       },
       {
-        title: "Cloud Security Assessment",
+        title: "Vulnerability Assessment",
         description:
-          "Deep-dive audits of AWS, Azure and GCP environments covering IAM misconfigurations, network exposure, storage permissions, secrets management and compliance posture.",
+          "Automated and manual scanning of your infrastructure, applications and configurations. Every finding comes with severity rating, reproduction steps and fix guidance.",
       },
       {
-        title: "Compliance Gap Analysis",
+        title: "Secure Architecture Review",
         description:
-          "Detailed mapping of your current controls against SOC 2, ISO 27001, NIST CSF, HIPAA, PCI DSS and other frameworks — with prioritised remediation recommendations.",
+          "Review of your system architecture, authentication flows, data handling and cloud configuration. We identify design-level weaknesses before they become incidents.",
       },
       {
-        title: "Red Team Exercises",
+        title: "Remediation Support",
         description:
-          "Full-scope adversary simulations that test your people, processes and technology against realistic, multi-stage attack scenarios modelled on real-world threat actors.",
-      },
-      {
-        title: "Source Code Review",
-        description:
-          "Manual and automated analysis of application source code to identify vulnerabilities, insecure design patterns and cryptographic weaknesses before they reach production.",
+          "We don't just find problems — we help fix them. Prioritised remediation plans with hands-on support to implement the fixes that matter most.",
       },
     ],
     technologies: [
-      "Burp Suite Pro",
-      "Cobalt Strike",
-      "Nessus",
+      "Burp Suite",
+      "Nmap",
+      "Metasploit",
       "Semgrep",
-      "ScoutSuite",
-      "Prowler",
-      "BloodHound",
+      "OWASP ZAP",
+      "Wireshark",
+      "Docker",
+      "Cloud Security Tools",
     ],
     process: [
       {
         step: 1,
         title: "Scoping & Threat Modelling",
         description:
-          "We define the engagement scope, identify critical assets, model likely threat actors and agree on rules of engagement and success criteria with your security leadership.",
+          "We define the engagement scope, identify critical assets and model the most likely threat scenarios for your specific situation.",
       },
       {
         step: 2,
         title: "Assessment Execution",
         description:
-          "Our team conducts the audit using a blend of automated tooling and hands-on manual testing, documenting every finding with full evidence chains and reproduction steps.",
+          "Automated scanning combined with manual testing. We document every finding with evidence and reproduction steps.",
       },
       {
         step: 3,
         title: "Analysis & Prioritisation",
         description:
-          "Findings are risk-scored using CVSS and contextual business impact, then mapped to a prioritised remediation roadmap with clear ownership and timelines.",
+          "Findings are risk-scored based on exploitability and business impact. You get a clear, prioritised remediation roadmap.",
       },
       {
         step: 4,
-        title: "Remediation Support & Retest",
+        title: "Fix & Retest",
         description:
-          "We work alongside your engineering teams to validate fixes, conduct retesting of critical findings and deliver a final assurance report confirming closure.",
+          "We help implement fixes for critical findings and retest to confirm they're resolved. No open loops.",
       },
     ],
     stats: [
-      { value: "500+", label: "Security audits completed" },
-      { value: "12,000+", label: "Vulnerabilities identified and remediated" },
-      { value: "100%", label: "Client audit pass rate post-remediation" },
-      { value: "48 hrs", label: "Average time to deliver critical findings" },
+      { value: "CEH", label: "Certified Ethical Hacker" },
+      { value: "OWASP", label: "Top 10 coverage in every audit" },
+      { value: "Actionable", label: "Prioritised remediation, not PDF reports" },
+      { value: "Full-Scope", label: "Web, API, cloud, network" },
     ],
   },
   {
-    slug: "threat-intelligence",
-    name: "Threat Intelligence",
-    overline: "Proactive Defence",
-    headline: "See Threats Forming — Before They Reach Your Perimeter",
+    slug: "blockchain",
+    name: "Blockchain & Web3",
+    overline: "Decentralised Engineering",
+    headline: "Smart Contracts to Full-Stack DApps",
     description:
-      "Reactive security is a losing game. Our threat intelligence practice gives you forward-looking visibility into the adversaries, campaigns and vulnerabilities most likely to target your organisation. Powered by Inscrape and enriched by our analyst team, we deliver contextualised, actionable intelligence that integrates directly into your security operations — enabling faster decisions, smarter prioritisation and pre-emptive defensive action across every layer of your infrastructure.",
+      "We build blockchain applications that go beyond the hype — smart contracts, decentralised applications, token systems and Web3 platform engineering. From Solidity development to frontend integration, we handle the full stack of decentralised development with the same engineering rigour we bring to everything else.",
     features: [
       {
-        title: "Dark Web Monitoring",
+        title: "Smart Contract Development",
         description:
-          "Continuous surveillance of dark web marketplaces, forums, paste sites and encrypted channels for leaked credentials, stolen data and chatter about your organisation or industry.",
+          "Solidity smart contracts with proper testing, gas optimisation and security auditing. We write contracts that handle real value safely.",
       },
       {
-        title: "Threat Actor Profiling",
+        title: "DApp Architecture",
         description:
-          "Detailed dossiers on APT groups, ransomware operators and cybercrime syndicates relevant to your sector — including TTPs, infrastructure indicators and targeting patterns.",
+          "Full-stack decentralised applications with Web3 wallet integration, on-chain/off-chain data architecture and responsive frontends.",
       },
       {
-        title: "Vulnerability Intelligence",
+        title: "Token & NFT Systems",
         description:
-          "Curated feeds of emerging CVEs and zero-days prioritised by exploitability, relevance to your tech stack and active exploitation in the wild — not just CVSS scores.",
+          "ERC-20, ERC-721 and custom token standards. Minting, marketplace, governance and utility token implementations.",
       },
       {
-        title: "Brand & Executive Protection",
+        title: "Smart Contract Auditing",
         description:
-          "Monitoring for domain spoofing, executive impersonation, phishing kit deployments and fraudulent social media accounts that exploit your brand identity.",
+          "Security review of existing smart contracts — reentrancy, overflow, access control and logic vulnerabilities. Manual review plus automated analysis.",
       },
     ],
     technologies: [
-      "Inscrape Platform",
-      "MITRE ATT&CK",
-      "STIX/TAXII",
-      "OpenCTI",
-      "VirusTotal",
-      "Shodan",
-      "Censys",
-      "Maltego",
+      "Solidity",
+      "Hardhat",
+      "Ethers.js",
+      "Web3.js",
+      "IPFS",
+      "The Graph",
+      "React",
+      "TypeScript",
     ],
     process: [
       {
         step: 1,
-        title: "Intelligence Requirements",
+        title: "Architecture Design",
         description:
-          "We work with your team to define priority intelligence requirements — the specific questions your security operations need answered to make better decisions faster.",
+          "We design the on-chain/off-chain split, choose the right blockchain, plan gas optimisation and define the smart contract architecture.",
       },
       {
         step: 2,
-        title: "Collection & Enrichment",
+        title: "Contract Development & Testing",
         description:
-          "Inscrape continuously collects data across hundreds of sources while our analysts enrich, correlate and validate findings to eliminate noise and false positives.",
+          "Smart contracts written with comprehensive test suites. Every edge case covered before deployment.",
       },
       {
         step: 3,
-        title: "Analysis & Dissemination",
+        title: "Frontend & Integration",
         description:
-          "Intelligence is packaged into strategic briefings for leadership, tactical reports for SOC analysts and machine-readable IOCs for automated ingestion into your security tools.",
+          "Web3 frontend with wallet connection, transaction handling and real-time on-chain data. Full DApp experience.",
       },
       {
         step: 4,
-        title: "Feedback & Tuning",
+        title: "Audit & Deploy",
         description:
-          "We continuously refine collection priorities, alerting thresholds and reporting formats based on feedback loops with your analysts — ensuring intelligence stays operationally relevant.",
+          "Security audit of all contracts, testnet deployment, mainnet deployment and monitoring setup.",
       },
     ],
     stats: [
-      { value: "2B+", label: "Signals processed daily" },
-      { value: "< 15 min", label: "Average time from detection to alert" },
-      { value: "94%", label: "Actionable intelligence rate" },
-      { value: "200+", label: "Dark web sources under continuous watch" },
+      { value: "Solidity", label: "Primary smart contract language" },
+      { value: "Full-Stack", label: "Contracts to frontend" },
+      { value: "Audited", label: "Security-first development" },
+      { value: "Multi-Chain", label: "Ethereum, Polygon and more" },
     ],
   },
   {
-    slug: "data-engineering",
-    name: "Data Engineering & Pipelines",
+    slug: "data-ml",
+    name: "Data Engineering & ML",
     overline: "Data Infrastructure",
     headline: "Clean Data In. Intelligent Decisions Out.",
     description:
-      "AI is only as good as the data that feeds it. Our data engineering practice designs and builds the high-performance pipelines, lakehouses and real-time streaming architectures that transform raw, messy data into ML-ready fuel. We handle everything from ingestion and transformation to quality assurance and governance — giving your data science teams a reliable foundation to build on, and your business leaders the confidence that decisions are grounded in trustworthy data.",
+      "AI is only as good as the data that feeds it. We build the pipelines, processing systems and ML infrastructure that transform raw data into intelligent applications. From data ingestion and transformation to model training and deployment — reliable, monitored and scalable. Our own products are proof: HeuriSight processes educational assessments through a dual-engine RAG+HAG pipeline, and SwarmScope's GraphRAG extracts entity graphs from unstructured text.",
     features: [
       {
-        title: "Real-Time Streaming Pipelines",
+        title: "Data Pipelines",
         description:
-          "Event-driven architectures built on Kafka, Flink and Spark Streaming that process millions of events per second with exactly-once semantics and sub-second latency.",
+          "Ingestion, transformation, validation and delivery pipelines that handle your data reliably. Batch and real-time, depending on your needs.",
       },
       {
-        title: "Modern Data Lakehouse",
+        title: "ML Model Development",
         description:
-          "Unified storage layers using Delta Lake, Iceberg or Hudi that combine the flexibility of data lakes with the performance and ACID guarantees of data warehouses.",
+          "Custom model training, fine-tuning and evaluation. We build models tailored to your data and your problem — not off-the-shelf solutions that get you 80%.",
       },
       {
-        title: "Data Quality & Observability",
+        title: "RAG & Knowledge Systems",
         description:
-          "Automated data validation, anomaly detection and lineage tracking that catch issues at ingestion — not after they have corrupted your models and dashboards.",
+          "Retrieval-Augmented Generation pipelines, vector databases, embedding strategies and knowledge graph construction. We've built multiple production RAG systems.",
       },
       {
-        title: "Feature Store Engineering",
+        title: "MLOps & Deployment",
         description:
-          "Centralised, versioned feature stores that serve consistent features to both training and inference pipelines — eliminating training-serving skew and accelerating model iteration.",
-      },
-      {
-        title: "Data Governance & Cataloguing",
-        description:
-          "Metadata management, access controls, PII detection and automated classification that keep your data estate compliant, discoverable and trustworthy at scale.",
+          "Model serving, monitoring, versioning and retraining infrastructure. Production ML that stays accurate over time.",
       },
     ],
     technologies: [
-      "Apache Kafka",
-      "Apache Spark",
-      "Apache Flink",
-      "dbt",
-      "Airflow",
-      "Snowflake",
-      "Databricks",
-      "Great Expectations",
-    ],
-    process: [
-      {
-        step: 1,
-        title: "Data Landscape Assessment",
-        description:
-          "We map your existing data sources, pipelines and consumption patterns to identify bottlenecks, quality gaps and architectural debt that limit your AI ambitions.",
-      },
-      {
-        step: 2,
-        title: "Architecture Design",
-        description:
-          "Our engineers design a target-state architecture tailored to your scale, latency and compliance requirements — balancing best-of-breed tooling with operational simplicity.",
-      },
-      {
-        step: 3,
-        title: "Pipeline Development & Migration",
-        description:
-          "We build, test and deploy pipelines incrementally, migrating workloads from legacy systems with zero downtime and full data validation at every stage.",
-      },
-      {
-        step: 4,
-        title: "Operationalisation & Handover",
-        description:
-          "Comprehensive monitoring, alerting and runbooks are put in place alongside hands-on training for your team — ensuring long-term self-sufficiency and operational excellence.",
-      },
-    ],
-    stats: [
-      { value: "50+ PB", label: "Data processed for clients annually" },
-      { value: "99.97%", label: "Pipeline uptime SLA consistently met" },
-      { value: "60%", label: "Average reduction in data processing costs" },
-      { value: "10x", label: "Faster time-to-insight for analytics teams" },
-    ],
-  },
-  {
-    slug: "ai-agent-development",
-    name: "AI Agent Development",
-    overline: "Autonomous Intelligence",
-    headline: "Agents That Think, Act and Learn — On Your Behalf",
-    description:
-      "The next wave of AI is not models you prompt — it is agents that execute. Our agent development practice designs and builds autonomous AI systems that perceive their environment, reason about complex goals, take multi-step actions and learn from outcomes. From security operations copilots to fully autonomous workflow engines, we build agents that handle the cognitive heavy lifting so your teams can focus on judgement, creativity and strategy.",
-    features: [
-      {
-        title: "Multi-Agent Orchestration",
-        description:
-          "Architectures where specialised agents collaborate, delegate and negotiate — enabling complex workflows that no single agent could handle alone, with graceful failure handling.",
-      },
-      {
-        title: "Tool-Use & API Integration",
-        description:
-          "Agents equipped with the ability to call external APIs, query databases, execute code and interact with third-party platforms — extending their capabilities beyond language generation.",
-      },
-      {
-        title: "Memory & Knowledge Management",
-        description:
-          "Long-term memory systems using vector databases and retrieval-augmented generation that give agents persistent context, institutional knowledge and the ability to learn from past interactions.",
-      },
-      {
-        title: "Safety & Guardrails",
-        description:
-          "Configurable constraints, human-in-the-loop checkpoints, output validation and action sandboxing that ensure agents operate within safe boundaries — even in high-stakes environments.",
-      },
-      {
-        title: "Evaluation & Observability",
-        description:
-          "End-to-end tracing of agent reasoning chains, action sequences and tool calls — with automated evaluation harnesses that measure task completion, cost and safety metrics.",
-      },
-    ],
-    technologies: [
-      "LangChain",
-      "LangGraph",
-      "CrewAI",
-      "AutoGen",
-      "OpenAI API",
-      "Anthropic Claude API",
+      "Python",
+      "PyTorch",
+      "Pandas",
+      "FastAPI",
       "Pinecone",
-      "Weaviate",
+      "Neo4j",
+      "PostgreSQL",
+      "Docker",
     ],
     process: [
       {
         step: 1,
-        title: "Workflow Analysis & Agent Design",
+        title: "Data Assessment",
         description:
-          "We map the target workflow end-to-end, identify where autonomous action adds value, define agent personas and design the orchestration topology — single agent, pipeline or swarm.",
+          "We audit your data sources, quality, volume and gaps. Understanding what you have determines what we can build.",
       },
       {
         step: 2,
-        title: "Prototype & Capability Building",
+        title: "Pipeline Design",
         description:
-          "We build a functional agent prototype, equip it with the necessary tools and knowledge, and test it against representative scenarios to validate the architecture.",
+          "Architecture for data flow — ingestion, transformation, storage and serving. Designed for your scale and latency requirements.",
       },
       {
         step: 3,
-        title: "Hardening & Safety Testing",
+        title: "Build & Validate",
         description:
-          "Red-team exercises stress-test the agent for hallucination, tool misuse, infinite loops and adversarial manipulation — with guardrails tuned until safety thresholds are met.",
+          "Pipeline development with data quality checks at every stage. Models trained and validated against your success metrics.",
       },
       {
         step: 4,
-        title: "Production Deployment & Monitoring",
+        title: "Deploy & Monitor",
         description:
-          "The agent is deployed with full observability, cost controls and human escalation paths — with ongoing monitoring and fine-tuning to improve task success rates over time.",
+          "Production deployment with monitoring, alerting and documentation. Your team can operate it independently after handover.",
       },
     ],
     stats: [
-      { value: "85%", label: "Average task automation rate" },
-      { value: "35+", label: "Production agent systems deployed" },
-      { value: "4.2x", label: "Productivity gain for augmented teams" },
-      { value: "< 0.1%", label: "Critical safety incident rate" },
+      { value: "Dual-Engine", label: "RAG+HAG system shipped (HeuriSight)" },
+      { value: "GraphRAG", label: "Entity extraction pipeline (SwarmScope)" },
+      { value: "Production", label: "All ML systems deployed live" },
+      { value: "End-to-End", label: "Data to deployment" },
     ],
   },
 ];

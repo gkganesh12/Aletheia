@@ -55,8 +55,13 @@ export default function SplitText({
                     charClassName,
                     isGradientWord &&
                       !punctuation.includes(char) &&
-                      "bg-gradient-to-r from-[var(--color-accent-400)] to-[var(--color-accent-600)] bg-clip-text text-transparent"
+                      "bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]"
                   )}
+                  style={
+                    isGradientWord && !punctuation.includes(char)
+                      ? { backgroundImage: "linear-gradient(135deg, #8b5cf6, #6366f1, #06b6d4)" }
+                      : undefined
+                  }
                   variants={{
                     hidden: {
                       opacity: 0,

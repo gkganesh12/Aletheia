@@ -18,3 +18,5 @@ export type { GradientTextProps } from "./GradientText";
 
 export { AnimatedCounter } from "./AnimatedCounter";
 export type { AnimatedCounterProps } from "./AnimatedCounter";
+
+export { default as ShieldLogo } from "./ShieldLogo";

@@ -1,15 +1,28 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Container, SectionHeading, Card } from "@/components/ui";
+import { Container, SectionHeading } from "@/components/ui";
 import { copy } from "@/data/copy";
 import { services } from "@/data/services";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { staggerContainer, staggerItem, cardHover } from "@/lib/motion-variants";
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  Icon map — lightweight inline SVGs keyed by the service.icon string  */
-/* ────────────────────────────────────────────────────────────────────── */
+/*  Per-service color map — each service gets its own vibrant color      */
+/* ────���─────────────────────────────────────────────���─────────────────── */
+
+const serviceColors: Record<string, { color: string; glow: string }> = {
+  Brain:     { color: "#8b5cf6", glow: "rgba(139, 92, 246, 0.15)" },   // violet — AI
+  Zap:       { color: "#a78bfa", glow: "rgba(167, 139, 250, 0.15)" },  // light violet — speed
+  Layers:    { color: "#6366f1", glow: "rgba(99, 102, 241, 0.15)" },   // indigo — stack
+  Radio:     { color: "#818cf8", glow: "rgba(129, 140, 248, 0.15)" },  // light indigo — infra
+  Shield:    { color: "#7c3aed", glow: "rgba(124, 58, 237, 0.15)" },   // deep violet — security
+  FileCheck: { color: "#06b6d4", glow: "rgba(6, 182, 212, 0.15)" },    // cyan — data
+};
+
+/* ��───────────────────────────────────────────────────────────────────── */
+/*  Icon map                                                             */
+/* ────��───────────────────────��──────────────────────��────────────────── */
 
 const iconPaths: Record<string, React.ReactNode> = {
   Shield: (
@@ -83,17 +96,24 @@ const iconPaths: Record<string, React.ReactNode> = {
   ),
 };
 
-/* ────────────────────────────────────────────────────────────────────── */
-/*  ServiceIcon                                                          */
-/* ────────────────────────────────────────────────────────────────────── */
+/* ──────────────────────���─────────────────────────────────────────────── */
+/*  ServiceIcon — colored per service                                    */
+/* ───────────��───────────��───────────────────────────��────────────────── */
 
-function ServiceIcon({ name }: { name: string }) {
+function ServiceIcon({ name, color }: { name: string; color: string }) {
   return (
-    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[--color-accent-400]/10 transition-transform duration-300 group-hover:scale-110">
+    <div
+      className="flex h-12 w-12 items-center justify-center rounded-xl border transition-all duration-300 group-hover:scale-110"
+      style={{
+        backgroundColor: `${color}15`,
+        borderColor: `${color}25`,
+      }}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
-        className="h-6 w-6 text-accent-400 transition-colors duration-300 group-hover:text-[var(--color-accent-400)]"
+        className="h-6 w-6 transition-all duration-300"
+        style={{ color }}
         aria-hidden="true"
       >
         {iconPaths[name] ?? iconPaths.Shield}
@@ -104,11 +124,11 @@ function ServiceIcon({ name }: { name: string }) {
 
 /* ────────────────────────────────────────────────────────────────────── */
 /*  Services Section                                                     */
-/* ────────────────────────────────────────────────────────────────────── */
+/* ─────────────��────────────────��─────────────────────────────────────── */
 
 export default function Services() {
   return (
-    <section id="services" className="py-16 lg:py-24 bg-white/[0.015]">
+    <section id="services" className="py-16 lg:py-24 bg-[var(--color-primary-900)]">
       <Container>
         <AnimatedSection>
           <SectionHeading
@@ -126,35 +146,47 @@ export default function Services() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {services.map((service) => (
-            <motion.div key={service.id} variants={staggerItem}>
-              <motion.div
-                variants={cardHover}
-                initial="rest"
-                whileHover="hover"
-              >
-                <Card
-                  variant="glass"
-                  hover
-                  className={cn(
-                    "group p-6 lg:p-8",
-                    "hover:border-[var(--color-accent-400)]/20 hover:border-accent-400/30 hover:shadow-[0_0_24px_rgba(0,212,255,0.08)]",
-                    "transition-all duration-300",
-                  )}
+          {services.map((service) => {
+            const { color, glow } = serviceColors[service.icon] ?? serviceColors.Shield;
+            return (
+              <motion.div key={service.id} variants={staggerItem}>
+                <motion.div
+                  variants={cardHover}
+                  initial="rest"
+                  whileHover="hover"
                 >
-                  <ServiceIcon name={service.icon} />
+                  <div
+                    className={cn(
+                      "group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.025] p-6 lg:p-8",
+                      "transition-all duration-300",
+                      "hover:-translate-y-1 hover:border-white/[0.12]",
+                    )}
+                    style={{
+                      // @ts-expect-error css custom property
+                      "--card-color": color,
+                      "--card-glow": glow,
+                    }}
+                  >
+                    {/* Hover glow */}
+                    <div
+                      className="pointer-events-none absolute inset-x-0 top-0 h-40 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                      style={{ background: `radial-gradient(ellipse at top, ${color}12, transparent 70%)` }}
+                    />
 
-                  <h3 className="mt-4 text-xl font-semibold text-white">
-                    {service.name}
-                  </h3>
+                    <ServiceIcon name={service.icon} color={color} />
 
-                  <p className="mt-2 text-sm leading-relaxed text-white/60">
-                    {service.description}
-                  </p>
-                </Card>
+                    <h3 className="relative mt-4 text-xl font-semibold text-white">
+                      {service.name}
+                    </h3>
+
+                    <p className="relative mt-2 text-sm leading-relaxed text-white/55">
+                      {service.description}
+                    </p>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </motion.div>
       </Container>
     </section>

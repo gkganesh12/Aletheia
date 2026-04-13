@@ -15,214 +15,189 @@ export interface CaseStudyDetail {
 
 export const caseStudyDetails: CaseStudyDetail[] = [
   {
-    slug: "novacrest-ransomware",
-    title: "Stopping a Nation-State Ransomware Campaign in Real Time",
-    client: "NovaCrest Financial",
-    industry: "Financial Services",
-    service: "Autonomous Incident Response",
+    slug: "heurisight-rag",
+    title: "Building a Dual-Engine AI Assessment Platform",
+    client: "HeuriSight Education",
+    industry: "EdTech",
+    service: "AI Product Engineering",
     techStack: [
-      "Nirvana",
-      "SwarmScope",
-      "Apache Kafka",
-      "eBPF",
-      "Kubernetes",
-      "Terraform",
-    ],
-    heroImage: "/images/case-studies/security-dashboard.jpg",
-    challenge:
-      "NovaCrest Financial, a multinational investment bank with over 12,000 endpoints across 23 offices, faced a sophisticated, multi-stage ransomware attack attributed to a nation-state APT group. The adversary had gained initial access through a compromised vendor VPN appliance and spent 11 days conducting reconnaissance and staging payloads before initiating encryption. Traditional EDR tools flagged the initial payload on the first compromised host but failed to correlate the lateral movement activity spanning multiple network segments. The SOC was overwhelmed with 4,700 fragmented alerts — most of them duplicates or low-confidence signals — and could not assemble a coherent picture of the attack in progress. With encryption beginning to propagate across file servers containing client portfolio data, the stakes were existential: regulatory penalties, client lawsuits and catastrophic reputational damage.",
-    approach: [
-      {
-        phase: "Phase 1: Emergency Deployment",
-        description:
-          "Within four hours of engagement, we deployed SwarmScope sensor agents across all network segments and Nirvana's autonomous response engine integrated with NovaCrest's existing EDR and SIEM infrastructure. The swarm immediately began building a behavioural baseline while Nirvana ingested the existing alert backlog for correlation.",
-      },
-      {
-        phase: "Phase 2: Threat Mapping & Containment",
-        description:
-          "SwarmScope's distributed agents detected lateral movement patterns across three previously unlinked network segments within 400 milliseconds of activation. Nirvana correlated these signals with the EDR alerts to reconstruct the full attack chain — from initial access through privilege escalation to ransomware staging. Automated containment isolated the 47 compromised hosts while preserving forensic evidence on each.",
-      },
-      {
-        phase: "Phase 3: Remediation & Hardening",
-        description:
-          "Nirvana's rollback engine restored encrypted files from immutable snapshots with zero data loss. Our team then conducted a comprehensive post-incident hardening exercise: patching the vendor VPN vulnerability, implementing micro-segmentation to limit blast radius, deploying deception assets and establishing continuous monitoring through SwarmScope's zero-trust posture scoring.",
-      },
-    ],
-    solution:
-      "The combination of SwarmScope's distributed detection and Nirvana's autonomous response delivered what a 40-person SOC could not: real-time, environment-wide threat correlation and sub-three-minute containment. The swarm-intelligence approach eliminated the blind spots between network segments that the attacker had exploited, while Nirvana's adaptive playbooks adjusted containment strategies as new indicators were discovered — all without human intervention during the critical containment window.",
-    results: [
-      { value: "2.8 min", label: "Mean time to contain (down from 4.2 hours)" },
-      { value: "$0", label: "Data exfiltrated (confirmed via forensics)" },
-      { value: "$14M", label: "Estimated loss averted" },
-      { value: "87%", label: "SOC alert volume reduction" },
-    ],
-    testimonial: {
-      quote:
-        "Aletheia AI cut our mean-time-to-detect by 94%. Their autonomous response platform stopped a ransomware attack in under three minutes — something our previous SOC would have taken hours to even identify.",
-      author: "Priya Mehta",
-      role: "Chief Information Security Officer, NovaCrest Financial",
-    },
-  },
-  {
-    slug: "helios-credential-leak",
-    title: "Uncovering a Massive Credential Leak Before Exploitation",
-    client: "Helios Health Systems",
-    industry: "Healthcare",
-    service: "Threat Intelligence & Dark Web Monitoring",
-    techStack: [
-      "Inscrape",
-      "Neo4j",
-      "Elasticsearch",
-      "Python",
-      "Kafka",
       "React",
+      "FastAPI",
+      "Pinecone",
+      "Neo4j",
+      "S3",
+      "Redis",
+      "Three.js",
+      "Auth0",
     ],
-    heroImage: "/images/products/tech-setup.jpg",
+    heroImage: "/images/blog/ai-neural-network-1.jpg",
     challenge:
-      "Helios Health Systems operates one of the largest private hospital networks in the United States, managing sensitive health records for over 6 million patients across 140 facilities. Following a breach nine months earlier that went undetected until a journalist inquiry, Helios was hit with $4.8M in HIPAA penalties and suffered severe reputational damage. The security team suspected that stolen data was still circulating on underground marketplaces but lacked any visibility into dark web activity. They had no way to know how many credentials were compromised, which systems were exposed or whether active exploitation was already underway. The clock was ticking: Helios was facing an upcoming OCR audit and needed to demonstrate proactive threat management capability.",
+      "HeuriSight needed an AI system that could do something no existing tool handles well: analyse student work, extract the cognitive decision-making patterns embedded in their responses, and map those patterns to educational competencies. This required combining document understanding (RAG) with heuristic reasoning (HAG) in a novel dual-engine architecture. The system needed to process diverse assessment formats, build knowledge graphs of student cognitive patterns, and present actionable insights to facilitators — all while maintaining the accuracy required for educational assessment.",
     approach: [
       {
-        phase: "Phase 1: Rapid Intelligence Deployment",
+        phase: "Phase 1: Architecture Design",
         description:
-          "We configured Inscrape to monitor over 200 dark web forums, marketplaces, paste sites and encrypted Telegram channels for any mention of Helios assets — including domain names, email patterns, employee names, facility addresses and patient data markers. Entity resolution algorithms were tuned to Helios-specific nomenclature to maximise recall while minimising false positives.",
+          "We designed a dual-engine architecture combining Retrieval-Augmented Generation for document understanding with Heuristics-Augmented Generation for cognitive pattern extraction. A triple-store data layer was planned — Pinecone for vector similarity search, Neo4j for relationship graphs and S3 for document storage — coordinated through a Redis caching layer.",
       },
       {
-        phase: "Phase 2: Exposure Mapping & Triage",
+        phase: "Phase 2: Core Engine Development",
         description:
-          "Within 72 hours, Inscrape surfaced 34,000 compromised credentials linked to Helios employee accounts — many bundled with VPN and remote desktop credentials. Our analysts correlated these with Helios's Active Directory to identify 2,800 accounts that were still active and had not been reset since the original breach. A threat graph revealed that three separate dark web vendors were actively selling Helios access credentials with prices indicating perceived high value.",
+          "Built the RAG engine for processing assessment documents and the HAG engine for applying a 10-category cognitive classification framework. The Goal-Precondition-Confidence framework was implemented to evaluate the strength of heuristic-to-competency translations. Both engines feed into a unified knowledge graph in Neo4j.",
       },
       {
-        phase: "Phase 3: Remediation & Continuous Monitoring",
+        phase: "Phase 3: Dashboard & Analytics",
         description:
-          "We coordinated with Helios IT to execute a prioritised credential reset campaign, starting with the 340 accounts that had privileged access. Simultaneously, we deployed continuous monitoring rules to alert on any new Helios data appearing across the monitored landscape. Inscrape's automated reporting generated the compliance evidence documentation required for the upcoming OCR audit.",
+          "Developed a facilitator dashboard with cohort management, assessment processing workflows, competency extraction views and analytics. 3D visualisation using Three.js and React Force Graph for exploring knowledge graphs. At-risk student identification and learning pathway derivation built into the analytics layer.",
       },
     ],
     solution:
-      "Inscrape transformed Helios from a state of complete dark web blindness to proactive threat awareness in under a week. The platform's entity resolution capabilities were critical — linking fragments of data scattered across dozens of sources into a unified exposure picture that the security team could act on immediately. The ongoing monitoring capability reduced the exposure window from the nine months of the original breach to under 48 hours for any new leak.",
+      "The dual-engine architecture allows HeuriSight to do what neither RAG nor traditional rule-based systems can do alone: understand the content of student work AND extract the cognitive patterns that reveal how students think and make decisions. The triple-store data coordination ensures each type of data is stored in the right system — vectors for similarity, graphs for relationships, objects for documents — while presenting a unified view to facilitators.",
     results: [
-      {
-        value: "34,000",
-        label: "Compromised credentials discovered in 72 hours",
-      },
-      { value: "0", label: "Confirmed account takeovers (all credentials reset in time)" },
-      { value: "< 48 hrs", label: "New exposure detection window (down from 9 months)" },
-      { value: "100%", label: "HIPAA compliance achieved ahead of audit" },
+      { value: "Dual-Engine", label: "RAG+HAG architecture in production" },
+      { value: "10", label: "Cognitive classification categories" },
+      { value: "3", label: "Coordinated data stores (Pinecone, Neo4j, S3)" },
+      { value: "3D", label: "Knowledge graph visualisation" },
     ],
     testimonial: {
       quote:
-        "We deployed Inscrape to monitor our brand exposure on the dark web. Within the first week it surfaced a credential dump we had no idea existed. The ROI was immediate and undeniable.",
-      author: "James Whitfield",
-      role: "VP of Security Operations, Helios Health Systems",
+        "Ganesh built our entire assessment pipeline — dual-engine RAG system, knowledge graphs, competency extraction. The kind of complex AI architecture that most agencies wouldn't even attempt. It works beautifully.",
+      author: "Dr. Meera Joshi",
+      role: "Director of Learning Innovation, HeuriSight Education",
     },
   },
   {
-    slug: "meridian-adversarial-ml",
-    title: "Hardening Fraud Detection Models Against Adversarial Attack",
-    client: "Meridian Commerce",
-    industry: "E-Commerce & Fintech",
-    service: "Adversarial ML Defence & Model Hardening",
+    slug: "rd-fitness-platform",
+    title: "Shipping a Modern Fitness Platform in 4 Weeks",
+    client: "RD Fitness",
+    industry: "Health & Fitness",
+    service: "MVP & Rapid Prototyping",
     techStack: [
-      "PyTorch",
-      "CleverHans",
-      "ART (Adversarial Robustness Toolbox)",
-      "MLflow",
-      "Kubernetes",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Vercel",
+    ],
+    heroImage: "/images/blog/dark-abstract-golden-wave.jpg",
+    challenge:
+      "RD Fitness is a full-service gym that needed more than a brochure site — they needed a digital platform that drives membership sign-ups, enables class browsing and booking, and establishes a premium brand presence in a competitive market. The budget was tight, the timeline was aggressive (under 5 weeks) and the design needed to feel high-end without a design agency budget. Mobile experience was critical since most of their audience discovers them on phones.",
+    approach: [
+      {
+        phase: "Phase 1: Brand & Design System",
+        description:
+          "Created a complete design system from scratch — dark charcoal base with electric orange and neon lime accents. Typography pairing (Bebas Neue, Montserrat, Inter) that conveys energy and professionalism. Component library built in Tailwind CSS for rapid page assembly.",
+      },
+      {
+        phase: "Phase 2: Core Platform Build",
+        description:
+          "Built the full platform on Next.js with TypeScript — membership registration flow, class browsing and booking system, brand storytelling sections, testimonials and contact. Framer Motion animations for engagement without sacrificing performance.",
+      },
+      {
+        phase: "Phase 3: Optimisation & Launch",
+        description:
+          "Performance optimisation for mobile-first experience. Image optimisation, code splitting, responsive testing across devices. Lighthouse score tuned above 90. Deployed to production on Vercel with CI/CD.",
+      },
+    ],
+    solution:
+      "A complete digital platform that looks like it was built by a large agency but was designed, developed and deployed by our studio in under four weeks. The membership conversion flow is designed to minimise friction — from landing page to sign-up in three steps. The class booking system is built for real-time availability. The entire site is mobile-first with sub-2-second load times.",
+    results: [
+      { value: "< 4 weeks", label: "Design to production" },
+      { value: "90+", label: "Lighthouse performance score" },
+      { value: "Mobile-First", label: "Responsive across all devices" },
+      { value: "Full Brand", label: "Design system created from scratch" },
+    ],
+    testimonial: {
+      quote:
+        "We needed an MVP in six weeks and Aletheia delivered a production-ready platform — clean architecture, scalable backend, deployed and working. Not throwaway code. The real thing.",
+      author: "Rahul Deshmukh",
+      role: "Founder, RD Fitness",
+    },
+  },
+  {
+    slug: "codecraft-cli",
+    title: "Publishing an AI-Powered Developer CLI on npm",
+    client: "Internal Product",
+    industry: "Developer Tools",
+    service: "AI Product Engineering",
+    techStack: [
+      "TypeScript",
+      "Commander.js",
+      "Anthropic Claude API",
+      "OpenAI API",
+      "Inquirer",
+      "isomorphic-git",
+    ],
+    heroImage: "/images/blog/code-dark-vscode.jpg",
+    challenge:
+      "AI coding assistants treat every codebase the same — they don't understand architectural constraints, project conventions or the different perspectives that a PM, architect and QA engineer bring to the same code. We wanted to build a CLI tool that brings role-based AI reasoning to development workflows, with guardrails that prevent AI from going off-scope.",
+    approach: [
+      {
+        phase: "Phase 1: CLI Architecture",
+        description:
+          "Designed a Commander.js-based CLI with an interactive REPL that maintains persistent context across sessions. Plugin architecture for slash commands. Configuration system via ~/.codecraft/config.json for per-project rules and constraints.",
+      },
+      {
+        phase: "Phase 2: Role System & Commands",
+        description:
+          "Built 6 role-based personas (PM, Architect, Backend Dev, Frontend Dev, QA Lead, Full-Stack) that change how the AI reasons about code. Implemented 9+ slash commands: /plan, /code, /verify, /doctor, /feature, /adr, /test, /review, /explain. Each command uses the active persona to shape its output.",
+      },
+      {
+        phase: "Phase 3: Guardrails & Publishing",
+        description:
+          "Implemented Scope Guard (prevents modifications to files outside the defined scope) and a rule engine for architectural constraints (e.g., 'no direct database calls from route handlers'). Published on npm as a globally installable CLI with binary entry point.",
+      },
+    ],
+    solution:
+      "CodeCraft is the AI coding assistant that understands your project's rules, not just your code. The role-based persona system means you get different perspectives on the same problem — a PM thinks about user stories, an architect thinks about system design, QA thinks about edge cases. The scope guard and rule engine prevent the AI from making well-intentioned but architecture-breaking changes.",
+    results: [
+      { value: "v1.0.1", label: "Published on npm" },
+      { value: "6", label: "Role-based AI personas" },
+      { value: "9+", label: "Slash commands for dev workflows" },
+      { value: "Scope Guard", label: "Architectural constraint enforcement" },
+    ],
+  },
+  {
+    slug: "inscrape-sdk",
+    title: "Launching an AI Scraping SDK on PyPI",
+    client: "Internal Product",
+    industry: "Data Infrastructure",
+    service: "AI Product Engineering",
+    techStack: [
       "Python",
+      "httpx",
+      "AsyncIO",
+      "Hatchling",
+      "pytest",
+      "Ruff",
     ],
-    heroImage: "/images/products/llm-glass.jpg",
+    heroImage: "/images/blog/dark-abstract-cyan-wave.jpg",
     challenge:
-      "Meridian Commerce, a high-growth e-commerce platform processing $2.1B in annual transactions, relied on an ensemble of ML models for real-time fraud detection. Over the preceding two quarters, organised fraud rings had learned to systematically evade the models using adversarial perturbation techniques — subtly modifying transaction features to stay just below detection thresholds. Chargebacks had increased 40% quarter-over-quarter despite multiple rounds of model retraining. The data science team suspected adversarial manipulation but lacked the offensive ML expertise to diagnose the attack vectors or build robust defences. Each month of delay was costing Meridian an estimated $2.3M in fraudulent chargebacks.",
+      "Web scraping remains one of the most common data engineering tasks, yet the developer experience is still poor — CSS selectors break, browser automation is slow and heavy, and output is unstructured. We wanted to build a scraping SDK that makes extraction as simple as an API call, with AI powering the extraction logic so it works reliably across sites without site-specific configuration.",
     approach: [
       {
-        phase: "Phase 1: Red Team Assessment",
+        phase: "Phase 1: API & SDK Design",
         description:
-          "Our adversarial ML team conducted a comprehensive red-team assessment of all five production fraud models. We applied gradient-based attacks (FGSM, PGD, C&W), black-box attacks (boundary attacks, HopSkipJump) and query-efficient transfer attacks to identify evasion vectors. The assessment revealed that four of five models were vulnerable to perturbations of less than 3% on key numerical features — confirming that the fraud rings were exploiting a narrow but highly effective attack surface.",
+          "Designed an API-first architecture where the AI-powered extraction runs server-side, and the Python SDK is a thin, well-typed client. Three-line usage pattern: init client, call scrape, get structured data. Typed exceptions for every failure mode (auth, rate limits, quota).",
       },
       {
-        phase: "Phase 2: Model Hardening",
+        phase: "Phase 2: Extractor Development",
         description:
-          "We applied a multi-layered defence strategy: adversarial training using the attack vectors discovered in Phase 1, input feature sanitisation to detect and reject anomalous perturbation patterns, certified robustness bounds for critical decision boundaries and an ensemble diversification strategy that made coordinated evasion across all models computationally infeasible for attackers.",
+          "Built specialised extractors for social media profiles (Instagram, X/Twitter) that return structured JSON with follower counts, bios, engagement metrics and post data. General URL extractor returns structured content, Markdown and screenshot options.",
       },
       {
-        phase: "Phase 3: Validation & Continuous Defence",
+        phase: "Phase 3: Async & Publishing",
         description:
-          "The hardened models were validated against the MITRE ATLAS adversarial ML framework and subjected to a second round of red-team testing by a separate team to confirm robustness. We established an ongoing red-team retainer with quarterly adversarial assessments and implemented automated adversarial testing in the CI/CD pipeline to catch regressions before they reach production.",
+          "Added full async support via AsyncInscrape for high-throughput pipelines. Comprehensive test suite with pytest and pytest-asyncio. Linting with Ruff. Published on PyPI with Hatchling build system and full documentation.",
       },
     ],
     solution:
-      "The engagement transformed Meridian's fraud detection pipeline from a vulnerable, reactive system into an adversarially robust defence layer validated against industry-standard attack frameworks. The combination of adversarial training, input sanitisation and ensemble hardening created defence-in-depth that made the models resilient against both known attack classes and novel evasion techniques. The ongoing red-team retainer ensures the models evolve alongside the adversary.",
+      "Inscrape turns web scraping from a fragile, maintenance-heavy process into a simple API call. The AI-powered extraction layer handles the complexity — developers don't write selectors, don't manage browsers and don't maintain site-specific code. They get structured data back in the format they need.",
     results: [
-      { value: "< 2%", label: "Fraud evasion rate (down from 23%)" },
-      { value: "61%", label: "Chargeback reduction in first quarter" },
-      {
-        value: "ATLAS",
-        label: "Robustness validated against MITRE ATLAS framework",
-      },
-      { value: "$8.2M", label: "Annualised fraud loss reduction" },
+      { value: "v0.1.0", label: "Published on PyPI (beta)" },
+      { value: "3 lines", label: "To scrape any URL" },
+      { value: "Async", label: "Full AsyncInscrape support" },
+      { value: "Typed", label: "Complete type hints and error handling" },
     ],
-    testimonial: {
-      quote:
-        "Their team doesn't just ship software — they embed with your security org and make it stronger. The adversarial ML defence work they did on our fraud models was genuinely world-class.",
-      author: "Sofia Reyes",
-      role: "Head of AI Engineering, Meridian Commerce",
-    },
-  },
-  {
-    slug: "atlas-zero-trust",
-    title: "Achieving Full-Spectrum Visibility Across a Hybrid Infrastructure",
-    client: "Atlas Logistics Group",
-    industry: "Supply Chain & Logistics",
-    service: "Attack Surface Management & Zero Trust",
-    techStack: [
-      "SwarmScope",
-      "ClickHouse",
-      "Graph Neural Networks",
-      "eBPF",
-      "Terraform",
-      "Go",
-    ],
-    heroImage: "/images/services/building.jpg",
-    challenge:
-      "Atlas Logistics Group operates across 14 countries with a sprawling hybrid infrastructure comprising legacy on-premise data centres, multi-cloud deployments across AWS and Azure, operational technology (OT) networks in warehouses and distribution centres, and a remote workforce of 8,000 employees. The security team of 12 had no unified asset inventory and relied on spreadsheets and tribal knowledge to track their environment. Shadow IT was rampant: business units regularly spun up cloud resources without security review. Most critically, the OT networks controlling conveyor systems, robotic pickers and environmental controls were completely invisible to the security team — yet several were internet-accessible. A board-level directive to achieve zero-trust architecture maturity within 12 months created urgent pressure to gain visibility fast.",
-    approach: [
-      {
-        phase: "Phase 1: Swarm Deployment & Discovery",
-        description:
-          "SwarmScope agents were deployed across all network segments, cloud accounts and OT environments in a phased rollout over three weeks. The lightweight agents — averaging 12MB memory footprint — were compatible with everything from modern Kubernetes clusters to legacy Windows Server 2012 hosts and Siemens PLC controllers. Within 48 hours of full deployment, the swarm had built a complete real-time asset graph of the entire environment.",
-      },
-      {
-        phase: "Phase 2: Risk Assessment & Prioritisation",
-        description:
-          "The asset graph revealed 340 previously unknown devices — including 28 internet-exposed OT controllers, 94 unmanaged cloud instances and 218 employee BYOD devices connecting to production networks. SwarmScope's attack path simulation modelled 50,000 potential attack paths and identified the 12 critical paths most likely to lead to a material breach. Zero-trust posture scores were calculated for every asset, creating a prioritised remediation backlog.",
-      },
-      {
-        phase: "Phase 3: Hardening & Continuous Monitoring",
-        description:
-          "We worked with Atlas's infrastructure team to implement micro-segmentation based on SwarmScope's recommendations — isolating OT networks, enforcing least-privilege access policies and closing the 28 internet-exposed OT controllers. Continuous zero-trust posture scoring was established with automated alerts for any asset falling below threshold, ensuring the security gains were maintained as the environment evolved.",
-      },
-    ],
-    solution:
-      "SwarmScope's swarm-intelligence approach solved the fundamental visibility challenge that had paralysed Atlas's security programme. By deploying collaborative agents that share observations across environment boundaries, we eliminated the blind spots between on-prem, cloud and OT that traditional tools treat as separate domains. The continuous posture scoring mechanism transformed zero trust from a one-time project into a living, measurable programme with clear metrics for board reporting.",
-    results: [
-      {
-        value: "340",
-        label: "Unmanaged devices discovered (incl. 28 internet-exposed OT controllers)",
-      },
-      { value: "52%", label: "Attack surface reduction via micro-segmentation" },
-      {
-        value: "4.1/5.0",
-        label: "Zero-trust maturity score achieved within 6 months",
-      },
-      {
-        value: "1",
-        label: "Unified dashboard across AWS, Azure, on-prem and OT",
-      },
-    ],
-    testimonial: {
-      quote:
-        "SwarmScope gave us visibility we didn't know was possible. Shadow IT, misconfigured cloud buckets, lateral movement attempts — it catches everything. Our board finally sleeps at night.",
-      author: "Daniel Okonkwo",
-      role: "Director of Infrastructure, Atlas Logistics Group",
-    },
   },
 ];

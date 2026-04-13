@@ -156,7 +156,7 @@ const fadeUp = {
 
 const detailVariants = {
   enter: { opacity: 0, y: 20 },
-  center: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.215, 0.61, 0.355, 1] } },
+  center: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number] } },
   exit: { opacity: 0, y: -12, transition: { duration: 0.25 } },
 };
 

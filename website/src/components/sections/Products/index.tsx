@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Container, SectionHeading, GradientText, Button } from "@/components/ui";
 import { copy } from "@/data/copy";
@@ -49,7 +48,7 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <motion.div
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] p-8",
+        "group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 sm:p-8",
         "transition-all duration-300",
         "hover:border-white/[0.15]",
       )}
@@ -63,19 +62,11 @@ function ProductCard({ product }: ProductCardProps) {
         borderColor: `${from}33`, // ~20% alpha hex
       }}
     >
-      {/* Gradient top border accent */}
-      <div
-        className="absolute inset-x-0 top-0 h-px"
-        style={{
-          background: `linear-gradient(to right, ${from}, ${to})`,
-        }}
-      />
-
       {/* Hover glow overlay */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-32 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-x-0 top-0 h-48 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
-          background: `linear-gradient(to bottom, ${from}08, transparent)`,
+          background: `radial-gradient(ellipse at top, ${from}18, transparent 70%)`,
         }}
       />
 
@@ -86,8 +77,8 @@ function ProductCard({ product }: ProductCardProps) {
         </GradientText>
       </h3>
 
-      {/* Tagline */}
-      <p className="mt-1 text-sm font-medium text-white/80">
+      {/* Tagline — mono */}
+      <p className="mono mt-1.5 text-xs font-medium uppercase tracking-wider text-white/50">
         {product.tagline}
       </p>
 
@@ -121,20 +112,8 @@ function ProductCard({ product }: ProductCardProps) {
 /* ────────────────────────────────────────────────────────────────────── */
 
 export default function Products() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  // Each card gets a different parallax depth
-  const y1 = useTransform(scrollYProgress, [0, 1], [60, -60]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [30, -30]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const cardOffsets = [y1, y2, y3];
-
   return (
-    <section id="products" ref={sectionRef} className="py-16 lg:py-24">
+    <section id="products" className="py-16 lg:py-24">
       <Container>
         <AnimatedSection>
           <SectionHeading
@@ -146,14 +125,14 @@ export default function Products() {
         </AnimatedSection>
 
         <motion.div
-          className="grid grid-cols-1 gap-8 lg:grid-cols-3"
+          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.1 }}
         >
-          {products.map((product, i) => (
-            <motion.div key={product.id} variants={staggerItem} style={{ y: cardOffsets[i % 3] }}>
+          {products.map((product) => (
+            <motion.div key={product.id} variants={staggerItem}>
               <ProductCard product={product} />
             </motion.div>
           ))}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>X/Twitter Banner — Aletheia AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  .banner {
+    width: 1500px;
+    height: 500px;
+    background: #09090b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Dot grid */
+  .banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.025;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Glow — center right */
+  .glow {
+    position: absolute;
+    right: 15%;
+    top: 30%;
+    width: 500px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(139, 92, 246, 0.07), transparent 70%);
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    /* Shift up slightly — X crops the bottom and the profile pic covers bottom-left */
+    margin-bottom: 40px;
+  }
+
+  .overline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .headline {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    color: #ffffff;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+  }
+
+  .headline .gradient {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .products-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 28px;
+  }
+
+  .product-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    padding: 6px 18px;
+    border-radius: 20px;
+  }
+
+  .p1 {
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    background: rgba(139, 92, 246, 0.08);
+    color: rgba(139, 92, 246, 0.7);
+  }
+  .p2 {
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    background: rgba(99, 102, 241, 0.08);
+    color: rgba(99, 102, 241, 0.7);
+  }
+  .p3 {
+    border: 1px solid rgba(6, 182, 212, 0.25);
+    background: rgba(6, 182, 212, 0.08);
+    color: rgba(6, 182, 212, 0.7);
+  }
+
+  .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    margin-top: 18px;
+  }
+</style>
+</head>
+<body style="background: #1a1a1a; display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+
+<div class="banner">
+  <div class="glow"></div>
+
+  <div class="content">
+    <div class="overline">AI Engineering Studio</div>
+    <div class="headline">
+      We <span class="gradient">Build</span> What<br>
+      <span class="gradient">Others Pitch.</span>
+    </div>
+    <div class="products-row">
+      <span class="product-pill p1">Inscrape</span>
+      <span class="product-pill p2">Nirvana</span>
+      <span class="product-pill p3">SwarmScope</span>
+    </div>
+    <div class="url">aletheiaai.tech</div>
+  </div>
+</div>
+
+</body>
+</html>

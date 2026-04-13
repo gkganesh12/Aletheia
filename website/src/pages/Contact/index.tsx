@@ -24,12 +24,12 @@ import { useToast } from "@/components/shared/Toast";
 /* ────────────────────────────────────────────────────────────────────── */
 
 const SERVICE_OPTIONS = [
-  "AI Threat Intelligence",
-  "Autonomous Penetration Testing",
-  "Secure AI Architecture",
-  "Intelligent Incident Response",
-  "Compliance & Governance Automation",
-  "Adversarial ML Defence",
+  "AI Product Engineering",
+  "MVP & Rapid Prototyping",
+  "Full-Stack Development",
+  "Cybersecurity & Auditing",
+  "Blockchain & Web3",
+  "Data Engineering & ML",
   "Other",
 ] as const;
 
@@ -47,6 +47,12 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
+
+/* ────────────────────────────────────────────────────────────────────── */
+/*  Web3Forms API key                                                    */
+/* ────────────────────────────────────────────────────────────────────── */
+
+const WEB3FORMS_KEY = "b1d6246c-dfe6-41f6-8c93-7374d0c9919c";
 
 /* ────────────────────────────────────────────────────────────────────── */
 /*  Shared input classes                                                 */
@@ -97,62 +103,17 @@ function FieldError({ message }: { message?: string }) {
 
 function MailIcon() {
   return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-      />
-    </svg>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
-      />
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
     </svg>
   );
 }
 
 function MapPinIcon() {
   return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-      />
+    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
     </svg>
   );
 }
@@ -160,11 +121,7 @@ function MapPinIcon() {
 function GitHubIcon() {
   return (
     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-      />
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
     </svg>
   );
 }
@@ -186,34 +143,28 @@ function TwitterIcon() {
 }
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  Contact info items                                                   */
+/*  Contact info                                                         */
 /* ────────────────────────────────────────────────────────────────────── */
 
 const contactInfo = [
   {
     icon: MailIcon,
     label: "Email",
-    value: "contact@aletheia-ai.com",
-    href: "mailto:contact@aletheia-ai.com",
-  },
-  {
-    icon: PhoneIcon,
-    label: "Phone",
-    value: "+91 80 4567 8900",
-    href: "tel:+918045678900",
+    value: "info@aletheiaai.tech",
+    href: "mailto:info@aletheiaai.tech",
   },
   {
     icon: MapPinIcon,
-    label: "Office",
-    value: "HSR Layout, Bangalore, Karnataka 560102, India",
+    label: "Location",
+    value: "Pune, Maharashtra, India",
     href: undefined,
   },
 ];
 
 const socialLinks = [
-  { Icon: GitHubIcon, href: "https://github.com/aletheia-ai", label: "GitHub" },
-  { Icon: LinkedInIcon, href: "https://linkedin.com/company/aletheiaai", label: "LinkedIn" },
-  { Icon: TwitterIcon, href: "https://twitter.com/aletheiaai", label: "Twitter" },
+  { Icon: GitHubIcon, href: "https://github.com/gkganesh12", label: "GitHub" },
+  { Icon: LinkedInIcon, href: "https://www.linkedin.com/in/ganeshkhetawat/", label: "LinkedIn" },
+  { Icon: TwitterIcon, href: "https://x.com/ai_aletheia", label: "Twitter" },
 ];
 
 /* ────────────────────────────────────────────────────────────────────── */
@@ -241,20 +192,40 @@ export default function ContactPage() {
     },
   });
 
-  const onSubmit = async (_data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      // Simulate async submission
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      showToast({
-        type: "success",
-        message: "Message sent! We'll get back to you within 24 hours.",
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `New inquiry from ${data.name} — ${data.service}`,
+          from_name: data.name,
+          name: data.name,
+          email: data.email,
+          company: data.company || "Not provided",
+          phone: data.phone || "Not provided",
+          service: data.service,
+          message: data.message,
+        }),
       });
-      reset();
+
+      const result = await response.json();
+
+      if (result.success) {
+        showToast({
+          type: "success",
+          message: "Message sent! We'll get back to you within 24 hours.",
+        });
+        reset();
+      } else {
+        throw new Error(result.message || "Submission failed");
+      }
     } catch {
       showToast({
         type: "error",
-        message: "Something went wrong. Please try again.",
+        message: "Something went wrong. Please try again or email us directly.",
       });
     } finally {
       setIsSubmitting(false);
@@ -267,7 +238,7 @@ export default function ContactPage() {
       <PageHero
         overline="Contact Us"
         title="Let's Build Something"
-        description="Whether you need an MVP shipped, a product scaled, AI integrated or your security hardened — our engineering team is ready."
+        description="Whether you need an MVP shipped, an AI product built, a platform scaled or a security audit — we'd love to hear from you."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Contact" },
@@ -277,7 +248,7 @@ export default function ContactPage() {
       {/* Contact section: info + form */}
       <section className="py-24 lg:py-32">
         <Container>
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-start">
             {/* ── Left: Contact info ──────────────────────────────────── */}
             <motion.div
               variants={fadeInLeft}
@@ -288,12 +259,12 @@ export default function ContactPage() {
               <SectionHeading
                 overline="Get in Touch"
                 heading="We'd Love to Hear From You"
-                description="Reach out through any of the channels below, or fill in the form and a member of our team will respond within 24 hours."
+                description="Drop us a message and we'll get back to you within 24 hours."
                 align="left"
               />
 
               {/* Contact details */}
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-4">
                 {contactInfo.map((item) => {
                   const IconComponent = item.icon;
                   const content = (
@@ -302,7 +273,7 @@ export default function ContactPage() {
                         <IconComponent />
                       </span>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-white/40">
+                        <p className="mono text-[10px] font-medium uppercase tracking-wider text-white/40">
                           {item.label}
                         </p>
                         <p className="mt-0.5 text-sm text-white/70">
@@ -316,14 +287,14 @@ export default function ContactPage() {
                     <a
                       key={item.label}
                       href={item.href}
-                      className="group rounded-xl border border-white/[0.06] bg-white/[0.03] p-4 transition-colors duration-200 hover:border-white/[0.12] hover:bg-white/[0.05]"
+                      className="group rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 transition-colors duration-200 hover:border-white/[0.15] hover:bg-white/[0.04]"
                     >
                       {content}
                     </a>
                   ) : (
                     <div
                       key={item.label}
-                      className="rounded-xl border border-white/[0.06] bg-white/[0.03] p-4"
+                      className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4"
                     >
                       {content}
                     </div>
@@ -333,7 +304,7 @@ export default function ContactPage() {
 
               {/* Social links */}
               <div className="mt-8">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-white/40">
+                <p className="mono mb-3 text-[10px] font-medium uppercase tracking-wider text-white/40">
                   Follow Us
                 </p>
                 <div className="flex items-center gap-3">
@@ -370,18 +341,18 @@ export default function ContactPage() {
                   noValidate
                   className="space-y-5"
                 >
+                  {/* Honeypot — spam protection */}
+                  <input type="hidden" name="botcheck" style={{ display: "none" }} />
+
                   {/* Name */}
                   <div>
-                    <label
-                      htmlFor="page-contact-name"
-                      className="block text-sm text-white/60 mb-1.5"
-                    >
+                    <label htmlFor="page-contact-name" className="block text-sm text-white/60 mb-1.5">
                       Full Name
                     </label>
                     <input
                       id="page-contact-name"
                       type="text"
-                      placeholder="Jane Doe"
+                      placeholder="Your name"
                       className={errors.name ? inputErrorClasses : inputClasses}
                       {...register("name")}
                     />
@@ -390,19 +361,14 @@ export default function ContactPage() {
 
                   {/* Email */}
                   <div>
-                    <label
-                      htmlFor="page-contact-email"
-                      className="block text-sm text-white/60 mb-1.5"
-                    >
+                    <label htmlFor="page-contact-email" className="block text-sm text-white/60 mb-1.5">
                       Work Email
                     </label>
                     <input
                       id="page-contact-email"
                       type="email"
-                      placeholder="jane@company.com"
-                      className={
-                        errors.email ? inputErrorClasses : inputClasses
-                      }
+                      placeholder="you@company.com"
+                      className={errors.email ? inputErrorClasses : inputClasses}
                       {...register("email")}
                     />
                     <FieldError message={errors.email?.message} />
@@ -411,25 +377,19 @@ export default function ContactPage() {
                   {/* Company + Phone row */}
                   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                     <div>
-                      <label
-                        htmlFor="page-contact-company"
-                        className="block text-sm text-white/60 mb-1.5"
-                      >
+                      <label htmlFor="page-contact-company" className="block text-sm text-white/60 mb-1.5">
                         Company
                       </label>
                       <input
                         id="page-contact-company"
                         type="text"
-                        placeholder="Acme Corp"
+                        placeholder="Your company"
                         className={inputClasses}
                         {...register("company")}
                       />
                     </div>
                     <div>
-                      <label
-                        htmlFor="page-contact-phone"
-                        className="block text-sm text-white/60 mb-1.5"
-                      >
+                      <label htmlFor="page-contact-phone" className="block text-sm text-white/60 mb-1.5">
                         Phone
                       </label>
                       <input
@@ -444,10 +404,7 @@ export default function ContactPage() {
 
                   {/* Service select */}
                   <div>
-                    <label
-                      htmlFor="page-contact-service"
-                      className="block text-sm text-white/60 mb-1.5"
-                    >
+                    <label htmlFor="page-contact-service" className="block text-sm text-white/60 mb-1.5">
                       Service of Interest
                     </label>
                     <select
@@ -459,19 +416,11 @@ export default function ContactPage() {
                       )}
                       {...register("service")}
                     >
-                      <option
-                        value=""
-                        disabled
-                        className="bg-[--color-primary-950]"
-                      >
+                      <option value="" disabled className="bg-[--color-primary-950]">
                         Select a service...
                       </option>
                       {SERVICE_OPTIONS.map((service) => (
-                        <option
-                          key={service}
-                          value={service}
-                          className="bg-[--color-primary-950]"
-                        >
+                        <option key={service} value={service} className="bg-[--color-primary-950]">
                           {service}
                         </option>
                       ))}
@@ -481,16 +430,13 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div>
-                    <label
-                      htmlFor="page-contact-message"
-                      className="block text-sm text-white/60 mb-1.5"
-                    >
+                    <label htmlFor="page-contact-message" className="block text-sm text-white/60 mb-1.5">
                       How can we help?
                     </label>
                     <textarea
                       id="page-contact-message"
                       rows={5}
-                      placeholder="Tell us about your project or challenge..."
+                      placeholder="Tell us about your project..."
                       className={cn(
                         errors.message ? inputErrorClasses : inputClasses,
                         "resize-none",
@@ -518,7 +464,7 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="border-t border-white/[0.04] py-24 lg:py-32">
+      <section className="py-24 lg:py-32">
         <Container size="narrow">
           <AnimatedSection>
             <SectionHeading

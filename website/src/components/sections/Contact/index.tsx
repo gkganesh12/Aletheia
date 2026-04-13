@@ -162,7 +162,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-16 lg:py-24">
       <Container>
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16 items-start">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-start">
           {/* ── Left: CTA text ─────────────────────────────────────── */}
           <motion.div
             variants={fadeInLeft}
@@ -189,8 +189,8 @@ export default function Contact() {
             {/* Social links */}
             <div className="flex items-center gap-4 mt-4">
               {[
-                { Icon: TwitterIcon, href: "https://twitter.com/aletheiaai", label: "Twitter" },
-                { Icon: LinkedInIcon, href: "https://linkedin.com/company/aletheiaai", label: "LinkedIn" },
+                { Icon: TwitterIcon, href: "https://x.com/ai_aletheia", label: "Twitter" },
+                { Icon: LinkedInIcon, href: "https://www.linkedin.com/company/aletheiaaitech/", label: "LinkedIn" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
@@ -198,7 +198,7 @@ export default function Contact() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] text-white/50 transition-colors duration-200 hover:border-white/20 hover:text-white"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/[0.08] text-white/50 transition-colors duration-200 hover:border-white/20 hover:text-white"
                 >
                   <Icon />
                 </a>

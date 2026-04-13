@@ -14,7 +14,7 @@ export default function ScrollProgress() {
       style={{
         scaleX,
         background:
-          "linear-gradient(to right, var(--color-accent-400), var(--color-accent-600))",
+          "linear-gradient(to right, #8b5cf6, #6366f1, #06b6d4)",
       }}
     />
   );

@@ -10,7 +10,7 @@ export const services: Service[] = [
     id: "ai-products",
     name: "AI Product Engineering",
     description:
-      "End-to-end design, development and deployment of AI-powered products. From LLM-based applications and multi-agent systems to computer vision and NLP pipelines — built for production from day one.",
+      "End-to-end design, development and deployment of AI-powered products. LLM applications, multi-agent systems, RAG pipelines, computer vision — built for production from day one.",
     icon: "Brain",
   },
   {
@@ -28,24 +28,24 @@ export const services: Service[] = [
     icon: "Layers",
   },
   {
-    id: "cloud-devops",
-    name: "Cloud & DevOps",
+    id: "cybersecurity",
+    name: "Cybersecurity & Auditing",
     description:
-      "AWS, GCP, Azure — Kubernetes, Terraform, CI/CD pipelines. We architect, deploy and manage cloud infrastructure built for reliability, security and scale.",
-    icon: "Radio",
+      "Security audits, penetration testing, vulnerability assessments and secure architecture design. CEH-certified team with hands-on offensive and defensive security experience.",
+    icon: "Shield",
   },
   {
-    id: "cybersecurity",
-    name: "Cybersecurity & Threat Intelligence",
+    id: "blockchain",
+    name: "Blockchain & Web3",
     description:
-      "AI-native security products and capabilities — dark web intelligence, autonomous incident response, distributed detection and zero-trust architecture. Proven by Inscrape, Nirvana and SwarmScope.",
-    icon: "Shield",
+      "Smart contract development, DApp architecture, token systems and decentralised platform engineering. From Solidity to full-stack Web3 applications.",
+    icon: "Link",
   },
   {
     id: "data-ml",
     name: "Data Engineering & ML",
     description:
-      "Data pipelines, feature stores, model training and MLOps. We build the infrastructure that turns raw data into production ML systems — reliable, monitored and scalable.",
+      "Data pipelines, model training, MLOps and production ML systems. We build the infrastructure that turns raw data into intelligent applications — reliable, monitored and scalable.",
     icon: "FileCheck",
   },
 ];

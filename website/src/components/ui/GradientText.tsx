@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 
 export interface GradientTextProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactNode;
-  /** Gradient start colour. @default "#00d4ff" */
+  /** Gradient start colour. @default "#8b5cf6" */
   from?: string;
-  /** Gradient end colour. @default "#0077ff" */
+  /** Gradient end colour. @default "#06b6d4" */
   to?: string;
 }
 
@@ -19,8 +19,8 @@ export interface GradientTextProps extends HTMLAttributes<HTMLSpanElement> {
 
 function GradientText({
   children,
-  from = "#00d4ff",
-  to = "#0077ff",
+  from = "#8b5cf6",
+  to = "#06b6d4",
   className,
   style,
   ...rest

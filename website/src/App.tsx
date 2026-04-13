@@ -25,6 +25,7 @@ import BlogPost from "@/pages/Blog/BlogPost";
 import ContactPage from "@/pages/Contact";
 import CareersPage from "@/pages/Careers";
 import IndustriesPage from "@/pages/Industries";
+import ConceptPage from "@/pages/Concept";
 
 /* ── Scroll to top on route change ──────────────────────────────────── */
 function ScrollToTop() {
@@ -41,7 +42,7 @@ function ScrollToTop() {
   return null;
 }
 
-/* ── Animated Routes ────────────────────────────────────────────────── */
+/* ── Animated Routes (shared layout) ───────────────────────────────── */
 function AnimatedRoutes() {
   const location = useLocation();
 
@@ -61,32 +62,40 @@ function AnimatedRoutes() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
+        <Route path="/concept" element={<ConceptPage />} />
       </Routes>
     </AnimatePresence>
   );
 }
 
-/* ── App ────────────────────────────────────────────────────────────── */
-export default function App() {
+/* ── Inner App (has access to router context) ────────────────────────── */
+function InnerApp() {
   const [isLoading, setIsLoading] = useState(true);
 
   return (
+    <SmoothScroll>
+      <SkipToContent />
+      <ScrollProgress />
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <CustomCursor />
+      <Navbar />
+      <ErrorBoundary>
+        <main id="main-content">
+          <ScrollToTop />
+          <AnimatedRoutes />
+        </main>
+      </ErrorBoundary>
+      <Footer />
+      <BackToTop />
+    </SmoothScroll>
+  );
+}
+
+/* ── App ────────────────────────────────────────────────────────────── */
+export default function App() {
+  return (
     <BrowserRouter>
-      <SmoothScroll>
-        <SkipToContent />
-        <ScrollProgress />
-        {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-        <CustomCursor />
-        <Navbar />
-        <ErrorBoundary>
-          <main id="main-content">
-            <ScrollToTop />
-            <AnimatedRoutes />
-          </main>
-        </ErrorBoundary>
-        <Footer />
-        <BackToTop />
-      </SmoothScroll>
+      <InnerApp />
     </BrowserRouter>
   );
 }

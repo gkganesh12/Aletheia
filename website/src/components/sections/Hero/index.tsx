@@ -1,289 +1,214 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { Suspense, lazy, useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
-  useSpring,
-  useMotionValue,
 } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui";
-import { copy } from "@/data/copy";
-import FloatingParticles from "@/components/shared/FloatingParticles";
-import MorphingOrbs from "@/components/shared/MorphingOrbs";
 import SplitText from "@/components/shared/SplitText";
-import MagneticButton from "@/components/shared/MagneticButton";
-import OrbitalRings from "@/components/shared/OrbitalRings";
-import TypeWriter from "@/components/shared/TypeWriter";
-// LuminousBorder removed — letting the hero text breathe
 
-gsap.registerPlugin(ScrollTrigger);
+const HeroScene = lazy(() => import("@/components/three/HeroScene"));
 
 /* ═══════════════════════════════════════════════════════════════════════
-   ANIMATED GRID — responds to mouse position with 3D perspective
-   ═══════════════════════════════════════════════════════════════════════ */
-
-function AnimatedGrid() {
-  const mouseX = useMotionValue(0.5);
-  const mouseY = useMotionValue(0.5);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX.set(e.clientX / window.innerWidth);
-      mouseY.set(e.clientY / window.innerHeight);
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
-  const springX = useSpring(mouseX, { stiffness: 30, damping: 30 });
-  const springY = useSpring(mouseY, { stiffness: 30, damping: 30 });
-  const perspectiveX = useTransform(springX, [0, 1], [-5, 5]);
-  const perspectiveY = useTransform(springY, [0, 1], [5, -5]);
-
-  return (
-    <motion.div
-      className="absolute inset-0 opacity-[0.03]"
-      style={{
-        rotateX: perspectiveY,
-        rotateY: perspectiveX,
-        transformPerspective: 1000,
-        backgroundImage: `
-          linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)
-        `,
-        backgroundSize: "72px 72px",
-      }}
-    />
-  );
-}
-
-/* Floating stats removed — keeping hero clean */
-
-/* ═══════════════════════════════════════════════════════════════════════
-   SCROLL INDICATOR — mouse wheel with animated dot
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* ScrollIndicator removed */
-
-/* ═══════════════════════════════════════════════════════════════════════
-   TYPEWRITER PHRASES
-   ═══════════════════════════════════════════════════════════════════════ */
-
-const typewriterPhrases = [
-  "AI Products & Platforms",
-  "MVP Development",
-  "Full-Stack Engineering",
-  "Cloud Infrastructure & DevOps",
-  "Cybersecurity & Threat Intelligence",
-  "AI Agent Development",
-  "Data Engineering & ML Pipelines",
-];
-
-/* ═══════════════════════════════════════════════════════════════════════
-   HERO SECTION — Premium scroll-driven experience
+   HERO — Statement left, 3D right. Clean, confident, memorable.
    ═══════════════════════════════════════════════════════════════════════ */
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  /* Framer Motion scroll-linked transforms */
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
   });
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -180]);
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  // blur removed — clean fade only
-  const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.92]);
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-  const orbsY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const gridOpacity = useTransform(scrollYProgress, [0, 0.6], [0.03, 0]);
-  const ringsOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
-  const ringsScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.85]);
-  // statsOpacity removed with floating stats
-  // contentFilter removed
-
-  /* GSAP for background parallax */
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.to(".hero-bg-layer", {
-        yPercent: -20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1.5,
-        },
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.35], [1, 0]);
 
   return (
     <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
-      {/* ── BG Layer 0: Morphing orbs ──────────────────────────────── */}
-      <motion.div style={{ y: orbsY, scale: bgScale }} className="hero-bg-layer">
-        <MorphingOrbs />
-      </motion.div>
+      {/* ── Dot grid background ─────────────────────────────── */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
-      {/* ── BG Layer 1: Animated perspective grid ─────────────────── */}
-      <motion.div style={{ opacity: gridOpacity }}>
-        <AnimatedGrid />
-      </motion.div>
-
-      {/* ── BG Layer 2: Floating particles ────────────────────────── */}
-      <FloatingParticles />
-
-      {/* ── BG Layer 3: Orbital ring system (centerpiece) ─────────── */}
-      <motion.div
-        style={{ opacity: ringsOpacity, scale: ringsScale }}
-        className="absolute inset-0"
-      >
-        <OrbitalRings />
-      </motion.div>
-
-      {/* ── BG Layer 4: Edge gradient fades ───────────────────────── */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--color-primary-950)]/80 via-transparent to-[var(--color-primary-950)]" />
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--color-primary-950)]/60 to-transparent" />
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--color-primary-950)]/60 to-transparent" />
+      {/* ── Mobile ambient glow (visible only on small screens) ── */}
+      <div className="pointer-events-none absolute inset-0 sm:hidden" aria-hidden="true">
+        <div
+          className="absolute left-1/2 top-1/3 h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.12]"
+          style={{ background: "radial-gradient(circle, #8b5cf6, transparent 70%)" }}
+        />
+        <div
+          className="absolute left-1/4 top-2/3 h-[200px] w-[200px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.08]"
+          style={{ background: "radial-gradient(circle, #06b6d4, transparent 70%)" }}
+        />
       </div>
 
-      {/* Floating stats removed — keeping hero clean */}
+      {/* ── Bottom fade ─────────────────────────────────────── */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-24 bg-gradient-to-t from-[var(--color-primary-950)] to-transparent" />
 
-      {/* ── Main content (scroll-parallax + blur + scale) ─────────── */}
+      {/* ── Content — two-column on desktop ─────────────────── */}
       <motion.div
-        className="relative z-10 flex min-h-screen items-center justify-center pt-24"
-        style={{
-          y: contentY,
-          opacity: contentOpacity,
-          scale: contentScale,
-        }}
+        className="relative z-10 flex min-h-screen items-center px-5 sm:px-6"
+        style={{ y: contentY, opacity: contentOpacity }}
       >
-        <div className="mx-auto flex max-w-5xl flex-col items-center px-4 text-center sm:px-6 lg:px-8">
-          {/* ── Overline badge ───────────────────────────────────── */}
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
-          >
-            <span className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5">
-              <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-accent-400)] opacity-75" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[var(--color-accent-400)]" />
+        <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
+          {/* Left — text */}
+          <div className="max-w-lg sm:max-w-none">
+            {/* Overline badge — pill style on mobile, plain text on desktop */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0">
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-[#8b5cf6] sm:hidden"
+                  aria-hidden="true"
+                />
+                <span className="mono text-[11px] font-medium uppercase tracking-[0.15em] text-white/40 sm:text-white/35">
+                  AI Engineering Studio
+                </span>
               </span>
-              <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-white/50">
-                Engineering-First AI Company
-              </span>
-            </span>
-          </motion.div>
+            </motion.div>
 
-          {/* ── Headline — character-by-character reveal ────────── */}
-          <h1
-            className={cn(
-              "text-4xl font-bold leading-[1.05] tracking-tight text-white",
-              "sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem]",
-              "font-[var(--font-heading)]"
-            )}
-          >
-            <SplitText
-              text={copy.hero.headline}
-              delay={0.8}
-              staggerDelay={0.025}
-              gradient
-              gradientWords={["Smarter.", "Faster.", "Everything."]}
-            />
-          </h1>
-
-          {/* ── Subheadline ──────────────────────────────────────── */}
-          <motion.p
-            className="mx-auto mt-8 max-w-2xl text-base leading-relaxed text-white/45 sm:text-lg md:text-xl lg:text-[1.35rem]"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 2.0, ease: [0.215, 0.61, 0.355, 1] }}
-          >
-            {copy.hero.subheadline}
-          </motion.p>
-
-          {/* ── Typewriter rotating taglines ──────────────────────── */}
-          <motion.div
-            className="mt-6 flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.5, duration: 0.6 }}
-          >
-            <span className="text-sm font-medium text-[var(--color-accent-400)]/70">
-              <TypeWriter
-                phrases={typewriterPhrases}
-                typingSpeed={55}
-                deletingSpeed={30}
-                pauseDuration={2500}
+            <h1
+              className={cn(
+                "mt-5 text-[2rem] font-extrabold leading-[1.05] tracking-[-0.04em] text-white",
+                "sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl sm:leading-[1.0]",
+                "font-[var(--font-heading)]",
+              )}
+            >
+              <SplitText
+                text="We Build What Others Pitch."
+                delay={0.4}
+                staggerDelay={0.03}
+                gradient
+                gradientWords={["Build", "Others", "Pitch."]}
               />
-            </span>
-          </motion.div>
+            </h1>
 
-          {/* ── Accent divider ───────────────────────────────────── */}
-          <motion.div
-            className="mx-auto mt-10 h-px w-64 origin-center"
-            style={{
-              background: "linear-gradient(90deg, transparent, var(--color-accent-400), transparent)",
-            }}
-            initial={{ scaleX: 0, opacity: 0 }}
-            animate={{ scaleX: 1, opacity: 0.4 }}
-            transition={{ duration: 1.2, delay: 2.8, ease: "easeOut" }}
-          />
+            <motion.p
+              className="mt-5 max-w-md text-[15px] leading-relaxed text-white/45 sm:mt-6 sm:text-base md:text-lg"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              AI products, full-stack platforms and client solutions —
+              shipped to production, not slide decks.
+            </motion.p>
 
-          {/* ── CTA buttons — magnetic ───────────────────────────── */}
+            {/* CTA buttons */}
+            <motion.div
+              className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => {
+                  const el = document.getElementById("services");
+                  if (el) {
+                    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }
+                }}
+              >
+                See What We Do
+              </Button>
+              <Button
+                variant="ghost"
+                size="lg"
+                className="w-full sm:w-auto"
+                onClick={() => {
+                  const el = document.getElementById("contact");
+                  if (el) {
+                    const y = el.getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top: y, behavior: "smooth" });
+                  }
+                }}
+              >
+                Work With Us
+              </Button>
+            </motion.div>
+
+            {/* Mobile-only trust strip */}
+            <motion.div
+              className="mt-8 flex items-center gap-4 sm:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 2.3 }}
+            >
+              {[
+                { label: "3 Products", color: "#8b5cf6" },
+                { label: "10+ Projects", color: "#6366f1" },
+                { label: "Production-Grade", color: "#06b6d4" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center gap-1.5">
+                  <span
+                    className="h-1 w-1 rounded-full"
+                    style={{ backgroundColor: item.color }}
+                    aria-hidden="true"
+                  />
+                  <span className="text-[10px] font-medium uppercase tracking-wider text-white/30">
+                    {item.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right — 3D scene (hidden on small mobile) */}
           <motion.div
-            className="mt-10 flex flex-col items-center gap-5 sm:flex-row sm:justify-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 2.9, ease: [0.215, 0.61, 0.355, 1] }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative hidden aspect-square w-full max-w-[550px] justify-self-center sm:block lg:justify-self-end"
           >
-            <MagneticButton
-              strength={0.15}
-              onClick={() => {
-                const el = document.getElementById("services");
-                if (el) {
-                  const y = el.getBoundingClientRect().top + window.scrollY - 80;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                }
-              }}
-            >
-              <Button variant="primary" size="lg" className="glow-sm">
-                {copy.hero.ctaPrimary}
-              </Button>
-            </MagneticButton>
-
-            <MagneticButton
-              strength={0.15}
-              onClick={() => {
-                const el = document.getElementById("contact");
-                if (el) {
-                  const y = el.getBoundingClientRect().top + window.scrollY - 80;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                }
-              }}
-            >
-              <Button variant="ghost" size="lg">
-                {copy.hero.ctaSecondary}
-              </Button>
-            </MagneticButton>
+            <Suspense fallback={null}>
+              <HeroScene />
+            </Suspense>
           </motion.div>
-
-          {/* Trusted by removed — logo carousel handles this */}
         </div>
       </motion.div>
 
-      {/* Scroll indicator removed */}
+      {/* ── Mobile scroll indicator ─────────────────────────── */}
+      <motion.div
+        className="absolute inset-x-0 bottom-8 z-30 flex justify-center sm:hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.5, duration: 0.6 }}
+      >
+        <motion.div
+          className="flex flex-col items-center gap-2"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/20">
+            Scroll
+          </span>
+          <svg
+            className="h-4 w-4 text-white/20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={1.5}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 14l-7 7m0 0l-7-7" />
+          </svg>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

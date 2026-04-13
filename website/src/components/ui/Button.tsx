@@ -11,11 +11,11 @@ import { cn } from "@/lib/utils";
 
 const variantStyles = {
   primary:
-    "bg-accent-400 text-black font-semibold hover:bg-accent-500 focus-visible:ring-accent-400/50 shadow-[0_0_20px_rgba(0,212,255,0.15)]",
+    "bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] text-white font-semibold hover:brightness-110 focus-visible:ring-[#8b5cf6]/40 shadow-[0_0_24px_rgba(139,92,246,0.2)]",
   secondary:
-    "border border-white/20 text-white hover:bg-white/10 focus-visible:ring-white/25",
+    "border border-white/15 text-white hover:bg-white/[0.07] hover:border-white/25 focus-visible:ring-white/20",
   ghost:
-    "text-white/70 hover:text-white hover:bg-white/5 focus-visible:ring-white/25",
+    "text-white/60 hover:text-white hover:bg-white/[0.05] focus-visible:ring-white/20",
 } as const;
 
 const sizeStyles = {

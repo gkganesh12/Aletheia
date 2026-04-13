@@ -16,6 +16,8 @@ export interface AnimatedCounterProps {
   prefix?: string;
   /** Additional class names for the wrapping `<span>`. */
   className?: string;
+  /** Inline styles for the wrapping `<span>`. */
+  style?: React.CSSProperties;
 }
 
 /* ────────────────────────────────────────────────────────────────────── */
@@ -36,6 +38,7 @@ function AnimatedCounter({
   suffix = "",
   prefix = "",
   className,
+  style,
 }: AnimatedCounterProps) {
   const [displayValue, setDisplayValue] = useState(0);
   const containerRef = useRef<HTMLSpanElement>(null);
@@ -103,7 +106,7 @@ function AnimatedCounter({
       });
 
   return (
-    <span ref={containerRef} className={cn("tabular-nums", className)}>
+    <span ref={containerRef} className={cn("tabular-nums", className)} style={style}>
       {prefix}
       {formatted}
       {suffix}

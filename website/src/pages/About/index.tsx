@@ -46,8 +46,8 @@ const coreValues = [
 
 const aboutStats = [
   { target: 3, suffix: "", label: "Products Shipped" },
-  { target: 200, suffix: "+", label: "Dark Web Sources" },
-  { target: 5, suffix: "", label: "Industries Served" },
+  { target: 10, suffix: "+", label: "Projects Delivered" },
+  { target: 2, suffix: "", label: "Published Packages" },
 ];
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -73,7 +73,7 @@ export default function AboutPage() {
           ═══════════════════════════════════════════════════════════════════ */}
       <section className="py-24 lg:py-36">
         <Container>
-          <div className="grid items-center gap-16 lg:grid-cols-[420px_1fr] lg:gap-24">
+          <div className="grid items-center gap-8 sm:gap-16 lg:grid-cols-[420px_1fr] lg:gap-24">
             {/* ── Photo ──────────────────────────────────────────── */}
             <AnimatedSection>
               <div className="relative mx-auto lg:mx-0">
@@ -226,10 +226,10 @@ export default function AboutPage() {
       <section className="py-20 lg:py-28">
         <Container>
           <AnimatedSection>
-            <div className="mx-auto grid max-w-4xl gap-12 text-center sm:grid-cols-3">
+            <div className="mx-auto grid max-w-4xl gap-8 text-center sm:grid-cols-3 sm:gap-12">
               {aboutStats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-5xl font-bold text-white lg:text-7xl">
+                  <div className="text-3xl font-bold text-white sm:text-5xl lg:text-7xl">
                     <AnimatedCounter
                       target={stat.target}
                       suffix={stat.suffix}
@@ -259,7 +259,7 @@ export default function AboutPage() {
             />
           </AnimatedSection>
 
-          <div className="mx-auto mt-16 grid max-w-5xl gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mx-auto mt-10 grid max-w-5xl gap-8 sm:mt-16 sm:grid-cols-2 sm:gap-12 lg:grid-cols-4">
             {coreValues.map((value, i) => (
               <AnimatedSection key={value.number} delay={i * 0.1}>
                 <div className="group">

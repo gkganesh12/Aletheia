@@ -27,7 +27,7 @@ export default function BackToTop() {
           transition={{ duration: 0.2 }}
           onClick={scrollToTop}
           aria-label="Back to top"
-          className="fixed bottom-8 right-8 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur transition-colors hover:border-accent-400 hover:bg-accent-400/20"
+          className="fixed bottom-4 right-4 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 backdrop-blur transition-colors hover:border-accent-400 hover:bg-accent-400/20 sm:bottom-8 sm:right-8 sm:h-12 sm:w-12"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

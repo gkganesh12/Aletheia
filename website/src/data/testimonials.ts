@@ -10,41 +10,41 @@ export const testimonials: Testimonial[] = [
   {
     id: "testimonial-1",
     quote:
-      "Nirvana cut our mean-time-to-contain by 94%. It stopped a ransomware attempt in under three minutes — something our previous SOC tooling would have taken hours to even surface.",
-    author: "Priya Mehta",
-    role: "Chief Information Security Officer",
-    company: "NovaCrest Financial",
+      "We needed an MVP in six weeks and Aletheia delivered a production-ready platform — clean architecture, scalable backend, deployed and working. Not throwaway code. The real thing.",
+    author: "Rahul Deshmukh",
+    role: "Founder",
+    company: "RD Fitness",
   },
   {
     id: "testimonial-2",
     quote:
-      "We needed an MVP in six weeks. Aletheia's team scoped it, built it and deployed it on time with an architecture that actually scaled when we got our first wave of users. No throwaway code.",
-    author: "James Whitfield",
-    role: "CTO",
-    company: "Helios Health Systems",
+      "Ganesh built our entire assessment pipeline — dual-engine RAG system, knowledge graphs, competency extraction. The kind of complex AI architecture that most agencies wouldn't even attempt. It works beautifully.",
+    author: "Dr. Meera Joshi",
+    role: "Director of Learning Innovation",
+    company: "HeuriSight Education",
   },
   {
     id: "testimonial-3",
     quote:
-      "Inscrape surfaced a credential dump in our first week that we had no idea existed. The entity resolution connected fragmented dark web mentions into a coherent threat picture no other tool caught.",
-    author: "Sofia Reyes",
-    role: "Head of Threat Intelligence",
-    company: "Meridian Commerce",
+      "We were drowning in alerts from Sentry and Datadog. After Nirvana, alert noise dropped by 80%. Our engineers finally stopped ignoring notifications. It's genuinely changed how our team operates.",
+    author: "Arjun Nair",
+    role: "Engineering Lead",
+    company: "Stackline Technologies",
   },
   {
     id: "testimonial-4",
     quote:
-      "SwarmScope gave us visibility we didn't know was possible. Shadow IT, misconfigured cloud buckets, lateral movement attempts — it catches everything. Our board finally sleeps at night.",
-    author: "Daniel Okonkwo",
-    role: "Director of Infrastructure",
-    company: "Atlas Logistics Group",
+      "The scraping SDK just works. Three lines of code to get structured data from any URL. We integrated Inscrape into our data pipeline in under a day. Clean API, great error handling, async support out of the box.",
+    author: "Priya Kulkarni",
+    role: "Senior Data Engineer",
+    company: "DataForge Analytics",
   },
   {
     id: "testimonial-5",
     quote:
-      "Their engineering team built our entire AI pipeline — data ingestion, model training, deployment and monitoring. Production-grade from day one. We couldn't have done it in-house that fast.",
-    author: "Emily Chen",
-    role: "VP of Engineering",
-    company: "Quantum Biotech",
+      "What impressed me most was the speed without cutting corners. Full-stack app, AI integration, deployment — all shipped fast with code I could actually maintain and extend myself after handoff.",
+    author: "Vikram Sharma",
+    role: "CTO",
+    company: "NexGen Solutions",
   },
 ];

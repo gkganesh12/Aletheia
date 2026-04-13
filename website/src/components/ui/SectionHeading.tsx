@@ -33,16 +33,16 @@ function SectionHeading({
   return (
     <div
       className={cn(
-        "mb-12 md:mb-16",
+        "mb-8 sm:mb-12 md:mb-16",
         isCenter && "text-center",
         className,
       )}
       {...rest}
     >
-      {/* Overline */}
+      {/* Overline — mono, accent colored */}
       <p
         className={cn(
-          "mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-accent-400",
+          "mono mb-3 text-[11px] font-medium uppercase tracking-[0.15em] text-[var(--color-accent-400)]",
           isCenter && "mx-auto",
         )}
       >
@@ -52,7 +52,7 @@ function SectionHeading({
       {/* Heading */}
       <h2
         className={cn(
-          "text-3xl font-bold leading-tight text-white md:text-4xl lg:text-5xl",
+          "text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl",
           isCenter && "mx-auto max-w-3xl",
         )}
       >
@@ -63,7 +63,7 @@ function SectionHeading({
       {description && (
         <p
           className={cn(
-            "mt-4 text-base leading-relaxed text-white/60 md:text-lg",
+            "mt-4 text-base leading-relaxed text-white/55 md:text-lg",
             isCenter && "mx-auto max-w-2xl",
           )}
         >

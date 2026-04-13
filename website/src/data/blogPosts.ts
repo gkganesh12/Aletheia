@@ -17,10 +17,10 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       "Ransomware operators are adopting AI to automate target selection, evade detection and accelerate encryption. Here is what your SOC needs to prepare for.",
     category: "Cybersecurity",
-    author: "Priya Sharma",
+    author: "Ganesh Khetawat",
     date: "2026-03-28",
     readTime: "8 min read",
-    thumbnail: "/images/case-studies/security-dashboard.jpg",
+    thumbnail: "/images/blog/server-room-dark.jpg",
     content: `Ransomware has evolved far beyond the spray-and-pray campaigns of the early 2020s. Today's most sophisticated operators are integrating AI into every phase of the kill chain — from automated reconnaissance that identifies high-value targets based on publicly available financial data, to polymorphic payloads that rewrite their own code to evade signature-based detection. The result is faster, more targeted and more damaging attacks that challenge even mature security operations.
 
 The most concerning development is the emergence of AI-assisted lateral movement. Traditional ransomware spreads through predictable patterns — exploiting known vulnerabilities and using commodity tools like Mimikatz for credential harvesting. The new generation uses reinforcement learning agents that adapt their movement strategy based on the defensive responses they encounter, effectively learning to evade your security controls in real time during the attack.
@@ -31,15 +31,15 @@ The arms race between AI-powered attackers and AI-powered defenders will define 
   },
   {
     slug: "building-robust-ml-pipelines",
-    title: "Building Robust ML Pipelines: Lessons from 200 Production Deployments",
+    title: "Building Robust ML Pipelines: Lessons from Production Deployments",
     excerpt:
-      "After shipping over 200 models to production, here are the hard-won lessons about what separates ML pipelines that thrive from those that quietly decay.",
+      "Hard-won lessons about what separates ML pipelines that thrive from those that quietly decay — from data quality to training-serving skew.",
     category: "Engineering",
-    author: "Marcus Chen",
+    author: "Ganesh Khetawat",
     date: "2026-03-21",
     readTime: "12 min read",
-    thumbnail: "/images/products/tech-setup.jpg",
-    content: `The gap between a model that performs well in a Jupyter notebook and one that delivers reliable value in production is enormous — and it is not primarily a modelling problem. After shipping over 200 custom ML models to production for clients across financial services, healthcare, e-commerce and cybersecurity, we have observed the same failure patterns recurring with striking regularity. The models that succeed share a set of engineering practices that have nothing to do with architecture cleverness and everything to do with operational discipline.
+    thumbnail: "/images/blog/code-dark-vscode.jpg",
+    content: `The gap between a model that performs well in a Jupyter notebook and one that delivers reliable value in production is enormous — and it is not primarily a modelling problem. After shipping ML models to production across different domains, the same failure patterns recur with striking regularity. The models that succeed share a set of engineering practices that have nothing to do with architecture cleverness and everything to do with operational discipline.
 
 The first and most important lesson is that data quality monitoring is more valuable than model performance monitoring. Most production ML failures are not model failures — they are data failures. An upstream schema change, a sensor miscalibration, a third-party API changing its response format — these mundane data issues cause more model degradation than concept drift ever does. Every production pipeline should have automated data validation at the ingestion layer that checks schema conformance, statistical distribution bounds, completeness thresholds and referential integrity before data reaches the feature engineering stage.
 
@@ -53,10 +53,10 @@ The third lesson is that you must design for rollback from day one. Every model 
     excerpt:
       "Zero trust has become one of the most overloaded terms in cybersecurity. Here is a practitioner's guide to what it actually means and how to implement it.",
     category: "Cybersecurity",
-    author: "Daniel Okafor",
+    author: "Ganesh Khetawat",
     date: "2026-03-14",
     readTime: "10 min read",
-    thumbnail: "/images/blog/matrix-code.jpg",
+    thumbnail: "/images/blog/circuit-board-macro-dark.jpg",
     content: `Zero trust has suffered the fate of every good security concept: it has been adopted by marketing departments faster than it has been understood by practitioners. Vendors slap the label on everything from VPNs to firewalls to identity products, leaving security teams confused about what zero trust actually requires and where to start. The reality is that zero trust is not a product you buy — it is an architectural philosophy that demands fundamental changes to how you think about access, identity, segmentation and monitoring.
 
 At its core, zero trust rests on three principles: never trust, always verify; assume breach; and enforce least privilege. Implementing these principles requires capabilities across five pillars — identity, devices, networks, applications and data — and most organisations will need 18 to 36 months to achieve meaningful maturity across all of them. The key is to start with the pillar that addresses your most critical risk and build incrementally.
@@ -71,10 +71,10 @@ The second priority should be continuous visibility. You cannot enforce zero tru
     excerpt:
       "As organisations rush to deploy LLMs, a new attack surface is emerging. From prompt injection to training data extraction, here are the threats you need to understand.",
     category: "AI",
-    author: "Aisha Patel",
+    author: "Ganesh Khetawat",
     date: "2026-03-07",
     readTime: "11 min read",
-    thumbnail: "/images/products/llm-glass.jpg",
+    thumbnail: "/images/blog/ai-neural-network-1.jpg",
     content: `The rapid enterprise adoption of large language models has created a security landscape that most organisations are poorly prepared to navigate. Unlike traditional software vulnerabilities — which are well-catalogued, have established remediation patterns and are understood by security teams — LLM vulnerabilities are novel, poorly understood and often counterintuitive. The OWASP Top 10 for LLM Applications has begun to codify the major risk categories, but the threat surface is evolving faster than the frameworks designed to manage it.
 
 Prompt injection remains the most pervasive and difficult-to-mitigate risk. When an LLM processes user-controlled input alongside system instructions, an attacker can craft inputs that override the system prompt and hijack the model's behaviour. This is not a bug that can be patched — it is a fundamental property of how current-generation language models process instructions. Indirect prompt injection, where malicious instructions are embedded in data the model retrieves from external sources (emails, documents, web pages), is particularly dangerous because the attack surface extends to every data source the model can access.
@@ -89,10 +89,10 @@ The path forward requires defence-in-depth: input sanitisation and output filter
     excerpt:
       "The fully autonomous SOC is not science fiction — it is an engineering problem being solved today. Here is how the role of the human analyst is evolving.",
     category: "Industry",
-    author: "James Okonkwo",
+    author: "Ganesh Khetawat",
     date: "2026-02-28",
     readTime: "9 min read",
-    thumbnail: "/images/services/vr-innovation.jpg",
+    thumbnail: "/images/blog/server-racks-dark.jpg",
     content: `The modern security operations centre is drowning. The average enterprise SOC processes over 10,000 alerts per day, with Tier 1 analysts spending 80% of their time on repetitive triage tasks that could be automated. Burnout rates exceed 65%, experienced analysts are leaving the profession, and the cybersecurity talent shortage continues to widen. The current model is not sustainable — and it is not effective. Mean time to detect a breach still averages 204 days for organisations without advanced detection capabilities.
 
 The autonomous SOC represents a fundamental reimagining of security operations, not a marginal improvement. Instead of routing thousands of alerts to human analysts for manual triage, an autonomous SOC uses AI to handle the entire detection-investigation-response lifecycle for the 95% of incidents that follow known patterns. Alert correlation, evidence enrichment, impact assessment, containment decisions and even remediation actions are executed by AI agents that operate at machine speed and never suffer fatigue.
@@ -107,10 +107,10 @@ The transition will not happen overnight, and it requires trust earned through t
     excerpt:
       "Data poisoning is one of the most insidious threats to machine learning systems. Learn how attackers manipulate training data and how to defend against it.",
     category: "Research",
-    author: "Aisha Patel",
+    author: "Ganesh Khetawat",
     date: "2026-02-21",
     readTime: "10 min read",
-    thumbnail: "/images/blog/matrix-code.jpg",
+    thumbnail: "/images/blog/ai-chip-vision.jpg",
     content: `While most ML security discussions focus on evasion attacks — where adversaries craft inputs to fool a deployed model — data poisoning attacks target a more fundamental vulnerability: the training process itself. By injecting carefully crafted malicious samples into training data, an attacker can cause a model to learn systematic errors that persist through deployment. The poisoned model appears to perform normally on standard test sets while containing hidden behaviours that the attacker can trigger at will.
 
 The most dangerous variant is the backdoor attack. An attacker embeds a trigger pattern in a small percentage of training samples while relabelling them to a target class. The model learns to associate the trigger with the target output while maintaining high accuracy on clean data. In deployment, any input containing the trigger pattern produces the attacker-chosen output. For example, a poisoned image classifier might correctly identify all normal images but classify any image containing a specific pixel pattern as benign — enabling an attacker to bypass a security screening system at will.
@@ -125,10 +125,10 @@ Organisations that rely on ML models for critical decisions — fraud detection,
     excerpt:
       "Kubernetes is powerful but complex, and misconfigurations are the leading cause of cloud-native breaches. Here is a battle-tested checklist for production security.",
     category: "Engineering",
-    author: "Marcus Chen",
+    author: "Ganesh Khetawat",
     date: "2026-02-14",
     readTime: "13 min read",
-    thumbnail: "/images/products/tech-setup.jpg",
+    thumbnail: "/images/blog/code-dark-monitor.jpg",
     content: `Kubernetes has become the de facto platform for deploying production workloads, but its flexibility and complexity create a vast configuration surface where security mistakes are easy to make and hard to detect. Research consistently shows that misconfiguration — not sophisticated exploits — is the primary attack vector in Kubernetes environments. Default settings are often permissive, RBAC policies are frequently too broad, network policies are left unenforced and secrets management is handled carelessly.
 
 The most critical security control in any Kubernetes deployment is network policy enforcement. By default, Kubernetes allows unrestricted pod-to-pod communication within a cluster — meaning that a single compromised pod can reach every other pod and service. Implementing network policies that enforce least-privilege communication between namespaces and services reduces blast radius dramatically. Start by deploying a default-deny ingress policy in every namespace and then explicitly allow only the communication paths your applications require.
@@ -143,10 +143,10 @@ Secrets management deserves particular attention because Kubernetes Secrets are 
     excerpt:
       "Building AI systems where multiple agents collaborate is fundamentally different from building single-agent applications. Here are the architecture patterns that work.",
     category: "AI",
-    author: "Elena Rodriguez",
+    author: "Ganesh Khetawat",
     date: "2026-02-07",
     readTime: "11 min read",
-    thumbnail: "/images/products/llm-glass.jpg",
+    thumbnail: "/images/blog/ai-neural-network-2.jpg",
     content: `The shift from single-agent AI systems to multi-agent architectures represents one of the most significant developments in applied AI engineering. While a single LLM-based agent can handle straightforward tasks through sequential tool use, complex workflows that require specialisation, parallel execution, debate and consensus-building demand a fundamentally different architectural approach. Multi-agent systems unlock capabilities that emerge from collaboration — but they also introduce failure modes that do not exist in single-agent designs.
 
 The most common production pattern is the supervisor architecture, where a planning agent decomposes complex tasks and delegates subtasks to specialised worker agents. The supervisor maintains the overall execution plan, monitors progress, handles failures and synthesises results. This pattern works well when tasks can be cleanly decomposed and worker agents are relatively independent. However, it creates a single point of failure at the supervisor level and can become a bottleneck if the supervisor must make too many routing decisions.
@@ -161,10 +161,10 @@ The critical engineering challenge across all multi-agent patterns is observabil
     excerpt:
       "Dark web monitoring has become essential for proactive security. Here is what actually works, what does not and how to operationalise dark web intelligence.",
     category: "Cybersecurity",
-    author: "Daniel Okafor",
+    author: "Ganesh Khetawat",
     date: "2026-01-31",
     readTime: "9 min read",
-    thumbnail: "/images/case-studies/security-dashboard.jpg",
+    thumbnail: "/images/blog/dark-abstract-light-streaks.jpg",
     content: `Dark web intelligence has matured from a niche capability into a mainstream requirement for enterprise security programmes. Threat actors use underground forums, encrypted messaging platforms and illicit marketplaces to trade stolen credentials, sell initial access to compromised networks, share exploit code and coordinate campaigns. Organisations that lack visibility into this activity are making defensive decisions with an incomplete threat picture — the equivalent of playing chess without seeing half the board.
 
 However, the dark web intelligence market is plagued by overpromising vendors and underdelivering tools. Many platforms simply scrape a handful of well-known forums and paste sites, package the results with minimal analysis and charge premium prices for data that has already been commoditised. Effective dark web intelligence requires three capabilities that most tools lack: broad and continuously expanding source coverage (including invite-only forums and encrypted channels), entity resolution that links fragmented data across sources into coherent narratives, and contextualisation that tells you not just what was found but what it means for your specific organisation.
@@ -179,10 +179,10 @@ Organisations starting a dark web intelligence programme should begin with a foc
     excerpt:
       "Most responsible AI frameworks gather dust in shared drives. Here is how to build one that is operationally embedded, measurable and genuinely effective.",
     category: "AI",
-    author: "Priya Sharma",
+    author: "Ganesh Khetawat",
     date: "2026-01-24",
     readTime: "10 min read",
-    thumbnail: "/images/products/llm-glass.jpg",
+    thumbnail: "/images/blog/geometric-dark-purple.jpg",
     content: `The responsible AI conversation has reached an inflection point. The early phase — characterised by high-level principles, ethics boards and aspirational commitments — is giving way to a more rigorous, operationally grounded approach. Regulatory pressure from the EU AI Act, evolving enforcement from the FTC and increasing customer demand for AI transparency are forcing organisations to move from principles to practices. The question is no longer whether to have a responsible AI programme but how to build one that is genuinely effective rather than performative.
 
 The most common failure mode for responsible AI programmes is treating them as a compliance checkbox rather than an engineering discipline. A framework that exists only as a PDF in a shared drive — consulted at the beginning of a project and forgotten during development — provides no real protection against the harms it is designed to prevent. Effective responsible AI must be embedded in the development lifecycle: automated bias detection in training data pipelines, fairness metrics computed alongside accuracy metrics in model evaluation, explainability requirements enforced in code review and impact assessments triggered automatically when models are deployed to new populations or use cases.
@@ -197,10 +197,10 @@ The third factor is governance with teeth. Responsible AI review processes must 
     excerpt:
       "Supply chain attacks have evolved from targeting build systems to compromising AI model registries, open-source training data and inference APIs.",
     category: "Cybersecurity",
-    author: "James Okonkwo",
+    author: "Ganesh Khetawat",
     date: "2026-01-17",
     readTime: "8 min read",
-    thumbnail: "/images/blog/matrix-code.jpg",
+    thumbnail: "/images/blog/circuit-board-closeup.jpg",
     content: `The software supply chain attack surface has expanded dramatically as organisations integrate AI components into their technology stacks. While the security community has invested heavily in securing traditional supply chain vectors — package registries, CI/CD pipelines and build systems — a new class of AI-specific supply chain risks has emerged that most organisations are not yet equipped to manage. The convergence of open-source AI models, third-party training data and shared inference infrastructure creates novel trust boundaries that adversaries are actively probing.
 
 Model supply chain attacks represent the most significant new vector. Organisations routinely download pre-trained models from public registries like Hugging Face, use transfer learning on top of third-party foundation models and deploy models that were trained on data they did not curate. Each of these dependencies introduces a trust assumption that can be exploited. Researchers have demonstrated that backdoored models can be published to public registries with malicious behaviours that activate only under specific trigger conditions — passing standard evaluation benchmarks while containing hidden vulnerabilities.
@@ -215,10 +215,10 @@ Defending against AI supply chain attacks requires a combination of traditional 
     excerpt:
       "When your model needs features computed in real time at sub-100ms latency, standard batch approaches collapse. Here are the patterns that scale.",
     category: "Engineering",
-    author: "Elena Rodriguez",
+    author: "Ganesh Khetawat",
     date: "2026-01-10",
     readTime: "12 min read",
-    thumbnail: "/images/products/tech-setup.jpg",
+    thumbnail: "/images/blog/code-dark-laptop.jpg",
     content: `Batch feature engineering is a solved problem. Tools like dbt, Spark and Airflow make it straightforward to compute features on a schedule and serve them from a feature store. But an increasing number of ML applications — fraud detection, dynamic pricing, recommendation engines, security anomaly detection — require features that reflect the state of the world right now, not as of the last batch run. Real-time feature engineering at low latency and high throughput is a fundamentally different engineering challenge that demands different tools, architectures and design patterns.
 
 The core architectural pattern for real-time features is the dual-compute model: batch features are pre-computed and stored in a low-latency serving layer (typically Redis, DynamoDB or a purpose-built feature store), while real-time features are computed on-the-fly from streaming event data using a stream processor like Apache Flink, Kafka Streams or Spark Structured Streaming. At inference time, both feature sets are combined to form the complete feature vector. This pattern lets you get the best of both worlds — the efficiency of batch computation for slowly-changing features and the freshness of stream computation for rapidly-changing ones.
@@ -233,10 +233,10 @@ The second major challenge is managing state in your stream processor. Many usef
     excerpt:
       "How distributed agent architectures inspired by biological swarms are enabling a new paradigm of collective threat detection that no single sensor can achieve.",
     category: "Research",
-    author: "Aisha Patel",
+    author: "Ganesh Khetawat",
     date: "2026-01-03",
     readTime: "11 min read",
-    thumbnail: "/images/services/vr-innovation.jpg",
+    thumbnail: "/images/blog/dark-abstract-cyan-wave.jpg",
     content: `Biological swarms — ant colonies, bee hives, bird flocks — solve complex problems through simple local interactions without centralised control. Each individual agent follows basic rules based on local information, yet the collective exhibits sophisticated, adaptive behaviour that far exceeds the capabilities of any single member. We are applying these same principles to cybersecurity with results that challenge the assumptions underpinning traditional centralised detection architectures.
 
 The key insight from swarm biology is that distributed sensing with local communication can detect patterns that centralised analysis misses. A single network sensor has a limited view: it sees traffic passing through its segment but has no context about what is happening elsewhere. A swarm of sensors that share local observations with their neighbours can detect coordinated activity — like slow lateral movement across multiple network segments — that each individual sensor would dismiss as normal. The threat is visible only to the collective, not to any individual member.
@@ -244,5 +244,113 @@ The key insight from swarm biology is that distributed sensing with local commun
 In production cybersecurity systems, swarm architecture offers three distinct advantages over centralised SIEM-based detection. First, it eliminates the single point of failure inherent in centralised architectures: if one agent goes down, the swarm continues to function. Second, it scales linearly: adding more agents increases both coverage and detection capability without requiring a more powerful central engine. Third, it makes evasion exponentially harder for attackers: there is no single detection logic to reverse-engineer, because the detection emerges from the collective behaviour of thousands of independent agents.
 
 The engineering challenge is designing the local interaction rules that produce useful emergent behaviour. Too little communication and the swarm fragments into isolated sensors. Too much communication and you effectively recreate a centralised architecture with all its bottlenecks. The optimal balance — inspired by stigmergic communication in ant colonies — uses lightweight reputation signals that propagate through the network, amplifying genuine threat indicators while dampening noise through natural attenuation.`,
+  },
+  {
+    slug: "shipping-python-sdk-pypi",
+    title: "What I Learned Shipping a Python SDK to PyPI",
+    excerpt:
+      "Building Inscrape taught me that the hard part of an SDK is not the code — it is the developer experience. Here is what I got right and what I would change.",
+    category: "Building",
+    author: "Ganesh Khetawat",
+    date: "2026-04-04",
+    readTime: "7 min read",
+    thumbnail: "/images/blog/code-dark-laptop.jpg",
+    content: `When I decided to build Inscrape — an AI-powered web scraping SDK — I assumed the hardest part would be the extraction engine. Getting structured data out of arbitrary web pages using AI is genuinely difficult. But after shipping v0.1.0 to PyPI, I can tell you the extraction logic was maybe 30% of the work. The other 70% was developer experience.
+
+The first lesson: your SDK is only as good as its simplest use case. If a developer cannot get value in under 60 seconds, they will close the tab and write their own scraper. Inscrape's design goal was three lines of code from install to structured output: initialise the client, call scrape, get JSON back. Every API decision was filtered through that constraint. Can the developer do this without reading the docs? If no, redesign it.
+
+The second lesson: typed error handling is not optional. When I first shipped Inscrape, errors came back as generic exceptions with string messages. Developers had to parse error messages to figure out if they had hit a rate limit, had an auth problem or had exhausted their quota. The fix was obvious in retrospect: distinct exception classes for each failure mode — AuthError, RateLimitError, QuotaExhaustedError — so developers can catch exactly what they need. This one change eliminated 80% of the support questions.
+
+The third lesson: async support must be first-class, not bolted on. I originally built Inscrape as a synchronous SDK and added AsyncInscrape later. The problem is that most production data pipelines are async — and wrapping sync code in async wrappers is a recipe for subtle bugs and performance issues. If I were starting over, I would build async-first and derive the sync interface from it.
+
+Publishing to PyPI itself was surprisingly straightforward. Hatchling as the build system, a clean pyproject.toml, pytest for testing, Ruff for linting. The actual publishing is one command. The lesson is that the tooling for publishing Python packages is mature and well-documented — the hard part is building something worth publishing.`,
+  },
+  {
+    slug: "building-5000-agent-simulation",
+    title: "How We Built a 5,000-Agent Simulation Engine",
+    excerpt:
+      "SwarmScope turns unstructured data into living simulations. Here is the architecture behind running 5,000 autonomous agents with personalities, memory and social dynamics.",
+    category: "Engineering",
+    author: "Ganesh Khetawat",
+    date: "2026-04-07",
+    readTime: "10 min read",
+    thumbnail: "/images/blog/abstract-purple-black-pattern.jpg",
+    content: `SwarmScope started with a question: what if you could turn any document into a living simulation? Upload a PDF about a historical event, a market research report or a fictional world — and get back thousands of autonomous agents that think, interact and evolve based on the entities and relationships extracted from your data. That is what we built. Here is how.
+
+The foundation is the GraphRAG pipeline. When you upload a document, we do not just chunk and embed it like a standard RAG system. We extract entities (people, organisations, concepts, locations) and the relationships between them using a combination of named entity recognition, relation extraction and LLM-powered inference. The output is a knowledge graph in Neo4j that represents the document's world as a structured network of actors and connections.
+
+From this graph, we generate agents. Each entity becomes an autonomous agent with a personality derived from its attributes, a memory system seeded with its context from the document and a set of relationships with other agents based on the extracted connections. The personality generation uses LLMs to synthesise coherent character profiles from often sparse source data — turning a brief mention of a historical figure into a fully realised agent with goals, beliefs and behavioural tendencies.
+
+The simulation engine handles concurrency through an event-driven architecture. Agents do not run on individual threads — that would not scale to 5,000. Instead, they operate on a tick-based system where each simulation step processes all pending agent actions, resolves interactions, updates memories and advances the world state. This is similar to how game engines handle large numbers of NPCs, but with the added complexity that each agent's decisions are powered by LLM inference rather than scripted behaviour trees.
+
+The most challenging engineering problem was memory management. Each agent maintains a rolling memory of its interactions — who it talked to, what was said, how it felt about the exchange. At 5,000 agents, naive memory storage explodes quickly. We use a tiered memory system: recent interactions are stored verbatim, older memories are summarised into compressed representations, and very old memories are distilled into personality-level beliefs that influence behaviour without consuming storage. This mirrors how human memory actually works — and it keeps the system tractable at scale.
+
+The cost target was critical. We wanted each simulation run to cost about five dollars, not fifty. This meant aggressive optimisation of LLM calls — batching agent decisions, caching common personality inference patterns and using smaller models for routine interactions while reserving larger models for pivotal decisions and complex social dynamics. The result is a system that is genuinely affordable for researchers, educators and strategists — not just enterprise budgets.`,
+  },
+  {
+    slug: "alert-noise-engineering-teams",
+    title: "Why Your Engineering Team Ignores Alerts (And How to Fix It)",
+    excerpt:
+      "Alert fatigue is not a people problem — it is an engineering problem. Here is how we built Nirvana to cut alert noise by 90%.",
+    category: "Product",
+    author: "Ganesh Khetawat",
+    date: "2026-04-09",
+    readTime: "8 min read",
+    thumbnail: "/images/blog/dark-abstract-light-streaks.jpg",
+    content: `Every engineering team I have talked to has the same problem: they have invested in monitoring — Sentry for errors, Datadog for infrastructure, PagerDuty for on-call — and the result is not better observability. It is alert fatigue. The average team receives hundreds of alerts per day, most of which are duplicates, low-priority or already resolved by the time someone looks at them. Engineers learn to ignore the noise, and the one alert that actually matters gets buried.
+
+This is the problem Nirvana was built to solve. Not by replacing your monitoring tools — they are good at what they do — but by sitting between them and your team, intelligently filtering the signal from the noise.
+
+The core of Nirvana is the deduplication engine. When an alert arrives from Sentry, it does not just check if the exact same error has been seen before. It clusters related alerts using a combination of stack trace similarity, error message semantics and temporal proximity. Five hundred Sentry alerts about the same null pointer exception in slightly different request paths become one incident. That alone eliminates 60-70% of alert volume for most teams.
+
+The second layer is intelligent routing. Not every alert needs to go to the same Slack channel or the same person. Nirvana uses configurable rules to route alerts based on service ownership, severity, time of day and on-call schedules. A database connection warning at 2 AM goes to the on-call engineer. A non-critical deprecation warning goes to the team channel on Monday morning. The right alert reaches the right person at the right time.
+
+The third layer is interactive actions. When an alert appears in Slack, it comes with buttons: Acknowledge, Snooze, Resolve. No context switching to a dashboard, no hunting through multiple tools. The engineer can handle the alert without leaving their workflow. If nobody acknowledges within a configurable window, the alert automatically escalates to the next responder.
+
+The result is dramatic. Teams that deployed Nirvana saw alert noise drop by 60-90% while actual incident response times improved by 60%. Engineers stopped ignoring their notification channels. On-call rotations became less dreaded. The monitoring investment these teams had already made finally started delivering on its promise — because the signal was no longer lost in the noise.`,
+  },
+  {
+    slug: "solo-founder-shipping-three-products",
+    title: "Shipping Three SaaS Products as a Solo Founder: What Actually Works",
+    excerpt:
+      "I shipped Inscrape, Nirvana and SwarmScope while studying CS full-time. Here is the system that made it possible — and the mistakes I made along the way.",
+    category: "Building",
+    author: "Ganesh Khetawat",
+    date: "2026-04-10",
+    readTime: "9 min read",
+    thumbnail: "/images/blog/dark-abstract-golden-wave.jpg",
+    content: `People ask me how I shipped three products while still being a CS student. The honest answer is that I did not set out to build three products. I set out to solve problems that interested me, and each one turned into something worth shipping. Inscrape started because I was tired of writing fragile web scrapers. Nirvana started because my own side projects were drowning in Sentry alerts I was ignoring. SwarmScope started because I wanted to simulate social dynamics for a research project and no affordable tool existed. The common thread was not a grand product strategy — it was scratching my own itches with enough engineering rigour that others could use the result.
+
+The system that makes this possible is ruthless scoping. Every product I ship starts with the question: what is the absolute smallest thing I can build that delivers real value? For Inscrape, that was a three-line SDK that returns structured JSON from any URL. For Nirvana, that was a Slack bot that deduplicates Sentry alerts. For SwarmScope, that was a pipeline that turns a PDF into 100 interacting agents. In each case, the V1 was embarrassingly small compared to the vision — and it was live in production within weeks, not months.
+
+The biggest mistake I made early on was premature architecture. I would spend days designing database schemas and API structures for features I had not validated yet. The fix was counterintuitive: build the ugliest thing that works, ship it, see if anyone cares, then refactor. The code quality of my V1s would horrify most senior engineers — and it does not matter, because the ones that got traction got rewritten properly, and the ones that did not saved me weeks of wasted engineering.
+
+The second mistake was building in isolation. I spent months on SwarmScope before showing it to anyone. When I finally did, the feedback was immediate and obvious: the simulation was cool but nobody could figure out how to upload their data. Two days of UX work made it ten times more useful than two months of engine improvements. Now I ship something within the first week and show it to people immediately. Feedback on something real is worth infinitely more than opinions on something imagined.
+
+What I have learned is that the solo founder advantage is speed, not scale. I can ship a feature in a day that would take a team two sprints of planning, estimation and review. The disadvantage is that everything is on me — code, design, infrastructure, support, marketing. The way I manage this is by being extremely deliberate about what I say no to. Every feature request gets filtered through one question: does this make the core use case better, or is it a new use case? If it is a new use case, it goes on a list I review monthly. If it is the core use case, I build it today.
+
+The tech stack matters less than people think. I use Python for backend-heavy products (Inscrape, SwarmScope) and TypeScript with Next.js for frontend-heavy ones (Nirvana). PostgreSQL for structured data, Redis for caching, Docker for deployment. Nothing exotic. The competitive advantage is not the tech — it is the speed at which I can go from idea to live product. Every hour spent evaluating a new framework is an hour not spent shipping.`,
+  },
+  {
+    slug: "graphrag-beyond-basic-rag",
+    title: "GraphRAG: Why Basic RAG Is Not Enough for Complex Data",
+    excerpt:
+      "Standard RAG retrieves chunks. GraphRAG understands relationships. Here is when you need it, how it works, and the engineering trade-offs involved.",
+    category: "AI",
+    author: "Ganesh Khetawat",
+    date: "2026-04-11",
+    readTime: "10 min read",
+    thumbnail: "/images/blog/ai-chip-vision.jpg",
+    content: `Retrieval-Augmented Generation has become the default pattern for building LLM applications that need to reason over proprietary data. The standard approach is straightforward: chunk your documents, embed the chunks into vectors, store them in a vector database and retrieve the most similar chunks when a user asks a question. It works well for simple factual questions — "What is our refund policy?" or "How do I configure the API rate limiter?" — where the answer lives in a single chunk.
+
+But standard RAG fails badly when questions require synthesising information across multiple documents, understanding relationships between entities or reasoning about structured dependencies. Ask "How does the relationship between Company A and Company B affect their joint risk exposure?" and basic RAG will retrieve chunks that mention either company, but it will not understand the relationship between them. This is where GraphRAG becomes essential.
+
+GraphRAG combines vector retrieval with knowledge graph traversal. Instead of just embedding text chunks, you also extract entities and relationships from your documents and store them in a graph database. When a query arrives, the system retrieves relevant chunks via vector similarity and simultaneously traverses the knowledge graph to find related entities, their connections and the context of those connections. The LLM receives both the raw text and the structured relationship data, enabling it to reason about complex, multi-hop questions that basic RAG cannot handle.
+
+We built GraphRAG into two of our products. In SwarmScope, the GraphRAG pipeline extracts entities and relationships from uploaded documents to generate agent personalities and social structures — a purely creative application. In HeuriSight, GraphRAG maps student cognitive patterns to educational competencies across multiple assessment documents — an analytical application. The architecture is the same: entity extraction, relationship mapping, graph storage in Neo4j, hybrid retrieval combining vector similarity with graph traversal.
+
+The engineering trade-offs are real. GraphRAG is more complex to build, slower to index (entity extraction adds significant processing time) and harder to debug when results are wrong — because errors can come from the entity extraction, the relationship mapping, the graph traversal or the final LLM synthesis. For simple Q&A over straightforward documents, basic RAG is faster, cheaper and good enough. GraphRAG earns its complexity when your data is inherently relational — when the connections between things matter as much as the things themselves.
+
+The practical advice: start with basic RAG. When you find that users are asking questions your system cannot answer despite having the relevant text in the corpus, examine those questions. If they require understanding relationships, comparing entities or synthesising across documents, that is your signal to add the graph layer. Do not build GraphRAG because it sounds impressive — build it because your users need answers that chunks alone cannot provide.`,
   },
 ];

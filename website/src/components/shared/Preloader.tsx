@@ -48,7 +48,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             {letters.map((letter, i) => (
               <motion.span
                 key={i}
-                className="inline-block select-none font-[var(--font-heading)] text-4xl font-bold tracking-[0.35em] text-white sm:text-5xl lg:text-6xl"
+                className="inline-block select-none font-[var(--font-heading)] text-3xl font-bold tracking-[0.25em] text-white sm:text-4xl sm:tracking-[0.35em] md:text-5xl lg:text-6xl"
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{

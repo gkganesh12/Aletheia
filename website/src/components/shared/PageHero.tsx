@@ -26,7 +26,7 @@ export default function PageHero({
     <section
       className={cn(
         "relative overflow-hidden border-b border-white/[0.04]",
-        compact ? "pb-16 pt-32" : "pb-20 pt-36 lg:pb-28 lg:pt-44",
+        compact ? "pb-12 pt-24 sm:pb-16 sm:pt-32" : "pb-16 pt-28 sm:pb-20 sm:pt-36 lg:pb-28 lg:pt-44",
         className
       )}
     >
@@ -56,7 +56,7 @@ export default function PageHero({
         )}
 
         <motion.h1
-          className="max-w-4xl text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl font-[var(--font-heading)]"
+          className="max-w-4xl text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl font-[var(--font-heading)]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.215, 0.61, 0.355, 1] }}
@@ -66,7 +66,7 @@ export default function PageHero({
 
         {description && (
           <motion.p
-            className="mt-5 max-w-2xl text-lg leading-relaxed text-white/50"
+            className="mt-5 max-w-2xl text-base leading-relaxed text-white/50 sm:text-lg"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}

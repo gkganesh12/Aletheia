@@ -44,3 +44,17 @@ storybook-static/
 
 # Vercel
 .vercel/
+
+# Claude Code local config
+.claude/
+.mcp.json
+.tasks/
+
+# Graphify output
+graphify-out/
+website/src/graphify-out/
+website/public/images/blog/graphify-out/
+
+# Large binary assets (not for git)
+*.zip
+*.docx

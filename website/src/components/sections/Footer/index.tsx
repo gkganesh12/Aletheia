@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { Container } from "@/components/ui";
+import { Container, ShieldLogo } from "@/components/ui";
 import { copy } from "@/data/copy";
 import { services } from "@/data/services";
 
@@ -97,15 +97,16 @@ export default function Footer() {
   }));
 
   return (
-    <footer className="border-t border-white/[0.06] bg-[--color-primary-950] pt-16 pb-8">
+    <footer className="border-t border-white/[0.06] bg-[var(--color-primary-900)] pt-16 pb-8">
       <Container>
         {/* ── Top grid ──────────────────────────────────────────── */}
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Col 1: Brand */}
           <div>
-            <a href="#" className="inline-block text-xl font-bold tracking-tight text-white">
-              ALETHEIA
-            </a>
+            <Link to="/" className="inline-flex items-center gap-2.5">
+              <ShieldLogo size={30} />
+              <span className="text-xl font-bold tracking-tight text-white">ALETHEIA</span>
+            </Link>
             <p className="mt-3 text-sm leading-relaxed text-white/50">
               {copy.footer.tagline}
             </p>
@@ -115,7 +116,7 @@ export default function Footer() {
               {[
                 { Icon: GitHubIcon, href: "https://github.com/gkganesh12", label: "GitHub" },
                 { Icon: LinkedInIcon, href: "https://www.linkedin.com/in/ganeshkhetawat/", label: "LinkedIn" },
-                { Icon: TwitterIcon, href: "https://twitter.com/aletheiaai", label: "Twitter" },
+                { Icon: TwitterIcon, href: "https://x.com/ai_aletheia", label: "Twitter" },
               ].map(({ Icon, href, label }) => (
                 <a
                   key={label}
