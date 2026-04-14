@@ -4,6 +4,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
+import PageSEO, { serviceJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { Container, GlassPanel, SectionHeading } from "@/components/ui";
 import { serviceDetails } from "@/data/serviceDetails";
 
@@ -41,6 +42,16 @@ export default function ServiceDetail() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title={service.name}
+        description={service.description.slice(0, 160)}
+        path={`/services/${service.slug}`}
+        keywords={`${service.name}, AI services, ${service.technologies.slice(0, 4).join(", ")}`}
+        jsonLd={[
+          serviceJsonLd({ name: service.name, description: service.description, slug: service.slug }),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: service.name, path: `/services/${service.slug}` }])
+        ]}
+      />
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <PageHero
         overline="Service"

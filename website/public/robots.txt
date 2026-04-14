@@ -1,3 +1,32 @@
+# Aletheia AI — https://aletheiaai.tech
 User-agent: *
 Allow: /
-Sitemap: https://aletheia-ai.com/sitemap.xml
+Disallow: /assets/
+
+# Sitemaps
+Sitemap: https://aletheiaai.tech/sitemap.xml
+
+# Allow AI crawlers to index content for AI Overviews / GEO
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: cohere-ai
+Allow: /

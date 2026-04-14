@@ -5,7 +5,7 @@ import type { AgentName, AgentPlan, ValidationResult } from "../../core/types.js
 const InputSchema = z.object({
   brandVoice: z.string().default("Professional, technically authoritative, innovative yet trustworthy"),
   targetAudience: z.string().default("CTOs, CISOs, VP Engineering at mid-market to enterprise"),
-  domain: z.string().default("aletheia-ai.com"),
+  domain: z.string().default("aletheiaai.tech"),
   products: z.array(z.any()).optional(),
   services: z.array(z.string()).optional(),
 });

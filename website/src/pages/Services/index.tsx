@@ -10,6 +10,7 @@ import PageTransition from "@/components/shared/PageTransition";
 import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { serviceDetails } from "@/data/serviceDetails";
 
 /* ── Service icons ─────────────────────────────────────────────────── */
@@ -110,6 +111,13 @@ const differentiators = [
 export default function ServicesPage() {
   return (
     <PageTransition>
+      <PageSEO
+        title="AI Services"
+        description="AI product engineering, MVP development, full-stack platforms, cybersecurity, blockchain and data/ML services. Production-grade solutions from Aletheia AI."
+        path="/services"
+        keywords="AI services, AI product engineering, MVP development, AI consulting services, machine learning services"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }])}
+      />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="What We Do"

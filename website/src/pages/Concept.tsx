@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import NeuralCanvas from "@/components/shared/NeuralCanvas";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -395,9 +396,16 @@ export default function Concept() {
      RENDER
      ═══════════════════════════════════════════════════════════════════════ */
   return (
-    <div ref={containerRef} className="bg-[#050505]">
-      {/* Global noise */}
-      <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]" style={{ backgroundImage: NOISE, mixBlendMode: "overlay" }} />
+    <>
+      <PageSEO
+        title="Concept"
+        description="Explore the vision and design concept behind Aletheia AI's approach to AI engineering and product development."
+        path="/concept"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Concept", path: "/concept" }])}
+      />
+      <div ref={containerRef} className="bg-[#050505]">
+        {/* Global noise */}
+        <div className="pointer-events-none fixed inset-0 z-50 opacity-[0.03]" style={{ backgroundImage: NOISE, mixBlendMode: "overlay" }} />
 
       {/* ═══ HERO ═══════════════════════════════════════════════════════ */}
       <section ref={heroRef} className="relative flex h-screen items-center justify-center overflow-hidden">
@@ -643,6 +651,7 @@ export default function Concept() {
       </section>
 
       <div className="h-20" />
-    </div>
+      </div>
+    </>
   );
 }

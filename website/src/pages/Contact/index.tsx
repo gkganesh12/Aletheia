@@ -17,6 +17,7 @@ import PageTransition from "@/components/shared/PageTransition";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import CTASection from "@/components/shared/CTASection";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import PageSEO, { breadcrumbJsonLd, faqPageJsonLd } from "@/components/shared/PageSEO";
 import { useToast } from "@/components/shared/Toast";
 
 /* ────────────────────────────────────────────────────────────────────── */
@@ -234,6 +235,13 @@ export default function ContactPage() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title="Contact Aletheia AI"
+        description="Get in touch with Aletheia AI for AI development, consulting, and custom solutions. Start your AI project today."
+        path="/contact"
+        keywords="contact AI agency, AI consulting inquiry, hire AI developers, AI project quote"
+        jsonLd={[breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Contact", path: "/contact" }]), faqPageJsonLd(contactFAQ)]}
+      />
       {/* Hero */}
       <PageHero
         overline="Contact Us"

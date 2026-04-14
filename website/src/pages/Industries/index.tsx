@@ -13,6 +13,7 @@ import PageTransition from "@/components/shared/PageTransition";
 import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { industries } from "@/data/industries";
 
 /* ── Icons ──────────────────────────────────────────────────────────── */
@@ -178,6 +179,13 @@ export default function IndustriesPage() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title="Industries We Serve"
+        description="AI solutions for healthcare, finance, manufacturing, legal tech, retail and more. Industry-specific AI consulting and development from Aletheia AI."
+        path="/industries"
+        keywords="AI for healthcare, AI for finance, AI for manufacturing, industry AI solutions, vertical AI consulting"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Industries", path: "/industries" }])}
+      />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="Industries"

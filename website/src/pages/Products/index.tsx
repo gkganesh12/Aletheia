@@ -11,6 +11,7 @@ import PageTransition from "@/components/shared/PageTransition";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import CTASection from "@/components/shared/CTASection";
 import MarqueeStrip from "@/components/shared/MarqueeStrip";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 
 /* ── Tech marquee data ─────────────────────────────────────────────── */
 
@@ -296,6 +297,13 @@ function ProductSection({
 export default function ProductsPage() {
   return (
     <PageTransition>
+      <PageSEO
+        title="AI Products"
+        description="Production AI products built by Aletheia AI — Inscrape (AI web scraping), Nirvana (focus tool), SwarmScope (multi-agent monitoring). Open source and API-ready."
+        path="/products"
+        keywords="AI products, Inscrape, Nirvana, SwarmScope, AI web scraping, multi-agent systems"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }])}
+      />
       {/* ═══ Custom Hero ═══════════════════════════════════════════════ */}
       <section className="relative overflow-hidden border-b border-white/[0.04] pb-20 pt-36 lg:pb-32 lg:pt-44">
         {/* Background glow */}

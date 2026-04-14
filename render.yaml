@@ -2,7 +2,7 @@ services:
   - type: web
     name: aletheia-ai
     runtime: static
-    buildCommand: npm install && npm run build --workspace=website
+    buildCommand: npm install && npm run build:prerender --workspace=website
     staticPublishPath: ./website/dist
     envVars: []
     routes:

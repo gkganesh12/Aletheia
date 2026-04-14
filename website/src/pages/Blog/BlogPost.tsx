@@ -5,6 +5,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
+import PageSEO, { articleJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { blogPosts } from "@/data/blogPosts";
 
 const categoryColors: Record<string, string> = {
@@ -118,6 +119,18 @@ export default function BlogPost() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title={post.title}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        ogType="article"
+        ogImage={post.thumbnail}
+        article={{ author: post.author, publishedTime: post.date, section: post.category }}
+        jsonLd={[
+          articleJsonLd({ title: post.title, description: post.excerpt, slug: post.slug, author: post.author, datePublished: post.date, image: post.thumbnail }),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }])
+        ]}
+      />
       <PageHero
         compact
         overline={post.category}

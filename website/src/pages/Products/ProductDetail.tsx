@@ -4,6 +4,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
+import PageSEO, { productJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { Container, GlassPanel, Button, GradientText, SectionHeading } from "@/components/ui";
 import { productDetails } from "@/data/productDetails";
 
@@ -88,6 +89,17 @@ export default function ProductDetail() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title={product.name + " — " + product.tagline}
+        description={product.description.slice(0, 160)}
+        path={`/products/${product.slug}`}
+        ogType="product"
+        keywords={`${product.name}, ${product.tagline}, ${product.techStack.slice(0, 4).join(", ")}`}
+        jsonLd={[
+          productJsonLd({ name: product.name, description: product.description, slug: product.slug }),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }, { name: product.name, path: `/products/${product.slug}` }])
+        ]}
+      />
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <PageHero
         overline={product.tagline}

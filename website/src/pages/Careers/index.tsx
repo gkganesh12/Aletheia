@@ -16,6 +16,7 @@ import PageTransition from "@/components/shared/PageTransition";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import CTASection from "@/components/shared/CTASection";
 import FilterButtons from "@/components/shared/FilterButtons";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { staggerContainer, staggerItem } from "@/lib/motion-variants";
 import { useToast } from "@/components/shared/Toast";
 
@@ -375,6 +376,13 @@ export default function CareersPage() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title="Careers at Aletheia AI"
+        description="Join Aletheia AI — we're hiring engineers, designers and AI specialists. Build production AI products with a team that ships."
+        path="/careers"
+        keywords="AI jobs, AI company careers, machine learning engineer jobs, AI developer positions"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Careers", path: "/careers" }])}
+      />
       {/* Hero */}
       <PageHero
         overline="Careers"

@@ -3,6 +3,7 @@ import PageTransition from "@/components/shared/PageTransition";
 import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /*  Static data                                                              */
@@ -57,6 +58,13 @@ const aboutStats = [
 export default function AboutPage() {
   return (
     <PageTransition>
+      <PageSEO
+        title="About Aletheia AI"
+        description="AI engineering studio founded in Pune, India. We ship production AI products, full-stack platforms and client solutions — not slide decks."
+        path="/about"
+        keywords="about Aletheia AI, AI company India, AI engineering team, Pune AI company"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "About", path: "/about" }])}
+      />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="About Us"

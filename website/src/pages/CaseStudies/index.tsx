@@ -7,6 +7,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import FilterButtons from "@/components/shared/FilterButtons";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { caseStudyDetails } from "@/data/caseStudyDetails";
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -31,6 +32,13 @@ export default function CaseStudiesPage() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title="Case Studies"
+        description="Real-world AI and engineering case studies from Aletheia AI — HeuriSight RAG, RD Fitness, CodeCraft CLI, Inscrape SDK. Results, not theory."
+        path="/case-studies"
+        keywords="AI case studies, AI implementation examples, machine learning projects, AI success stories"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Case Studies", path: "/case-studies" }])}
+      />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="Case Studies"

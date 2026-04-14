@@ -94,7 +94,7 @@ agents:
     config:
       brandVoice: "Professional, technically authoritative, innovative yet trustworthy"
       targetAudience: "CTOs, CISOs, VP Engineering at mid-market to enterprise companies"
-      domain: "aletheia-ai.com"
+      domain: "aletheiaai.tech"
 
   i18n:
     enabled: true

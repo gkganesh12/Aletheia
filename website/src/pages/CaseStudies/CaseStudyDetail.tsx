@@ -4,6 +4,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
+import PageSEO, { caseStudyJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { Container, GlassPanel, SectionHeading } from "@/components/ui";
 import { caseStudyDetails } from "@/data/caseStudyDetails";
 
@@ -43,6 +44,15 @@ export default function CaseStudyDetail() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title={study.title + " — Case Study"}
+        description={study.challenge.slice(0, 160)}
+        path={`/case-studies/${study.slug}`}
+        jsonLd={[
+          caseStudyJsonLd({ title: study.title, description: study.challenge, slug: study.slug }),
+          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Case Studies", path: "/case-studies" }, { name: study.title, path: `/case-studies/${study.slug}` }])
+        ]}
+      />
       {/* ── Hero ────────────────────────────────────────────────────────── */}
       <PageHero
         overline={study.industry}

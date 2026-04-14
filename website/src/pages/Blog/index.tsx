@@ -7,6 +7,7 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import FilterButtons from "@/components/shared/FilterButtons";
+import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
 import { blogPosts } from "@/data/blogPosts";
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -29,6 +30,13 @@ export default function BlogPage() {
 
   return (
     <PageTransition>
+      <PageSEO
+        title="Blog — AI & Cybersecurity Insights"
+        description="Deep dives into AI, cybersecurity and emerging technologies. Written by practitioners at Aletheia AI — technical insights for engineers and decision-makers."
+        path="/blog"
+        keywords="AI blog, cybersecurity blog, machine learning articles, AI engineering insights"
+        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }])}
+      />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="Blog"
