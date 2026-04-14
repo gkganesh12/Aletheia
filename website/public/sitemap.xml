@@ -146,6 +146,44 @@
     <priority>0.7</priority>
   </url>
 
+  <!-- Blog Posts (New - SEO targeted) -->
+  <url>
+    <loc>https://aletheiaai.tech/blog/how-to-build-ai-proof-of-concept</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aletheiaai.tech/blog/rag-pipeline-architecture-complete-guide</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aletheiaai.tech/blog/ai-in-healthcare-real-world-applications</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aletheiaai.tech/blog/llm-security-checklist-enterprise</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aletheiaai.tech/blog/multi-agent-systems-architecture-production</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aletheiaai.tech/blog/ai-automation-roi-decision-framework</loc>
+    <lastmod>2026-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Blog Posts -->
   <url>
     <loc>https://aletheiaai.tech/blog/rise-of-ai-powered-ransomware</loc>
