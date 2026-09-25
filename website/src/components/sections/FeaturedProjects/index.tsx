@@ -107,9 +107,9 @@ export default function FeaturedProjects() {
         <div>
           <p className="eyebrow">01 / SELECTED PROJECTS</p>
           <h2 id="work-title" data-work-heading>
-            Useful software.
+            A few things
             <br />
-            <span>Considered design.</span>
+            <span>we’ve brought to life.</span>
           </h2>
         </div>
         <p>
@@ -117,58 +117,50 @@ export default function FeaturedProjects() {
           <br />A closer look at the things we’ve built.
         </p>
       </div>
-      <Link to="/case-studies/heurisight-rag" className="work-feature">
-        <div className="work-feature-copy">
-          <span className="eyebrow">FEATURED / AI PRODUCT ENGINEERING</span>
-          <h3>HeuriSight</h3>
-          <p>
-            Helping educators see
-            <br />
-            how students think.
-          </p>
-          <div className="work-feature-tags">
-            <span>RAG + HAG</span>
-            <span>Knowledge graphs</span>
-            <span>React / FastAPI</span>
-          </div>
-          <span className="work-feature-link">
-            Explore the architecture <span aria-hidden="true">↗</span>
-          </span>
-        </div>
-        <div
-          className="architecture-study"
-          aria-label="Illustration of HeuriSight's dual-engine architecture"
-        >
-          <div className="architecture-bar">
-            <span>HEURISIGHT / SYSTEM ARCHITECTURE</span>
-            <span>01.0</span>
-          </div>
-          <div className="architecture-flow">
-            <div className="architecture-node source-node">
-              <small>INPUT</small>Student work
-              <span>documents / assessments</span>
+      <div className="photo-project-grid">
+        {featuredProjects.slice(0, 2).map((p, i) => (
+          <Link
+            to={`/case-studies/${p.slug}`}
+            key={p.slug}
+            className={`photo-project photo-project-${i}`}
+            onFocus={() => setActive(null)}
+            onPointerEnter={() => setActive(null)}
+          >
+            <div className="photo-project-image" data-parallax-photo>
+              <img
+                src={
+                  i === 0
+                    ? "/images/editorial/library.webp"
+                    : "/images/editorial/gym.webp"
+                }
+                srcSet={`/images/editorial/${i === 0 ? "library" : "gym"}-small.webp 800w, /images/editorial/${i === 0 ? "library" : "gym"}.webp 1800w`}
+                sizes="(max-width: 599px) 88vw, 46vw"
+                alt={
+                  i === 0
+                    ? "A reader surrounded by curved library bookshelves"
+                    : "Colourful weights in a sunlit gym"
+                }
+                width="1800"
+                height={i === 0 ? 2521 : 1200}
+                loading="lazy"
+              />
+              <span className="photo-project-tag">{p.category}</span>
+              <span className="photo-project-open" aria-hidden="true">
+                ↗
+              </span>
+              <span className="photo-project-caption">
+                Context image / stock photography
+              </span>
             </div>
-            <div className="architecture-branch">
-              <div className="architecture-node">
-                <small>RETRIEVAL ENGINE</small>RAG
-                <span>understand the content</span>
-              </div>
-              <span className="architecture-plus">+</span>
-              <div className="architecture-node">
-                <small>REASONING ENGINE</small>HAG
-                <span>find cognitive patterns</span>
-              </div>
+            <div className="photo-project-info">
+              <h3>{p.name}</h3>
+              <p>{p.summary}</p>
             </div>
-            <div className="architecture-node output-node">
-              <small>CONNECTED OUTPUT</small>Knowledge graph
-              <span>patterns → competencies → insight</span>
-            </div>
-          </div>
-          <p>Architecture illustration · not a product screenshot</p>
-        </div>
-      </Link>
+          </Link>
+        ))}
+      </div>
       <div className="project-list">
-        {featuredProjects.map((p, i) => (
+        {featuredProjects.slice(2).map((p, i) => (
           <Link
             key={p.slug}
             to={`/case-studies/${p.slug}`}
@@ -188,7 +180,7 @@ export default function FeaturedProjects() {
               }
             }}
           >
-            <span className="project-number">0{i + 1}</span>
+            <span className="project-number">0{i + 3}</span>
             <div className="project-title">
               <h3>{p.name}</h3>
               <p>{p.summary}</p>

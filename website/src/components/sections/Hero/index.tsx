@@ -1,135 +1,76 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import SignalField from "@/components/shared/SignalField";
+
 export default function Hero() {
-  const [view, setView] = useState<"graph" | "code">("graph");
   return (
-    <section className="brand-hero">
-      <div className="hero-topline">
-        <p className="eyebrow">
-          <i /> ALETHEIA AI / INDEPENDENT ENGINEERING
-        </p>
-        <span className="hero-location">PUNE, IN · BUILDING EVERYWHERE</span>
-      </div>
-      <div className="hero-layout">
-        <div className="hero-copy">
-          <h1>
-            We build the AI.
+    <>
+      <section className="photo-hero" aria-labelledby="home-title">
+        <div className="photo-hero-image" aria-hidden="true">
+          <img
+            src="/images/editorial/studio.webp"
+            srcSet="/images/editorial/studio-small.webp 1000w, /images/editorial/studio.webp 2200w"
+            sizes="100vw"
+            alt=""
+            width="2200"
+            height="1457"
+            fetchPriority="high"
+          />
+        </div>
+        <div className="photo-hero-content">
+          <div className="photo-hero-top">
+            <p className="eyebrow">Independent minds. Intelligent systems.</p>
+            <span className="eyebrow">Pune, India / Working everywhere</span>
+          </div>
+          <h1 id="home-title">
+            Good ideas.
             <br />
-            <span>
-              And everything
-              <br />
-              around it.
-            </span>
+            Built for <em>real life.</em>
           </h1>
-          <p>
-            Useful AI needs more than a model.
-            <br />
-            We design the product, write the software,
-            <br className="desktop-only" /> and connect it to your world.
-          </p>
-          <div className="hero-actions">
-            <Link to="/contact" className="brand-button">
-              Tell us what you’re building <span aria-hidden="true">↗</span>
+          <div className="photo-hero-bottom">
+            <p>
+              We turn AI, thoughtful design and good engineering into websites,
+              products and systems people love to use.
+            </p>
+            <Link to="/contact" className="brand-button photo-hero-button">
+              Let’s build something <span aria-hidden="true">↗</span>
             </Link>
-            <a href="#work" className="plain-link">
-              Explore our work <span aria-hidden="true">↓</span>
+            <a className="photo-scroll" href="#work">
+              <span>Discover the work</span>
+              <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>
-        <div className="engineering-window">
-          <div className="window-top">
-            <span>
-              <i /> INSIDE THE WORK
-            </span>
-            <div
-              className="view-switch"
-              role="group"
-              aria-label="Engineering illustration view"
-            >
-              <button
-                aria-pressed={view === "graph"}
-                onClick={() => setView("graph")}
-              >
-                Signal
-              </button>
-              <button
-                aria-pressed={view === "code"}
-                onClick={() => setView("code")}
-              >
-                Code
-              </button>
-            </div>
-          </div>
-          <div
-            className={`engineering-viewport ${view === "code" ? "is-code" : ""}`}
-          >
-            <div hidden={view !== "graph"} className="signal-view">
-              <SignalField />
-              <div className="graph-note">
-                <span className="tiny-cross">+</span>
-                <p>
-                  Many moving parts.
-                  <br />
-                  <strong>One considered system.</strong>
-                </p>
-              </div>
-            </div>
-            {view === "code" && (
-              <div className="code-example">
-                <div className="code-file">
-                  example.py <span>Inscrape / Python SDK</span>
-                </div>
-                <pre>
-                  <code>
-                    <span className="code-purple">from</span> inscrape{" "}
-                    <span className="code-purple">import</span> Inscrape{"\n\n"}
-                    <span className="code-comment">
-                      # A real SDK. A small surface area.
-                    </span>
-                    {"\n"}client = Inscrape(
-                    <span className="code-string">"YOUR_API_TOKEN"</span>)
-                    {"\n\n"}result = client.scrape({"\n"}{" "}
-                    <span className="code-string">"https://example.com"</span>
-                    {"\n"}){"\n\n"}
-                    <span className="code-purple">print</span>(result.content)
-                  </code>
-                </pre>
-                <a
-                  href="https://github.com/gkganesh12/Inscrape"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Read the SDK source ↗
-                </a>
-              </div>
-            )}
-          </div>
-          <div className="window-bottom">
-            <span>
-              {view === "graph"
-                ? "01 / FROM SIGNAL TO SYSTEM"
-                : "INSCRAPE / USAGE EXAMPLE"}
-            </span>
-            <span>
-              {view === "graph"
-                ? ""
-                : "From the public SDK"}
-            </span>
+        <a
+          className="photo-credit"
+          href="https://unsplash.com/photos/AQTA5E6mCNU"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Stock photography / Compagnons
+        </a>
+      </section>
+      <section className="studio-intro" aria-label="Our approach">
+        <p className="eyebrow">
+          <span aria-hidden="true">↳</span> Aletheia AI
+          <br />
+          Engineering with intention.
+        </p>
+        <div>
+          <p className="studio-statement">
+            Technology should make life <em>simpler.</em> Work better. And open
+            up something new.
+          </p>
+          <div className="studio-intro-bottom">
+            <p>
+              From the first sketch to the last line of code, we bring your idea
+              into the world. AI systems, digital experiences, and everything
+              that makes them work.
+            </p>
+            <Link to="/about" className="text-link">
+              Meet Aletheia <span aria-hidden="true">↗</span>
+            </Link>
           </div>
         </div>
-      </div>
-      <div className="hero-services">
-        <span>AI systems</span>
-        <span>Websites & platforms</span>
-        <span>MVPs</span>
-        <span>Cybersecurity</span>
-        <span>Web3</span>
-        <span>Data & ML</span>
-        <a href="#work" aria-label="Scroll to featured projects">
-          ↓
-        </a>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

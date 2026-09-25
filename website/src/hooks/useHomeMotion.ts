@@ -2,6 +2,7 @@ import { useEffect, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
+
 export function useHomeMotion(root: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const element = root.current;
@@ -11,77 +12,121 @@ export function useHomeMotion(root: RefObject<HTMLElement | null>) {
       mm.add(
         "(min-width:600px) and (min-height:650px) and (prefers-reduced-motion:no-preference)",
         () => {
-          const strandGroup = element.querySelector(".signal-strands");
-          if (strandGroup)
-            gsap.to(strandGroup, {
-              y: 90,
-              rotation: -8,
-              transformOrigin: "50% 50%",
+          const hero = element.querySelector(".photo-hero");
+          gsap.fromTo(
+            hero,
+            { clipPath: "inset(0 2% 0 2%)" },
+            {
+              clipPath: "inset(0 0% 0 0%)",
               ease: "none",
               scrollTrigger: {
-                trigger: ".brand-hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: 0.8,
+                trigger: hero,
+                start: "top 84px",
+                end: "+=350",
+                scrub: 0.6,
               },
+            },
+          );
+          gsap.to(".photo-hero-image", {
+            yPercent: 14,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.7,
+            },
+          });
+          gsap.to(".photo-hero h1", {
+            y: 90,
+            ease: "none",
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.5,
+            },
+          });
+          // Each image has 20% overscan: parallax never exposes an empty edge.
+          element
+            .querySelectorAll<HTMLElement>("[data-parallax-photo]")
+            .forEach((frame) => {
+              gsap.fromTo(
+                frame.querySelector("img"),
+                { yPercent: -5 },
+                {
+                  yPercent: 5,
+                  ease: "none",
+                  scrollTrigger: {
+                    trigger: frame,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 0.7,
+                  },
+                },
+              );
             });
           gsap.fromTo(
-            ".architecture-flow",
-            { y: 22 },
+            ".photo-project-1",
+            { y: 70 },
             {
-              y: -8,
+              y: -45,
               ease: "none",
               scrollTrigger: {
-                trigger: ".work-feature",
+                trigger: ".photo-project-grid",
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.7,
               },
             },
           );
-          const board = element.querySelector<HTMLElement>(".story-board");
+          const gallery =
+            element.querySelector<HTMLElement>(".process-gallery");
           const steps = Array.from(
-            element.querySelectorAll<HTMLElement>(".story-step"),
+            element.querySelectorAll<HTMLElement>(".process-step"),
           );
-          if (board && steps.length) {
-            const setStage = (stage: number) => {
-              board.dataset.storyStage = String(stage);
-            };
+          if (gallery) {
             steps.forEach((step, i) => {
               ScrollTrigger.create({
                 trigger: step,
                 start: "top 55%",
                 end: "bottom 55%",
-                onEnter: () => setStage(i),
-                onEnterBack: () => setStage(i),
+                onEnter: () => {
+                  gallery.dataset.processStage = String(i);
+                },
+                onEnterBack: () => {
+                  gallery.dataset.processStage = String(i);
+                },
               });
             });
             gsap.fromTo(
-              ".story-board-bottom i",
-              { scaleX: 0.06 },
+              ".process-progress i",
+              { scaleX: 0 },
               {
                 scaleX: 1,
                 ease: "none",
                 scrollTrigger: {
-                  trigger: ".story-steps",
+                  trigger: ".process-steps",
                   start: "top 55%",
                   end: "bottom 55%",
                   scrub: 0.4,
                 },
               },
             );
-            gsap.to(".story-visual .engineering-graph", {
-              rotation: 18,
-              scale: 1.05,
-              transformOrigin: "50% 50%",
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".story-steps",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.8,
+            gsap.fromTo(
+              ".process-frame img",
+              { yPercent: -3 },
+              {
+                yPercent: 3,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: ".process-steps",
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 0.8,
+                },
               },
-            });
+            );
           }
           gsap.fromTo(
             ".founder-image img",
@@ -99,7 +144,7 @@ export function useHomeMotion(root: RefObject<HTMLElement | null>) {
             },
           );
           return () => {
-            if (board) board.dataset.storyStage = "0";
+            if (gallery) gallery.dataset.processStage = "0";
           };
         },
       );
