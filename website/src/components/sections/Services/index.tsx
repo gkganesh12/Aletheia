@@ -1,31 +1,66 @@
 import { Link } from "react-router-dom";
-import { services } from "@/data/services";
+const items = [
+  [
+    "ai-products",
+    "AI product engineering",
+    "Agents, RAG, computer vision and LLM applications.",
+    "01",
+  ],
+  [
+    "full-stack",
+    "Websites & full-stack platforms",
+    "Considered interfaces. Reliable APIs. Software that fits.",
+    "02",
+  ],
+  [
+    "mvp-development",
+    "MVPs & rapid prototypes",
+    "Find the smallest useful version. Get it into people’s hands.",
+    "03",
+  ],
+  [
+    "data-ml",
+    "Data engineering & ML",
+    "Pipelines, models and the infrastructure that connects them.",
+    "04",
+  ],
+  [
+    "cybersecurity",
+    "Cybersecurity & auditing",
+    "Understand the risks. Build stronger foundations.",
+    "05",
+  ],
+  [
+    "blockchain",
+    "Blockchain & Web3",
+    "Smart contracts and the applications around them.",
+    "06",
+  ],
+];
 export default function Services() {
   return (
     <section className="services-chapter section-space">
       <div className="chapter-heading">
-        <p className="eyebrow">02 / WHAT WE DO</p>
+        <p className="eyebrow">04 / CAPABILITIES</p>
         <h2>
-          ONE PARTNER.
+          One team.
           <br />
-          <span>MORE POSSIBILITIES.</span>
+          The whole build.
         </h2>
         <p>
-          From a better website to your next AI product.
+          We work across the stack because
           <br />
-          The expertise to connect every part.
+          the most useful products do, too.
         </p>
       </div>
       <div className="service-list">
-        {services.map((s, i) => (
-          <Link to={`/services/${s.id}`} key={s.id} className="service-row">
-            <span className="eyebrow">0{i + 1}</span>
-            <h3>{s.name}</h3>
-            <p>
-              {s.id === "full-stack"
-                ? "Distinctive websites, full-stack platforms and APIs. Built to work beautifully, at every scale."
-                : s.description}
-            </p>
+        {items.map(([slug, name, body, n]) => (
+          <Link key={slug} to={`/services/${slug}`} className="service-row">
+            <span className="eyebrow">{n}</span>
+            <div>
+              <h3>{name}</h3>
+              <p>{body}</p>
+            </div>
             <span aria-hidden="true">↗</span>
           </Link>
         ))}

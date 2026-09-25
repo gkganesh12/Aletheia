@@ -14,7 +14,7 @@ export const featuredProjects: FeaturedProject[] = [
     category: "AI / EDUCATION",
     summary: "Turning knowledge into a more intelligent assessment experience.",
     image: "/brand/project-heurisight.svg",
-    imageAlt: "HeuriSight knowledge layers illustration",
+    imageAlt: "HeuriSight retrieval and reasoning architecture illustration",
     illustrative: true,
   },
   {
@@ -23,7 +23,7 @@ export const featuredProjects: FeaturedProject[] = [
     category: "WEB / PLATFORM",
     summary: "A connected digital home for fitness and memberships.",
     image: "/brand/project-fitness.svg",
-    imageAlt: "RD Fitness movement illustration",
+    imageAlt: "RD Fitness membership and platform architecture illustration",
     illustrative: true,
   },
   {

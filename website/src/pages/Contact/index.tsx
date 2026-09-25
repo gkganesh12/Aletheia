@@ -57,7 +57,7 @@ const WEB3FORMS_KEY = "b1d6246c-dfe6-41f6-8c93-7374d0c9919c";
 /* ────────────────────────────────────────────────────────────────────── */
 
 const inputBase = cn(
-  "w-full rounded-lg border bg-surface px-4 py-3",
+  "w-full min-w-0 max-w-full rounded-lg border bg-surface px-4 py-3",
   "text-ink placeholder:text-muted",
   "focus:outline-none",
   "transition-colors duration-200",
@@ -302,6 +302,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-start">
             {/* ── Left: Contact info ──────────────────────────────────── */}
             <motion.div
+              className="min-w-0"
               variants={fadeInLeft}
               initial="hidden"
               whileInView="visible"
@@ -377,6 +378,7 @@ export default function ContactPage() {
 
             {/* ── Right: Contact form ─────────────────────────────────── */}
             <motion.div
+              className="min-w-0"
               variants={fadeInRight}
               initial="hidden"
               whileInView="visible"

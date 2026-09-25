@@ -64,7 +64,7 @@ export default function DetailNavigation({
   if (!prev && !next) return null;
 
   const cardClasses = cn(
-    "group flex items-center gap-3 rounded-xl border border-ink/[0.06] bg-surface px-5 py-4",
+    "group flex min-w-0 w-full sm:w-auto sm:flex-1 items-center gap-3 rounded-xl border border-ink/[0.06] bg-surface px-5 py-4",
     "transition-all duration-200 hover:border-ink/[0.12] hover:bg-primary-900",
   );
 
@@ -72,7 +72,7 @@ export default function DetailNavigation({
     <nav
       aria-label="Page navigation"
       className={cn(
-        "flex w-full items-stretch justify-between gap-4",
+        "flex w-full flex-col sm:flex-row items-stretch justify-between gap-4",
         className,
       )}
     >
@@ -80,7 +80,7 @@ export default function DetailNavigation({
       {prev ? (
         <Link to={prev.href} className={cn(cardClasses, "mr-auto")}>
           <ArrowLeftIcon />
-          <div className="flex flex-col">
+          <div className="flex min-w-0 flex-col break-words">
             <span className="text-xs text-muted">Previous</span>
             <span className="text-sm font-medium text-muted transition-colors duration-200 group-hover:text-ink">
               {prev.label}
@@ -88,13 +88,13 @@ export default function DetailNavigation({
           </div>
         </Link>
       ) : (
-        <div />
+        <div className="hidden sm:block" />
       )}
 
       {/* Next */}
       {next ? (
         <Link to={next.href} className={cn(cardClasses, "ml-auto text-right")}>
-          <div className="flex flex-col">
+          <div className="flex min-w-0 flex-col break-words">
             <span className="text-xs text-muted">Next</span>
             <span className="text-sm font-medium text-muted transition-colors duration-200 group-hover:text-ink">
               {next.label}
@@ -103,7 +103,7 @@ export default function DetailNavigation({
           <ArrowRightIcon />
         </Link>
       ) : (
-        <div />
+        <div className="hidden sm:block" />
       )}
     </nav>
   );

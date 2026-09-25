@@ -11,7 +11,7 @@ export default function Footer() {
             <BrandLogo />
           </Link>
           <p>
-            Intelligence, put to work.
+            Design, code, and considered decisions.
             <br />
             From India. Built for everywhere.
           </p>
@@ -56,12 +56,12 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-wordmark" aria-hidden="true">
-        ALETHEIA AI<span>↗</span>
+        aletheia ai<span>↗</span>
       </div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Aletheia AI</span>
-        <span>Thoughtfully engineered.</span>
-        <Link to="/contact">Let’s make something matter ↗</Link>
+        <span>Built by Aletheia AI.</span>
+        <Link to="/contact">Start a conversation ↗</Link>
       </div>
     </footer>
   );

@@ -7,8 +7,8 @@
   font-display: swap;
 }
 @theme {
-  --color-primary-950: #f4f1e9;
-  --color-primary-900: #ebe7df;
+  --color-primary-950: #f7f8f2;
+  --color-primary-900: #eeefe8;
   --color-primary-800: #e5e0d5;
   --color-primary-700: #d7d2c8;
   --color-accent-400: #2448ff;
@@ -16,9 +16,9 @@
   --color-accent-600: #1736cd;
   --color-ink: #17191c;
   --color-muted: #5a5c63;
-  --color-paper: #f4f1e9;
-  --color-surface: #fffcf6;
-  --color-surface-hover: #ebe7df;
+  --color-paper: #f7f8f2;
+  --color-surface: #ffffff;
+  --color-surface-hover: #eeefe8;
   --color-border: rgba(23, 25, 28, 0.18);
   --color-border-hover: rgba(23, 25, 28, 0.4);
   --font-heading: "DM Sans", Arial, sans-serif;
@@ -26,7 +26,7 @@
   --font-mono: ui-monospace, monospace;
 }
 :root {
-  --paper: #f4f1e9;
+  --paper: #f7f8f2;
   --ink: #17191c;
   --cobalt: #2448ff;
   --coral: #ff775e;
@@ -77,7 +77,7 @@ img {
   font-family: var(--font-mono);
 }
 .glass-panel {
-  background: #fffcf6;
+  background: #ffffff;
   border: 1px solid var(--line);
 }
 .glass-panel:hover {
@@ -87,7 +87,7 @@ img {
   color: var(--cobalt);
 }
 .section-alt {
-  background: #ebe7df;
+  background: #eeefe8;
 }
 .section-divider {
   height: 1px;

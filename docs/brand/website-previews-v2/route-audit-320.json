@@ -1,0 +1,331 @@
+[
+  {
+    "canonical": 1,
+    "h1": "We build the AI.And everythingaround it.",
+    "overflow": 0,
+    "path": "/",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "The Truth Behind the Name",
+    "overflow": 0,
+    "path": "/about",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Engineering That Ships",
+    "overflow": 0,
+    "path": "/services",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Built from curiosity. Made to be used.",
+    "overflow": 0,
+    "path": "/products",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Proven in the Field",
+    "overflow": 0,
+    "path": "/case-studies",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Insights & Research",
+    "overflow": 0,
+    "path": "/blog",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Let's Build Something",
+    "overflow": 0,
+    "path": "/contact",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Build What Matters",
+    "overflow": 0,
+    "path": "/careers",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "AI That Understands Your Industry",
+    "overflow": 0,
+    "path": "/industries",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "We build the AI.And everythingaround it.",
+    "overflow": 0,
+    "path": "/",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "AI Products Built for the Real World",
+    "overflow": 0,
+    "path": "/services/ai-products",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "From Idea to Working Product — Fast",
+    "overflow": 0,
+    "path": "/services/mvp-development",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Frontend to Backend to Deploy",
+    "overflow": 0,
+    "path": "/services/full-stack",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Know Where You Stand Before Attackers Do",
+    "overflow": 0,
+    "path": "/services/cybersecurity",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Smart Contracts to Full-Stack DApps",
+    "overflow": 0,
+    "path": "/services/blockchain",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Clean Data In. Intelligent Decisions Out.",
+    "overflow": 0,
+    "path": "/services/data-ml",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Inscrape",
+    "overflow": 0,
+    "path": "/products/inscrape",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Nirvana",
+    "overflow": 0,
+    "path": "/products/nirvana",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "SwarmScope",
+    "overflow": 0,
+    "path": "/products/swarmscope",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Building a Dual-Engine AI Assessment Platform",
+    "overflow": 0,
+    "path": "/case-studies/heurisight-rag",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Shipping a Modern Fitness Platform in 4 Weeks",
+    "overflow": 0,
+    "path": "/case-studies/rd-fitness-platform",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Publishing an AI-Powered Developer CLI on npm",
+    "overflow": 0,
+    "path": "/case-studies/codecraft-cli",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Launching an AI Scraping SDK on PyPI",
+    "overflow": 0,
+    "path": "/case-studies/inscrape-sdk",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "How to Build Your First AI Proof of Concept",
+    "overflow": 0,
+    "path": "/blog/how-to-build-ai-proof-of-concept",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "RAG Pipeline Architecture: A Complete Guide",
+    "overflow": 0,
+    "path": "/blog/rag-pipeline-architecture-complete-guide",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "AI in Healthcare: 5 Real-World Applications That Are Actually Working",
+    "overflow": 0,
+    "path": "/blog/ai-in-healthcare-real-world-applications",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "LLM Security Checklist for Enterprise Deployments",
+    "overflow": 0,
+    "path": "/blog/llm-security-checklist-enterprise",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Multi-Agent Systems: Architecture Patterns for Production",
+    "overflow": 0,
+    "path": "/blog/multi-agent-systems-architecture-production",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "AI Automation ROI: A Decision Framework for Business Leaders",
+    "overflow": 0,
+    "path": "/blog/ai-automation-roi-decision-framework",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "The Rise of AI-Powered Ransomware: What Defenders Need to Know",
+    "overflow": 0,
+    "path": "/blog/rise-of-ai-powered-ransomware",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Building Robust ML Pipelines: Lessons from Production Deployments",
+    "overflow": 0,
+    "path": "/blog/building-robust-ml-pipelines",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Zero Trust Beyond the Buzzword: A Practical Implementation Guide",
+    "overflow": 0,
+    "path": "/blog/zero-trust-beyond-the-buzzword",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Adversarial Attacks on LLMs: The Security Risks of Deploying Large Language Models",
+    "overflow": 0,
+    "path": "/blog/adversarial-attacks-on-llms",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "The Future of the Autonomous SOC: Human Judgement Meets Machine Speed",
+    "overflow": 0,
+    "path": "/blog/future-of-autonomous-soc",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Data Poisoning Attacks: How Adversaries Corrupt Your ML Models from the Inside",
+    "overflow": 0,
+    "path": "/blog/data-poisoning-attacks-explained",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Securing Kubernetes at Scale: A Practical Checklist for Production Clusters",
+    "overflow": 0,
+    "path": "/blog/securing-kubernetes-at-scale",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Multi-Agent AI Systems: Architecture Patterns for Production Deployments",
+    "overflow": 0,
+    "path": "/blog/multi-agent-ai-systems",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "A Practitioner's Guide to Dark Web Intelligence Collection",
+    "overflow": 0,
+    "path": "/blog/dark-web-intelligence-primer",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Building a Responsible AI Framework That Actually Works",
+    "overflow": 0,
+    "path": "/blog/responsible-ai-framework",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Software Supply Chain Attacks in 2026: The Expanding Threat Landscape",
+    "overflow": 0,
+    "path": "/blog/supply-chain-attacks-2026",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Real-Time Feature Engineering: Patterns for Low-Latency ML Systems",
+    "overflow": 0,
+    "path": "/blog/real-time-feature-engineering",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Swarm Intelligence in Cybersecurity: From Biology to Production Systems",
+    "overflow": 0,
+    "path": "/blog/swarm-intelligence-cybersecurity",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "What I Learned Shipping a Python SDK to PyPI",
+    "overflow": 0,
+    "path": "/blog/shipping-python-sdk-pypi",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "How We Built a 5,000-Agent Simulation Engine",
+    "overflow": 0,
+    "path": "/blog/building-5000-agent-simulation",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Why Your Engineering Team Ignores Alerts (And How to Fix It)",
+    "overflow": 0,
+    "path": "/blog/alert-noise-engineering-teams",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "Shipping Three SaaS Products as a Solo Founder: What Actually Works",
+    "overflow": 0,
+    "path": "/blog/solo-founder-shipping-three-products",
+    "width": 320
+  },
+  {
+    "canonical": 1,
+    "h1": "GraphRAG: Why Basic RAG Is Not Enough for Complex Data",
+    "overflow": 0,
+    "path": "/blog/graphrag-beyond-basic-rag",
+    "width": 320
+  }
+]

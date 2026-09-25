@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import Hero from "@/components/sections/Hero";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
-import BrandStatement from "@/components/sections/BrandStatement";
+import BuildStory from "@/components/sections/BuildStory";
+import BuildLog from "@/components/sections/BuildLog";
 import Services from "@/components/sections/Services";
-import Process from "@/components/sections/Process";
 import Products from "@/components/sections/Products";
 import About from "@/components/sections/About";
 import CTASection from "@/components/shared/CTASection";
@@ -16,16 +16,16 @@ export default function Home() {
   return (
     <div ref={root} className="brand-home">
       <PageSEO
-        title="Aletheia AI — Intelligence. Put to work."
+        title="Aletheia AI — AI systems, websites & software"
         description="AI systems, websites and software. Aletheia AI builds intelligent products, digital experiences and the engineering behind your next idea."
         path="/"
         jsonLd={[organizationJsonLd(), websiteJsonLd()]}
       />
       <Hero />
       <FeaturedProjects />
-      <BrandStatement />
+      <BuildStory />
+      <BuildLog />
       <Services />
-      <Process />
       <Products />
       <About />
       <CTASection />

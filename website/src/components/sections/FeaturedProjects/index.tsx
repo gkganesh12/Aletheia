@@ -103,16 +103,70 @@ export default function FeaturedProjects() {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setActive(null);
       }}
     >
-      <div className="section-kicker">
-        <span className="eyebrow">01 / SELECTED WORK</span>
-        <span>Ideas made real.</span>
+      <div className="work-heading">
+        <div>
+          <p className="eyebrow">01 / SELECTED PROJECTS</p>
+          <h2 id="work-title" data-work-heading>
+            Useful software.
+            <br />
+            <span>Considered design.</span>
+          </h2>
+        </div>
+        <p>
+          AI systems, websites and tools.
+          <br />A closer look at the things we’ve built.
+        </p>
       </div>
-      <h2 id="work-title" data-work-heading>
-        FEATURED
-        <br />
-        <span>PROJECTS</span>
-        <sup>(04)</sup>
-      </h2>
+      <Link to="/case-studies/heurisight-rag" className="work-feature">
+        <div className="work-feature-copy">
+          <span className="eyebrow">FEATURED / AI PRODUCT ENGINEERING</span>
+          <h3>HeuriSight</h3>
+          <p>
+            Helping educators see
+            <br />
+            how students think.
+          </p>
+          <div className="work-feature-tags">
+            <span>RAG + HAG</span>
+            <span>Knowledge graphs</span>
+            <span>React / FastAPI</span>
+          </div>
+          <span className="work-feature-link">
+            Explore the architecture <span aria-hidden="true">↗</span>
+          </span>
+        </div>
+        <div
+          className="architecture-study"
+          aria-label="Illustration of HeuriSight's dual-engine architecture"
+        >
+          <div className="architecture-bar">
+            <span>HEURISIGHT / SYSTEM ARCHITECTURE</span>
+            <span>01.0</span>
+          </div>
+          <div className="architecture-flow">
+            <div className="architecture-node source-node">
+              <small>INPUT</small>Student work
+              <span>documents / assessments</span>
+            </div>
+            <div className="architecture-branch">
+              <div className="architecture-node">
+                <small>RETRIEVAL ENGINE</small>RAG
+                <span>understand the content</span>
+              </div>
+              <span className="architecture-plus">+</span>
+              <div className="architecture-node">
+                <small>REASONING ENGINE</small>HAG
+                <span>find cognitive patterns</span>
+              </div>
+            </div>
+            <div className="architecture-node output-node">
+              <small>CONNECTED OUTPUT</small>Knowledge graph
+              <span>patterns → competencies → insight</span>
+            </div>
+          </div>
+          <p>Architecture illustration · not a product screenshot</p>
+        </div>
+      </Link>
       <div className="project-list">
         {featuredProjects.map((p, i) => (
           <Link
@@ -150,7 +204,7 @@ export default function FeaturedProjects() {
         ))}
       </div>
       <div className="work-footer">
-        <p>Built to solve something. Designed to mean something.</p>
+        <p>Different problems. The same care in the build.</p>
         <Link to="/case-studies" className="text-link">
           Explore the work <span aria-hidden="true">↗</span>
         </Link>

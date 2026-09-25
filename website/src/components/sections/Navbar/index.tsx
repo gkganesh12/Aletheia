@@ -28,7 +28,7 @@ export default function Navbar() {
         ))}
       </nav>
       <Link to="/contact" className="brand-button header-cta">
-        Start a project <span aria-hidden="true">↗</span>
+        Let’s talk <span aria-hidden="true">↗</span>
       </Link>
       <button
         className="menu-toggle"
@@ -52,15 +52,13 @@ export default function Navbar() {
             }
           }}
         >
-          {[...links, { label: "Start a project", to: "/contact" }].map(
-            (l, i) => (
-              <Link key={l.to} to={l.to} onClick={() => setOpen(false)}>
-                <small>0{i + 1}</small>
-                {l.label}
-                <span aria-hidden="true">↗</span>
-              </Link>
-            ),
-          )}
+          {[...links, { label: "Let’s talk", to: "/contact" }].map((l, i) => (
+            <Link key={l.to} to={l.to} onClick={() => setOpen(false)}>
+              <small>0{i + 1}</small>
+              {l.label}
+              <span aria-hidden="true">↗</span>
+            </Link>
+          ))}
         </nav>
       )}
     </header>

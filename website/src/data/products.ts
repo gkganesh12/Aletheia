@@ -28,10 +28,10 @@ export const products: Product[] = [
     name: "Nirvana",
     tagline: "Silence the Noise",
     description:
-      "An intelligent alert management platform that deduplicates, routes and prioritises alerts from monitoring tools like Sentry and Datadog. Nirvana cuts alert noise by up to 90% so your team focuses on what actually matters.",
+      "An intelligent alert management platform that deduplicates, routes and prioritises alerts from monitoring tools like Sentry and Datadog. It gives teams a shared workflow for triage, escalation and incident response.",
     features: [
       "Unified alert inbox aggregating Sentry, Datadog and more",
-      "Intelligent deduplication that reduces noise by 60-90%",
+      "Intelligent deduplication that groups related alerts",
       "Smart routing to Slack with interactive actions (ACK, Snooze, Resolve)",
       "Automatic escalation for unacknowledged critical alerts",
       "Dashboard and analytics for alert metrics and team performance",

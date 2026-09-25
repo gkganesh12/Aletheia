@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { brand } from "@/data/brand";
 export default function CTASection({
-  heading = "Have a big idea?",
-  description = "Bring us the ambition. We’ll bring the engineering.",
+  heading = "What are you working on?",
+  description = "An idea, a difficult problem, or a product ready for its next chapter. We’d like to hear about it.",
   className = "",
 }: {
   heading?: string;
@@ -10,18 +11,21 @@ export default function CTASection({
 }) {
   return (
     <section className={`contact-chapter ${className}`}>
-      <div className="eyebrow">YOUR NEXT CHAPTER</div>
-      <h2>
-        {heading}
-        <br />
-        <span>Let’s build it.</span>
-      </h2>
-      <div className="contact-chapter-bottom">
+      <div>
+        <p className="eyebrow">LET’S MAKE IT WORK.</p>
+        <h2>{heading}</h2>
         <p>{description}</p>
-        <Link to="/contact" className="round-link" aria-label="Start a project">
-          ↗
-        </Link>
+        <a href={`mailto:${brand.email}`} className="contact-email">
+          {brand.email} ↗
+        </a>
       </div>
+      <Link to="/contact" className="contact-disc">
+        <span>
+          Start a<br />
+          conversation
+        </span>
+        <span aria-hidden="true">↗</span>
+      </Link>
     </section>
   );
 }

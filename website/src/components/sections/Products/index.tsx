@@ -1,39 +1,65 @@
 import { Link } from "react-router-dom";
-import { products } from "@/data/products";
-const summaries = [
-  "The open web. Structured, usable data. A Python SDK that gets you from URL to insight.",
-  "One place for the alerts that matter. Deduplicate, prioritise and route your monitoring signals.",
-  "Turn unstructured information into agent-based simulations. Explore how a world might behave.",
+const products = [
+  {
+    id: "inscrape",
+    name: "Inscrape",
+    type: "PYTHON SDK",
+    body: "The web, in a format you can work with.",
+    code: "pip install inscrape",
+    detail: "Structured data · screenshots · async",
+  },
+  {
+    id: "nirvana",
+    name: "Nirvana",
+    type: "ALERT MANAGEMENT",
+    body: "Give the right signal a way through the noise.",
+    code: "ingest → deduplicate → route",
+    detail: "Integrations · escalation · incident workflows",
+  },
+  {
+    id: "swarmscope",
+    name: "SwarmScope",
+    type: "MULTI-AGENT SIMULATION",
+    body: "Explore what happens when agents interact.",
+    code: "context → agents → simulation",
+    detail: "GraphRAG · memory · emergent behaviour",
+  },
 ];
 export default function Products() {
   return (
     <section className="products-chapter section-space">
       <div className="chapter-heading">
-        <p className="eyebrow">04 / BUILT BY US</p>
+        <p className="eyebrow">FROM OUR OWN WORKBENCH</p>
         <h2>
-          WE MAKE THINGS.
+          Our own products.
           <br />
-          <span>THEN MAKE THEM BETTER.</span>
+          The same engineering.
         </h2>
+        <p>
+          Our products are where we explore ideas,
+          <br />
+          test our assumptions and keep learning.
+        </p>
       </div>
       <div className="product-panels">
         {products.map((p, i) => (
           <Link
-            className={`product-panel product-panel-${i}`}
             key={p.id}
             to={`/products/${p.id}`}
+            className={`product-panel product-panel-${i}`}
           >
             <div className="product-panel-top">
-              <span className="eyebrow">{p.tagline}</span>
+              <span className="eyebrow">{p.type}</span>
               <span aria-hidden="true">↗</span>
             </div>
-            <div className={`product-glyph glyph-${i}`} aria-hidden="true">
-              {i === 0 ? "[↗]" : i === 1 ? "≋" : "✳"}
+            <div className="product-code">
+              <span className="terminal-prompt">{i === 0 ? "$" : "↳"}</span>
+              <code>{p.code}</code>
             </div>
             <div>
               <h3>{p.name}</h3>
-              <p>{summaries[i]}</p>
-              <span className="product-explore">Explore {p.name} ↗</span>
+              <p>{p.body}</p>
+              <span className="product-explore">{p.detail}</span>
             </div>
           </Link>
         ))}
