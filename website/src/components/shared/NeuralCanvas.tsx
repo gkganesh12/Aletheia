@@ -1,9 +1,9 @@
 import { useRef, useEffect, useCallback } from "react";
 
 /* ── Palette ──────────────────────────────────────────────────────────── */
-const VIOLET = "#8b5cf6";
-const INDIGO = "#6366f1";
-const CYAN = "#06b6d4";
+const VIOLET = "#2448FF";
+const INDIGO = "#2448FF";
+const CYAN = "#FF775E";
 const WHITE = "#ffffff";
 
 /* ── Types ────────────────────────────────────────────────────────────── */
@@ -32,26 +32,33 @@ function rgb(c: string) {
 
 /* ── Quadratic bezier point ───────────────────────────────────────────── */
 function bezierPt(
-  ax: number, ay: number,
-  cpx: number, cpy: number,
-  bx: number, by: number,
+  ax: number,
+  ay: number,
+  cpx: number,
+  cpy: number,
+  bx: number,
+  by: number,
   t: number,
 ) {
   const u = 1 - t;
-  return [u * u * ax + 2 * u * t * cpx + t * t * bx, u * u * ay + 2 * u * t * cpy + t * t * by] as const;
+  return [
+    u * u * ax + 2 * u * t * cpx + t * t * bx,
+    u * u * ay + 2 * u * t * cpy + t * t * by,
+  ] as const;
 }
 
 /* ── Control point for a curved connection ────────────────────────────── */
-function ctrlPt(
-  ax: number, ay: number, bx: number, by: number, idx: number,
-) {
+function ctrlPt(ax: number, ay: number, bx: number, by: number, idx: number) {
   const mx = (ax + bx) / 2;
   const my = (ay + by) / 2;
   const dx = bx - ax;
   const dy = by - ay;
   const len = Math.sqrt(dx * dx + dy * dy) || 1;
   const curvature = 0.18 * (idx % 2 === 0 ? 1 : -1);
-  return [mx + (-dy / len) * len * curvature, my + (dx / len) * len * curvature] as const;
+  return [
+    mx + (-dy / len) * len * curvature,
+    my + (dx / len) * len * curvature,
+  ] as const;
 }
 
 /* ── Build the node graph ─────────────────────────────────────────────── */
@@ -64,9 +71,19 @@ function buildGraph(w: number, h: number): Node[] {
 
   /* 0 — Core */
   n.push({
-    x: cx, y: cy, baseX: cx, baseY: cy, origX: cx, origY: cy,
-    r: 22 * s, color: WHITE, glow: VIOLET,
-    label: "ALETHEIA AI", type: "core", at: 0.0, to: [],
+    x: cx,
+    y: cy,
+    baseX: cx,
+    baseY: cy,
+    origX: cx,
+    origY: cy,
+    r: 22 * s,
+    color: WHITE,
+    glow: VIOLET,
+    label: "ALETHEIA AI",
+    type: "core",
+    at: 0.0,
+    to: [],
   });
 
   /* 1-3 — Products */
@@ -80,17 +97,30 @@ function buildGraph(w: number, h: number): Node[] {
     const x = cx + Math.cos(p.angle) * pR;
     const y = cy + Math.sin(p.angle) * pR;
     n.push({
-      x, y, baseX: x, baseY: y, origX: x, origY: y,
-      r: 14 * s, color: VIOLET, glow: VIOLET,
-      label: p.name, type: "product",
-      at: 0.12 + i * 0.04, to: [0],
+      x,
+      y,
+      baseX: x,
+      baseY: y,
+      origX: x,
+      origY: y,
+      r: 14 * s,
+      color: VIOLET,
+      glow: VIOLET,
+      label: p.name,
+      type: "product",
+      at: 0.12 + i * 0.04,
+      to: [0],
     });
   });
 
   /* 4-9 — Services */
   const services = [
-    "AI Engineering", "MVP Studio", "Full-Stack",
-    "Cloud & DevOps", "Cybersecurity", "Data & ML",
+    "AI Engineering",
+    "MVP Studio",
+    "Full-Stack",
+    "Cloud & DevOps",
+    "Cybersecurity",
+    "Data & ML",
   ];
   const sR = 165 * s;
   services.forEach((name, i) => {
@@ -98,24 +128,41 @@ function buildGraph(w: number, h: number): Node[] {
     const x = cx + Math.cos(angle) * sR;
     const y = cy + Math.sin(angle) * sR;
     n.push({
-      x, y, baseX: x, baseY: y, origX: x, origY: y,
-      r: 7.5 * s, color: INDIGO, glow: INDIGO,
-      label: name, type: "service",
-      at: 0.30 + i * 0.025, to: [0, 1 + (i % 3)],
+      x,
+      y,
+      baseX: x,
+      baseY: y,
+      origX: x,
+      origY: y,
+      r: 7.5 * s,
+      color: INDIGO,
+      glow: INDIGO,
+      label: name,
+      type: "service",
+      at: 0.3 + i * 0.025,
+      to: [0, 1 + (i % 3)],
     });
   });
 
   /* 10-22 — 13 Agent nodes */
   for (let i = 0; i < 13; i++) {
     const angle = (i * Math.PI * 2) / 13 + (i % 2 === 0 ? 0.18 : -0.12);
-    const dist = (215 + (i * 19) % 140) * s;
+    const dist = (215 + ((i * 19) % 140)) * s;
     const x = cx + Math.cos(angle) * dist;
     const y = cy + Math.sin(angle) * dist;
     n.push({
-      x, y, baseX: x, baseY: y, origX: x, origY: y,
-      r: 3.5 * s, color: CYAN, glow: CYAN,
+      x,
+      y,
+      baseX: x,
+      baseY: y,
+      origX: x,
+      origY: y,
+      r: 3.5 * s,
+      color: CYAN,
+      glow: CYAN,
       type: "agent",
-      at: 0.50 + i * 0.015, to: [4 + (i % 6)],
+      at: 0.5 + i * 0.015,
+      to: [4 + (i % 6)],
     });
   }
 
@@ -236,19 +283,21 @@ export default function NeuralCanvas({ progressRef, className }: Props) {
           if (p > 0.55 && lineGrow > 0.9) {
             const pAlpha = Math.min(1, (p - 0.55) / 0.12);
             for (let k = 0; k < 3; k++) {
-              const pp = ((t * 0.22 + i * 0.11 + k * 0.33) % 1);
+              const pp = (t * 0.22 + i * 0.11 + k * 0.33) % 1;
               // particle trail: 4 dots fading behind
               for (let trail = 0; trail < 4; trail++) {
                 const tp = pp - trail * 0.02;
                 if (tp < 0 || tp > 1) continue;
                 const [px, py] = bezierPt(tg.x, tg.y, cpx, cpy, nd.x, nd.y, tp);
-                const pa = Math.sin(pp * Math.PI) * pAlpha * (0.75 - trail * 0.18);
+                const pa =
+                  Math.sin(pp * Math.PI) * pAlpha * (0.75 - trail * 0.18);
                 const pr = 2 - trail * 0.35;
                 ctx.beginPath();
                 ctx.arc(px, py, Math.max(0.5, pr), 0, Math.PI * 2);
-                ctx.fillStyle = trail === 0
-                  ? `rgba(255,255,255,${pa})`
-                  : `rgba(${cr},${cg},${cb},${pa * 0.7})`;
+                ctx.fillStyle =
+                  trail === 0
+                    ? `rgba(255,255,255,${pa})`
+                    : `rgba(${cr},${cg},${cb},${pa * 0.7})`;
                 ctx.fill();
               }
             }
@@ -291,10 +340,17 @@ export default function NeuralCanvas({ progressRef, className }: Props) {
         ctx.save();
         ctx.globalAlpha = na;
         const nodeGrad = ctx.createRadialGradient(
-          nd.x - nd.r * 0.3, nd.y - nd.r * 0.3, 0,
-          nd.x, nd.y, nd.r,
+          nd.x - nd.r * 0.3,
+          nd.y - nd.r * 0.3,
+          0,
+          nd.x,
+          nd.y,
+          nd.r,
         );
-        nodeGrad.addColorStop(0, nd.type === "core" ? "#ffffff" : `rgba(${cr},${cg},${cb},1)`);
+        nodeGrad.addColorStop(
+          0,
+          nd.type === "core" ? "#ffffff" : `rgba(${cr},${cg},${cb},1)`,
+        );
         nodeGrad.addColorStop(0.6, nd.color);
         nodeGrad.addColorStop(1, `rgba(${cr},${cg},${cb},0.7)`);
         ctx.beginPath();
@@ -376,9 +432,8 @@ export default function NeuralCanvas({ progressRef, className }: Props) {
           const mr = 0.8 + Math.sin(t + i) * 0.3;
           ctx.beginPath();
           ctx.arc(mx, my, mr, 0, Math.PI * 2);
-          ctx.fillStyle = i % 3 === 0
-            ? `rgba(6,182,212,${ma})`
-            : `rgba(139,92,246,${ma})`;
+          ctx.fillStyle =
+            i % 3 === 0 ? `rgba(6,182,212,${ma})` : `rgba(139,92,246,${ma})`;
           ctx.fill();
         }
       }

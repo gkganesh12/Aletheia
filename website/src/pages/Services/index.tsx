@@ -10,14 +10,23 @@ import PageTransition from "@/components/shared/PageTransition";
 import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
+import PageSEO from "@/components/shared/PageSEO";
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { serviceDetails } from "@/data/serviceDetails";
 
 /* ── Service icons ─────────────────────────────────────────────────── */
 
 const serviceIcons: Record<string, React.ReactNode> = {
   "ai-products": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      className="h-7 w-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z" />
       <path d="M16 14v2a4 4 0 0 1-8 0v-2" />
       <line x1="12" y1="18" x2="12" y2="22" />
@@ -25,31 +34,71 @@ const serviceIcons: Record<string, React.ReactNode> = {
     </svg>
   ),
   "mvp-development": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      className="h-7 w-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
     </svg>
   ),
   "full-stack": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      className="h-7 w-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
       <line x1="8" y1="21" x2="16" y2="21" />
       <line x1="12" y1="17" x2="12" y2="21" />
     </svg>
   ),
-  "cybersecurity": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  cybersecurity: (
+    <svg
+      className="h-7 w-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       <path d="M9 12l2 2 4-4" />
     </svg>
   ),
-  "blockchain": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+  blockchain: (
+    <svg
+      className="h-7 w-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
       <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
     </svg>
   ),
   "data-ml": (
-    <svg className="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      className="h-7 w-7"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <ellipse cx="12" cy="5" rx="9" ry="3" />
       <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
       <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
@@ -116,21 +165,21 @@ export default function ServicesPage() {
         description="AI product engineering, MVP development, full-stack platforms, cybersecurity, blockchain and data/ML services. Production-grade solutions from Aletheia AI."
         path="/services"
         keywords="AI services, AI product engineering, MVP development, AI consulting services, machine learning services"
-        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }])}
+        jsonLd={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ])}
       />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="What We Do"
         title="Engineering That Ships"
         description="AI products, MVPs, full-stack platforms, cloud infrastructure, cybersecurity — strong engineering applied to every problem, from idea to production."
-        breadcrumbs={[
-          { label: "Home", href: "/" },
-          { label: "Services" },
-        ]}
+        breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
       />
 
       {/* ─── Stats Bar ────────────────────────────────────────────────── */}
-      <section className="border-b border-white/[0.04] py-12">
+      <section className="border-b border-ink/[0.04] py-12">
         <Container>
           <AnimatedSection>
             <div className="mx-auto grid max-w-5xl grid-cols-2 gap-4 text-center sm:gap-8 md:grid-cols-4">
@@ -141,10 +190,10 @@ export default function ServicesPage() {
                 { value: "2", label: "Published Packages" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <div className="text-3xl font-bold text-white lg:text-4xl">
+                  <div className="text-3xl font-bold text-ink lg:text-4xl">
                     <GradientText>{stat.value}</GradientText>
                   </div>
-                  <p className="mt-1.5 text-xs font-medium uppercase tracking-wider text-white/35">
+                  <p className="mt-1.5 text-xs font-medium uppercase tracking-wider text-muted">
                     {stat.label}
                   </p>
                 </div>
@@ -174,7 +223,7 @@ export default function ServicesPage() {
                   className="group block h-full"
                 >
                   <motion.div
-                    className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7 transition-colors duration-300 group-hover:border-[var(--color-accent-400)]/30 group-hover:bg-white/[0.04]"
+                    className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/[0.08] bg-surface p-7 transition-colors duration-300 group-hover:border-[var(--color-accent-400)]/30 group-hover:bg-surface"
                     whileHover={{ y: -4 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
                   >
@@ -184,20 +233,21 @@ export default function ServicesPage() {
                     {/* Number + icon row */}
                     <div className="relative flex items-center justify-between">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-accent-400)]/10 text-[var(--color-accent-400)] transition-colors duration-300 group-hover:bg-[var(--color-accent-400)]/15">
-                        {serviceIcons[service.slug] || serviceIcons["cybersecurity"]}
+                        {serviceIcons[service.slug] ||
+                          serviceIcons["cybersecurity"]}
                       </div>
-                      <span className="text-4xl font-black text-white/[0.04] transition-colors duration-500 group-hover:text-[var(--color-accent-400)]/[0.08]">
+                      <span className="text-4xl font-black text-muted transition-colors duration-500 group-hover:text-[var(--color-accent-400)]/[0.08]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                     </div>
 
                     {/* Name */}
-                    <h3 className="relative mt-5 text-lg font-bold text-white">
+                    <h3 className="relative mt-5 text-lg font-bold text-ink">
                       {service.name}
                     </h3>
 
                     {/* Description */}
-                    <p className="relative mt-2.5 flex-1 text-sm leading-relaxed text-white/45">
+                    <p className="relative mt-2.5 flex-1 text-sm leading-relaxed text-muted">
                       {service.description.slice(0, 140)}...
                     </p>
 
@@ -206,25 +256,25 @@ export default function ServicesPage() {
                       {service.technologies.slice(0, 4).map((tech: string) => (
                         <span
                           key={tech}
-                          className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 text-[10px] font-medium text-white/40 transition-colors duration-200 group-hover:border-[var(--color-accent-400)]/15 group-hover:text-white/55"
+                          className="rounded-md border border-ink/[0.06] bg-surface px-2 py-0.5 text-[10px] font-medium text-muted transition-colors duration-200 group-hover:border-[var(--color-accent-400)]/15 group-hover:text-muted"
                         >
                           {tech}
                         </span>
                       ))}
                       {service.technologies.length > 4 && (
-                        <span className="rounded-md border border-white/[0.06] bg-white/[0.03] px-2 py-0.5 text-[10px] font-medium text-white/30">
+                        <span className="rounded-md border border-ink/[0.06] bg-surface px-2 py-0.5 text-[10px] font-medium text-muted">
                           +{service.technologies.length - 4}
                         </span>
                       )}
                     </div>
 
                     {/* Key stat + CTA row */}
-                    <div className="relative mt-5 flex items-center justify-between border-t border-white/[0.06] pt-5">
+                    <div className="relative mt-5 flex items-center justify-between border-t border-ink/[0.06] pt-5">
                       <div>
-                        <div className="text-sm font-bold text-white">
+                        <div className="text-sm font-bold text-ink">
                           {service.stats[0].value}
                         </div>
-                        <div className="text-[10px] uppercase tracking-wider text-white/30">
+                        <div className="text-[10px] uppercase tracking-wider text-muted">
                           {service.stats[0].label}
                         </div>
                       </div>
@@ -254,7 +304,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ─── Process Section ──────────────────────────────────────────── */}
-      <section className="border-y border-white/[0.04] py-24 lg:py-32">
+      <section className="border-y border-ink/[0.04] py-24 lg:py-32">
         <Container>
           <AnimatedSection>
             <SectionHeading
@@ -274,19 +324,19 @@ export default function ServicesPage() {
                 <AnimatedSection key={phase.number} delay={i * 0.1}>
                   <div className="group relative text-center">
                     {/* Phase number */}
-                    <div className="relative z-10 mx-auto mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-300 group-hover:border-[var(--color-accent-400)]/20 group-hover:bg-[var(--color-accent-400)]/[0.06]">
+                    <div className="relative z-10 mx-auto mb-6 flex h-[72px] w-[72px] items-center justify-center rounded-2xl border border-ink/[0.08] bg-surface transition-all duration-300 group-hover:border-[var(--color-accent-400)]/20 group-hover:bg-[var(--color-accent-400)]/[0.06]">
                       <GradientText className="text-2xl font-bold">
                         {phase.number}
                       </GradientText>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-lg font-bold text-white">
+                    <h3 className="text-lg font-bold text-ink">
                       {phase.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="mt-2 text-sm leading-relaxed text-white/45">
+                    <p className="mt-2 text-sm leading-relaxed text-muted">
                       {phase.description}
                     </p>
                   </div>
@@ -308,13 +358,13 @@ export default function ServicesPage() {
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-accent-400)]">
                     Why Aletheia AI
                   </p>
-                  <h2 className="mt-5 text-3xl font-bold leading-tight text-white md:text-4xl">
+                  <h2 className="mt-5 text-3xl font-bold leading-tight text-ink md:text-4xl">
                     We don't just build software.{" "}
-                    <span className="text-white/30">
+                    <span className="text-muted">
                       We build systems that survive contact with reality.
                     </span>
                   </h2>
-                  <p className="mt-6 text-base leading-relaxed text-white/50 lg:text-lg">
+                  <p className="mt-6 text-base leading-relaxed text-muted lg:text-lg">
                     Most teams can write code. Fewer can architect systems that
                     handle real-world data, real-world users, and real-world
                     failure modes. That's the gap we close.
@@ -329,15 +379,23 @@ export default function ServicesPage() {
                     <GlassPanel className="rounded-2xl p-6 transition-all duration-300 hover:border-[var(--color-accent-400)]/20 lg:p-7">
                       <div className="flex items-start gap-4">
                         <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--color-accent-400)]/10">
-                          <svg className="h-4 w-4 text-[var(--color-accent-400)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <svg
+                            className="h-4 w-4 text-[var(--color-accent-400)]"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
                             <polyline points="20 6 9 17 4 12" />
                           </svg>
                         </div>
                         <div>
-                          <h3 className="text-base font-bold text-white">
+                          <h3 className="text-base font-bold text-ink">
                             {diff.title}
                           </h3>
-                          <p className="mt-1.5 text-sm leading-relaxed text-white/45">
+                          <p className="mt-1.5 text-sm leading-relaxed text-muted">
                             {diff.description}
                           </p>
                         </div>

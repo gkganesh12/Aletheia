@@ -24,7 +24,7 @@ export const productDetails: ProductDetail[] = [
     tagline: "AI-Powered Web Scraping",
     description:
       "Inscrape is a Python SDK that makes intelligent web scraping dead simple. Three lines of code to extract structured data from any URL — social media profiles, web pages, screenshots and clean Markdown. Published on PyPI with full async support, typed error handling and built-in rate-limit awareness. Stop writing fragile scrapers. Start extracting data.",
-    gradient: ["#6366f1", "#06b6d4"],
+    gradient: ["#2448FF", "#1736CD"],
     features: [
       {
         title: "3-Line Extraction",
@@ -69,14 +69,7 @@ export const productDetails: ProductDetail[] = [
       "Content aggregation and knowledge base construction",
       "Automated visual regression testing via screenshots",
     ],
-    techStack: [
-      "Python",
-      "httpx",
-      "AsyncIO",
-      "Hatchling",
-      "pytest",
-      "Ruff",
-    ],
+    techStack: ["Python", "httpx", "AsyncIO", "Hatchling", "pytest", "Ruff"],
     metrics: [
       { value: "3", label: "Lines of code to scrape any URL" },
       { value: "v0.1", label: "Published on PyPI" },
@@ -131,7 +124,7 @@ export const productDetails: ProductDetail[] = [
     tagline: "Silence the Noise",
     description:
       "Nirvana is an intelligent alert management platform built for engineering teams drowning in notifications. It aggregates alerts from Sentry, Datadog and other monitoring sources into a unified inbox, then intelligently deduplicates, routes and prioritises them — cutting noise by up to 90%. Interactive Slack actions let you ACK, snooze or resolve alerts without leaving your workflow. Your team stops ignoring alerts and starts responding to the ones that matter.",
-    gradient: ["#ff6b6b", "#ff3d71"],
+    gradient: ["#FF775E", "#B93B29"],
     features: [
       {
         title: "Unified Alert Inbox",
@@ -241,7 +234,7 @@ export const productDetails: ProductDetail[] = [
     tagline: "Simulate Everything.",
     description:
       "SwarmScope is a multi-agent simulation engine that turns unstructured data into living worlds. Upload a PDF, a dataset or plain text — SwarmScope's GraphRAG pipeline extracts entities and relationships, then generates 5,000+ autonomous agents with distinct personalities, memories and evolving social dynamics. Run simulations to model scenarios, test hypotheses or explore emergent behaviour. Talk to any agent. Analyse outcomes with the built-in ReportAgent. All for about $5 per simulation run.",
-    gradient: ["#8b5cf6", "#06b6d4"],
+    gradient: ["#2448FF", "#1736CD"],
     features: [
       {
         title: "Data-to-Simulation Pipeline",

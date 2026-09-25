@@ -7,7 +7,9 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import FilterButtons from "@/components/shared/FilterButtons";
-import PageSEO, { breadcrumbJsonLd } from "@/components/shared/PageSEO";
+import PageSEO from "@/components/shared/PageSEO";
+import { breadcrumbJsonLd } from "@/lib/seo";
+import { featuredProjects } from "@/data/featuredProjects";
 import { caseStudyDetails } from "@/data/caseStudyDetails";
 
 /* ────────────────────────────────────────────────────────────────────────── */
@@ -37,13 +39,16 @@ export default function CaseStudiesPage() {
         description="Real-world AI and engineering case studies from Aletheia AI — HeuriSight RAG, RD Fitness, CodeCraft CLI, Inscrape SDK. Results, not theory."
         path="/case-studies"
         keywords="AI case studies, AI implementation examples, machine learning projects, AI success stories"
-        jsonLd={breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Case Studies", path: "/case-studies" }])}
+        jsonLd={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Case Studies", path: "/case-studies" },
+        ])}
       />
       {/* ─── Hero ───────────────────────────────────────────────────────── */}
       <PageHero
         overline="Case Studies"
         title="Proven in the Field"
-        description="Real engagements. Measurable outcomes. See how our AI-native security solutions perform under pressure."
+        description="AI products, websites and developer tools. Explore the thinking, engineering and outcomes behind our work."
       />
 
       {/* ─── Studies Grid ───────────────────────────────────────────────── */}
@@ -63,7 +68,10 @@ export default function CaseStudiesPage() {
           <div className="grid gap-8 md:grid-cols-2">
             {filteredStudies.map((study, index) => (
               <AnimatedSection key={study.slug} delay={index * 0.08}>
-                <Card hover className="group flex h-full flex-col overflow-hidden p-0">
+                <Card
+                  hover
+                  className="group flex h-full flex-col overflow-hidden p-0"
+                >
                   <motion.div
                     className="flex h-full flex-col"
                     whileHover={{ y: -4 }}
@@ -73,65 +81,71 @@ export default function CaseStudiesPage() {
                     {study.heroImage && (
                       <div className="overflow-hidden">
                         <img
-                          src={study.heroImage}
-                          alt={study.title}
-                          className="h-48 w-full object-cover"
+                          src={
+                            featuredProjects.find((p) => p.slug === study.slug)
+                              ?.image || study.heroImage
+                          }
+                          alt={`${study.title} — project illustration`}
+                          className="aspect-[800/540] w-full object-cover"
                           loading="lazy"
                         />
                       </div>
                     )}
 
                     <div className="flex flex-1 flex-col p-8">
-                    {/* Industry badge */}
-                    <span className="mb-4 inline-block w-fit rounded bg-[var(--color-accent-400)]/10 px-2 py-1 text-xs font-semibold uppercase text-[var(--color-accent-400)]">
-                      {study.industry}
-                    </span>
-
-                    {/* Title */}
-                    <h3 className="mb-1 text-xl font-bold text-white transition-colors duration-200 group-hover:text-[var(--color-accent-400)]">
-                      {study.title}
-                    </h3>
-
-                    {/* Client */}
-                    <p className="mb-3 text-sm font-medium text-white/40">
-                      {study.client}
-                    </p>
-
-                    {/* Challenge (brief, 2-line truncation) */}
-                    <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-white/50">
-                      {study.challenge}
-                    </p>
-
-                    {/* Result metrics as stat pills */}
-                    <div className="mt-auto flex flex-wrap gap-3 border-t border-white/[0.06] pt-5">
-                      {study.results.slice(0, 3).map((result) => (
-                        <div
-                          key={result.label}
-                          className="rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-2 text-center"
-                        >
-                          <span className="block text-base font-bold text-[var(--color-accent-400)]">
-                            {result.value}
-                          </span>
-                          <span className="block text-[11px] uppercase tracking-wider text-white/40">
-                            {result.label}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Read Case Study link */}
-                    <Link
-                      to={`/case-studies/${study.slug}`}
-                      className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent-400)] opacity-70 transition-opacity duration-200 group-hover:opacity-100"
-                    >
-                      Read Case Study
-                      <span
-                        aria-hidden="true"
-                        className="transition-transform duration-200 group-hover:translate-x-1"
-                      >
-                        &rarr;
+                      <span className="mb-3 text-[10px] uppercase tracking-wider text-muted">
+                        Project illustration
                       </span>
-                    </Link>
+                      {/* Industry badge */}
+                      <span className="mb-4 inline-block w-fit rounded bg-[var(--color-accent-400)]/10 px-2 py-1 text-xs font-semibold uppercase text-[var(--color-accent-400)]">
+                        {study.industry}
+                      </span>
+
+                      {/* Title */}
+                      <h3 className="mb-1 text-xl font-bold text-ink transition-colors duration-200 group-hover:text-[var(--color-accent-400)]">
+                        {study.title}
+                      </h3>
+
+                      {/* Client */}
+                      <p className="mb-3 text-sm font-medium text-muted">
+                        {study.client}
+                      </p>
+
+                      {/* Challenge (brief, 2-line truncation) */}
+                      <p className="mb-6 line-clamp-2 text-sm leading-relaxed text-muted">
+                        {study.challenge}
+                      </p>
+
+                      {/* Result metrics as stat pills */}
+                      <div className="mt-auto flex flex-wrap gap-3 border-t border-ink/[0.06] pt-5">
+                        {study.results.slice(0, 3).map((result) => (
+                          <div
+                            key={result.label}
+                            className="rounded-lg border border-ink/[0.08] bg-surface px-3 py-2 text-center"
+                          >
+                            <span className="block text-base font-bold text-[var(--color-accent-400)]">
+                              {result.value}
+                            </span>
+                            <span className="block text-[11px] uppercase tracking-wider text-muted">
+                              {result.label}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Read Case Study link */}
+                      <Link
+                        to={`/case-studies/${study.slug}`}
+                        className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-[var(--color-accent-400)] opacity-70 transition-opacity duration-200 group-hover:opacity-100"
+                      >
+                        Read Case Study
+                        <span
+                          aria-hidden="true"
+                          className="transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          &rarr;
+                        </span>
+                      </Link>
                     </div>
                   </motion.div>
                 </Card>
@@ -142,7 +156,7 @@ export default function CaseStudiesPage() {
           {/* Empty state */}
           {filteredStudies.length === 0 && (
             <AnimatedSection>
-              <p className="py-20 text-center text-white/40">
+              <p className="py-20 text-center text-muted">
                 No case studies found for this industry.
               </p>
             </AnimatedSection>

@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
-import { Preloader } from "@/components/shared/Preloader";
-import { CustomCursor } from "@/components/shared/CustomCursor";
+
 import SkipToContent from "@/components/shared/SkipToContent";
 import ScrollProgress from "@/components/shared/ScrollProgress";
 import BackToTop from "@/components/shared/BackToTop";
@@ -30,15 +28,16 @@ import ConceptPage from "@/pages/Concept";
 /* ── Scroll to top on route change ──────────────────────────────────── */
 function ScrollToTop() {
   const location = useLocation();
-  useState(() => {
-    window.scrollTo(0, 0);
-  });
-  // Also scroll on pathname changes
-  if (typeof window !== "undefined") {
-    window.scrollTo(0, 0);
-  }
-  // Use location to ensure hook dependency on route changes
-  void location;
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      const target = location.hash
+        ? document.getElementById(decodeURIComponent(location.hash.slice(1)))
+        : null;
+      if (target) target.scrollIntoView({ behavior: "instant" });
+      else window.scrollTo({ top: 0, behavior: "instant" });
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [location.pathname, location.hash]);
   return null;
 }
 
@@ -47,7 +46,7 @@ function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />
@@ -63,21 +62,26 @@ function AnimatedRoutes() {
         <Route path="/careers" element={<CareersPage />} />
         <Route path="/industries" element={<IndustriesPage />} />
         <Route path="/concept" element={<ConceptPage />} />
+        <Route
+          path="*"
+          element={
+            <div className="not-found">
+              <h1>Page not found.</h1>
+              <a href="/">Back to Aletheia AI ↗</a>
+            </div>
+          }
+        />
       </Routes>
-    </AnimatePresence>
+    </>
   );
 }
 
 /* ── Inner App (has access to router context) ────────────────────────── */
 function InnerApp() {
-  const [isLoading, setIsLoading] = useState(true);
-
   return (
     <SmoothScroll>
       <SkipToContent />
       <ScrollProgress />
-      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-      <CustomCursor />
       <Navbar />
       <ErrorBoundary>
         <main id="main-content">

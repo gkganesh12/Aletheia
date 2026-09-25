@@ -16,31 +16,38 @@ interface OrbNode {
 
 const nodes: OrbNode[] = [
   // Ring 1 — Core AI
-  { angle: 0, ring: 1, size: 7, label: "AI", pulse: true, color: "#8b5cf6" },
+  { angle: 0, ring: 1, size: 7, label: "AI", pulse: true, color: "#2448FF" },
   { angle: 72, ring: 1, size: 4, color: "#a78bfa" },
   { angle: 144, ring: 1, size: 6, label: "ML", pulse: true, color: "#7c3aed" },
   { angle: 216, ring: 1, size: 4, color: "#818cf8" },
-  { angle: 288, ring: 1, size: 5, label: "LLM", color: "#6366f1" },
+  { angle: 288, ring: 1, size: 5, label: "LLM", color: "#2448FF" },
   // Ring 2 — Engineering
-  { angle: 20, ring: 2, size: 6, label: "SEC", pulse: true, color: "#6366f1" },
+  { angle: 20, ring: 2, size: 6, label: "SEC", pulse: true, color: "#2448FF" },
   { angle: 80, ring: 2, size: 3, color: "#818cf8" },
   { angle: 140, ring: 2, size: 6, label: "API", color: "#7c3aed" },
   { angle: 200, ring: 2, size: 4, color: "#a78bfa" },
-  { angle: 260, ring: 2, size: 5, label: "CLOUD", color: "#06b6d4" },
+  { angle: 260, ring: 2, size: 5, label: "CLOUD", color: "#FF775E" },
   { angle: 320, ring: 2, size: 3, color: "#22d3ee" },
   // Ring 3 — Outer
   { angle: 15, ring: 3, size: 4, color: "#818cf8" },
-  { angle: 75, ring: 3, size: 5, label: "OSINT", pulse: true, color: "#06b6d4" },
+  {
+    angle: 75,
+    ring: 3,
+    size: 5,
+    label: "OSINT",
+    pulse: true,
+    color: "#FF775E",
+  },
   { angle: 135, ring: 3, size: 3, color: "#a78bfa" },
-  { angle: 195, ring: 3, size: 5, label: "AGENT", color: "#8b5cf6" },
-  { angle: 255, ring: 3, size: 4, color: "#6366f1" },
+  { angle: 195, ring: 3, size: 5, label: "AGENT", color: "#2448FF" },
+  { angle: 255, ring: 3, size: 4, color: "#2448FF" },
   { angle: 315, ring: 3, size: 5, label: "THREAT", color: "#7c3aed" },
 ];
 
 const ringRadii = [140, 220, 310];
 const ringSpeeds = [30, 45, 65];
 const ringDirections = [1, -1, 1];
-const ringColors = ["#8b5cf6", "#6366f1", "#06b6d4"];
+const ringColors = ["#2448FF", "#2448FF", "#FF775E"];
 
 /* ═══════════════════════════════════════════════════════════════════════
    Orbital Rings Component
@@ -85,7 +92,8 @@ export default function OrbitalRings() {
         <div
           className="absolute left-1/2 top-1/2 h-36 w-36 -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
-            background: "radial-gradient(circle, #8b5cf6 0%, #6366f1 30%, transparent 70%)",
+            background:
+              "radial-gradient(circle, #2448FF 0%, #2448FF 30%, transparent 70%)",
             opacity: 0.35,
             filter: "blur(20px)",
           }}
@@ -93,12 +101,12 @@ export default function OrbitalRings() {
 
         {/* Center dot */}
         <motion.div
-          className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8b5cf6]"
+          className="absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#2448FF]"
           animate={{
             boxShadow: [
-              "0 0 8px #8b5cf6, 0 0 20px #6366f1",
-              "0 0 16px #8b5cf6, 0 0 40px #6366f1",
-              "0 0 8px #8b5cf6, 0 0 20px #6366f1",
+              "0 0 8px #2448FF, 0 0 20px #2448FF",
+              "0 0 16px #2448FF, 0 0 40px #2448FF",
+              "0 0 8px #2448FF, 0 0 20px #2448FF",
             ],
           }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -136,7 +144,9 @@ export default function OrbitalRings() {
                 fill="none"
                 stroke={`${ringColors[ringIndex]}20`}
                 strokeWidth="1"
-                strokeDasharray={ringIndex === 1 ? "4 8" : ringIndex === 2 ? "2 12" : "none"}
+                strokeDasharray={
+                  ringIndex === 1 ? "4 8" : ringIndex === 2 ? "2 12" : "none"
+                }
               />
             </svg>
 
@@ -216,7 +226,14 @@ export default function OrbitalRings() {
             const rad = (angle * Math.PI) / 180;
             const x2 = 340 + 308 * Math.cos(rad);
             const y2 = 340 + 308 * Math.sin(rad);
-            const colors = ["#8b5cf6", "#6366f1", "#06b6d4", "#8b5cf6", "#6366f1", "#06b6d4"];
+            const colors = [
+              "#2448FF",
+              "#2448FF",
+              "#FF775E",
+              "#2448FF",
+              "#2448FF",
+              "#FF775E",
+            ];
             return (
               <motion.line
                 key={angle}

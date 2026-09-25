@@ -1,12 +1,100 @@
 @import "tailwindcss";
-
-/* Prevent horizontal scroll on mobile */
-html, body {
-  overflow-x: hidden;
+@import "./brand.css";
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("/fonts/BarlowCondensed-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-display: swap;
 }
-
-/* Lenis smooth scroll */
-html.lenis, html.lenis body {
+@theme {
+  --color-primary-950: #f4f1e9;
+  --color-primary-900: #ebe7df;
+  --color-primary-800: #e5e0d5;
+  --color-primary-700: #d7d2c8;
+  --color-accent-400: #2448ff;
+  --color-accent-500: #2448ff;
+  --color-accent-600: #1736cd;
+  --color-ink: #17191c;
+  --color-muted: #5a5c63;
+  --color-paper: #f4f1e9;
+  --color-surface: #fffcf6;
+  --color-surface-hover: #ebe7df;
+  --color-border: rgba(23, 25, 28, 0.18);
+  --color-border-hover: rgba(23, 25, 28, 0.4);
+  --font-heading: "DM Sans", Arial, sans-serif;
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-mono: ui-monospace, monospace;
+}
+:root {
+  --paper: #f4f1e9;
+  --ink: #17191c;
+  --cobalt: #2448ff;
+  --coral: #ff775e;
+  --text-muted: #5a5c63;
+  --line: rgba(23, 25, 28, 0.18);
+}
+html {
+  scroll-padding-top: 100px;
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: border-box;
+}
+::selection {
+  background: var(--coral);
+  color: var(--ink);
+}
+:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 5px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.035em;
+}
+a,
+button {
+  touch-action: manipulation;
+}
+button {
+  cursor: pointer;
+}
+img {
+  max-width: 100%;
+}
+.mono {
+  font-family: var(--font-mono);
+}
+.glass-panel {
+  background: #fffcf6;
+  border: 1px solid var(--line);
+}
+.glass-panel:hover {
+  border-color: #17191c66;
+}
+.gradient-text {
+  color: var(--cobalt);
+}
+.section-alt {
+  background: #ebe7df;
+}
+.section-divider {
+  height: 1px;
+  background: var(--line);
+}
+html.lenis,
+html.lenis body {
   height: auto;
 }
 .lenis.lenis-smooth {
@@ -18,152 +106,12 @@ html.lenis, html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-
-@theme {
-  /* ── Charcoal dark + Violet–Cyan spectrum ─────────────────────────── */
-  --color-primary-950: #09090b;
-  --color-primary-900: #111113;
-  --color-primary-800: #1a1a1f;
-  --color-primary-700: #252530;
-  --color-accent-400: #8b5cf6;
-  --color-accent-500: #7c3aed;
-  --color-accent-600: #6366f1;
-  --color-surface: rgba(255, 255, 255, 0.03);
-  --color-surface-hover: rgba(255, 255, 255, 0.06);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-hover: rgba(255, 255, 255, 0.18);
-  /* ── Typography ──────────────────────────────────────────────────────── */
-  --font-heading: "Outfit", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
-}
-
-/* ── Base ────────────────────────────────────────────────────────────── */
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  background-color: var(--color-primary-950);
-  color: #d4d4d8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-::selection {
-  background-color: rgba(139, 92, 246, 0.3);
-  color: #ffffff;
-}
-
-/* ── Scrollbar ───────────────────────────────────────────────────────── */
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-primary-950);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.12) var(--color-primary-950);
-}
-
-/* ── Headings — bold, tight, confident ────────────────────────────────── */
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  letter-spacing: -0.02em;
-}
-
-h1 {
-  letter-spacing: -0.035em;
-}
-
-/* ── Utility: Mono Accent — for stats, labels, technical elements ──── */
-
-.mono {
-  font-family: var(--font-mono);
-  font-feature-settings: "tnum" 1;
-  letter-spacing: -0.01em;
-}
-
-/* ── Utility: Glass Panel — subtle, less blur ────────────────────────── */
-
-.glass-panel {
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--color-border);
-}
-
-.glass-panel:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: var(--color-border-hover);
-}
-
-/* ── Utility: Gradient Text ──────────────────────────────────────────── */
-
-.gradient-text {
-  background: linear-gradient(135deg, #8b5cf6, #6366f1, #06b6d4);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ── Utility: Glow — reduced, more subtle ───────────────────────────── */
-
-.glow {
-  box-shadow:
-    0 0 15px rgba(139, 92, 246, 0.1),
-    0 0 40px rgba(99, 102, 241, 0.05);
-}
-
-.glow-sm {
-  box-shadow:
-    0 0 8px rgba(139, 92, 246, 0.08),
-    0 0 20px rgba(99, 102, 241, 0.04);
-}
-
-.glow-text {
-  text-shadow:
-    0 0 20px rgba(139, 92, 246, 0.3),
-    0 0 40px rgba(99, 102, 241, 0.12);
-}
-
-/* ── Utility: Noise Overlay — very subtle ────────────────────────────── */
-
-.noise-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* ── Section alternate bg ────────────────────────────────────────────── */
-
-.section-alt {
-  background-color: rgba(255, 255, 255, 0.012);
-}
-
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

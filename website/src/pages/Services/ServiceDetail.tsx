@@ -4,7 +4,8 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
-import PageSEO, { serviceJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
+import PageSEO from "@/components/shared/PageSEO";
+import { serviceJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { Container, GlassPanel, SectionHeading } from "@/components/ui";
 import { serviceDetails } from "@/data/serviceDetails";
 
@@ -18,8 +19,8 @@ export default function ServiceDetail() {
     return (
       <PageTransition>
         <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-          <h1 className="text-4xl font-bold text-white">Service Not Found</h1>
-          <p className="text-white/50">
+          <h1 className="text-4xl font-bold text-ink">Service Not Found</h1>
+          <p className="text-muted">
             The service you are looking for does not exist.
           </p>
           <Link
@@ -48,8 +49,16 @@ export default function ServiceDetail() {
         path={`/services/${service.slug}`}
         keywords={`${service.name}, AI services, ${service.technologies.slice(0, 4).join(", ")}`}
         jsonLd={[
-          serviceJsonLd({ name: service.name, description: service.description, slug: service.slug }),
-          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Services", path: "/services" }, { name: service.name, path: `/services/${service.slug}` }])
+          serviceJsonLd({
+            name: service.name,
+            description: service.description,
+            slug: service.slug,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+            { name: service.name, path: `/services/${service.slug}` },
+          ]),
         ]}
       />
       {/* ── Hero ────────────────────────────────────────────────────────── */}
@@ -67,7 +76,7 @@ export default function ServiceDetail() {
       <section className="py-16 sm:py-24">
         <Container>
           <AnimatedSection>
-            <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-white/60">
+            <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-muted">
               {service.description}
             </p>
           </AnimatedSection>
@@ -84,10 +93,10 @@ export default function ServiceDetail() {
             {service.features.slice(0, 4).map((feature, i) => (
               <AnimatedSection key={feature.title} delay={i * 0.1}>
                 <GlassPanel className="p-6 sm:p-8">
-                  <h3 className="mb-2 text-lg font-semibold text-white">
+                  <h3 className="mb-2 text-lg font-semibold text-ink">
                     {feature.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-white/50">
+                  <p className="text-sm leading-relaxed text-muted">
                     {feature.description}
                   </p>
                 </GlassPanel>
@@ -108,7 +117,7 @@ export default function ServiceDetail() {
               {service.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full bg-white/[0.06] px-3 py-1.5 text-xs text-white/60"
+                  className="rounded-full bg-primary-900 px-3 py-1.5 text-xs text-muted"
                 >
                   {tech}
                 </span>
@@ -134,15 +143,15 @@ export default function ServiceDetail() {
                 <AnimatedSection key={step.title} delay={i * 0.1}>
                   <div className="relative flex gap-6 pl-0">
                     {/* Numbered circle */}
-                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] text-sm font-bold text-white">
+                    <div className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ink/[0.12] bg-primary-900 text-sm font-bold text-ink">
                       {i + 1}
                     </div>
 
                     <div className="pt-1.5">
-                      <h3 className="mb-1 text-lg font-semibold text-white">
+                      <h3 className="mb-1 text-lg font-semibold text-ink">
                         {step.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-white/50">
+                      <p className="text-sm leading-relaxed text-muted">
                         {step.description}
                       </p>
                     </div>
@@ -164,12 +173,12 @@ export default function ServiceDetail() {
             <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
               {service.stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <p className="text-3xl font-bold text-white sm:text-4xl">
+                  <p className="text-3xl font-bold text-ink sm:text-4xl">
                     {stat.prefix ?? ""}
                     {stat.value}
                     {stat.suffix ?? ""}
                   </p>
-                  <p className="mt-1 text-sm text-white/40">{stat.label}</p>
+                  <p className="mt-1 text-sm text-muted">{stat.label}</p>
                 </div>
               ))}
             </div>

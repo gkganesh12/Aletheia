@@ -6,12 +6,9 @@ import { cn } from "@/lib/utils";
 /* ────────────────────────────────────────────────────────────────────── */
 
 const variantStyles = {
-  glass:
-    "backdrop-blur-xl bg-white/[0.03] border border-white/[0.08] rounded-2xl",
-  bordered:
-    "bg-transparent border border-white/[0.12] rounded-2xl",
-  elevated:
-    "bg-white/[0.04] rounded-2xl shadow-lg shadow-black/20",
+  glass: "backdrop-blur-xl bg-surface border border-ink/[0.08] rounded-2xl",
+  bordered: "bg-transparent border border-ink/[0.12] rounded-2xl",
+  elevated: "bg-surface rounded-2xl shadow-lg shadow-black/20",
 } as const;
 
 /* ────────────────────────────────────────────────────────────────────── */
@@ -45,9 +42,10 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
           // Hover lift
           hover && [
             "hover:-translate-y-1 hover:shadow-xl hover:shadow-black/25",
-            variant === "glass" && "hover:bg-white/[0.06] hover:border-white/[0.15]",
-            variant === "bordered" && "hover:border-white/[0.2]",
-            variant === "elevated" && "hover:bg-white/[0.06]",
+            variant === "glass" &&
+              "hover:bg-primary-900 hover:border-ink/[0.15]",
+            variant === "bordered" && "hover:border-ink/[0.2]",
+            variant === "elevated" && "hover:bg-primary-900",
           ],
           className,
         )}

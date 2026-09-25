@@ -58,7 +58,13 @@ const iconMap: Record<ToastType, string> = {
 
 function CheckIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <svg
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
     </svg>
   );
@@ -66,24 +72,54 @@ function CheckIcon() {
 
 function ErrorIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+    <svg
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+      />
     </svg>
   );
 }
 
 function InfoIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+    <svg
+      className="h-5 w-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+      />
     </svg>
   );
 }
 
 function CloseIcon() {
   return (
-    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+    <svg
+      className="h-4 w-4"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
     </svg>
   );
 }
@@ -116,7 +152,7 @@ function ToastItem({
       transition={{ type: "spring", stiffness: 400, damping: 30 }}
       className={`
         pointer-events-auto relative flex items-start gap-3
-        w-80 rounded-lg border border-white/[0.12] border-l-4
+        w-80 rounded-lg border border-ink/[0.12] border-l-4
         ${accentMap[toast.type]}
         bg-white/10 backdrop-blur-xl
         px-4 py-3 shadow-lg shadow-black/20
@@ -128,7 +164,7 @@ function ToastItem({
       </span>
 
       {/* Message */}
-      <p className="flex-1 text-sm text-white/90 leading-relaxed">
+      <p className="flex-1 text-sm text-muted leading-relaxed">
         {toast.message}
       </p>
 
@@ -136,7 +172,7 @@ function ToastItem({
       <button
         type="button"
         onClick={() => onClose(toast.id)}
-        className="shrink-0 mt-0.5 text-white/40 hover:text-white transition-colors duration-150"
+        className="shrink-0 mt-0.5 text-muted hover:text-ink transition-colors duration-150"
         aria-label="Dismiss notification"
       >
         <CloseIcon />
@@ -194,6 +230,8 @@ export function ToastProvider({ children }: { children: ReactNode }) {
 /*  Hook                                                                 */
 /* ────────────────────────────────────────────────────────────────────── */
 
+// Provider and its consumer hook intentionally share this context module.
+// eslint-disable-next-line react-refresh/only-export-components
 export function useToast(): ToastContextValue {
   const ctx = useContext(ToastContext);
   if (!ctx) {

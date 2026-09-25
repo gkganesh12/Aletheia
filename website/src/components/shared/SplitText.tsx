@@ -24,7 +24,7 @@ export default function SplitText({
 }: SplitTextProps) {
   const words = text.split(" ");
   const gradientSet = new Set(
-    gradientWords.map((w) => w.replace(/[.,!?]$/, ""))
+    gradientWords.map((w) => w.replace(/[.,!?]$/, "")),
   );
 
   return (
@@ -55,11 +55,14 @@ export default function SplitText({
                     charClassName,
                     isGradientWord &&
                       !punctuation.includes(char) &&
-                      "bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]"
+                      "bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]",
                   )}
                   style={
                     isGradientWord && !punctuation.includes(char)
-                      ? { backgroundImage: "linear-gradient(135deg, #8b5cf6, #6366f1, #06b6d4)" }
+                      ? {
+                          backgroundImage:
+                            "linear-gradient(135deg, #2448FF, #2448FF, #FF775E)",
+                        }
                       : undefined
                   }
                   variants={{

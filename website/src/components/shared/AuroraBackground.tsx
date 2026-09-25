@@ -30,12 +30,15 @@ export default function AuroraBackground() {
           100% { top: 105%; opacity: 0; }
         }
       `}</style>
-      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden="true"
+      >
         {/* Layer 1: Violet — dominant, top-left */}
         <div
           className="absolute -left-[10%] -top-[20%] h-[800px] w-[900px] rounded-full opacity-[0.14]"
           style={{
-            background: "radial-gradient(ellipse, #8b5cf6, transparent 65%)",
+            background: "radial-gradient(ellipse, #2448FF, transparent 65%)",
             filter: "blur(60px)",
             animation: "aurora-1 18s ease-in-out infinite",
           }}
@@ -44,7 +47,7 @@ export default function AuroraBackground() {
         <div
           className="absolute left-[30%] top-[10%] h-[700px] w-[800px] rounded-full opacity-[0.1]"
           style={{
-            background: "radial-gradient(ellipse, #6366f1, transparent 60%)",
+            background: "radial-gradient(ellipse, #2448FF, transparent 60%)",
             filter: "blur(50px)",
             animation: "aurora-2 22s ease-in-out infinite",
           }}
@@ -53,7 +56,7 @@ export default function AuroraBackground() {
         <div
           className="absolute right-[-5%] bottom-[-10%] h-[600px] w-[700px] rounded-full opacity-[0.1]"
           style={{
-            background: "radial-gradient(ellipse, #06b6d4, transparent 65%)",
+            background: "radial-gradient(ellipse, #FF775E, transparent 65%)",
             filter: "blur(50px)",
             animation: "aurora-3 25s ease-in-out infinite",
           }}
@@ -72,8 +75,10 @@ export default function AuroraBackground() {
         <div
           className="absolute left-0 right-0 h-px"
           style={{
-            background: "linear-gradient(90deg, transparent, #8b5cf640, #06b6d440, transparent)",
-            boxShadow: "0 0 20px 2px rgba(139,92,246,0.08), 0 0 60px 4px rgba(99,102,241,0.04)",
+            background:
+              "linear-gradient(90deg, transparent, #2448FF40, #FF775E40, transparent)",
+            boxShadow:
+              "0 0 20px 2px rgba(139,92,246,0.08), 0 0 60px 4px rgba(99,102,241,0.04)",
             animation: "scan-line 8s linear infinite",
           }}
         />

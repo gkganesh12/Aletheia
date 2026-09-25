@@ -22,7 +22,7 @@ function ChevronIcon({ open }: { open: boolean }) {
       xmlns="http://www.w3.org/2000/svg"
       animate={{ rotate: open ? 180 : 0 }}
       transition={{ duration: 0.25, ease: "easeInOut" }}
-      className="shrink-0 text-white/40"
+      className="shrink-0 text-muted"
     >
       <path
         d="M5 7.5L10 12.5L15 7.5"
@@ -51,8 +51,8 @@ export default function FAQAccordion({ items, className }: FAQAccordionProps) {
           <div
             key={index}
             className={cn(
-              "rounded-xl border border-white/[0.06] bg-white/[0.03] transition-colors duration-200",
-              !isOpen && "hover:bg-white/[0.05]"
+              "rounded-xl border border-ink/[0.06] bg-surface transition-colors duration-200",
+              !isOpen && "hover:bg-primary-900",
             )}
           >
             {/* Question button */}
@@ -62,7 +62,7 @@ export default function FAQAccordion({ items, className }: FAQAccordionProps) {
               aria-expanded={isOpen}
               className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
             >
-              <span className="text-base font-medium text-white">
+              <span className="text-base font-medium text-ink">
                 {item.question}
               </span>
               <ChevronIcon open={isOpen} />
@@ -79,7 +79,7 @@ export default function FAQAccordion({ items, className }: FAQAccordionProps) {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <div className="px-5 pb-5 pt-0 text-sm leading-relaxed text-white/50">
+                  <div className="px-5 pb-5 pt-0 text-sm leading-relaxed text-muted">
                     {item.answer}
                   </div>
                 </motion.div>
