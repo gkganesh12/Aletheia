@@ -1,11 +1,11 @@
 <p align="center">
-  <img src="website/public/logo.svg" alt="Aletheia AI" width="80" height="80" />
+  <img src="website/public/brand/aletheia-ai-logo.png" alt="Aletheia AI" width="240" />
 </p>
 
 <h1 align="center">Aletheia AI</h1>
 
 <p align="center">
-  <strong>We Build What Others Pitch</strong><br/>
+  <strong>Intelligence. Put to work.</strong><br/>
   AI Engineering &bull; Cybersecurity &bull; Full-Stack Development
 </p>
 
@@ -53,13 +53,13 @@ This is a monorepo with two npm workspaces:
 
 ### Website
 
-The marketing website built with a modern stack and a dark, premium design system.
+The marketing website uses a warm ivory, cobalt and coral identity with a scroll-driven editorial homepage and prominent Featured Projects.
 
 **Tech stack:** React 19 &bull; TypeScript &bull; Vite 8 &bull; Tailwind CSS v4 &bull; Framer Motion &bull; GSAP &bull; Three.js / R3F &bull; React Router v7 &bull; Lenis
 
 **Design system:**
-- Dark theme with violet &rarr; indigo &rarr; cyan accent palette
-- Fonts: Outfit (headings), DM Sans (body), JetBrains Mono (code)
+- Warm ivory surfaces, ink text, cobalt and coral chapters
+- Fonts: licensed Barlow Condensed ExtraBold (display), DM Sans (body), system monospace (code)
 - Glass morphism panels, gradient text, glow effects, noise overlays
 
 **Pages:** Home, About, Services, Products, Case Studies, Blog, Contact, Careers, Industries

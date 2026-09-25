@@ -1,5 +1,8 @@
 import {
   forwardRef,
+  cloneElement,
+  isValidElement,
+  type ReactElement,
   type ButtonHTMLAttributes,
   type ReactNode,
 } from "react";
@@ -11,11 +14,11 @@ import { cn } from "@/lib/utils";
 
 const variantStyles = {
   primary:
-    "bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] text-white font-semibold hover:brightness-110 focus-visible:ring-[#8b5cf6]/40 shadow-[0_0_24px_rgba(139,92,246,0.2)]",
+    "bg-accent-400 text-white font-semibold hover:bg-accent-600 focus-visible:ring-accent-400",
   secondary:
-    "border border-white/15 text-white hover:bg-white/[0.07] hover:border-white/25 focus-visible:ring-white/20",
+    "border border-ink/15 text-ink hover:bg-white/[0.07] hover:border-ink/25 focus-visible:ring-white/20",
   ghost:
-    "text-white/60 hover:text-white hover:bg-white/[0.05] focus-visible:ring-white/20",
+    "text-muted hover:text-ink hover:bg-primary-900 focus-visible:ring-white/20",
 } as const;
 
 const sizeStyles = {
@@ -114,13 +117,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     /* ── asChild: merge onto single child ──────────────────────────── */
     if (asChild) {
-      // Basic slot implementation: renders a styled <span> wrapping children.
-      // For production you might swap this with Radix Slot; this keeps deps minimal.
-      return (
-        <span ref={ref as never} className={classes} {...rest}>
-          {children}
-        </span>
-      );
+      if (!isValidElement(children)) return null;
+      const child = children as ReactElement<{ className?: string }>;
+      return cloneElement(child, {
+        ...rest,
+        className: cn(classes, child.props.className),
+      });
     }
 
     return (

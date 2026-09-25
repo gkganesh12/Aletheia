@@ -21,22 +21,22 @@ export const products: Product[] = [
       "Clean Markdown extraction from any webpage",
       "Async support with typed error handling and rate-limit awareness",
     ],
-    gradient: ["#6366f1", "#06b6d4"],
+    gradient: ["#2448FF", "#1736CD"],
   },
   {
     id: "nirvana",
     name: "Nirvana",
     tagline: "Silence the Noise",
     description:
-      "An intelligent alert management platform that deduplicates, routes and prioritises alerts from monitoring tools like Sentry and Datadog. Nirvana cuts alert noise by up to 90% so your team focuses on what actually matters.",
+      "An intelligent alert management platform that deduplicates, routes and prioritises alerts from monitoring tools like Sentry and Datadog. It gives teams a shared workflow for triage, escalation and incident response.",
     features: [
       "Unified alert inbox aggregating Sentry, Datadog and more",
-      "Intelligent deduplication that reduces noise by 60-90%",
+      "Intelligent deduplication that groups related alerts",
       "Smart routing to Slack with interactive actions (ACK, Snooze, Resolve)",
       "Automatic escalation for unacknowledged critical alerts",
       "Dashboard and analytics for alert metrics and team performance",
     ],
-    gradient: ["#ff6b6b", "#ff3d71"],
+    gradient: ["#FF775E", "#B93B29"],
   },
   {
     id: "swarmscope",
@@ -51,6 +51,6 @@ export const products: Product[] = [
       "Post-simulation analysis via built-in ReportAgent",
       "Interactive agent chat — talk to any simulated entity",
     ],
-    gradient: ["#8b5cf6", "#06b6d4"],
+    gradient: ["#2448FF", "#1736CD"],
   },
 ];

@@ -13,16 +13,22 @@ interface BreadcrumbsProps {
 
 export default function Breadcrumbs({ crumbs, className }: BreadcrumbsProps) {
   return (
-    <nav aria-label="Breadcrumb" className={cn("flex items-center gap-2 text-sm", className)}>
+    <nav
+      aria-label="Breadcrumb"
+      className={cn("flex items-center gap-2 text-sm", className)}
+    >
       {crumbs.map((crumb, i) => (
         <span key={i} className="flex items-center gap-2">
-          {i > 0 && <span className="text-white/20">/</span>}
+          {i > 0 && <span className="text-muted">/</span>}
           {crumb.href ? (
-            <Link to={crumb.href} className="text-white/40 transition-colors hover:text-white/70">
+            <Link
+              to={crumb.href}
+              className="text-muted transition-colors hover:text-muted"
+            >
               {crumb.label}
             </Link>
           ) : (
-            <span className="text-white/60">{crumb.label}</span>
+            <span className="text-muted">{crumb.label}</span>
           )}
         </span>
       ))}

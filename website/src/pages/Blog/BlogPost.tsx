@@ -5,7 +5,8 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
-import PageSEO, { articleJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
+import PageSEO from "@/components/shared/PageSEO";
+import { articleJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { blogPosts } from "@/data/blogPosts";
 
 const categoryColors: Record<string, string> = {
@@ -18,15 +19,17 @@ const categoryColors: Record<string, string> = {
 
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
-  const postIndex = blogPosts.findIndex((p: { slug: string }) => p.slug === slug);
+  const postIndex = blogPosts.findIndex(
+    (p: { slug: string }) => p.slug === slug,
+  );
   const post = blogPosts[postIndex];
 
   if (!post) {
     return (
       <PageTransition>
         <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-          <h1 className="text-4xl font-bold text-white">Post Not Found</h1>
-          <p className="text-white/50">
+          <h1 className="text-4xl font-bold text-ink">Post Not Found</h1>
+          <p className="text-muted">
             The blog post you are looking for does not exist.
           </p>
           <Link
@@ -56,7 +59,7 @@ export default function BlogPost() {
         return (
           <h2
             key={i}
-            className="mb-4 mt-10 text-2xl font-bold text-white first:mt-0"
+            className="mb-4 mt-10 text-2xl font-bold text-ink first:mt-0"
           >
             {trimmed.replace("## ", "")}
           </h2>
@@ -68,7 +71,7 @@ export default function BlogPost() {
         return (
           <h3
             key={i}
-            className="mb-3 mt-8 text-xl font-semibold text-white first:mt-0"
+            className="mb-3 mt-8 text-xl font-semibold text-ink first:mt-0"
           >
             {trimmed.replace("### ", "")}
           </h3>
@@ -77,13 +80,15 @@ export default function BlogPost() {
 
       // Code block
       if (trimmed.startsWith("```")) {
-        const codeContent = trimmed.replace(/```\w*\n?/, "").replace(/```$/, "");
+        const codeContent = trimmed
+          .replace(/```\w*\n?/, "")
+          .replace(/```$/, "");
         return (
           <pre
             key={i}
-            className="my-6 overflow-x-auto rounded-xl border border-white/[0.06] bg-white/[0.03] p-4"
+            className="my-6 overflow-x-auto rounded-xl border border-ink/[0.06] bg-surface p-4"
           >
-            <code className="text-sm text-white/70">{codeContent}</code>
+            <code className="text-sm text-muted">{codeContent}</code>
           </pre>
         );
       }
@@ -96,7 +101,7 @@ export default function BlogPost() {
             {items.map((item, j) => (
               <li
                 key={j}
-                className="list-disc text-base leading-relaxed text-white/60"
+                className="list-disc text-base leading-relaxed text-muted"
               >
                 {item.replace(/^[-*]\s+/, "")}
               </li>
@@ -107,10 +112,7 @@ export default function BlogPost() {
 
       // Regular paragraph
       return (
-        <p
-          key={i}
-          className="mb-5 text-base leading-relaxed text-white/60"
-        >
+        <p key={i} className="mb-5 text-base leading-relaxed text-muted">
           {trimmed}
         </p>
       );
@@ -125,10 +127,25 @@ export default function BlogPost() {
         path={`/blog/${post.slug}`}
         ogType="article"
         ogImage={post.thumbnail}
-        article={{ author: post.author, publishedTime: post.date, section: post.category }}
+        article={{
+          author: post.author,
+          publishedTime: post.date,
+          section: post.category,
+        }}
         jsonLd={[
-          articleJsonLd({ title: post.title, description: post.excerpt, slug: post.slug, author: post.author, datePublished: post.date, image: post.thumbnail }),
-          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog" }, { name: post.title, path: `/blog/${post.slug}` }])
+          articleJsonLd({
+            title: post.title,
+            description: post.excerpt,
+            slug: post.slug,
+            author: post.author,
+            datePublished: post.date,
+            image: post.thumbnail,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/blog" },
+            { name: post.title, path: `/blog/${post.slug}` },
+          ]),
         ]}
       />
       <PageHero
@@ -161,23 +178,25 @@ export default function BlogPost() {
 
             {/* Article metadata bar */}
             <AnimatedSection>
-              <div className="mb-10 flex flex-wrap items-center gap-4 border-b border-white/[0.06] pb-6">
+              <div className="mb-10 flex flex-wrap items-center gap-4 border-b border-ink/[0.06] pb-6">
                 <span
                   className={`rounded-full px-3 py-1 text-xs font-medium ${
-                    categoryColors[post.category] ?? "bg-white/10 text-white/60"
+                    categoryColors[post.category] ?? "bg-white/10 text-muted"
                   }`}
                 >
                   {post.category}
                 </span>
-                <span className="text-sm text-white/40">{post.author}</span>
-                <span className="text-sm text-white/30">{post.date}</span>
-                <span className="text-sm text-white/30">{post.readTime}</span>
+                <span className="text-sm text-muted">{post.author}</span>
+                <span className="text-sm text-muted">{post.date}</span>
+                <span className="text-sm text-muted">{post.readTime}</span>
               </div>
             </AnimatedSection>
 
             {/* Article content */}
             <AnimatedSection delay={0.1}>
-              <article className="prose-invert">{renderContent(post.content)}</article>
+              <article className="prose-invert">
+                {renderContent(post.content)}
+              </article>
             </AnimatedSection>
 
             {/* Navigation */}

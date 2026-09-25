@@ -52,7 +52,7 @@ function SectionHeading({
       {/* Heading */}
       <h2
         className={cn(
-          "text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl",
+          "text-2xl font-bold leading-tight text-ink sm:text-3xl md:text-4xl lg:text-5xl",
           isCenter && "mx-auto max-w-3xl",
         )}
       >
@@ -63,7 +63,7 @@ function SectionHeading({
       {description && (
         <p
           className={cn(
-            "mt-4 text-base leading-relaxed text-white/55 md:text-lg",
+            "mt-4 text-base leading-relaxed text-muted md:text-lg",
             isCenter && "mx-auto max-w-2xl",
           )}
         >

@@ -4,8 +4,15 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
-import PageSEO, { productJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
-import { Container, GlassPanel, Button, GradientText, SectionHeading } from "@/components/ui";
+import PageSEO from "@/components/shared/PageSEO";
+import { productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
+import {
+  Container,
+  GlassPanel,
+  Button,
+  GradientText,
+  SectionHeading,
+} from "@/components/ui";
 import { productDetails } from "@/data/productDetails";
 
 /* ────────────────────────────────────────────────────────────────────── */
@@ -63,8 +70,8 @@ export default function ProductDetail() {
     return (
       <PageTransition>
         <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-          <h1 className="text-4xl font-bold text-white">Product Not Found</h1>
-          <p className="text-white/50">
+          <h1 className="text-4xl font-bold text-ink">Product Not Found</h1>
+          <p className="text-muted">
             The product you are looking for does not exist.
           </p>
           <Link
@@ -96,8 +103,16 @@ export default function ProductDetail() {
         ogType="product"
         keywords={`${product.name}, ${product.tagline}, ${product.techStack.slice(0, 4).join(", ")}`}
         jsonLd={[
-          productJsonLd({ name: product.name, description: product.description, slug: product.slug }),
-          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Products", path: "/products" }, { name: product.name, path: `/products/${product.slug}` }])
+          productJsonLd({
+            name: product.name,
+            description: product.description,
+            slug: product.slug,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+            { name: product.name, path: `/products/${product.slug}` },
+          ]),
         ]}
       />
       {/* ── Hero ────────────────────────────────────────────────────────── */}
@@ -127,18 +142,20 @@ export default function ProductDetail() {
             <SectionHeading overline="Features" heading="What Sets It Apart" />
           </AnimatedSection>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {product.features.map((feature: { title: string; description: string }, i: number) => (
-              <AnimatedSection key={feature.title} delay={i * 0.08}>
-                <GlassPanel className="h-full p-6 sm:p-8">
-                  <h3 className="mb-2 text-lg font-semibold text-white">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-white/50">
-                    {feature.description}
-                  </p>
-                </GlassPanel>
-              </AnimatedSection>
-            ))}
+            {product.features.map(
+              (feature: { title: string; description: string }, i: number) => (
+                <AnimatedSection key={feature.title} delay={i * 0.08}>
+                  <GlassPanel className="h-full p-6 sm:p-8">
+                    <h3 className="mb-2 text-lg font-semibold text-ink">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-muted">
+                      {feature.description}
+                    </p>
+                  </GlassPanel>
+                </AnimatedSection>
+              ),
+            )}
           </div>
         </Container>
       </section>
@@ -155,7 +172,7 @@ export default function ProductDetail() {
                 {product.useCases.map((useCase) => (
                   <li key={useCase} className="flex items-start gap-3">
                     <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-accent-400)]" />
-                    <span className="text-base leading-relaxed text-white/60">
+                    <span className="text-base leading-relaxed text-muted">
                       {useCase}
                     </span>
                   </li>
@@ -183,25 +200,23 @@ export default function ProductDetail() {
                 <AnimatedSection key={tier.tier} delay={i * 0.1}>
                   <GlassPanel
                     className={`relative flex h-full flex-col p-6 sm:p-8 ${
-                      isHighlighted
-                        ? "border-[var(--color-accent-400)]"
-                        : ""
+                      isHighlighted ? "border-[var(--color-accent-400)]" : ""
                     }`}
                   >
                     {/* Popular badge */}
                     {isHighlighted && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-accent-400)] px-3 py-1 text-xs font-semibold text-black">
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--color-accent-400)] px-3 py-1 text-xs font-semibold text-white">
                         Most Popular
                       </span>
                     )}
 
                     {/* Tier header */}
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-lg font-semibold text-ink">
                       {tier.tier}
                     </h3>
 
                     {/* Price */}
-                    <p className="mt-6 text-3xl font-bold text-white">
+                    <p className="mt-6 text-3xl font-bold text-ink">
                       {tier.price === "Custom" ? (
                         <GradientText from={gradientFrom} to={gradientTo}>
                           Custom
@@ -216,7 +231,7 @@ export default function ProductDetail() {
                       {tier.features.map((feature) => (
                         <li
                           key={feature}
-                          className="flex items-start gap-2 text-sm text-white/60"
+                          className="flex items-start gap-2 text-sm text-muted"
                         >
                           <CheckIcon />
                           <span>{feature}</span>
@@ -260,7 +275,7 @@ export default function ProductDetail() {
                 return (
                   <span
                     key={tech}
-                    className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm font-medium text-white/60 transition-all duration-300 hover:border-white/25 hover:text-white hover:bg-white/[0.08] select-none"
+                    className="inline-flex items-center gap-2.5 rounded-full border border-ink/10 bg-surface px-6 py-3 text-sm font-medium text-muted transition-all duration-300 hover:border-ink/25 hover:text-ink hover:bg-white/[0.08] select-none"
                   >
                     {logo && (
                       <img

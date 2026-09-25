@@ -19,7 +19,7 @@ export default function FilterButtons({
     <div
       className={cn(
         "flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none",
-        className
+        className,
       )}
       role="tablist"
       aria-label="Filter categories"
@@ -37,8 +37,8 @@ export default function FilterButtons({
             className={cn(
               "shrink-0 rounded-full px-5 py-2 text-sm transition-all duration-200",
               isActive
-                ? "bg-[var(--color-accent-400)] font-semibold text-black"
-                : "border border-white/[0.08] bg-white/[0.04] text-white/50 hover:bg-white/[0.08]"
+                ? "bg-[var(--color-accent-400)] font-semibold text-white"
+                : "border border-ink/[0.08] bg-surface text-muted hover:bg-white/[0.08]",
             )}
           >
             {category}

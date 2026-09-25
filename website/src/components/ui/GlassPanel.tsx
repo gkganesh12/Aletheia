@@ -6,12 +6,9 @@ import { cn } from "@/lib/utils";
 /* ────────────────────────────────────────────────────────────────────── */
 
 const intensityStyles = {
-  subtle:
-    "backdrop-blur-md bg-white/[0.02] border border-white/[0.05]",
-  default:
-    "backdrop-blur-xl bg-white/[0.04] border border-white/[0.08]",
-  strong:
-    "backdrop-blur-2xl bg-white/[0.08] border border-white/[0.12]",
+  subtle: "backdrop-blur-md bg-surface border border-ink/[0.05]",
+  default: "backdrop-blur-xl bg-surface border border-ink/[0.08]",
+  strong: "backdrop-blur-2xl bg-white/[0.08] border border-ink/[0.12]",
 } as const;
 
 /* ────────────────────────────────────────────────────────────────────── */

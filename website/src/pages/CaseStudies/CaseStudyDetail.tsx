@@ -4,7 +4,8 @@ import PageHero from "@/components/shared/PageHero";
 import CTASection from "@/components/shared/CTASection";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import DetailNavigation from "@/components/shared/DetailNavigation";
-import PageSEO, { caseStudyJsonLd, breadcrumbJsonLd } from "@/components/shared/PageSEO";
+import PageSEO from "@/components/shared/PageSEO";
+import { caseStudyJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import { Container, GlassPanel, SectionHeading } from "@/components/ui";
 import { caseStudyDetails } from "@/data/caseStudyDetails";
 
@@ -18,10 +19,8 @@ export default function CaseStudyDetail() {
     return (
       <PageTransition>
         <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-          <h1 className="text-4xl font-bold text-white">
-            Case Study Not Found
-          </h1>
-          <p className="text-white/50">
+          <h1 className="text-4xl font-bold text-ink">Case Study Not Found</h1>
+          <p className="text-muted">
             The case study you are looking for does not exist.
           </p>
           <Link
@@ -49,8 +48,16 @@ export default function CaseStudyDetail() {
         description={study.challenge.slice(0, 160)}
         path={`/case-studies/${study.slug}`}
         jsonLd={[
-          caseStudyJsonLd({ title: study.title, description: study.challenge, slug: study.slug }),
-          breadcrumbJsonLd([{ name: "Home", path: "/" }, { name: "Case Studies", path: "/case-studies" }, { name: study.title, path: `/case-studies/${study.slug}` }])
+          caseStudyJsonLd({
+            title: study.title,
+            description: study.challenge,
+            slug: study.slug,
+          }),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Case Studies", path: "/case-studies" },
+            { name: study.title, path: `/case-studies/${study.slug}` },
+          ]),
         ]}
       />
       {/* ── Hero ────────────────────────────────────────────────────────── */}
@@ -68,53 +75,49 @@ export default function CaseStudyDetail() {
       <section className="py-16 sm:py-24">
         <Container>
           <AnimatedSection>
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-white/[0.06] pb-8">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-b border-ink/[0.06] pb-8">
               {/* Client */}
               <div>
-                <span className="block text-xs font-semibold uppercase tracking-wider text-white/30">
+                <span className="block text-xs font-semibold uppercase tracking-wider text-muted">
                   Client
                 </span>
-                <span className="mt-1 text-sm text-white/70">
-                  {study.client}
-                </span>
+                <span className="mt-1 text-sm text-muted">{study.client}</span>
               </div>
 
-              <div className="hidden h-8 w-px bg-white/[0.06] sm:block" />
+              <div className="hidden h-8 w-px bg-primary-900 sm:block" />
 
               {/* Industry */}
               <div>
-                <span className="block text-xs font-semibold uppercase tracking-wider text-white/30">
+                <span className="block text-xs font-semibold uppercase tracking-wider text-muted">
                   Industry
                 </span>
-                <span className="mt-1 text-sm text-white/70">
+                <span className="mt-1 text-sm text-muted">
                   {study.industry}
                 </span>
               </div>
 
-              <div className="hidden h-8 w-px bg-white/[0.06] sm:block" />
+              <div className="hidden h-8 w-px bg-primary-900 sm:block" />
 
               {/* Service */}
               <div>
-                <span className="block text-xs font-semibold uppercase tracking-wider text-white/30">
+                <span className="block text-xs font-semibold uppercase tracking-wider text-muted">
                   Service
                 </span>
-                <span className="mt-1 text-sm text-white/70">
-                  {study.service}
-                </span>
+                <span className="mt-1 text-sm text-muted">{study.service}</span>
               </div>
 
-              <div className="hidden h-8 w-px bg-white/[0.06] sm:block" />
+              <div className="hidden h-8 w-px bg-primary-900 sm:block" />
 
               {/* Tech Stack */}
               <div>
-                <span className="block text-xs font-semibold uppercase tracking-wider text-white/30">
+                <span className="block text-xs font-semibold uppercase tracking-wider text-muted">
                   Tech Stack
                 </span>
                 <div className="mt-1 flex flex-wrap gap-2">
                   {study.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="rounded-full bg-white/[0.06] px-3 py-1.5 text-xs text-white/60"
+                      className="rounded-full bg-primary-900 px-3 py-1.5 text-xs text-muted"
                     >
                       {tech}
                     </span>
@@ -131,7 +134,7 @@ export default function CaseStudyDetail() {
               heading="The Challenge"
               align="left"
             />
-            <p className="max-w-3xl text-base leading-relaxed text-white/60">
+            <p className="max-w-3xl text-base leading-relaxed text-muted">
               {study.challenge}
             </p>
           </AnimatedSection>
@@ -150,15 +153,15 @@ export default function CaseStudyDetail() {
               <AnimatedSection key={step.phase} delay={0.1 + i * 0.08}>
                 <div className="flex gap-5">
                   {/* Phase number */}
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] text-sm font-bold text-white">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink/[0.12] bg-primary-900 text-sm font-bold text-ink">
                     {i + 1}
                   </div>
 
                   <div className="pt-0.5">
-                    <h3 className="mb-1 text-lg font-semibold text-white">
+                    <h3 className="mb-1 text-lg font-semibold text-ink">
                       {step.phase}
                     </h3>
-                    <p className="text-sm leading-relaxed text-white/50">
+                    <p className="text-sm leading-relaxed text-muted">
                       {step.description}
                     </p>
                   </div>
@@ -174,7 +177,7 @@ export default function CaseStudyDetail() {
               heading="The Solution"
               align="left"
             />
-            <p className="max-w-3xl text-base leading-relaxed text-white/60">
+            <p className="max-w-3xl text-base leading-relaxed text-muted">
               {study.solution}
             </p>
           </AnimatedSection>
@@ -191,10 +194,10 @@ export default function CaseStudyDetail() {
             {study.results.map((result, i) => (
               <AnimatedSection key={result.label} delay={i * 0.1}>
                 <GlassPanel className="p-6 text-center sm:p-8">
-                  <p className="text-3xl font-bold text-white sm:text-4xl">
+                  <p className="text-3xl font-bold text-ink sm:text-4xl">
                     {result.value}
                   </p>
-                  <p className="mt-1 text-sm font-medium text-white/70">
+                  <p className="mt-1 text-sm font-medium text-muted">
                     {result.label}
                   </p>
                 </GlassPanel>
@@ -210,16 +213,14 @@ export default function CaseStudyDetail() {
           <Container size="narrow">
             <AnimatedSection>
               <blockquote className="border-l-2 border-[var(--color-accent-400)] pl-6">
-                <p className="text-lg italic leading-relaxed text-white/70">
+                <p className="text-lg italic leading-relaxed text-muted">
                   &ldquo;{study.testimonial.quote}&rdquo;
                 </p>
                 <footer className="mt-4">
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-sm font-semibold text-ink">
                     {study.testimonial.author}
                   </p>
-                  <p className="text-xs text-white/40">
-                    {study.testimonial.role}
-                  </p>
+                  <p className="text-xs text-muted">{study.testimonial.role}</p>
                 </footer>
               </blockquote>
             </AnimatedSection>
