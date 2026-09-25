@@ -1,100 +1,80 @@
+import EngineeringGraph from "@/components/shared/EngineeringGraph";
 const steps = [
   {
-    title: "First, we listen.",
-    body: "Tell us what’s getting in the way, who you’re building for, and what better could look like. We turn that conversation into a clear direction.",
-    detail: "Discovery / product strategy / architecture",
-    image: "planning",
-    alt: "A person planning in a notebook at a wooden table",
-    credit: "Adolfo Félix",
-    source: "uo7AHIpjOu0",
+    title: "Start with the problem.",
+    body: "What should change for your users? We work backwards from that, then map the data, constraints and decisions the system needs to handle.",
+    file: "01 / context.md",
+    detail: "A clear brief. An architecture with trade-offs.",
   },
   {
-    title: "Then, we make it tangible.",
-    body: "An interface you can explore. A model you can evaluate. Working software you can put in front of real people. We build, share and refine together.",
-    detail: "Design / development / AI integration",
-    image: "studio",
-    alt: "People working at computers in a sunlit workspace",
-    credit: "Compagnons",
-    source: "AQTA5E6mCNU",
+    title: "Build the connections.",
+    body: "Models, data pipelines, APIs and interfaces are parts of one product. We make them work together, so intelligence reaches the people who need it.",
+    file: "02 / system.ts",
+    detail: "Working software you can try, question and improve.",
   },
   {
-    title: "Ready for the everyday.",
-    body: "The small details matter when people depend on your product. We test, deploy and document the system, so your team can confidently take it forward.",
-    detail: "Testing / deployment / handover",
-    image: "planning",
-    alt: "Notes and careful planning in a notebook",
-    credit: "Adolfo Félix",
-    source: "uo7AHIpjOu0",
+    title: "Make it work outside the demo.",
+    body: "We test the difficult paths, make the system observable and prepare it for deployment. You get the code, the context and a clear handover.",
+    file: "03 / release.md",
+    detail: "A product your team can operate and build on.",
   },
 ];
-
 export default function BuildStory() {
   return (
-    <section className="photo-process" aria-labelledby="process-title">
-      <div className="process-heading">
-        <p className="eyebrow">02 / THE WAY WE WORK</p>
-        <h2 id="process-title">
-          Great work starts
+    <section className="build-story" aria-labelledby="build-story-title">
+      <div className="story-intro">
+        <p className="eyebrow">02 / FROM QUESTION TO WORKING SOFTWARE</p>
+        <h2 id="build-story-title">
+          The interesting part
           <br />
-          with a <em>conversation.</em>
+          is how it comes together.
         </h2>
       </div>
-      <div className="process-layout">
-        <div
-          className="process-gallery"
-          data-process-stage="0"
-          aria-hidden="true"
-        >
-          {steps.map((s, i) => (
-            <div className={`process-frame process-frame-${i}`} key={s.title}>
-              <img
-                src={`/images/editorial/${s.image}.webp`}
-                srcSet={`/images/editorial/${s.image}-small.webp ${s.image === "studio" ? 1000 : 800}w, /images/editorial/${s.image}.webp ${s.image === "studio" ? 2200 : 1600}w`}
-                sizes="(max-width: 599px) 88vw, 45vw"
-                alt=""
-                loading="lazy"
-                width="1600"
-                height="1067"
-              />
-              <span>
-                0{i + 1} / {s.detail.split(" / ")[0]}
-              </span>
-            </div>
-          ))}
-          <div className="process-progress">
-            <i />
+      <div className="story-layout">
+        <div className="story-board" data-story-stage="0" aria-hidden="true">
+          <div className="story-board-top">
+            <span>aletheia / build process</span>
+            <span>01 → 03</span>
           </div>
-          <span className="process-gallery-note">
-            Process imagery / stock photography
-          </span>
+          <div className="story-visual">
+            <EngineeringGraph />
+            <div className="story-input">
+              your problem<span>data · users · constraints</span>
+            </div>
+            <div className="story-core">
+              a connected system<span>models · APIs · interface</span>
+            </div>
+            <div className="story-output">
+              ready for the real world<span>evaluate · deploy · operate</span>
+            </div>
+            <svg className="story-wires" viewBox="0 0 500 500">
+              <path
+                className="story-wire"
+                d="M250 90V200M250 270V380"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeDasharray="5 5"
+              />
+            </svg>
+          </div>
+          <div className="story-board-bottom">
+            <span>SCROLL TO FOLLOW THE BUILD</span>
+            <div>
+              <i />
+            </div>
+          </div>
         </div>
-        <div className="process-steps">
+        <div className="story-steps">
           {steps.map((s, i) => (
-            <article className="process-step" key={s.title}>
-              <p className="eyebrow">0{i + 1} / 03</p>
+            <article key={s.file} className="story-step" data-story-step={i}>
+              <span className="eyebrow">{s.file}</span>
               <h3>{s.title}</h3>
               <p>{s.body}</p>
-              <span className="process-detail">{s.detail}</span>
-              <figure className="process-mobile-image">
-                <img
-                  src={`/images/editorial/${s.image}.webp`}
-                  srcSet={`/images/editorial/${s.image}-small.webp ${s.image === "studio" ? 1000 : 800}w, /images/editorial/${s.image}.webp ${s.image === "studio" ? 2200 : 1600}w`}
-                  sizes="(max-width: 599px) 88vw, 45vw"
-                  alt={s.alt}
-                  loading="lazy"
-                  width="1600"
-                  height="1067"
-                />
-                <figcaption>
-                  <a
-                    href={`https://unsplash.com/photos/${s.source}`}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Stock photography / {s.credit}
-                  </a>
-                </figcaption>
-              </figure>
+              <div className="step-deliverable">
+                <span aria-hidden="true">↳</span>
+                {s.detail}
+              </div>
             </article>
           ))}
         </div>

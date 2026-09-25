@@ -2,7 +2,6 @@ import { useEffect, type RefObject } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
-
 export function useHomeMotion(root: RefObject<HTMLElement | null>) {
   useEffect(() => {
     const element = root.current;
@@ -26,86 +25,63 @@ export function useHomeMotion(root: RefObject<HTMLElement | null>) {
                 scrub: 0.8,
               },
             });
-          // Each image has 20% overscan: parallax never exposes an empty edge.
-          element
-            .querySelectorAll<HTMLElement>("[data-parallax-photo]")
-            .forEach((frame) => {
-              gsap.fromTo(
-                frame.querySelector("img"),
-                { yPercent: -5 },
-                {
-                  yPercent: 5,
-                  ease: "none",
-                  scrollTrigger: {
-                    trigger: frame,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 0.7,
-                  },
-                },
-              );
-            });
           gsap.fromTo(
-            ".photo-project-1",
-            { y: 70 },
+            ".architecture-flow",
+            { y: 22 },
             {
-              y: -45,
+              y: -8,
               ease: "none",
               scrollTrigger: {
-                trigger: ".photo-project-grid",
+                trigger: ".work-feature",
                 start: "top bottom",
                 end: "bottom top",
                 scrub: 0.7,
               },
             },
           );
-          const gallery =
-            element.querySelector<HTMLElement>(".process-gallery");
+          const board = element.querySelector<HTMLElement>(".story-board");
           const steps = Array.from(
-            element.querySelectorAll<HTMLElement>(".process-step"),
+            element.querySelectorAll<HTMLElement>(".story-step"),
           );
-          if (gallery) {
+          if (board && steps.length) {
+            const setStage = (stage: number) => {
+              board.dataset.storyStage = String(stage);
+            };
             steps.forEach((step, i) => {
               ScrollTrigger.create({
                 trigger: step,
                 start: "top 55%",
                 end: "bottom 55%",
-                onEnter: () => {
-                  gallery.dataset.processStage = String(i);
-                },
-                onEnterBack: () => {
-                  gallery.dataset.processStage = String(i);
-                },
+                onEnter: () => setStage(i),
+                onEnterBack: () => setStage(i),
               });
             });
             gsap.fromTo(
-              ".process-progress i",
-              { scaleX: 0 },
+              ".story-board-bottom i",
+              { scaleX: 0.06 },
               {
                 scaleX: 1,
                 ease: "none",
                 scrollTrigger: {
-                  trigger: ".process-steps",
+                  trigger: ".story-steps",
                   start: "top 55%",
                   end: "bottom 55%",
                   scrub: 0.4,
                 },
               },
             );
-            gsap.fromTo(
-              ".process-frame img",
-              { yPercent: -3 },
-              {
-                yPercent: 3,
-                ease: "none",
-                scrollTrigger: {
-                  trigger: ".process-steps",
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 0.8,
-                },
+            gsap.to(".story-visual .engineering-graph", {
+              rotation: 18,
+              scale: 1.05,
+              transformOrigin: "50% 50%",
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".story-steps",
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 0.8,
               },
-            );
+            });
           }
           gsap.fromTo(
             ".founder-image img",
@@ -123,7 +99,7 @@ export function useHomeMotion(root: RefObject<HTMLElement | null>) {
             },
           );
           return () => {
-            if (gallery) gallery.dataset.processStage = "0";
+            if (board) board.dataset.storyStage = "0";
           };
         },
       );

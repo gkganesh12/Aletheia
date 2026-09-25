@@ -10,7 +10,6 @@ import CTASection from "@/components/shared/CTASection";
 import PageSEO from "@/components/shared/PageSEO";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { useHomeMotion } from "@/hooks/useHomeMotion";
-import "@/home-editorial.css";
 export default function Home() {
   const root = useRef<HTMLDivElement>(null);
   useHomeMotion(root);
@@ -25,9 +24,9 @@ export default function Home() {
       <Hero />
       <FeaturedProjects />
       <BuildStory />
+      <BuildLog />
       <Services />
       <Products />
-      <BuildLog />
       <About />
       <CTASection />
     </div>

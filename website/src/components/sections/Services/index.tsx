@@ -41,7 +41,7 @@ export default function Services() {
   return (
     <section className="services-chapter section-space">
       <div className="chapter-heading">
-        <p className="eyebrow">03 / CAPABILITIES</p>
+        <p className="eyebrow">04 / CAPABILITIES</p>
         <h2>
           One team.
           <br />

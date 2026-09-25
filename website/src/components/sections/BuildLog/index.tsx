@@ -3,7 +3,7 @@ export default function BuildLog() {
   return (
     <section className="build-log">
       <div className="build-log-intro">
-        <p className="eyebrow">04 / THE WORK BEHIND THE WORK</p>
+        <p className="eyebrow">03 / THE WORK BEHIND THE WORK</p>
         <h2>It’s in the commits.</h2>
         <p>
           Features, fixes, tests. A few entries from the public repositories
