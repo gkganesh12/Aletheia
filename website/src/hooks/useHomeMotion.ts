@@ -12,41 +12,20 @@ export function useHomeMotion(root: RefObject<HTMLElement | null>) {
       mm.add(
         "(min-width:600px) and (min-height:650px) and (prefers-reduced-motion:no-preference)",
         () => {
-          const hero = element.querySelector(".photo-hero");
-          gsap.fromTo(
-            hero,
-            { clipPath: "inset(0 2% 0 2%)" },
-            {
-              clipPath: "inset(0 0% 0 0%)",
+          const strandGroup = element.querySelector(".signal-strands");
+          if (strandGroup)
+            gsap.to(strandGroup, {
+              y: 90,
+              rotation: -8,
+              transformOrigin: "50% 50%",
               ease: "none",
               scrollTrigger: {
-                trigger: hero,
-                start: "top 84px",
-                end: "+=350",
-                scrub: 0.6,
+                trigger: ".brand-hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.8,
               },
-            },
-          );
-          gsap.to(".photo-hero-image", {
-            yPercent: 14,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.7,
-            },
-          });
-          gsap.to(".photo-hero h1", {
-            y: 90,
-            ease: "none",
-            scrollTrigger: {
-              trigger: hero,
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.5,
-            },
-          });
+            });
           // Each image has 20% overscan: parallax never exposes an empty edge.
           element
             .querySelectorAll<HTMLElement>("[data-parallax-photo]")
