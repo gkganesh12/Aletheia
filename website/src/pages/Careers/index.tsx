@@ -1,4 +1,10 @@
-import { useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom";
+import {
+  referralFromLink,
+  careerApplicationPayload,
+} from "@/lib/careerApplication.mjs";
+import { submitContact } from "@/lib/submitContact.mjs";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,12 +23,6 @@ import { staggerContainer, staggerItem } from "@/lib/motion-variants";
 import { useToast } from "@/components/shared/Toast";
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  Web3Forms key                                                        */
-/* ────────────────────────────────────────────────────────────────────── */
-
-const WEB3FORMS_KEY = "b1d6246c-dfe6-41f6-8c93-7374d0c9919c";
-
-/* ────────────────────────────────────────────────────────────────────── */
 /*  Application form schema                                              */
 /* ────────────────────────────────────────────────────────────────────── */
 
@@ -32,6 +32,12 @@ const applicationSchema = z.object({
   phone: z.string().optional(),
   portfolio: z.string().optional(),
   message: z.string().min(10, "Tell us a bit more (at least 10 characters)"),
+  referralCode: z
+    .string()
+    .trim()
+    .max(40, "Use 40 characters or fewer")
+    .regex(/^[a-zA-Z0-9_-]*$/, "Use letters, numbers, hyphens or underscores")
+    .optional(),
 });
 
 type ApplicationData = z.infer<typeof applicationSchema>;
@@ -78,13 +84,50 @@ function FieldError({ message }: { message?: string }) {
 
 function ApplicationModal({
   jobTitle,
+  referralCode,
   onClose,
 }: {
   jobTitle: string;
+  referralCode: string;
   onClose: () => void;
 }) {
   const { showToast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+
+  useEffect(() => {
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog?.querySelector<HTMLInputElement>("#app-name")?.focus();
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeRef.current();
+      if (event.key !== "Tab" || !dialog) return;
+      const fields = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([type="hidden"]):not([disabled]), textarea:not([disabled]), a[href]',
+        ),
+      );
+      const first = fields[0],
+        last = fields[fields.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKey);
+      previousFocus?.focus();
+    };
+  }, []);
 
   const {
     register,
@@ -97,6 +140,7 @@ function ApplicationModal({
       email: "",
       phone: "",
       portfolio: "",
+      referralCode,
       message: "",
     },
   });
@@ -104,33 +148,12 @@ function ApplicationModal({
   const onSubmit = async (data: ApplicationData) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: `Job Application: ${jobTitle} — ${data.name}`,
-          from_name: data.name,
-          name: data.name,
-          email: data.email,
-          phone: data.phone || "Not provided",
-          portfolio: data.portfolio || "Not provided",
-          position: jobTitle,
-          message: data.message,
-        }),
+      await submitContact(careerApplicationPayload(jobTitle, data));
+      showToast({
+        type: "success",
+        message: "Application sent! We'll review it and get back to you.",
       });
-
-      const result = await response.json();
-
-      if (result.success) {
-        showToast({
-          type: "success",
-          message: "Application sent! We'll review it and get back to you.",
-        });
-        onClose();
-      } else {
-        throw new Error(result.message || "Submission failed");
-      }
+      onClose();
     } catch {
       showToast({
         type: "error",
@@ -157,7 +180,12 @@ function ApplicationModal({
 
       {/* Modal */}
       <motion.div
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-ink/[0.1] bg-[var(--color-primary-900)]"
+        ref={dialogRef}
+        data-lenis-prevent
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="application-title"
+        className="relative max-h-[90svh] w-full max-w-lg overflow-y-auto rounded-2xl border border-ink/[0.1] bg-[var(--color-primary-900)]"
         initial={{ opacity: 0, y: 20, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
@@ -170,9 +198,15 @@ function ApplicationModal({
               <p className="mono text-[10px] font-medium uppercase tracking-wider text-[var(--color-accent-400)]">
                 Apply for
               </p>
-              <h3 className="mt-1 text-xl font-bold text-ink">{jobTitle}</h3>
+              <h3
+                id="application-title"
+                className="mt-1 text-xl font-bold text-ink"
+              >
+                {jobTitle}
+              </h3>
             </div>
             <button
+              aria-label="Close application"
               onClick={onClose}
               className="flex h-8 w-8 items-center justify-center rounded-lg text-muted transition-colors hover:bg-primary-900 hover:text-ink"
             >
@@ -255,7 +289,7 @@ function ApplicationModal({
                   htmlFor="app-portfolio"
                   className="block text-sm text-muted mb-1.5"
                 >
-                  Portfolio / GitHub
+                  CV / Portfolio / GitHub
                 </label>
                 <input
                   id="app-portfolio"
@@ -265,6 +299,33 @@ function ApplicationModal({
                   {...register("portfolio")}
                 />
               </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="app-referral"
+                className="block text-sm text-muted mb-1.5"
+              >
+                Referral code <span className="text-xs">(optional)</span>
+              </label>
+              <input
+                id="app-referral"
+                type="text"
+                placeholder="e.g. TEAM-01"
+                maxLength={40}
+                autoCapitalize="characters"
+                spellCheck={false}
+                aria-describedby="referral-help"
+                className={
+                  errors.referralCode ? inputErrorClasses : inputClasses
+                }
+                {...register("referralCode")}
+              />
+              <p id="referral-help" className="mt-1.5 text-xs text-muted">
+                Have a code from someone who shared this role? Add it here. You
+                can also apply without one.
+              </p>
+              <FieldError message={errors.referralCode?.message} />
             </div>
 
             <div>
@@ -494,60 +555,9 @@ const benefits = [
   { icon: TrendingUpIcon, label: "Equity Options" },
 ];
 
-const departmentColors: Record<string, string> = {
-  Engineering: "border-blue-400/30 text-blue-400 bg-blue-400/10",
-  Security: "border-red-400/30 text-red-400 bg-red-400/10",
-};
-
-/* ────────────────────────────────────────────────────────────────────── */
-/*  Small icons                                                          */
-/* ────────────────────────────────────────────────────────────────────── */
-
-function MapPinSmallIcon() {
-  return (
-    <svg
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.5}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
-      />
-    </svg>
-  );
-}
-function BriefcaseIcon() {
-  return (
-    <svg
-      className="h-4 w-4"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.5}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"
-      />
-    </svg>
-  );
-}
-
-/* ────────────────────────────────────────────────────────────────────── */
-/*  Page                                                                 */
-/* ────────────────────────────────────────────────────────────────────── */
-
 export default function CareersPage() {
+  const [searchParams] = useSearchParams();
+  const referralCode = referralFromLink(searchParams.get("ref"));
   const departments = useMemo(
     () => [...new Set(careers.map((c) => c.department))],
     [],
@@ -570,7 +580,7 @@ export default function CareersPage() {
         title="Careers at Aletheia AI"
         description="Join Aletheia AI — we're hiring engineers, designers and AI specialists. Build production AI products with a team that ships."
         path="/careers"
-        keywords="AI jobs, AI company careers, machine learning engineer jobs, AI developer positions"
+        keywords="AI internships, full stack developer internship, Rust Ruby internship, UI UX designer, graphic designer, software engineer"
         jsonLd={breadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Careers", path: "/careers" },
@@ -580,7 +590,7 @@ export default function CareersPage() {
       <PageHero
         overline="Careers"
         title="Build What Matters"
-        description="Join a lean engineering studio that ships real products. We're hiring across AI, full-stack, cybersecurity and blockchain."
+        description="Join a lean engineering studio that ships real products. We're hiring interns, designers and a software engineer across AI, full-stack development and Rust/Ruby."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Careers" }]}
       />
 
@@ -651,7 +661,7 @@ export default function CareersPage() {
             <SectionHeading
               overline="Open Positions"
               heading="Find Your Role"
-              description="We're hiring. Find a role that matches your skills."
+              description={`${careers.length} open roles. Find a role that matches your skills.`}
             />
           </AnimatedSection>
 
@@ -665,7 +675,7 @@ export default function CareersPage() {
           </AnimatedSection>
 
           <motion.div
-            className="grid grid-cols-1 gap-5 md:grid-cols-2"
+            className="divide-y divide-ink/15 border-y border-ink/15"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -673,49 +683,76 @@ export default function CareersPage() {
             key={activeDepartment}
           >
             {filteredCareers.map((job) => (
-              <motion.div key={job.id} variants={staggerItem}>
-                <Card hover className="flex h-full flex-col p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="text-lg font-semibold text-ink">
+              <motion.article
+                key={job.id}
+                variants={staggerItem}
+                className="py-8 md:py-10"
+                aria-labelledby={`role-${job.id}`}
+              >
+                <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="min-w-0 max-w-3xl">
+                    <p className="mb-3 text-xs uppercase tracking-wider text-muted">
+                      {job.department}
+                      {job.type ? ` / ${job.type}` : ""}
+                      {job.experience ? ` / ${job.experience}` : ""}
+                    </p>
+                    <h3
+                      id={`role-${job.id}`}
+                      className="text-2xl font-semibold tracking-tight text-ink md:text-3xl"
+                    >
                       {job.title}
                     </h3>
-                    <span
-                      className={cn(
-                        "shrink-0 rounded-full border px-3 py-0.5 text-xs font-medium",
-                        departmentColors[job.department] ??
-                          "border-ink/20 text-muted bg-white/5",
-                      )}
-                    >
-                      {job.department}
-                    </span>
+                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
+                      {job.description}
+                    </p>
                   </div>
-
-                  <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-muted">
-                    <span className="inline-flex items-center gap-1">
-                      <MapPinSmallIcon />
-                      {job.location}
-                    </span>
-                    <span className="inline-flex items-center gap-1">
-                      <BriefcaseIcon />
-                      {job.type}
-                    </span>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="shrink-0 self-start"
+                    aria-label={`Apply for ${job.title}`}
+                    onClick={() => setApplyingFor(job.title)}
+                  >
+                    Apply for this role &rarr;
+                  </Button>
+                </div>
+                <details className="group mt-5">
+                  <summary className="w-fit cursor-pointer text-sm font-medium text-ink underline decoration-ink/25 underline-offset-4">
+                    Role details{" "}
+                    <span className="sr-only">for {job.title}</span>
+                  </summary>
+                  <div className="mt-6 grid gap-8 rounded-xl bg-white/60 p-5 md:grid-cols-2 md:p-7">
+                    <div>
+                      <h4 className="font-semibold text-ink">
+                        What you’ll work on
+                      </h4>
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted">
+                        {job.responsibilities.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-ink">
+                        Skills & experience
+                      </h4>
+                      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted">
+                        {job.requirements.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="border-t border-ink/10 pt-5 md:col-span-2">
+                      <h4 className="font-semibold text-ink">
+                        What to include
+                      </h4>
+                      <p className="mt-2 text-sm leading-relaxed text-muted">
+                        {job.applicationNote}
+                      </p>
+                    </div>
                   </div>
-
-                  <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
-                    {job.description}
-                  </p>
-
-                  <div className="mt-6">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => setApplyingFor(job.title)}
-                    >
-                      Apply &rarr;
-                    </Button>
-                  </div>
-                </Card>
-              </motion.div>
+                </details>
+              </motion.article>
             ))}
           </motion.div>
 
@@ -742,6 +779,7 @@ export default function CareersPage() {
         {applyingFor && (
           <ApplicationModal
             jobTitle={applyingFor}
+            referralCode={referralCode}
             onClose={() => setApplyingFor(null)}
           />
         )}
