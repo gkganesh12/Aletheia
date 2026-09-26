@@ -10,7 +10,7 @@
     "prerender": "node scripts/prerender.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "node --test src/components/sections/FeaturedProjects/previewPosition.test.mjs src/lib/submitContact.test.mjs"
+    "test": "node --test src/components/sections/FeaturedProjects/previewPosition.test.mjs src/lib/submitContact.test.mjs src/lib/careerApplication.test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
