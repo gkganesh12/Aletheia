@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { submitContact } from "@/lib/submitContact.mjs";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -15,12 +16,6 @@ import PageSEO from "@/components/shared/PageSEO";
 import { breadcrumbJsonLd } from "@/lib/seo";
 import { staggerContainer, staggerItem } from "@/lib/motion-variants";
 import { useToast } from "@/components/shared/Toast";
-
-/* ────────────────────────────────────────────────────────────────────── */
-/*  Web3Forms key                                                        */
-/* ────────────────────────────────────────────────────────────────────── */
-
-const WEB3FORMS_KEY = "b1d6246c-dfe6-41f6-8c93-7374d0c9919c";
 
 /* ────────────────────────────────────────────────────────────────────── */
 /*  Application form schema                                              */
@@ -85,6 +80,41 @@ function ApplicationModal({
 }) {
   const { showToast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+
+  useEffect(() => {
+    const previousFocus = document.activeElement as HTMLElement | null;
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog?.querySelector<HTMLInputElement>("#app-name")?.focus();
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeRef.current();
+      if (event.key !== "Tab" || !dialog) return;
+      const fields = Array.from(
+        dialog.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), input:not([type="hidden"]):not([disabled]), textarea:not([disabled]), a[href]',
+        ),
+      );
+      const first = fields[0],
+        last = fields[fields.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKey);
+      previousFocus?.focus();
+    };
+  }, []);
 
   const {
     register,
@@ -104,33 +134,21 @@ function ApplicationModal({
   const onSubmit = async (data: ApplicationData) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          subject: `Job Application: ${jobTitle} — ${data.name}`,
-          from_name: data.name,
-          name: data.name,
-          email: data.email,
-          phone: data.phone || "Not provided",
-          portfolio: data.portfolio || "Not provided",
-          position: jobTitle,
-          message: data.message,
-        }),
+      await submitContact({
+        subject: `Job Application: ${jobTitle} — ${data.name}`,
+        from_name: data.name,
+        name: data.name,
+        email: data.email,
+        phone: data.phone || "Not provided",
+        portfolio: data.portfolio || "Not provided",
+        position: jobTitle,
+        message: data.message,
       });
-
-      const result = await response.json();
-
-      if (result.success) {
-        showToast({
-          type: "success",
-          message: "Application sent! We'll review it and get back to you.",
-        });
-        onClose();
-      } else {
-        throw new Error(result.message || "Submission failed");
-      }
+      showToast({
+        type: "success",
+        message: "Application sent! We'll review it and get back to you.",
+      });
+      onClose();
     } catch {
       showToast({
         type: "error",
@@ -157,7 +175,12 @@ function ApplicationModal({
 
       {/* Modal */}
       <motion.div
-        className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-ink/[0.1] bg-[var(--color-primary-900)]"
+        ref={dialogRef}
+        data-lenis-prevent
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="application-title"
+        className="relative max-h-[90svh] w-full max-w-lg overflow-y-auto rounded-2xl border border-ink/[0.1] bg-[var(--color-primary-900)]"
         initial={{ opacity: 0, y: 20, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 20, scale: 0.97 }}
@@ -170,9 +193,15 @@ function ApplicationModal({
               <p className="mono text-[10px] font-medium uppercase tracking-wider text-[var(--color-accent-400)]">
                 Apply for
               </p>
-              <h3 className="mt-1 text-xl font-bold text-ink">{jobTitle}</h3>
+              <h3
+                id="application-title"
+                className="mt-1 text-xl font-bold text-ink"
+              >
+                {jobTitle}
+              </h3>
             </div>
             <button
+              aria-label="Close application"
               onClick={onClose}
               className="flex h-8 w-8 items-center justify-center rounded-lg text-muted transition-colors hover:bg-primary-900 hover:text-ink"
             >
@@ -255,7 +284,7 @@ function ApplicationModal({
                   htmlFor="app-portfolio"
                   className="block text-sm text-muted mb-1.5"
                 >
-                  Portfolio / GitHub
+                  CV / Portfolio / GitHub
                 </label>
                 <input
                   id="app-portfolio"
@@ -570,7 +599,7 @@ export default function CareersPage() {
         title="Careers at Aletheia AI"
         description="Join Aletheia AI — we're hiring engineers, designers and AI specialists. Build production AI products with a team that ships."
         path="/careers"
-        keywords="AI jobs, AI company careers, machine learning engineer jobs, AI developer positions"
+        keywords="AI internships, full stack developer internship, Rust Python internship, UI UX designer, graphic designer, software engineer"
         jsonLd={breadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Careers", path: "/careers" },
@@ -580,7 +609,7 @@ export default function CareersPage() {
       <PageHero
         overline="Careers"
         title="Build What Matters"
-        description="Join a lean engineering studio that ships real products. We're hiring across AI, full-stack, cybersecurity and blockchain."
+        description="Join a lean engineering studio that ships real products. We're hiring interns, designers and a software engineer across AI, full-stack development and Rust/Python."
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Careers" }]}
       />
 
@@ -651,7 +680,7 @@ export default function CareersPage() {
             <SectionHeading
               overline="Open Positions"
               heading="Find Your Role"
-              description="We're hiring. Find a role that matches your skills."
+              description={`${careers.length} open roles. Find a role that matches your skills.`}
             />
           </AnimatedSection>
 
@@ -691,14 +720,18 @@ export default function CareersPage() {
                   </div>
 
                   <div className="mt-3 flex flex-wrap items-center gap-4 text-xs text-muted">
-                    <span className="inline-flex items-center gap-1">
-                      <MapPinSmallIcon />
-                      {job.location}
-                    </span>
-                    <span className="inline-flex items-center gap-1">
-                      <BriefcaseIcon />
-                      {job.type}
-                    </span>
+                    {job.location && (
+                      <span className="inline-flex items-center gap-1">
+                        <MapPinSmallIcon />
+                        {job.location}
+                      </span>
+                    )}
+                    {job.type && (
+                      <span className="inline-flex items-center gap-1">
+                        <BriefcaseIcon />
+                        {job.type}
+                      </span>
+                    )}
                   </div>
 
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
@@ -709,6 +742,7 @@ export default function CareersPage() {
                     <Button
                       variant="secondary"
                       size="sm"
+                      aria-label={`Apply for ${job.title}`}
                       onClick={() => setApplyingFor(job.title)}
                     >
                       Apply &rarr;

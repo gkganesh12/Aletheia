@@ -47,12 +47,6 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  Web3Forms API key                                                    */
-/* ────────────────────────────────────────────────────────────────────── */
-
-const WEB3FORMS_KEY = "b1d6246c-dfe6-41f6-8c93-7374d0c9919c";
-
-/* ────────────────────────────────────────────────────────────────────── */
 /*  Shared input classes                                                 */
 /* ────────────────────────────────────────────────────────────────────── */
 
@@ -248,7 +242,6 @@ export default function ContactPage() {
     setIsSubmitting(true);
     try {
       await submitContact({
-        access_key: WEB3FORMS_KEY,
         subject: `New inquiry from ${data.name} — ${data.service}`,
         from_name: data.name,
         name: data.name,

@@ -2,79 +2,86 @@ export interface JobListing {
   id: string;
   title: string;
   department: string;
-  location: string;
-  type: string;
+  location?: string;
+  type?: string;
   description: string;
   requirements: string[];
 }
 
 export const careers: JobListing[] = [
   {
-    id: "fullstack-engineer",
-    title: "Full-Stack Engineer",
+    id: "full-stack-developer-intern",
+    title: "Full Stack Developer Intern",
     department: "Engineering",
-    location: "Remote (India preferred)",
-    type: "Full-time / Contract",
+    type: "Internship",
     description:
-      "Build production applications across our products and client projects. You will work with React, Next.js, Node.js, Python and TypeScript — shipping real features to real users. We are a small team, so you will have significant ownership and impact from day one.",
+      "Help build websites and web applications across the frontend and backend. Work on interfaces, APIs and integrations alongside the team.",
     requirements: [
-      "2+ years building full-stack applications with React/Next.js and Node.js or Python",
-      "Strong TypeScript skills and comfort with both frontend and backend",
-      "Experience with PostgreSQL, Redis or similar databases",
-      "Familiarity with Docker and cloud deployment (AWS, GCP or Vercel)",
-      "Ability to ship independently — we don't micromanage",
-      "Bonus: experience with AI/ML integration, blockchain or real-time systems",
+      "Working knowledge of HTML, CSS and JavaScript",
+      "Interest in frontend and backend development",
+      "Share a project, GitHub profile or CV",
     ],
   },
   {
-    id: "ai-ml-engineer",
-    title: "AI/ML Engineer",
+    id: "ai-intern",
+    title: "AI Intern",
     department: "Engineering",
-    location: "Remote (India preferred)",
-    type: "Full-time / Contract",
+    type: "Internship",
     description:
-      "Design and build AI-powered features across our products — from RAG pipelines and multi-agent systems to custom ML models. You will work on SwarmScope's simulation engine, Inscrape's extraction intelligence and client AI projects.",
+      "Help prototype and evaluate AI features, work with data and connect models to useful applications. Bring your curiosity and projects you have explored.",
     requirements: [
-      "2+ years building ML/AI applications in Python",
-      "Experience with LLMs, RAG pipelines or multi-agent systems",
-      "Proficiency in PyTorch, LangChain or similar ML/AI frameworks",
-      "Familiarity with vector databases (Pinecone, Weaviate) and knowledge graphs (Neo4j)",
-      "Strong Python and API development skills (FastAPI/Flask)",
-      "Bonus: published packages, open-source contributions or research experience",
+      "Familiarity with Python and basic AI concepts",
+      "Interest in LLM applications, data or machine learning",
+      "Share a project, GitHub profile or CV",
     ],
   },
   {
-    id: "blockchain-developer",
-    title: "Blockchain Developer",
+    id: "rust-python-intern",
+    title: "Rust/Python Intern",
     department: "Engineering",
-    location: "Remote",
-    type: "Contract / Part-time",
+    type: "Internship",
     description:
-      "Build smart contracts and decentralised applications for client projects. You will work with Solidity, Hardhat and full-stack Web3 tooling — shipping DApps, token systems and NFT platforms.",
+      "Build tools, backend features and integrations using Rust or Python. Experience with either language is welcome; you do not need to know both.",
     requirements: [
-      "1+ years of Solidity smart contract development",
-      "Experience with Hardhat, Ethers.js or Web3.js",
-      "Understanding of ERC-20, ERC-721 and other token standards",
-      "Security awareness — common smart contract vulnerabilities and mitigations",
-      "Frontend skills (React + Web3 wallet integration) preferred",
-      "Bonus: smart contract auditing experience",
+      "Working knowledge of Rust or Python",
+      "Interest in APIs, automation or developer tools",
+      "Share a project, GitHub profile or CV",
     ],
   },
   {
-    id: "security-researcher",
-    title: "Security Researcher / Pentester",
-    department: "Security",
-    location: "Remote (India preferred)",
-    type: "Contract / Part-time",
+    id: "ui-ux-designer",
+    title: "UI/UX Designer",
+    department: "Design",
     description:
-      "Conduct penetration tests, vulnerability assessments and security audits for client engagements. You will test web applications, APIs, cloud infrastructure and networks — finding what automated tools miss.",
+      "Design clear user journeys and usable interfaces for websites and AI products. Turn ideas into wireframes, prototypes and designs the team can build.",
     requirements: [
-      "Hands-on experience with web application and API penetration testing",
-      "Proficiency with Burp Suite, Nmap, Metasploit or similar tools",
-      "Understanding of OWASP Top 10, common vulnerability classes and remediation",
-      "CEH, OSCP or equivalent certification preferred",
-      "Strong report writing skills — findings must be clear and actionable",
-      "Bonus: cloud security experience (AWS/GCP), bug bounty track record",
+      "A portfolio showing interface design and your process",
+      "Interest in usability, accessibility and interaction design",
+      "Comfort collaborating with developers",
+    ],
+  },
+  {
+    id: "graphic-designer",
+    title: "Graphic Designer",
+    department: "Design",
+    description:
+      "Create visual identities, social graphics and marketing materials for Aletheia AI and its projects. Bring care for typography, colour and composition.",
+    requirements: [
+      "A portfolio of visual design work",
+      "Attention to typography, layout and brand consistency",
+      "Ability to prepare assets for web and print",
+    ],
+  },
+  {
+    id: "software-engineer",
+    title: "Software Engineer",
+    department: "Engineering",
+    description:
+      "Build and maintain reliable software across products and client projects. Work on features, integrations, testing and the details that make software useful.",
+    requirements: [
+      "Experience building and debugging software",
+      "Comfort with Git, APIs and testing",
+      "Share relevant projects, a GitHub profile or CV",
     ],
   },
 ];
