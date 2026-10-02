@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AI in Healthcare: 5 Real-World Applications That Are Actually Working — Aletheia AI</title>
+  <meta name="description" content="Not theoretical. Not in pilot. These five AI applications in healthcare are delivering measurable results in production today — and the engineering behind them is more practical than you might expect." />
+  <link rel="icon" href="assets/brand/favicon.png" type="image/png" />
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body class="page page--blog">
+
+  <header class="nav" data-tone="dark">
+    <a class="nav__brand" href="index.html" aria-label="Aletheia AI, home">
+      <img class="logo logo--dark" src="assets/brand/logo.png" alt="Aletheia AI" width="826" height="160" />
+      <img class="logo logo--light" src="assets/brand/logo-light.png" alt="" aria-hidden="true" width="826" height="160" />
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#answers">Services</a>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Resources <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+      </div>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Company <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+      </div>
+    </nav>
+    <div class="nav__end">
+      <a class="nav__cta" href="contact.html"><span>Start a project</span><i aria-hidden="true">↗</i></a>
+      <button class="nav__burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="menu" aria-hidden="true">
+    <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a></div>
+    <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+    <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+    <div class="menu__foot"><a href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i></i></div>
+
+  <main id="top">
+    <article class="article" data-tone="dark">
+      <a class="back" href="blog.html">← All writing</a>
+      <p class="eyebrow">[ Industry · 14 Apr 2026 · 13 min read ]</p>
+      <h1>AI in Healthcare: 5 Real-World Applications That Are Actually Working</h1>
+      <p class="article__lede">Not theoretical. Not in pilot. These five AI applications in healthcare are delivering measurable results in production today — and the engineering behind them is more practical than you might expect.</p>
+      <div class="prose"><p>The healthcare AI conversation has been dominated by hype for nearly a decade. Every year brings a new wave of announcements about AI systems that will revolutionise diagnosis, drug discovery and patient care. Most of these announcements describe research prototypes, pilot programmes or carefully staged demos — not systems delivering value in clinical production. The reality is more modest and more interesting: there are specific, well-defined AI applications in healthcare that are working right now, generating measurable improvements in outcomes, efficiency and cost.</p><p>This is not a survey of what is possible. It is a practical look at five AI solutions healthcare organisations are deploying today, the engineering behind them and the results they are producing. For each application, I will cover what the system actually does, why it works, what the technical architecture looks like and where the limitations are.</p><p>The first application is diagnostic imaging, and it is the most mature AI application in healthcare by a significant margin. AI systems that assist radiologists in detecting abnormalities in medical images — mammograms, chest X-rays, retinal scans, CT scans — have moved well past the pilot phase. Systems like Viz.ai for stroke detection and IDx-DR for diabetic retinopathy screening are FDA-cleared and running in clinical production across hundreds of facilities. IDx-DR demonstrated 87% sensitivity and 90% specificity in autonomous diabetic retinopathy screening, enabling primary care clinics to screen patients who would otherwise wait months for a specialist appointment.</p><p>The engineering behind diagnostic imaging AI is deep learning on large labelled datasets — convolutional neural networks and vision transformers trained on millions of annotated medical images. The key technical challenge is not model accuracy in controlled conditions — it is robustness across the variation in real-world clinical imaging. Different scanner manufacturers, imaging protocols, patient populations and image quality levels all affect model performance. These systems assist radiologists, they do not replace them.</p><p>The second application is AI-accelerated drug discovery. Traditional drug discovery takes 10 to 15 years and costs over two billion dollars per approved drug. AI is compressing the early stages from years to months. Insilico Medicine&#x27;s AI-discovered drug for idiopathic pulmonary fibrosis reached Phase II clinical trials in under 30 months from target identification — a timeline that would typically take five to seven years. The technical architecture combines graph neural networks for molecular property prediction, generative models for novel molecule design and reinforcement learning for optimisation of drug-like properties.</p><p>The third application — and the one closest to what we build at Aletheia AI — is clinical document processing. Healthcare generates an extraordinary volume of unstructured text: clinical notes, discharge summaries, pathology reports, insurance claims. The vast majority is processed manually. AI solutions healthcare organisations are deploying use a combination of NLP, named entity recognition and LLM-powered extraction to automate the reading and extraction of structured data from clinical documents. The engineering approach is similar to what we built for HeuriSight — a RAG-based architecture with domain-specific entity extraction. Organisations deploying clinical NLP report 60 to 80 percent reduction in manual processing time.</p><p>The fourth application is patient risk stratification — using AI to identify which patients are most likely to experience adverse outcomes so that clinical resources can be directed where they are needed most. Systems like Epic&#x27;s Sepsis Prediction Model and Johns Hopkins&#x27; TREWS system are running in production, generating real-time risk scores. The technical architecture is gradient-boosted trees or logistic regression models trained on structured EHR data. The engineering challenge is not model complexity — it is data quality and workflow integration.</p><p>The fifth application is operational optimisation — using AI to improve the business of running a healthcare organisation. This includes patient scheduling optimisation, staff allocation, supply chain forecasting and revenue cycle management. AI-driven scheduling systems reduce patient no-show rates by 15 to 25 percent. Staff allocation models reduce overtime costs by predicting demand patterns. These are not clinically glamorous applications, but they deliver some of the highest and most measurable ROI.</p><p>The common thread across all five applications is that the AI systems delivering real results in healthcare are narrow, focused and deeply integrated into existing workflows. They do not try to replace human expertise — they augment it by handling the high-volume, pattern-recognition-heavy tasks that consume clinical and administrative time without requiring clinical judgement.</p><p>For organisations evaluating AI solutions healthcare can benefit from, the lesson is practical: start with the use case where you have the most structured data, the clearest success metric and the shortest path to workflow integration. Clinical document processing and operational optimisation are typically the lowest-risk, highest-ROI starting points. At Aletheia AI, our work in healthcare and edtech has given us deep experience in the document processing and knowledge extraction layer that underpins many of these applications. If you are a healthcare organisation exploring AI solutions, the technology is ready. The question is whether the engineering is done right.</p></div>
+      <p class="article__by">Written by Ganesh Khetawat</p>
+      <a class="next" href="blog-llm-security-checklist-enterprise.html"><span>Read next</span><b>LLM Security Checklist for Enterprise Deployments</b><i aria-hidden="true">→</i></a>
+    </article>
+
+    <section class="start" id="start" data-tone="light">
+      <div class="start__grid" aria-hidden="true"></div>
+      <div class="start__in">
+        <p class="eyebrow">[ Your turn ]</p>
+        <h2 class="start__h">You’ve built the business.<br /><em>So, what’s next?</em></h2>
+        <div class="start__row">
+          <a class="btn" href="contact.html"><span>Start a project</span><i>↗</i></a>
+          <a class="start__mail" href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a>
+        </div>
+      </div>
+      <footer class="foot">
+        <div class="foot__cols">
+          <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a><a href="index.html#under">How we build</a><a href="index.html#name">The name</a></div>
+          <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+          <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+          <div><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+          <div><h4>Elsewhere</h4><a href="https://www.linkedin.com/company/aletheiaaitech" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Aletheia-Ai-tech" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/ai_aletheia" target="_blank" rel="noopener">X</a><p>Pune, India</p></div>
+        </div>
+        <div class="foot__base"><span>© 2026 Aletheia AI</span><span>Design &amp; engineering, nothing hidden.</span></div>
+        <div class="foot__word" aria-hidden="true">Aletheia</div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="cookie" role="dialog" aria-label="Cookies" hidden>
+    <p>We use two analytics cookies to see which pages get read. Nothing else, no ads. <a href="cookies.html">Details</a></p>
+    <div class="cookie__row"><button type="button" data-cookie="accept">That’s fine</button><button type="button" data-cookie="decline">No thanks</button></div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/SplitText.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="js/chrome.js"></script>
+  <script src="js/page.js"></script>
+</body>
+</html>

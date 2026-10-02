@@ -1,0 +1,3 @@
+# full-size originals of the image series live outside the repo; the page uses the .webp copies
+assets/art/*.png
+.DS_Store

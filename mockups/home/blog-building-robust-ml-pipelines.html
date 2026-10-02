@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Building Robust ML Pipelines: Lessons from Production Deployments — Aletheia AI</title>
+  <meta name="description" content="Hard-won lessons about what separates ML pipelines that thrive from those that quietly decay — from data quality to training-serving skew." />
+  <link rel="icon" href="assets/brand/favicon.png" type="image/png" />
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body class="page page--blog">
+
+  <header class="nav" data-tone="dark">
+    <a class="nav__brand" href="index.html" aria-label="Aletheia AI, home">
+      <img class="logo logo--dark" src="assets/brand/logo.png" alt="Aletheia AI" width="826" height="160" />
+      <img class="logo logo--light" src="assets/brand/logo-light.png" alt="" aria-hidden="true" width="826" height="160" />
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#answers">Services</a>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Resources <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+      </div>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Company <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+      </div>
+    </nav>
+    <div class="nav__end">
+      <a class="nav__cta" href="contact.html"><span>Start a project</span><i aria-hidden="true">↗</i></a>
+      <button class="nav__burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="menu" aria-hidden="true">
+    <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a></div>
+    <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+    <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+    <div class="menu__foot"><a href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i></i></div>
+
+  <main id="top">
+    <article class="article" data-tone="dark">
+      <a class="back" href="blog.html">← All writing</a>
+      <p class="eyebrow">[ Engineering · 21 Mar 2026 · 12 min read ]</p>
+      <h1>Building Robust ML Pipelines: Lessons from Production Deployments</h1>
+      <p class="article__lede">Hard-won lessons about what separates ML pipelines that thrive from those that quietly decay — from data quality to training-serving skew.</p>
+      <div class="prose"><p>The gap between a model that performs well in a Jupyter notebook and one that delivers reliable value in production is enormous — and it is not primarily a modelling problem. After shipping ML models to production across different domains, the same failure patterns recur with striking regularity. The models that succeed share a set of engineering practices that have nothing to do with architecture cleverness and everything to do with operational discipline.</p><p>The first and most important lesson is that data quality monitoring is more valuable than model performance monitoring. Most production ML failures are not model failures — they are data failures. An upstream schema change, a sensor miscalibration, a third-party API changing its response format — these mundane data issues cause more model degradation than concept drift ever does. Every production pipeline should have automated data validation at the ingestion layer that checks schema conformance, statistical distribution bounds, completeness thresholds and referential integrity before data reaches the feature engineering stage.</p><p>The second lesson is that training-serving skew is the silent killer of ML systems. It happens when the feature computation logic differs even slightly between training and inference — perhaps a different library version, a subtly different aggregation window or a timezone handling inconsistency. The fix is a centralised feature store that serves identical feature computation logic to both training and inference pipelines. This single investment eliminates an entire class of bugs that are notoriously difficult to diagnose.</p><p>The third lesson is that you must design for rollback from day one. Every model deployment should be treated like a code deployment: canary rollouts, automated quality gates that compare the new model&#x27;s predictions against the incumbent, and one-click rollback capability. The models that cause the most damage in production are not the ones that fail catastrophically — they are the ones that degrade subtly over weeks, making slightly worse decisions that compound before anyone notices.</p></div>
+      <p class="article__by">Written by Ganesh Khetawat</p>
+      <a class="next" href="blog-zero-trust-beyond-the-buzzword.html"><span>Read next</span><b>Zero Trust Beyond the Buzzword: A Practical Implementation Guide</b><i aria-hidden="true">→</i></a>
+    </article>
+
+    <section class="start" id="start" data-tone="light">
+      <div class="start__grid" aria-hidden="true"></div>
+      <div class="start__in">
+        <p class="eyebrow">[ Your turn ]</p>
+        <h2 class="start__h">You’ve built the business.<br /><em>So, what’s next?</em></h2>
+        <div class="start__row">
+          <a class="btn" href="contact.html"><span>Start a project</span><i>↗</i></a>
+          <a class="start__mail" href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a>
+        </div>
+      </div>
+      <footer class="foot">
+        <div class="foot__cols">
+          <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a><a href="index.html#under">How we build</a><a href="index.html#name">The name</a></div>
+          <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+          <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+          <div><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+          <div><h4>Elsewhere</h4><a href="https://www.linkedin.com/company/aletheiaaitech" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Aletheia-Ai-tech" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/ai_aletheia" target="_blank" rel="noopener">X</a><p>Pune, India</p></div>
+        </div>
+        <div class="foot__base"><span>© 2026 Aletheia AI</span><span>Design &amp; engineering, nothing hidden.</span></div>
+        <div class="foot__word" aria-hidden="true">Aletheia</div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="cookie" role="dialog" aria-label="Cookies" hidden>
+    <p>We use two analytics cookies to see which pages get read. Nothing else, no ads. <a href="cookies.html">Details</a></p>
+    <div class="cookie__row"><button type="button" data-cookie="accept">That’s fine</button><button type="button" data-cookie="decline">No thanks</button></div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/SplitText.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="js/chrome.js"></script>
+  <script src="js/page.js"></script>
+</body>
+</html>
