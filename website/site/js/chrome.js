@@ -34,8 +34,25 @@
     write(b.dataset.cookie);
     paint();
     if (banner) { banner.classList.remove('is-in'); setTimeout(() => { banner.hidden = true; }, 900); }
-    // production: load Google Analytics here only when the choice is "accept"
+    if (b.dataset.cookie === 'accept') loadAnalytics();
   });
+
+  // Google Analytics is only ever requested after the visitor has said yes
+  const GA_ID = 'G-T8T16K884P';
+  let gaLoaded = false;
+  function loadAnalytics() {
+    if (gaLoaded || navigator.webdriver) return;
+    gaLoaded = true;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.append(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+  }
+  if (read() === 'accept') loadAnalytics();
 
   /* ───────── page behaviour that has to work with or without motion ───────── */
   const $$ = (q, c = document) => [...c.querySelectorAll(q)];

@@ -15,16 +15,13 @@ Node.js >= 20 required. Package manager: npm.
 ### Website (primary workspace)
 
 ```bash
-npm run dev          # Vite dev server (from root, proxies to website workspace)
-npm run build        # TypeScript compile + Vite production build
-npm run lint         # ESLint (website workspace)
-npm run preview      # Preview production build locally
+npm run dev          # Build the static site and serve it on http://localhost:3000 (from root)
+npm run build        # Generate the site into website/dist
+npm test             # Rebuild and check every page (titles, descriptions, links, images)
 ```
 
-Or run directly in `website/`:
-```bash
-cd website && npm run dev
-```
+Or run directly in `website/` with the same script names. The old React app is still in `website/src`
+(`npm run legacy:dev` / `legacy:build` inside `website/`) but is no longer what gets deployed.
 
 ### Agents
 
@@ -56,33 +53,18 @@ npm install          # Install all workspaces
 
 ### Website
 
-**Stack:** React 19, Vite 8, Tailwind CSS v4 (via `@tailwindcss/vite` plugin — no PostCSS), Framer Motion, GSAP, Three.js/R3F, React Router v7, Lenis (smooth scroll).
+**The live site is plain HTML, CSS and JS** in `website/site/`, generated into `website/dist` by
+`website/scripts/build-site.mjs` (Node, no dependencies). Do not convert it to React; the owner asked for it to stay HTML.
 
-**Import alias:** `@` → `website/src/` (configured in `vite.config.ts`).
+- `website/site/index.html` — the homepage, hand-written. Motion in `site/js/main.js` (GSAP ScrollTrigger, SplitText, DrawSVG, Lenis; vendored in `site/assets/vendor`).
+- `website/site/data/content.json` — blog posts, case studies, services, products, industries, careers, FAQs.
+- `website/scripts/build-site.mjs` — generates every other page with clean URLs (`/about`, `/blog/<slug>`, `/services/<slug>` …), and the shared head, nav, footer, cookie notice, sitemap, robots.txt, RSS and structured data.
+- `website/site/js/chrome.js` — menus, cookie consent (Google Analytics loads only after "accept"), contact and application forms (Web3Forms).
+- `website/scripts/build-site.test.mjs` — checks every generated page.
 
-**Build splits:** Vendor chunk (react/react-dom), Animations chunk (gsap/framer-motion).
+**Design system** (`site/css/site.css`): paper `#f5f0e6`, ink, indigo night `#0f1136`, cobalt `#2747ff`, marigold `#ffb400`, sindoor `#f24b2a`. Bricolage Grotesque for everything, Fraunces italic for the emphasised word, JetBrains Mono for labels. The logo is the real lockup in `site/assets/brand`; never redraw it.
 
-**Routing** (`App.tsx`): Two layout modes:
-- Standard routes (with Navbar, Footer, SmoothScroll, Preloader, CustomCursor): `/`, `/about`, `/services/:slug`, `/products/:slug`, `/case-studies/:slug`, `/blog/:slug`, `/contact`, `/careers`, `/industries`, `/concept`
-- Standalone routes (no shared layout): `/curated-clone`
-
-**Component organization:**
-- `src/components/sections/` — Page sections (Hero, About, Services, Products, etc.)
-- `src/components/shared/` — Cross-cutting components (SmoothScroll, CustomCursor, Preloader, ErrorBoundary, etc.)
-- `src/components/ui/` — Primitives (Button, GradientText, SectionHeading, AnimatedCounter)
-- `src/components/three/` — Three.js/R3F scenes
-- `src/pages/` — Route-level page components that compose sections
-- `src/data/` — All content is data-driven (products, services, testimonials, FAQ, etc.)
-- `src/hooks/` — Custom hooks (useInView, useMediaQuery, useReducedMotion, useScrollDirection)
-
-**Design system** (`src/index.css`):
-- Dark theme default (primary-950: `#09090b`)
-- Accent palette: Violet (`#8b5cf6`) → Indigo (`#6366f1`) → Cyan (`#06b6d4`)
-- Fonts: Outfit (headings), DM Sans (body), JetBrains Mono (code)
-- Utility classes: `.glass-panel`, `.gradient-text`, `.glow`, `.glow-sm`, `.noise-overlay`, `.section-alt`
-- Theme tokens via Tailwind v4 `@theme` block (CSS custom properties)
-
-**Animation approach:** Framer Motion for React component animations + GSAP for advanced timelines. `useReducedMotion` hook for accessibility.
+**Legacy:** `website/src` is the previous React 19 + Vite + Tailwind app, kept for reference only.
 
 ### Agents
 
@@ -109,8 +91,6 @@ Optional: `AGENT_MODEL_*` (per-agent model override), `VERCEL_TOKEN`, `SANITY_PR
 
 ## Key Conventions
 
-- Content lives in `src/data/` files, not hardcoded in components
-- Tailwind v4 syntax: `@import "tailwindcss"` + `@theme` block (not `tailwind.config.js`)
-- Path alias `@/` for all website imports
-- Pages compose section components; sections are self-contained
-- Animation libraries are code-split into a separate chunk
+- Site content lives in `website/site/data/content.json` or the templates in `build-site.mjs`, not scattered through pages
+- Every page needs a unique title, a description, one `<h1>` and sized images; `npm test` enforces this
+- Internal links use clean URLs without `.html`

@@ -632,5 +632,1053 @@
    "bio": "CS student, Certified Ethical Hacker and full-stack engineer with deep expertise across AI/ML, cybersecurity and systems architecture. Ganesh founded Aletheia AI with a simple belief: technology should solve real problems, not just showcase intelligence. He has shipped three SaaS products, published packages on PyPI and npm, and built complex systems spanning multi-agent simulations, dual-engine RAG pipelines and intelligent alert platforms.",
    "avatar": "/images/founder/ganesh-khetawat.png"
   }
- ]
+ ],
+ "services": [
+  {
+   "slug": "ai-products",
+   "name": "AI Product Engineering",
+   "overline": "Build Intelligence",
+   "headline": "AI Products Built for the Real World",
+   "description": "We design and build AI-powered products from the ground up — LLM applications, multi-agent systems, RAG pipelines, computer vision and NLP. Not proof-of-concepts that look good in demos. Production systems that handle real users, real data and real edge cases. Our own products (Inscrape, Nirvana, SwarmScope) are the proof.",
+   "features": [
+    {
+     "title": "LLM Application Development",
+     "description": "Custom applications built on top of large language models — chatbots, copilots, content generation systems, document analysis tools. Prompt engineering, fine-tuning and guardrails included."
+    },
+    {
+     "title": "Multi-Agent Systems",
+     "description": "Architectures where specialised AI agents collaborate to handle complex workflows. We built SwarmScope with 5,000+ concurrent agents — we know how to make multi-agent systems work at scale."
+    },
+    {
+     "title": "RAG Pipelines",
+     "description": "Retrieval-Augmented Generation systems that ground AI responses in your data. Vector databases, embedding strategies, chunk optimisation and hybrid search — built for accuracy."
+    },
+    {
+     "title": "Production MLOps",
+     "description": "Model deployment, monitoring, versioning and retraining pipelines. We don't just build models — we build the infrastructure that keeps them performing in production."
+    }
+   ],
+   "technologies": [
+    "Python",
+    "PyTorch",
+    "LangChain",
+    "OpenAI API",
+    "Anthropic Claude API",
+    "Pinecone",
+    "FastAPI",
+    "Docker"
+   ],
+   "process": [
+    {
+     "step": 1,
+     "title": "Problem Framing",
+     "description": "We define the AI problem clearly — what data you have, what outcome you need, what constraints exist. No AI for AI's sake."
+    },
+    {
+     "step": 2,
+     "title": "Rapid Prototype",
+     "description": "A working prototype in days, not months. We validate the approach with real data before investing in production engineering."
+    },
+    {
+     "step": 3,
+     "title": "Production Build",
+     "description": "The validated approach gets hardened — error handling, edge cases, scalability, monitoring. Built to handle real-world traffic."
+    },
+    {
+     "step": 4,
+     "title": "Deploy & Monitor",
+     "description": "Deployed with full observability — latency tracking, accuracy monitoring, cost controls. We don't ship and forget."
+    }
+   ],
+   "stats": [
+    {
+     "value": "3",
+     "label": "AI products shipped to production"
+    },
+    {
+     "value": "5,000+",
+     "label": "Concurrent agents in SwarmScope"
+    },
+    {
+     "value": "Dual-Engine",
+     "label": "RAG+HAG system built (HeuriSight)"
+    },
+    {
+     "value": "< 4 weeks",
+     "label": "Typical prototype-to-production"
+    }
+   ]
+  },
+  {
+   "slug": "mvp-development",
+   "name": "MVP & Rapid Prototyping",
+   "overline": "Ship Fast",
+   "headline": "From Idea to Working Product — Fast",
+   "description": "You have an idea. You need it built, deployed and in front of users — without burning months or getting a codebase you'll have to throw away. We scope tightly, build fast and ship clean. Every MVP we deliver has production-grade architecture because we don't believe in throwaway code.",
+   "features": [
+    {
+     "title": "Tight Scoping",
+     "description": "We help you identify the core problem and the simplest product that validates it. No feature creep, no gold plating — just the thing that matters."
+    },
+    {
+     "title": "Scalable Architecture",
+     "description": "Clean code from day one. Modular components, proper API design, database schemas that won't need rewriting when you scale. We've done this enough to get it right the first time."
+    },
+    {
+     "title": "Full Deployment",
+     "description": "We don't hand you a zip file. Your MVP ships on real infrastructure — CI/CD, monitoring, domain, SSL. Ready for users."
+    },
+    {
+     "title": "Post-Launch Support",
+     "description": "We stick around for the first wave. Bug fixes, user feedback integration, performance tuning — we help you through the critical early days."
+    }
+   ],
+   "technologies": [
+    "React",
+    "Next.js",
+    "Node.js",
+    "Python",
+    "PostgreSQL",
+    "Redis",
+    "Vercel",
+    "Docker"
+   ],
+   "process": [
+    {
+     "step": 1,
+     "title": "Discovery & Scoping",
+     "description": "We understand your problem, your users and your constraints. Then we define the smallest product that validates the idea."
+    },
+    {
+     "step": 2,
+     "title": "Design & Architecture",
+     "description": "Tech stack selection, database design, API structure. We make the big decisions early so development moves fast."
+    },
+    {
+     "step": 3,
+     "title": "Sprint Build",
+     "description": "Focused development sprints with regular demos. You see progress every few days, not after months of silence."
+    },
+    {
+     "step": 4,
+     "title": "Ship & Iterate",
+     "description": "Deployed to production, monitored and ready for users. Then we iterate based on real feedback."
+    }
+   ],
+   "stats": [
+    {
+     "value": "10+",
+     "label": "Projects shipped"
+    },
+    {
+     "value": "< 6 weeks",
+     "label": "Typical MVP delivery"
+    },
+    {
+     "value": "0",
+     "label": "Throwaway codebases"
+    },
+    {
+     "value": "100%",
+     "label": "Deployed to production"
+    }
+   ]
+  },
+  {
+   "slug": "full-stack",
+   "name": "Full-Stack Development",
+   "overline": "End-to-End Engineering",
+   "headline": "Frontend to Backend to Deploy",
+   "description": "We build complete applications — responsive frontends, robust backends, APIs, real-time systems, databases and deployment. Whatever the tech stack demands, we handle it. React, Next.js, Node, Python, Go, Rust, PostgreSQL, Redis, Docker, Kubernetes — we pick the right tool for the job and build it properly.",
+   "features": [
+    {
+     "title": "Modern Frontends",
+     "description": "React, Next.js, TypeScript, Tailwind CSS. Responsive, accessible, performant UIs that work across devices. We care about the details."
+    },
+    {
+     "title": "Robust APIs & Backends",
+     "description": "RESTful and GraphQL APIs built on Node.js, Python, Go or Rust. Proper error handling, validation, authentication and rate limiting."
+    },
+    {
+     "title": "Database Design",
+     "description": "PostgreSQL, MongoDB, Redis, Neo4j — we pick the right database for your data model and design schemas that scale."
+    },
+    {
+     "title": "Infrastructure & DevOps",
+     "description": "Docker, CI/CD pipelines, cloud deployment (AWS, GCP, Vercel). We don't just write code — we make sure it runs reliably."
+    }
+   ],
+   "technologies": [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "Go",
+    "Rust",
+    "PostgreSQL"
+   ],
+   "process": [
+    {
+     "step": 1,
+     "title": "Requirements & Architecture",
+     "description": "We understand the full scope — features, integrations, scale requirements — and design an architecture that fits."
+    },
+    {
+     "step": 2,
+     "title": "Foundation Sprint",
+     "description": "Core architecture, database schema, authentication, deployment pipeline. The foundation everything else builds on."
+    },
+    {
+     "step": 3,
+     "title": "Feature Development",
+     "description": "Iterative feature development with regular deliverables. Frontend and backend built in parallel for speed."
+    },
+    {
+     "step": 4,
+     "title": "QA, Deploy & Handover",
+     "description": "Thorough testing, production deployment, documentation and clean handover. Code you can maintain and extend."
+    }
+   ],
+   "stats": [
+    {
+     "value": "7+",
+     "label": "Tech stacks we ship in"
+    },
+    {
+     "value": "Full-Stack",
+     "label": "Frontend to deployment"
+    },
+    {
+     "value": "Clean",
+     "label": "Maintainable, documented code"
+    },
+    {
+     "value": "Production",
+     "label": "Always deployed, never prototype-only"
+    }
+   ]
+  },
+  {
+   "slug": "cybersecurity",
+   "name": "Cybersecurity & Auditing",
+   "overline": "Defence Validation",
+   "headline": "Know Where You Stand Before Attackers Do",
+   "description": "Security audits, penetration testing, vulnerability assessments and secure architecture design. Our founder is CEH-certified with hands-on experience in both offensive and defensive security. We combine automated scanning with manual testing to find what automated tools miss — and we give you a prioritised, actionable remediation plan, not a 200-page PDF nobody reads.",
+   "features": [
+    {
+     "title": "Penetration Testing",
+     "description": "Black-box and grey-box assessments across web applications, APIs, networks and cloud infrastructure. We think like attackers to find what they'd exploit."
+    },
+    {
+     "title": "Vulnerability Assessment",
+     "description": "Automated and manual scanning of your infrastructure, applications and configurations. Every finding comes with severity rating, reproduction steps and fix guidance."
+    },
+    {
+     "title": "Secure Architecture Review",
+     "description": "Review of your system architecture, authentication flows, data handling and cloud configuration. We identify design-level weaknesses before they become incidents."
+    },
+    {
+     "title": "Remediation Support",
+     "description": "We don't just find problems — we help fix them. Prioritised remediation plans with hands-on support to implement the fixes that matter most."
+    }
+   ],
+   "technologies": [
+    "Burp Suite",
+    "Nmap",
+    "Metasploit",
+    "Semgrep",
+    "OWASP ZAP",
+    "Wireshark",
+    "Docker",
+    "Cloud Security Tools"
+   ],
+   "process": [
+    {
+     "step": 1,
+     "title": "Scoping & Threat Modelling",
+     "description": "We define the engagement scope, identify critical assets and model the most likely threat scenarios for your specific situation."
+    },
+    {
+     "step": 2,
+     "title": "Assessment Execution",
+     "description": "Automated scanning combined with manual testing. We document every finding with evidence and reproduction steps."
+    },
+    {
+     "step": 3,
+     "title": "Analysis & Prioritisation",
+     "description": "Findings are risk-scored based on exploitability and business impact. You get a clear, prioritised remediation roadmap."
+    },
+    {
+     "step": 4,
+     "title": "Fix & Retest",
+     "description": "We help implement fixes for critical findings and retest to confirm they're resolved. No open loops."
+    }
+   ],
+   "stats": [
+    {
+     "value": "CEH",
+     "label": "Certified Ethical Hacker"
+    },
+    {
+     "value": "OWASP",
+     "label": "Top 10 coverage in every audit"
+    },
+    {
+     "value": "Actionable",
+     "label": "Prioritised remediation, not PDF reports"
+    },
+    {
+     "value": "Full-Scope",
+     "label": "Web, API, cloud, network"
+    }
+   ]
+  },
+  {
+   "slug": "blockchain",
+   "name": "Blockchain & Web3",
+   "overline": "Decentralised Engineering",
+   "headline": "Smart Contracts to Full-Stack DApps",
+   "description": "We build blockchain applications that go beyond the hype — smart contracts, decentralised applications, token systems and Web3 platform engineering. From Solidity development to frontend integration, we handle the full stack of decentralised development with the same engineering rigour we bring to everything else.",
+   "features": [
+    {
+     "title": "Smart Contract Development",
+     "description": "Solidity smart contracts with proper testing, gas optimisation and security auditing. We write contracts that handle real value safely."
+    },
+    {
+     "title": "DApp Architecture",
+     "description": "Full-stack decentralised applications with Web3 wallet integration, on-chain/off-chain data architecture and responsive frontends."
+    },
+    {
+     "title": "Token & NFT Systems",
+     "description": "ERC-20, ERC-721 and custom token standards. Minting, marketplace, governance and utility token implementations."
+    },
+    {
+     "title": "Smart Contract Auditing",
+     "description": "Security review of existing smart contracts — reentrancy, overflow, access control and logic vulnerabilities. Manual review plus automated analysis."
+    }
+   ],
+   "technologies": [
+    "Solidity",
+    "Hardhat",
+    "Ethers.js",
+    "Web3.js",
+    "IPFS",
+    "The Graph",
+    "React",
+    "TypeScript"
+   ],
+   "process": [
+    {
+     "step": 1,
+     "title": "Architecture Design",
+     "description": "We design the on-chain/off-chain split, choose the right blockchain, plan gas optimisation and define the smart contract architecture."
+    },
+    {
+     "step": 2,
+     "title": "Contract Development & Testing",
+     "description": "Smart contracts written with comprehensive test suites. Every edge case covered before deployment."
+    },
+    {
+     "step": 3,
+     "title": "Frontend & Integration",
+     "description": "Web3 frontend with wallet connection, transaction handling and real-time on-chain data. Full DApp experience."
+    },
+    {
+     "step": 4,
+     "title": "Audit & Deploy",
+     "description": "Security audit of all contracts, testnet deployment, mainnet deployment and monitoring setup."
+    }
+   ],
+   "stats": [
+    {
+     "value": "Solidity",
+     "label": "Primary smart contract language"
+    },
+    {
+     "value": "Full-Stack",
+     "label": "Contracts to frontend"
+    },
+    {
+     "value": "Audited",
+     "label": "Security-first development"
+    },
+    {
+     "value": "Multi-Chain",
+     "label": "Ethereum, Polygon and more"
+    }
+   ]
+  },
+  {
+   "slug": "data-ml",
+   "name": "Data Engineering & ML",
+   "overline": "Data Infrastructure",
+   "headline": "Clean Data In. Intelligent Decisions Out.",
+   "description": "AI is only as good as the data that feeds it. We build the pipelines, processing systems and ML infrastructure that transform raw data into intelligent applications. From data ingestion and transformation to model training and deployment — reliable, monitored and scalable. Our own products are proof: HeuriSight processes educational assessments through a dual-engine RAG+HAG pipeline, and SwarmScope's GraphRAG extracts entity graphs from unstructured text.",
+   "features": [
+    {
+     "title": "Data Pipelines",
+     "description": "Ingestion, transformation, validation and delivery pipelines that handle your data reliably. Batch and real-time, depending on your needs."
+    },
+    {
+     "title": "ML Model Development",
+     "description": "Custom model training, fine-tuning and evaluation. We build models tailored to your data and your problem — not off-the-shelf solutions that get you 80%."
+    },
+    {
+     "title": "RAG & Knowledge Systems",
+     "description": "Retrieval-Augmented Generation pipelines, vector databases, embedding strategies and knowledge graph construction. We've built multiple production RAG systems."
+    },
+    {
+     "title": "MLOps & Deployment",
+     "description": "Model serving, monitoring, versioning and retraining infrastructure. Production ML that stays accurate over time."
+    }
+   ],
+   "technologies": [
+    "Python",
+    "PyTorch",
+    "Pandas",
+    "FastAPI",
+    "Pinecone",
+    "Neo4j",
+    "PostgreSQL",
+    "Docker"
+   ],
+   "process": [
+    {
+     "step": 1,
+     "title": "Data Assessment",
+     "description": "We audit your data sources, quality, volume and gaps. Understanding what you have determines what we can build."
+    },
+    {
+     "step": 2,
+     "title": "Pipeline Design",
+     "description": "Architecture for data flow — ingestion, transformation, storage and serving. Designed for your scale and latency requirements."
+    },
+    {
+     "step": 3,
+     "title": "Build & Validate",
+     "description": "Pipeline development with data quality checks at every stage. Models trained and validated against your success metrics."
+    },
+    {
+     "step": 4,
+     "title": "Deploy & Monitor",
+     "description": "Production deployment with monitoring, alerting and documentation. Your team can operate it independently after handover."
+    }
+   ],
+   "stats": [
+    {
+     "value": "Dual-Engine",
+     "label": "RAG+HAG system shipped (HeuriSight)"
+    },
+    {
+     "value": "GraphRAG",
+     "label": "Entity extraction pipeline (SwarmScope)"
+    },
+    {
+     "value": "Production",
+     "label": "All ML systems deployed live"
+    },
+    {
+     "value": "End-to-End",
+     "label": "Data to deployment"
+    }
+   ]
+  }
+ ],
+ "products": [
+  {
+   "slug": "inscrape",
+   "name": "Inscrape",
+   "tagline": "AI-Powered Web Scraping",
+   "description": "Inscrape is a Python SDK that makes intelligent web scraping dead simple. Three lines of code to extract structured data from any URL — social media profiles, web pages, screenshots and clean Markdown. Published on PyPI with full async support, typed error handling and built-in rate-limit awareness. Stop writing fragile scrapers. Start extracting data.",
+   "gradient": [
+    "#2448FF",
+    "#1736CD"
+   ],
+   "features": [
+    {
+     "title": "3-Line Extraction",
+     "description": "Initialize the client, call scrape, get structured JSON. No complex configuration, no browser setup, no CSS selectors to maintain. Works out of the box for any URL.",
+     "icon": "Code"
+    },
+    {
+     "title": "Social Media Profiles",
+     "description": "Built-in extractors for Instagram and X/Twitter profiles that return structured data — followers, posts, bio, engagement metrics — as clean, typed JSON objects.",
+     "icon": "Globe"
+    },
+    {
+     "title": "Screenshot Capture",
+     "description": "Full-page and element-targeted PNG screenshots with configurable viewports. Capture visual snapshots of any page or specific DOM elements programmatically.",
+     "icon": "Camera"
+    },
+    {
+     "title": "Markdown Output",
+     "description": "Extract the readable content of any webpage as clean, formatted Markdown. Perfect for feeding content into LLMs, building knowledge bases or archiving web content.",
+     "icon": "FileText"
+    },
+    {
+     "title": "Async & Typed",
+     "description": "Full async support via AsyncInscrape for high-throughput pipelines. Typed error handling with specific exceptions for auth failures, rate limits and quota exhaustion.",
+     "icon": "Zap"
+    },
+    {
+     "title": "API-First Design",
+     "description": "RESTful API behind the SDK, so you can integrate from any language or platform. The Python SDK is the reference implementation — more SDKs coming soon.",
+     "icon": "Layers"
+    }
+   ],
+   "useCases": [
+    "Building datasets for AI/ML training from web content",
+    "Social media monitoring and competitive intelligence",
+    "Content aggregation and knowledge base construction",
+    "Automated visual regression testing via screenshots"
+   ],
+   "techStack": [
+    "Python",
+    "httpx",
+    "AsyncIO",
+    "Hatchling",
+    "pytest",
+    "Ruff"
+   ],
+   "metrics": [
+    {
+     "value": "3",
+     "label": "Lines of code to scrape any URL"
+    },
+    {
+     "value": "v0.1",
+     "label": "Published on PyPI"
+    },
+    {
+     "value": "< 2s",
+     "label": "Average extraction time"
+    },
+    {
+     "value": "100%",
+     "label": "Async support coverage"
+    }
+   ],
+   "pricing": [
+    {
+     "tier": "Free",
+     "price": "$0/mo",
+     "features": [
+      "100 requests per month",
+      "Basic URL scraping",
+      "Markdown extraction",
+      "Community support",
+      "PyPI package access"
+     ],
+     "cta": "Get Started"
+    },
+    {
+     "tier": "Pro",
+     "price": "$49/mo",
+     "features": [
+      "10,000 requests per month",
+      "Social media extractors",
+      "Screenshot capture",
+      "Async support",
+      "Priority API access",
+      "Email support"
+     ],
+     "cta": "Start Free Trial",
+     "highlighted": true
+    },
+    {
+     "tier": "Scale",
+     "price": "$199/mo",
+     "features": [
+      "100,000 requests per month",
+      "Everything in Pro",
+      "Custom extractors",
+      "Webhook delivery",
+      "Dedicated support",
+      "SLA guarantee"
+     ],
+     "cta": "Contact Us"
+    }
+   ]
+  },
+  {
+   "slug": "nirvana",
+   "name": "Nirvana",
+   "tagline": "Silence the Noise",
+   "description": "Nirvana is an intelligent alert management platform built for engineering teams drowning in notifications. It aggregates alerts from Sentry, Datadog and other monitoring sources into a unified inbox, then intelligently deduplicates, routes and prioritises them — cutting noise by up to 90%. Interactive Slack actions let you ACK, snooze or resolve alerts without leaving your workflow. Your team stops ignoring alerts and starts responding to the ones that matter.",
+   "gradient": [
+    "#FF775E",
+    "#B93B29"
+   ],
+   "features": [
+    {
+     "title": "Unified Alert Inbox",
+     "description": "Aggregate alerts from Sentry, Datadog and other monitoring tools into a single, prioritised view. No more switching between dashboards or missing critical alerts buried in different channels.",
+     "icon": "Inbox"
+    },
+    {
+     "title": "Intelligent Deduplication",
+     "description": "Smart algorithms identify duplicate and related alerts, grouping them into single actionable incidents. Reduces alert volume by 60-90% without losing signal.",
+     "icon": "Filter"
+    },
+    {
+     "title": "Slack-Native Workflow",
+     "description": "Alerts route directly to the right Slack channels with interactive buttons — acknowledge, snooze or resolve without leaving Slack. Your team stays in flow.",
+     "icon": "MessageSquare"
+    },
+    {
+     "title": "Automatic Escalation",
+     "description": "Unacknowledged alerts automatically escalate to the next responder based on configurable rules and schedules. Critical issues never fall through the cracks.",
+     "icon": "AlertTriangle"
+    },
+    {
+     "title": "Alert Analytics",
+     "description": "Dashboard showing alert volume trends, response times, noisiest sources and team performance metrics. Understand your alert health at a glance.",
+     "icon": "BarChart"
+    },
+    {
+     "title": "Smart Routing",
+     "description": "Rule-based routing sends alerts to the right person or channel based on service, severity, time of day and on-call schedules. The right alert reaches the right engineer.",
+     "icon": "GitBranch"
+    }
+   ],
+   "useCases": [
+    "Reducing alert fatigue for on-call engineering teams",
+    "Centralising monitoring alerts from multiple tools",
+    "Improving incident response times with Slack-native workflows",
+    "Tracking alert health and team responsiveness metrics"
+   ],
+   "techStack": [
+    "Next.js",
+    "NestJS",
+    "PostgreSQL",
+    "Redis",
+    "BullMQ",
+    "Slack API",
+    "TypeScript",
+    "Docker"
+   ],
+   "metrics": [
+    {
+     "value": "90%",
+     "label": "Alert noise reduction"
+    },
+    {
+     "value": "< 30s",
+     "label": "Alert delivery to Slack"
+    },
+    {
+     "value": "60%",
+     "label": "Faster incident response"
+    },
+    {
+     "value": "3",
+     "label": "Integrations (Sentry, Datadog, Slack)"
+    }
+   ],
+   "pricing": [
+    {
+     "tier": "Starter",
+     "price": "$0/mo",
+     "features": [
+      "Up to 1,000 alerts per month",
+      "2 alert sources",
+      "Slack integration",
+      "Basic deduplication",
+      "Email support"
+     ],
+     "cta": "Get Started"
+    },
+    {
+     "tier": "Team",
+     "price": "$79/mo",
+     "features": [
+      "Up to 25,000 alerts per month",
+      "Unlimited alert sources",
+      "Advanced deduplication",
+      "Smart routing & escalation",
+      "Alert analytics dashboard",
+      "Priority support"
+     ],
+     "cta": "Start Free Trial",
+     "highlighted": true
+    },
+    {
+     "tier": "Business",
+     "price": "$249/mo",
+     "features": [
+      "Unlimited alerts",
+      "Everything in Team",
+      "Custom integrations",
+      "On-call schedule sync",
+      "API access",
+      "Dedicated support",
+      "SSO & audit logs"
+     ],
+     "cta": "Contact Us"
+    }
+   ]
+  },
+  {
+   "slug": "swarmscope",
+   "name": "SwarmScope",
+   "tagline": "Simulate Everything.",
+   "description": "SwarmScope is a multi-agent simulation engine that turns unstructured data into living worlds. Upload a PDF, a dataset or plain text — SwarmScope's GraphRAG pipeline extracts entities and relationships, then generates 5,000+ autonomous agents with distinct personalities, memories and evolving social dynamics. Run simulations to model scenarios, test hypotheses or explore emergent behaviour. Talk to any agent. Analyse outcomes with the built-in ReportAgent. All for about $5 per simulation run.",
+   "gradient": [
+    "#2448FF",
+    "#1736CD"
+   ],
+   "features": [
+    {
+     "title": "Data-to-Simulation Pipeline",
+     "description": "Upload any unstructured data — PDFs, text files, Markdown documents — and SwarmScope automatically extracts entities, relationships and context to generate a simulation-ready world.",
+     "icon": "Upload"
+    },
+    {
+     "title": "GraphRAG Extraction",
+     "description": "A purpose-built Graph-based Retrieval-Augmented Generation pipeline extracts entities, their attributes and inter-entity relationships, building a rich knowledge graph that powers agent generation.",
+     "icon": "GitBranch"
+    },
+    {
+     "title": "5,000+ Autonomous Agents",
+     "description": "Each agent has a distinct personality, goals, memory and social awareness. Agents interact, form relationships, make decisions and evolve — creating emergent behaviours that mirror real-world dynamics.",
+     "icon": "Users"
+    },
+    {
+     "title": "Dynamic Memory & Relationships",
+     "description": "Agents maintain persistent memory of interactions and form evolving relationships. Social dynamics shift over time based on agent actions, creating realistic long-term simulations.",
+     "icon": "Brain"
+    },
+    {
+     "title": "Interactive Agent Chat",
+     "description": "Talk directly to any simulated agent during or after a simulation. Ask questions, probe motivations, test responses — full conversational access to every entity in the simulation.",
+     "icon": "MessageSquare"
+    },
+    {
+     "title": "ReportAgent Analysis",
+     "description": "A built-in AI analyst that reviews simulation outcomes, identifies patterns, highlights unexpected emergent behaviours and generates structured reports summarising key findings.",
+     "icon": "FileText"
+    }
+   ],
+   "useCases": [
+    "Scenario planning and strategic decision modelling",
+    "Social dynamics research and behavioural analysis",
+    "Training data generation through simulated interactions",
+    "Educational simulations and historical scenario recreation"
+   ],
+   "techStack": [
+    "React 19",
+    "FastAPI",
+    "Python",
+    "TypeScript",
+    "Vite",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Docker"
+   ],
+   "metrics": [
+    {
+     "value": "5,000+",
+     "label": "Concurrent autonomous agents"
+    },
+    {
+     "value": "~$5",
+     "label": "Per simulation run"
+    },
+    {
+     "value": "< 60s",
+     "label": "Data-to-simulation generation"
+    },
+    {
+     "value": "GraphRAG",
+     "label": "Entity extraction pipeline"
+    }
+   ],
+   "pricing": [
+    {
+     "tier": "Explorer",
+     "price": "$0/mo",
+     "features": [
+      "3 simulation runs per month",
+      "Up to 500 agents per simulation",
+      "Basic data upload",
+      "Agent chat",
+      "Community support"
+     ],
+     "cta": "Start Simulating"
+    },
+    {
+     "tier": "Researcher",
+     "price": "$59/mo",
+     "features": [
+      "30 simulation runs per month",
+      "Up to 5,000 agents per simulation",
+      "PDF & multi-format upload",
+      "GraphRAG extraction",
+      "ReportAgent analysis",
+      "Export simulation data",
+      "Priority support"
+     ],
+     "cta": "Start Free Trial",
+     "highlighted": true
+    },
+    {
+     "tier": "Enterprise",
+     "price": "Custom",
+     "features": [
+      "Unlimited simulations",
+      "Everything in Researcher",
+      "Custom agent archetypes",
+      "API access",
+      "Private deployment option",
+      "Dedicated support",
+      "Custom integrations"
+     ],
+     "cta": "Contact Us"
+    }
+   ]
+  }
+ ],
+ "industries": [
+  {
+   "slug": "healthcare",
+   "name": "Healthcare & EdTech",
+   "icon": "heart",
+   "description": "AI-powered platforms for healthcare systems and educational institutions — from patient data analysis to cognitive assessment pipelines and adaptive learning tools.",
+   "challenges": [
+    "Complex data processing across medical and educational records",
+    "HIPAA and FERPA compliance requirements",
+    "Need for intelligent assessment and diagnostic tools",
+    "Real-time analytics for student/patient outcomes"
+   ],
+   "solutions": [
+    "Dual-engine RAG+HAG systems for assessment analysis (HeuriSight)",
+    "Knowledge graph construction for competency mapping",
+    "AI-powered diagnostic and triage tools",
+    "Compliance-aware data pipelines"
+   ],
+   "stats": [
+    {
+     "value": "Dual-Engine",
+     "label": "RAG+HAG Shipped"
+    },
+    {
+     "value": "10",
+     "label": "Cognitive Categories"
+    },
+    {
+     "value": "Production",
+     "label": "Live Systems"
+    }
+   ],
+   "useCases": [
+    "AI-assisted educational assessment",
+    "Cognitive pattern extraction from student work",
+    "Knowledge graph-powered competency mapping",
+    "Adaptive learning and at-risk identification"
+   ]
+  },
+  {
+   "slug": "saas-startups",
+   "name": "SaaS & Startups",
+   "icon": "building",
+   "description": "MVP development, full-stack platform engineering and AI product integration for startups that need to ship fast without sacrificing code quality.",
+   "challenges": [
+    "Tight timelines and limited budgets",
+    "Need for scalable architecture from day one",
+    "AI/ML integration complexity",
+    "Going from idea to live product quickly"
+   ],
+   "solutions": [
+    "Rapid MVP development with production-grade architecture",
+    "Full-stack platforms (React, Next.js, Node, Python)",
+    "AI product integration (LLMs, RAG, agents)",
+    "Cloud deployment and CI/CD setup"
+   ],
+   "stats": [
+    {
+     "value": "< 6 weeks",
+     "label": "Typical MVP Delivery"
+    },
+    {
+     "value": "10+",
+     "label": "Projects Shipped"
+    },
+    {
+     "value": "Production",
+     "label": "Always Deployed"
+    }
+   ],
+   "useCases": [
+    "MVP development for seed-stage startups",
+    "SaaS platform engineering",
+    "AI feature integration into existing products",
+    "Technical co-founder-as-a-service"
+   ]
+  },
+  {
+   "slug": "developer-tools",
+   "name": "Developer Tools",
+   "icon": "code",
+   "description": "CLI tools, SDKs, APIs and developer infrastructure — published packages on PyPI and npm with production-grade documentation and developer experience.",
+   "challenges": [
+    "Developer experience must be exceptional",
+    "APIs need to be intuitive and well-documented",
+    "SDKs must support async, typing and error handling",
+    "Open-source maintenance and community building"
+   ],
+   "solutions": [
+    "Python SDKs with async support and typed errors (Inscrape)",
+    "TypeScript CLIs with interactive REPL and plugin systems (CodeCraft)",
+    "API-first architecture for cross-language support",
+    "Comprehensive documentation and test suites"
+   ],
+   "stats": [
+    {
+     "value": "2",
+     "label": "Published Packages"
+    },
+    {
+     "value": "PyPI + npm",
+     "label": "Package Registries"
+    },
+    {
+     "value": "v1.0",
+     "label": "Production Releases"
+    }
+   ],
+   "useCases": [
+    "SDK and API development",
+    "CLI tools for developer workflows",
+    "AI-powered developer tooling",
+    "Package publishing and maintenance"
+   ]
+  },
+  {
+   "slug": "cybersecurity",
+   "name": "Cybersecurity",
+   "icon": "shield",
+   "description": "Security auditing, penetration testing and AI-powered alert management for organisations that take security seriously.",
+   "challenges": [
+    "Alert fatigue from too many monitoring tools",
+    "Unknown vulnerabilities across web, API and cloud",
+    "Compliance requirements (SOC 2, ISO 27001, GDPR)",
+    "Need for proactive, not reactive security posture"
+   ],
+   "solutions": [
+    "Intelligent alert deduplication and routing (Nirvana)",
+    "Penetration testing and vulnerability assessments",
+    "Cloud security audits (AWS, GCP, Azure)",
+    "Secure architecture design and review"
+   ],
+   "stats": [
+    {
+     "value": "90%",
+     "label": "Alert Noise Reduction"
+    },
+    {
+     "value": "CEH",
+     "label": "Certified Team"
+    },
+    {
+     "value": "OWASP",
+     "label": "Top 10 Coverage"
+    }
+   ],
+   "useCases": [
+    "Alert management for engineering teams",
+    "Web application penetration testing",
+    "Cloud infrastructure security audits",
+    "Secure architecture review and hardening"
+   ]
+  },
+  {
+   "slug": "blockchain",
+   "name": "Blockchain & Web3",
+   "icon": "link",
+   "description": "Smart contract development, decentralised application engineering and token systems for Web3 projects that need real engineering, not hype.",
+   "challenges": [
+    "Smart contract security is critical — bugs cost real money",
+    "Full-stack DApp development requires Web2 + Web3 skills",
+    "Gas optimisation impacts user experience",
+    "Rapidly evolving standards and tooling"
+   ],
+   "solutions": [
+    "Solidity smart contract development with security auditing",
+    "Full-stack DApp architecture with Web3 wallet integration",
+    "Token and NFT system implementation",
+    "Gas optimisation and deployment automation"
+   ],
+   "stats": [
+    {
+     "value": "Solidity",
+     "label": "Smart Contracts"
+    },
+    {
+     "value": "Full-Stack",
+     "label": "DApp Development"
+    },
+    {
+     "value": "Multi-Chain",
+     "label": "Ethereum, Polygon+"
+    }
+   ],
+   "useCases": [
+    "Smart contract development and auditing",
+    "DApp frontend with Web3 wallet integration",
+    "Token and NFT marketplace development",
+    "Cross-chain application engineering"
+   ]
+  }
+ ],
+ "faq": {
+  "home": [
+   {
+    "question": "What does Aletheia AI do?",
+    "answer": "We are an AI engineering studio. We build our own products — Inscrape, Nirvana and SwarmScope — and we build for clients. If you need an MVP shipped, an AI product built, a full-stack platform engineered, a security audit or a blockchain application — we can take it from idea to production."
+   },
+   {
+    "question": "What kind of projects can you build?",
+    "answer": "Anything that needs strong engineering. AI-powered products, SaaS platforms, web and mobile applications, data pipelines, multi-agent systems, blockchain applications, developer tools — you name it. Our own shipped products are the proof of our engineering depth, and we bring the same quality to every client project."
+   },
+   {
+    "question": "How big is your team?",
+    "answer": "We are a lean, focused studio. Small team, big output. Every engineer ships to production. We keep the team tight so quality stays high — and we scale with trusted collaborators when projects need it."
+   },
+   {
+    "question": "How do you approach MVP development?",
+    "answer": "We scope tightly, build fast and ship clean. We start by understanding the core problem and the simplest product that validates it. Then we design a scalable architecture — not throwaway code — and deliver a working product you can put in front of real users. Most MVPs ship within weeks, not months."
+   },
+   {
+    "question": "What technologies do you work with?",
+    "answer": "We are polyglot engineers. Python, TypeScript, React, Next.js, Node.js, Go, Rust, Solidity — we pick the right tool for the job. On the AI side: PyTorch, LangChain, RAG pipelines, multi-agent systems, LLM APIs. Infrastructure: Docker, Kubernetes, AWS, GCP, Vercel. Databases: PostgreSQL, Redis, Neo4j, Pinecone."
+   },
+   {
+    "question": "Where are you based?",
+    "answer": "Headquartered in Pune, India. We work with clients globally and all collaboration is conducted remotely. Time zones have never been a problem — we ship fast regardless."
+   }
+  ],
+  "contact": [
+   {
+    "question": "What is the best way to get in touch?",
+    "answer": "The fastest way is to fill out the contact form on this page. We will respond within 24 hours on business days. For urgent inquiries, email us directly at info@aletheiaai.tech."
+   },
+   {
+    "question": "Can I schedule a demo or discuss a project?",
+    "answer": "Absolutely. Submit a contact form request and let us know what you are looking for — whether it is a product demo for Inscrape, Nirvana or SwarmScope, or a conversation about a custom build. We will set up a call."
+   },
+   {
+    "question": "Do you offer free trials for your products?",
+    "answer": "Yes. All three products have free tiers — Inscrape (100 requests/month), Nirvana (1,000 alerts/month) and SwarmScope (3 simulations/month). No credit card required to get started."
+   },
+   {
+    "question": "What information should I include in my inquiry?",
+    "answer": "The more context the better. It helps to include what you are building (or want built), your timeline, tech preferences (if any) and budget range. Even a rough idea is enough to start the conversation — we help refine scope as part of our process."
+   },
+   {
+    "question": "Where are you located?",
+    "answer": "Aletheia AI is headquartered in Pune, India. We work with clients globally and all onboarding, collaboration and support is conducted remotely."
+   }
+  ]
+ }
 }
