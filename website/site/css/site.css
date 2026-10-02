@@ -51,6 +51,9 @@ body {
 }
 main { overflow-x: clip; }
 img, video { display: block; max-width: 100%; }
+/* images carry width/height attributes so the page can reserve their space; without this the
+   height attribute would be taken literally and stretch them */
+img { height: auto; }
 a { color: inherit; text-decoration: none; }
 ul, ol { list-style: none; }
 ::selection { background: var(--marigold); color: var(--ink); }
