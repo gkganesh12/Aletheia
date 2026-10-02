@@ -2,17 +2,22 @@ services:
   - type: web
     name: aletheia-ai
     runtime: static
-    buildCommand: npm install && npm run build:prerender --workspace=website
+    # Plain HTML site. The build has no dependencies, so there is nothing to install.
+    buildCommand: node website/scripts/build-site.mjs
     staticPublishPath: ./website/dist
     envVars: []
     routes:
+      - type: redirect
+        source: /concept
+        destination: /
+      # anything that isn't a real page gets the not-found page
       - type: rewrite
         source: /*
-        destination: /index.html
+        destination: /404.html
     headers:
       - path: /assets/*
         name: Cache-Control
-        value: public, max-age=31536000, immutable
+        value: public, max-age=2592000
       - path: /*
         name: X-Content-Type-Options
         value: nosniff

@@ -8,7 +8,10 @@
   const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const small = () => innerWidth <= 820;
   const hash = location.hash;
-  const skip = new URLSearchParams(location.search).has('skip') || hash.length > 1;
+  // the loader plays once per session, and never when arriving on a section link
+  let seen = false;
+  try { seen = !!sessionStorage.getItem('aletheia-intro-seen'); sessionStorage.setItem('aletheia-intro-seen', '1'); } catch { /* storage blocked: play it */ }
+  const skip = new URLSearchParams(location.search).has('skip') || hash.length > 1 || seen;
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   const clamp01 = gsap.utils.clamp(0, 1);
 
@@ -61,8 +64,8 @@
   function chrome() {
     ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (self) => { gsap.set('.progress i', { scaleY: self.progress }); updateTone(); scrollWatchers.forEach((f) => f()); } });
 
-    $$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
-      const id = a.getAttribute('href');
+    $$('a[href^="#"], a[href^="/#"]').forEach((a) => a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href').replace(/^\//, '');
       const target = $(id);
       if (!target) return;
       e.preventDefault();
@@ -268,7 +271,7 @@
     const ease = gsap.parseEase('power2.inOut');
     const left = $$('.rc--l, .rc--lo'), right = $$('.rc--r, .rc--ro');
     if (new URLSearchParams(location.search).has('novideo')) video.style.display = 'none'; // screenshot tools that can't capture video
-    if (small()) { video.poster = 'assets/video/reel-portrait-poster.jpg'; video.src = 'assets/video/reel-portrait.mp4'; } // phones get the portrait cut
+    if (small()) { video.poster = '/assets/video/reel-portrait-poster.jpg'; video.src = '/assets/video/reel-portrait.mp4'; } // phones get the portrait cut
     const play = () => video.play().catch(() => {});
 
     ScrollTrigger.create({

@@ -32,6 +32,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
 html.is-loading, html.is-loading body { overflow: hidden; height: 100%; }
+:focus-visible { outline: 3px solid var(--marigold); outline-offset: 4px; }
+.skip { position: fixed; left: 1rem; top: -5rem; z-index: 200; padding: .7rem 1rem; border-radius: 10px; background: var(--ink); color: var(--paper); font-weight: 700; transition: top .3s var(--ease); }
+.skip:focus { top: 1rem; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
@@ -298,7 +301,8 @@ pre .c { color: #8a88b8; }
 .ans > p { font-size: .98rem; color: var(--ink-2); max-width: 34ch; }
 .ans__proof { margin-top: auto; min-height: 0; display: flex; flex-direction: column; gap: .5rem; }
 .ans__proof .demo { flex: none; height: 27vh; min-height: 170px; border-radius: 12px; font-size: clamp(9px, .86vw, 14px); }
-.ans__proof figcaption a { border-bottom: 1px solid currentColor; }
+.ans__proof figcaption { line-height: 1.7; }
+.ans__proof figcaption a { border-bottom: 1px solid currentColor; white-space: nowrap; }
 .ans__proof figcaption a:hover { color: var(--cobalt); }
 .ans__proof figcaption { font-family: var(--f-m); font-size: .64rem; text-transform: uppercase; letter-spacing: .03em; color: var(--ink-2); }
 .ans__proof--code pre { height: 18vh; border-radius: 12px; background: var(--night); color: #dcd8ff; font-family: var(--f-m); font-size: clamp(.6rem, .78vw, .8rem); line-height: 1.5; padding: 1rem 1.1rem; overflow: hidden; display: flex; flex-direction: column; justify-content: center; white-space: pre; }
