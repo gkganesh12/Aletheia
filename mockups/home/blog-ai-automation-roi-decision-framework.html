@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>AI Automation ROI: A Decision Framework for Business Leaders — Aletheia AI</title>
+  <meta name="description" content="A practical framework for evaluating AI automation investments — covering candidate identification, true ROI calculation, hidden costs, build vs buy and phased rollout strategy." />
+  <link rel="icon" href="assets/brand/favicon.png" type="image/png" />
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body class="page page--blog">
+
+  <header class="nav" data-tone="dark">
+    <a class="nav__brand" href="index.html" aria-label="Aletheia AI, home">
+      <img class="logo logo--dark" src="assets/brand/logo.png" alt="Aletheia AI" width="826" height="160" />
+      <img class="logo logo--light" src="assets/brand/logo-light.png" alt="" aria-hidden="true" width="826" height="160" />
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#answers">Services</a>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Resources <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+      </div>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Company <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+      </div>
+    </nav>
+    <div class="nav__end">
+      <a class="nav__cta" href="contact.html"><span>Start a project</span><i aria-hidden="true">↗</i></a>
+      <button class="nav__burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="menu" aria-hidden="true">
+    <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a></div>
+    <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+    <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+    <div class="menu__foot"><a href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i></i></div>
+
+  <main id="top">
+    <article class="article" data-tone="dark">
+      <a class="back" href="blog.html">← All writing</a>
+      <p class="eyebrow">[ AI · 14 Apr 2026 · 14 min read ]</p>
+      <h1>AI Automation ROI: A Decision Framework for Business Leaders</h1>
+      <p class="article__lede">A practical framework for evaluating AI automation investments — covering candidate identification, true ROI calculation, hidden costs, build vs buy and phased rollout strategy.</p>
+      <div class="prose"><p>Every week I talk to business leaders who want to automate something with AI but cannot figure out whether it is worth the investment. The pitch from vendors is always the same: deploy our AI solution and save millions. The reality is more nuanced. Some processes are excellent candidates for AI automation and will deliver returns within months. Others will consume a year of engineering effort and deliver marginal improvements. The difference is not obvious without a structured evaluation framework — and most organisations do not have one. This post is that framework.</p><p>The starting point is identifying which processes are actually good candidates for AI automation. I use a three-dimensional evaluation matrix: Volume, Variability and Value. Volume is how frequently the process executes. Variability is how much the inputs and decision logic vary. Value is the business impact of each execution. The sweet spot for AI automation is high volume, moderate variability and meaningful value. High volume ensures savings compound. Moderate variability is where AI excels — too low and rule-based automation is cheaper, too high and the error rate will be unacceptable.</p><p>Let me make this concrete. Customer support ticket triage — high volume, moderate variability, meaningful value — is an excellent candidate. Strategic pricing decisions — low volume, high variability, extremely high value — are a poor candidate. The cost of an AI error on a single large deal could dwarf any efficiency gains.</p><p>Calculating true ROI is where most AI business cases go wrong, because they count the savings and ignore the costs. A realistic ROI model must include direct and indirect benefits: labour cost reduction, throughput increase, error rate reduction, speed improvement and consistency improvement. On the cost side: initial development, data preparation and cleaning — typically the largest hidden cost — integration, change management, ongoing maintenance, infrastructure and quality assurance. If the payback period is under 12 months, the investment is compelling. Between 12 and 24 months, it requires executive sponsorship. Over 24 months, question whether a simpler solution would suffice.</p><p>Hidden costs deserve their own section. The biggest is data preparation. AI models need clean, structured, representative data — and most organisations&#x27; data is none of those things. I have seen projects where 60% of the total budget was consumed by data cleaning before any model development began. If your process relies on data in PDFs, emails or spreadsheets with inconsistent formatting, add 40-60% to your development cost estimate.</p><p>The second hidden cost is change management. AI automation changes how people work, and people resist changes — especially when they perceive AI as a threat. Budget for training, communication and workflow redesign. I have seen technically excellent projects fail because the intended users simply refused to adopt the system.</p><p>The third hidden cost is maintenance. AI models degrade over time as data distributions shift. Budget for monitoring that detects drift, periodic retraining and engineering time for updates. Annual maintenance costs are typically 20-30% of initial development cost.</p><p>The build versus buy decision has three inputs. First, is the process a source of competitive differentiation? If yes, build. If the process is commodity, buy. Second, do you have the engineering capacity? Building without adequate AI talent leads to fragile systems. Third, does a vendor solution fit without extensive customisation? If you need to customise heavily, you get the worst of both worlds.</p><p>Phased rollout is essential because big-bang deployments almost always fail. Phase one is the pilot: narrow scope, full human oversight, four to eight weeks. Phase two is supervised automation: expanded scope, exception-based human review. Phase three is autonomous operation: AI handles everything, humans handle escalations. Phase four is optimisation: use production data to drive improvements.</p><p>Measuring success requires four categories of metrics defined before deployment. Outcome metrics: cost per transaction, throughput, error rate. Process metrics: accuracy, confidence distribution, latency. Adoption metrics: utilisation rate, override rate. Economic metrics: actual ROI versus projected. If outcome metrics improve but adoption declines, you have a change management problem. If process metrics decline but outcomes have not yet been affected, you have early warning of model drift.</p><p>The last piece of advice: start small, prove value, then expand. Pick one well-scoped process, deploy a pilot in six weeks, demonstrate measurable ROI in three months and use that success to fund the next project. AI automation is not magic — it is an engineering discipline with predictable costs, measurable benefits and well-understood failure modes. Organisations that treat it as such will capture genuine competitive advantage.</p></div>
+      <p class="article__by">Written by Ganesh Khetawat</p>
+      <a class="next" href="blog-graphrag-beyond-basic-rag.html"><span>Read next</span><b>GraphRAG: Why Basic RAG Is Not Enough for Complex Data</b><i aria-hidden="true">→</i></a>
+    </article>
+
+    <section class="start" id="start" data-tone="light">
+      <div class="start__grid" aria-hidden="true"></div>
+      <div class="start__in">
+        <p class="eyebrow">[ Your turn ]</p>
+        <h2 class="start__h">You’ve built the business.<br /><em>So, what’s next?</em></h2>
+        <div class="start__row">
+          <a class="btn" href="contact.html"><span>Start a project</span><i>↗</i></a>
+          <a class="start__mail" href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a>
+        </div>
+      </div>
+      <footer class="foot">
+        <div class="foot__cols">
+          <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a><a href="index.html#under">How we build</a><a href="index.html#name">The name</a></div>
+          <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+          <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+          <div><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+          <div><h4>Elsewhere</h4><a href="https://www.linkedin.com/company/aletheiaaitech" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Aletheia-Ai-tech" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/ai_aletheia" target="_blank" rel="noopener">X</a><p>Pune, India</p></div>
+        </div>
+        <div class="foot__base"><span>© 2026 Aletheia AI</span><span>Design &amp; engineering, nothing hidden.</span></div>
+        <div class="foot__word" aria-hidden="true">Aletheia</div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="cookie" role="dialog" aria-label="Cookies" hidden>
+    <p>We use two analytics cookies to see which pages get read. Nothing else, no ads. <a href="cookies.html">Details</a></p>
+    <div class="cookie__row"><button type="button" data-cookie="accept">That’s fine</button><button type="button" data-cookie="decline">No thanks</button></div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/SplitText.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="js/chrome.js"></script>
+  <script src="js/page.js"></script>
+</body>
+</html>

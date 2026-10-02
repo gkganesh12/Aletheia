@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>RAG Pipeline Architecture: A Complete Guide — Aletheia AI</title>
+  <meta name="description" content="A deep technical guide to building production RAG pipelines — from chunking strategies and embedding models to retrieval, reranking and the failure modes that will bite you if you do not plan for them." />
+  <link rel="icon" href="assets/brand/favicon.png" type="image/png" />
+  <link rel="preload" href="assets/fonts/BricolageGrotesque-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="css/site.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+</head>
+<body class="page page--blog">
+
+  <header class="nav" data-tone="dark">
+    <a class="nav__brand" href="index.html" aria-label="Aletheia AI, home">
+      <img class="logo logo--dark" src="assets/brand/logo.png" alt="Aletheia AI" width="826" height="160" />
+      <img class="logo logo--light" src="assets/brand/logo-light.png" alt="" aria-hidden="true" width="826" height="160" />
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#answers">Services</a>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Resources <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+      </div>
+      <div class="nav__dd">
+        <button type="button" aria-haspopup="true">Company <i aria-hidden="true">+</i></button>
+        <div class="nav__menu"><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+      </div>
+    </nav>
+    <div class="nav__end">
+      <a class="nav__cta" href="contact.html"><span>Start a project</span><i aria-hidden="true">↗</i></a>
+      <button class="nav__burger" type="button" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </div>
+  </header>
+
+  <div class="menu" aria-hidden="true">
+    <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a></div>
+    <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+    <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+    <div class="menu__foot"><a href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+  </div>
+
+  <div class="progress" aria-hidden="true"><i></i></div>
+
+  <main id="top">
+    <article class="article" data-tone="dark">
+      <a class="back" href="blog.html">← All writing</a>
+      <p class="eyebrow">[ Engineering · 14 Apr 2026 · 15 min read ]</p>
+      <h1>RAG Pipeline Architecture: A Complete Guide</h1>
+      <p class="article__lede">A deep technical guide to building production RAG pipelines — from chunking strategies and embedding models to retrieval, reranking and the failure modes that will bite you if you do not plan for them.</p>
+      <div class="prose"><p>Retrieval-Augmented Generation has become the dominant architecture for building LLM applications that reason over proprietary data. The concept is simple: instead of relying solely on a model&#x27;s training data, you retrieve relevant context from your own document corpus at query time and include it in the prompt. But the gap between a toy RAG demo and a production RAG pipeline that delivers reliable, accurate results is enormous. This guide covers every layer of RAG pipeline development — from document ingestion to evaluation — with the engineering details that most tutorials skip.</p><p>The first decision in any RAG pipeline development project is your chunking strategy, and it is more consequential than most teams realise. Chunking determines the granularity of your retrieval: too large and your chunks contain irrelevant noise that dilutes the signal. Too small and you lose the context necessary for the LLM to generate coherent answers. The naive approach — splitting on a fixed token count with some overlap — works for homogeneous text documents but fails on anything with structure: tables, code blocks, nested headers, lists or mixed content types.</p><p>Recursive chunking splits documents hierarchically: first on major headings, then on sub-headings, then on paragraphs, then on sentences. This preserves the document&#x27;s logical structure and ensures that each chunk represents a coherent unit of information. Semantic chunking goes further by using an embedding model to detect topic boundaries — splitting where the semantic similarity between consecutive sentences drops below a threshold. We used semantic chunking in the HeuriSight RAG pipeline because educational assessment documents have irregular structure that does not map cleanly to heading-based splits.</p><p>The second layer is your embedding model, and the choice matters more than you might expect. Embedding models differ in dimensionality, maximum context length, domain specialisation and multilingual capability. For most English-language enterprise RAG pipeline development projects, the current best choices are OpenAI&#x27;s text-embedding-3-large, Cohere&#x27;s embed-v3, or an open-source option like BGE-M3 if you need to self-host. The key metric is not generic benchmark performance — it is retrieval accuracy on your specific data. Always evaluate at least two embedding models on a representative sample of your queries before committing.</p><p>Vector database selection is the third critical decision. The three options I recommend in 2026 are Pinecone, Weaviate and pgvector, and the right choice depends on your constraints. Pinecone is fully managed, scales effortlessly and has the best query latency at high volume. We used Pinecone for HeuriSight&#x27;s vector storage. Weaviate is the best option if you need hybrid search. pgvector is the right choice if you are already running PostgreSQL and want to avoid adding another database to your stack.</p><p>Once your documents are chunked, embedded and stored, the retrieval layer determines what context the LLM actually sees. The naive approach is a single vector similarity search: embed the query, find the k most similar chunks and pass them to the LLM. This works for simple factual queries but fails for complex questions in predictable ways. The three most common retrieval failures are: the vocabulary gap problem, the multi-hop problem, and the diversity problem.</p><p>The fix for each failure mode is different. For the vocabulary gap, use hybrid retrieval: combine vector similarity with BM25 keyword matching. For the multi-hop problem, implement query decomposition: use an LLM to break the original query into sub-queries, retrieve for each independently and merge the results. For the diversity problem, apply maximal marginal relevance (MMR). In the HeuriSight RAG pipeline, we use all three techniques.</p><p>Reranking is the layer that most RAG tutorials mention in passing but that makes the biggest difference in production quality. After your initial retrieval returns 20 to 50 candidate chunks, a reranking model scores each chunk&#x27;s relevance to the query with much higher accuracy than the initial embedding similarity. In our production pipelines, reranking typically improves the precision of the top-5 results by 15 to 25 percentage points compared to raw vector similarity alone.</p><p>Prompt construction is where the retrieved context meets the LLM, and sloppy prompt engineering is responsible for a surprising number of RAG failures. A well-constructed RAG prompt has four components: a system instruction that defines the task and constraints, the retrieved context clearly delineated with source markers, the user&#x27;s query, and output format instructions. Source markers are critical for traceability.</p><p>Evaluation is the most underinvested layer in RAG pipeline development. You need three types of evaluation: retrieval evaluation (are the right chunks being retrieved?), generation evaluation (is the LLM producing accurate, grounded answers?) and end-to-end evaluation (does the system answer user questions correctly?). Build a test set of query-document pairs and measure recall, mean reciprocal rank and normalised discounted cumulative gain.</p><p>The failure modes that will bite you in production are predictable. The first is stale data: build a re-indexing pipeline from day one. The second is hallucination despite context: mitigate with explicit grounding instructions and post-generation fact-checking. The third is context window overflow: set hard limits on chunk count and total tokens, and use reranking to ensure the best chunks survive the cutoff.</p><p>The practical advice for teams starting RAG pipeline development: begin simple. Fixed-size chunks, a single embedding model, basic top-k retrieval, a straightforward prompt. Get this baseline working end-to-end in a week. Then measure where it fails. Add complexity only where the failure analysis points you. Reranking usually delivers the highest ROI improvement. Hybrid retrieval is second. Query decomposition is third. Do not add any of these components because they sound sophisticated — add them because your evaluation metrics prove they are needed.</p></div>
+      <p class="article__by">Written by Ganesh Khetawat</p>
+      <a class="next" href="blog-ai-in-healthcare-real-world-applications.html"><span>Read next</span><b>AI in Healthcare: 5 Real-World Applications That Are Actually Working</b><i aria-hidden="true">→</i></a>
+    </article>
+
+    <section class="start" id="start" data-tone="light">
+      <div class="start__grid" aria-hidden="true"></div>
+      <div class="start__in">
+        <p class="eyebrow">[ Your turn ]</p>
+        <h2 class="start__h">You’ve built the business.<br /><em>So, what’s next?</em></h2>
+        <div class="start__row">
+          <a class="btn" href="contact.html"><span>Start a project</span><i>↗</i></a>
+          <a class="start__mail" href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a>
+        </div>
+      </div>
+      <footer class="foot">
+        <div class="foot__cols">
+          <div><h4>Studio</h4><a href="index.html#work">Work</a><a href="index.html#answers">Services</a><a href="index.html#under">How we build</a><a href="index.html#name">The name</a></div>
+          <div><h4>Resources</h4><a href="blog.html">Blog</a><a href="case-studies.html">Case studies</a><a href="talks.html">Technical talks</a></div>
+          <div><h4>Company</h4><a href="about.html">About us</a><a href="careers.html">Careers</a><a href="contact.html">Contact</a></div>
+          <div><h4>Legal</h4><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></div>
+          <div><h4>Elsewhere</h4><a href="https://www.linkedin.com/company/aletheiaaitech" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/Aletheia-Ai-tech" target="_blank" rel="noopener">GitHub</a><a href="https://x.com/ai_aletheia" target="_blank" rel="noopener">X</a><p>Pune, India</p></div>
+        </div>
+        <div class="foot__base"><span>© 2026 Aletheia AI</span><span>Design &amp; engineering, nothing hidden.</span></div>
+        <div class="foot__word" aria-hidden="true">Aletheia</div>
+      </footer>
+    </section>
+  </main>
+
+  <div class="cookie" role="dialog" aria-label="Cookies" hidden>
+    <p>We use two analytics cookies to see which pages get read. Nothing else, no ads. <a href="cookies.html">Details</a></p>
+    <div class="cookie__row"><button type="button" data-cookie="accept">That’s fine</button><button type="button" data-cookie="decline">No thanks</button></div>
+  </div>
+
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/SplitText.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="js/chrome.js"></script>
+  <script src="js/page.js"></script>
+</body>
+</html>
