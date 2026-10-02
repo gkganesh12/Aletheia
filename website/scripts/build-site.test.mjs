@@ -26,7 +26,7 @@ test("builds every route the old site had, plus the new ones", () => {
   const sitemap = fs.readFileSync(path.join(out, "sitemap.xml"), "utf8");
   for (const route of ["/about", "/services", "/services/ai-products", "/products/inscrape", "/industries", "/case-studies/heurisight-rag", "/blog", "/blog/rag-pipeline-architecture-complete-guide", "/contact", "/careers", "/talks", "/privacy", "/cookies"]) {
     assert.ok(exists(route), `missing page ${route}`);
-    assert.ok(sitemap.includes(`<loc>https://aletheiaai.tech${route}</loc>`), `sitemap is missing ${route}`);
+    assert.ok(sitemap.includes(`<loc>https://aletheiaai.tech${route}/</loc>`), `sitemap is missing ${route}/`);
   }
   assert.ok(!sitemap.includes("/404"), "404 page must not be in the sitemap");
 });
@@ -46,6 +46,19 @@ test("every page has one h1, a title, a description, a canonical URL and valid s
     assert.match(html, /<link rel="canonical" href="https:\/\/aletheiaai\.tech\//, `${rel}: missing canonical`);
     assert.match(html, /property="og:image"/, `${rel}: missing og:image`);
     for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(m[1]);
+  }
+});
+
+test("every internal page link ends in a slash, because the host only serves pages there", () => {
+  for (const file of htmlFiles) {
+    const html = fs.readFileSync(file, "utf8");
+    for (const m of html.matchAll(/href="(\/[^"#?]*)/g)) {
+      const href = m[1];
+      if (href === "/" || /\.[a-z0-9]+$/i.test(href)) continue;
+      assert.ok(href.endsWith("/"), `${path.relative(out, file)}: link without trailing slash ${href}`);
+    }
+    const canonical = /<link rel="canonical" href="([^"]+)"/.exec(html)[1];
+    assert.ok(canonical.endsWith("/") || canonical.endsWith(".html"), `${path.relative(out, file)}: canonical ${canonical}`);
   }
 });
 

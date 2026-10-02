@@ -203,6 +203,22 @@ ${jsonLd.map((j) => `  <script type="application/ld+json">${JSON.stringify(j).re
 const scripts = (names) => names.map((n) => `  <script src="${asset(n)}" defer></script>`).join("\n");
 const VENDOR = ["assets/vendor/gsap.min.js", "assets/vendor/ScrollTrigger.min.js", "assets/vendor/SplitText.min.js"];
 
+/* ───────────────────────── addresses ─────────────────────────
+   The host serves a page only at its trailing-slash address (/about/). Without the slash it falls
+   through to the host's catch-all and returns the homepage. So every link, canonical URL and
+   sitemap entry uses the slash form. */
+const slash = (url) => (url === "/" || url.endsWith("/") || /\.[a-z0-9]+$/i.test(url) ? url : `${url}/`);
+function withSlashes(html) {
+  return html
+    // internal links: /about → /about/, /blog/x#y → /blog/x/#y; files and "/" and "/#work" are left alone
+    .replace(/href="(\/[^"#?]*[^"#?/.][^"#?.]*)([#?][^"]*)?"/g, (m, p, rest = "") => (/\.[a-z0-9]+$/i.test(p) ? m : `href="${p}/${rest}"`))
+    // absolute URLs in canonical, Open Graph and structured data
+    .replace(/"(https:\/\/aletheiaai\.tech\/[^"#?]*[^"#?/])"/g, (m, u) => (/\.[a-z0-9]+$/i.test(u) ? m : `"${u}/"`));
+}
+
+/** If the host hands this document out for an address it does not belong to, move to the right one. */
+const guard = (self) => `<script>(function(){var p=location.pathname,s=${JSON.stringify(self)};if(p===s||p===s+"index.html")return;if(p.slice(-1)!=="/"&&!/\\.[a-z0-9]+$/i.test(p))location.replace(p+"/"+location.search+location.hash);else location.replace("/404.html");})();</script>`;
+
 /* ───────────────────────── page assembly ───────────────────────── */
 const pages = []; // { url, lastmod, priority } for the sitemap
 
@@ -211,7 +227,7 @@ function write(url, html) {
     ? path.join(OUT, url)
     : path.join(OUT, url, "index.html");
   fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, html);
+  fs.writeFileSync(file, file.endsWith(".html") ? withSlashes(html) : html);
 }
 
 function page({ url, title, desc, body, tone = "dark", cls = "", type, jsonLd = [], article, trail, lastmod = TODAY, priority = 0.7, noindex = false, cta }) {
@@ -278,7 +294,7 @@ function buildHome() {
       itemListElement: DATA.services.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: s.name, url: `${SITE}/services/${s.slug}` })),
     }),
   ];
-  swap(/<head>[\s\S]*?<\/head>/, head({ url: "/", title, desc, jsonLd, inner: false }));
+  swap(/<head>[\s\S]*?<\/head>/, head({ url: "/", title, desc, jsonLd, inner: false }).replace("<head>", `<head>\n  ${guard("/")}`));
   swap(/<header class="nav"[\s\S]*?<\/header>(\s*<div class="menu"[\s\S]*?\n {2}<\/div>)?/, nav());
   swap(/<footer class="foot">[\s\S]*?<\/footer>/, footer());
   swap(/<div class="cookie"[\s\S]*?\n {2}<\/div>/, COOKIE);
@@ -489,8 +505,8 @@ function buildBlog() {
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0"><channel>
-<title>${NAME} blog</title><link>${SITE}/blog</link><description>Writing from ${NAME} on AI engineering, software and security.</description><language>en</language>
-${posts.map((p) => `<item><title>${e(p.title)}</title><link>${SITE}/blog/${p.slug}</link><guid>${SITE}/blog/${p.slug}</guid><pubDate>${new Date(`${p.date}T00:00:00Z`).toUTCString()}</pubDate><description>${e(p.excerpt)}</description></item>`).join("\n")}
+<title>${NAME} blog</title><link>${SITE}/blog/</link><description>Writing from ${NAME} on AI engineering, software and security.</description><language>en</language>
+${posts.map((p) => `<item><title>${e(p.title)}</title><link>${SITE}/blog/${p.slug}/</link><guid>${SITE}/blog/${p.slug}/</guid><pubDate>${new Date(`${p.date}T00:00:00Z`).toUTCString()}</pubDate><description>${e(p.excerpt)}</description></item>`).join("\n")}
 </channel></rss>
 `;
   write("/blog/feed.xml", rss);
@@ -790,7 +806,7 @@ function buildLegal() {
 function buildIndexFiles() {
   write("/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map((p) => `  <url><loc>${SITE}${p.url === "/" ? "/" : p.url}</loc><lastmod>${p.lastmod}</lastmod><priority>${p.priority.toFixed(1)}</priority></url>`).join("\n")}
+${pages.map((p) => `  <url><loc>${SITE}${slash(p.url)}</loc><lastmod>${p.lastmod}</lastmod><priority>${p.priority.toFixed(1)}</priority></url>`).join("\n")}
 </urlset>
 `);
   write("/robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
@@ -802,21 +818,21 @@ ${pages.map((p) => `  <url><loc>${SITE}${p.url === "/" ? "/" : p.url}</loc><last
 Contact: ${MAIL}
 
 ## Services
-${DATA.services.map((s) => `- [${s.name}](${SITE}/services/${s.slug}): ${s.headline}`).join("\n")}
+${DATA.services.map((s) => `- [${s.name}](${SITE}/services/${s.slug}/): ${s.headline}`).join("\n")}
 
 ## Products
-${DATA.products.map((p) => `- [${p.name}](${SITE}/products/${p.slug}): ${p.tagline}`).join("\n")}
+${DATA.products.map((p) => `- [${p.name}](${SITE}/products/${p.slug}/): ${p.tagline}`).join("\n")}
 
 ## Case studies
-${DATA.cases.map((c) => `- [${c.title}](${SITE}/case-studies/${c.slug}): ${c.client}, ${c.industry}`).join("\n")}
+${DATA.cases.map((c) => `- [${c.title}](${SITE}/case-studies/${c.slug}/): ${c.client}, ${c.industry}`).join("\n")}
 
 ## Writing
-${posts.map((p) => `- [${p.title}](${SITE}/blog/${p.slug})`).join("\n")}
+${posts.map((p) => `- [${p.title}](${SITE}/blog/${p.slug}/)`).join("\n")}
 
 ## Company
-- [About](${SITE}/about)
-- [Careers](${SITE}/careers)
-- [Contact](${SITE}/contact)
+- [About](${SITE}/about/)
+- [Careers](${SITE}/careers/)
+- [Contact](${SITE}/contact/)
 `);
 }
 
