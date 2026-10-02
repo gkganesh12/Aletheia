@@ -1,4 +1,5 @@
-// Serves website/dist the way the host does: clean URLs, 404.html for anything missing.
+// Serves website/dist the way the host does: a page lives at its trailing-slash address,
+// and any address that matches nothing gets the homepage (which then redirects itself).
 //
 //   node scripts/serve-site.mjs [port]
 import fs from "node:fs";
@@ -18,9 +19,10 @@ createServer((req, res) => {
   const url = decodeURIComponent(new URL(req.url, "http://x").pathname);
   let file = path.join(DIST, url);
   if (!file.startsWith(DIST)) { res.writeHead(403).end(); return; }
-  if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, "index.html");
-  let status = 200;
-  if (!fs.existsSync(file)) { file = path.join(DIST, "404.html"); status = 404; }
+  const isDir = fs.existsSync(file) && fs.statSync(file).isDirectory();
+  if (isDir && url.endsWith("/")) file = path.join(file, "index.html");
+  const status = 200;
+  if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) file = path.join(DIST, "index.html");
   const type = TYPES[path.extname(file)] || "application/octet-stream";
   const size = fs.statSync(file).size;
   const range = /bytes=(\d+)-(\d*)/.exec(req.headers.range || ""); // video scrubbing needs range requests
