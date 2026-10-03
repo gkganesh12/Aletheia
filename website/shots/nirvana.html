@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Shot · Nirvana identity</title>
+<link rel="stylesheet" href="shots.css" />
+<!-- Space Grotesk is the product's own typeface (apps/web/app/layout.tsx) -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=block" />
+<style>
+  /* Identity board: the mark, its colours (sampled from the mark), the app icon and one product
+     surface in the app's own theme (warm off-white, red primary, Space Grotesk). */
+  .sheet { position: absolute; inset: 60px; display: grid; grid-template-rows: 1.86fr 1fr; gap: 22px; font-family: "Space Grotesk", sans-serif; color: #1c1917; }
+  .t { position: relative; border-radius: 34px; overflow: hidden; background: #fbf8f2; box-shadow: 0 0 0 1px rgba(22, 19, 14, .05), 0 30px 50px -30px rgba(22, 19, 14, .35); }
+  .t__k { position: absolute; left: 30px; top: 26px; font: 500 15px/1 "JBMono", monospace; letter-spacing: .06em; text-transform: uppercase; color: #8a8377; }
+
+  .mark { display: grid; place-items: center; }
+  .mark img { width: 760px; margin-top: -84px; filter: drop-shadow(0 26px 20px rgba(22, 19, 14, .16)); }
+  .word { position: absolute; left: 44px; bottom: 34px; font-size: 104px; font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+  .line { position: absolute; right: 46px; bottom: 50px; font-size: 25px; font-weight: 500; letter-spacing: -.01em; color: #57534e; }
+  .line i { display: inline-block; width: 13px; height: 13px; margin-right: 12px; border-radius: 50%; background: #dc2626; }
+
+  .row { display: grid; grid-template-columns: 1fr 1fr 1.42fr; gap: 22px; }
+  .pal { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .pal i { display: flex; align-items: flex-end; justify-content: center; padding-bottom: 22px; background: var(--c); font: 500 12px/1 "JBMono", monospace; font-style: normal; letter-spacing: .02em; color: rgba(255, 255, 255, .82); writing-mode: vertical-rl; rotate: 180deg; }
+  .pal i { padding: 0 0 0 0; align-items: center; justify-content: flex-start; padding-block-start: 24px; }
+  .icon { display: grid; place-items: center; background: #1c1917; }
+  .icon div { display: grid; place-items: center; width: 62%; aspect-ratio: 1; border-radius: 23%; background: #fbf8f2; box-shadow: 0 30px 40px -18px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(255, 255, 255, .5); }
+  .icon img { width: 84%; margin-top: -4%; }
+
+  .alert { display: flex; flex-direction: column; justify-content: center; gap: 15px; padding: 30px 34px; }
+  .alert__h { display: flex; align-items: center; gap: 12px; font-size: 16px; color: #78716c; }
+  .sev { display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px; border-radius: 99px; background: #fee2e2; color: #b91c1c; font-size: 15px; font-weight: 600; }
+  .sev::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: #dc2626; }
+  .alert__h span:last-child { margin-left: auto; }
+  .alert h4 { margin: 0; font-size: 29px; font-weight: 700; letter-spacing: -.03em; line-height: 1.1; }
+  .alert p { margin: 0; font-size: 17px; color: #57534e; }
+  .alert p b { color: #1c1917; font-weight: 600; }
+  .act { display: flex; gap: 10px; margin-top: 4px; }
+  .act span { padding: 11px 20px; border-radius: 10px; font-size: 16px; font-weight: 600; box-shadow: inset 0 0 0 1.5px #d9d3c8; }
+  .act span:first-child { background: #dc2626; color: #fff; box-shadow: 0 10px 18px -10px rgba(220, 38, 38, .9); }
+</style>
+</head>
+<body>
+<div class="board board--sq" style="--mat: var(--paper-2); --key: .5">
+  <div class="sheet">
+    <div class="t mark">
+      <span class="t__k">Nirvana · identity</span>
+      <img src="src/nirvana-mark.png" alt="" />
+      <div class="word">Nirvana</div>
+      <div class="line"><i></i>Turn noise into clear signals.</div>
+    </div>
+    <div class="row">
+      <div class="t pal">
+        <i style="--c:#cc3a21">#CC3A21</i><i style="--c:#e09320">#E09320</i><i style="--c:#4d7946">#4D7946</i><i style="--c:#20577a">#20577A</i><i style="--c:#121010">#121010</i>
+      </div>
+      <div class="t icon"><div><img src="src/nirvana-mark.png" alt="" /></div></div>
+      <div class="t alert">
+        <div class="alert__h"><span class="sev">Critical</span><span>checkout-api</span><span>2m ago</span></div>
+        <h4>Payment latency above 2s</h4>
+        <p><b>42 alerts</b> grouped into <b>1 incident</b></p>
+        <div class="act"><span>Acknowledge</span><span>Snooze</span><span>Resolve</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

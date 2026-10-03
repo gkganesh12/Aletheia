@@ -117,7 +117,7 @@ const COOKIE = `<div class="cookie" role="dialog" aria-label="Cookies" hidden>
     <div class="cookie__row"><button type="button" data-cookie="accept">That’s fine</button><button type="button" data-cookie="decline">No thanks</button></div>
   </div>`;
 
-const start = (h = "You’ve built the business.<br /><em>So, what’s next?</em>") => `<section class="start" id="start" data-tone="light">
+const start = (h = "Have a hard problem?<br /><em>Let’s build the answer.</em>") => `<section class="start" id="start" data-tone="light">
       <div class="start__grid" aria-hidden="true"></div>
       <div class="start__in">
         <p class="eyebrow">[ Your turn ]</p>
@@ -409,20 +409,31 @@ function buildContact() {
 
     <section class="sheet sheet--night" data-tone="light">
       <div class="contact">
-        <form class="form" data-form="contact" novalidate>
+        <form class="form brief" data-form="contact" novalidate>
+          <header class="brief__h field--full"><p class="eyebrow">[ Project brief ]</p><p>Six short fields. A rough idea is enough.</p></header>
           ${field("Full name", "name", "text", { required: true, extra: 'minlength="2" autocomplete="name"' })}
           ${field("Work email", "email", "email", { required: true, extra: 'autocomplete="email"' })}
           ${field("Company", "company", "text", { extra: 'autocomplete="organization"' })}
           ${field("Phone", "phone", "tel", { extra: 'autocomplete="tel"' })}
-          <div class="field field--full"><label for="f-service">What do you need?</label><select id="f-service" name="service" required><option value="" selected disabled>Choose one</option>${options.map((o) => `<option>${e(o)}</option>`).join("")}</select></div>
-          ${field("How can we help?", "message", "textarea", { required: true, full: true, extra: 'minlength="10"' })}
+          <div class="field field--full"><span class="field__l" id="l-service">What do you need?</span><div class="brief__opts" role="radiogroup" aria-labelledby="l-service">${options.map((o, i) => `<label class="brief__opt"><input type="radio" name="service" value="${e(o)}"${i ? "" : " required"} /><span>${e(o)}</span></label>`).join("")}</div></div>
+          ${field("How can we help?", "message", "textarea", { required: true, full: true, extra: 'minlength="10" placeholder="What you’re building, your timeline, and a budget range if you have one."' })}
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <div class="form__end"><button class="btn" type="submit"><span>Send message</span><i>↗</i></button><p class="form__status" role="status" aria-live="polite"></p></div>
+          <div class="form__end"><button class="btn btn--ink" type="submit"><span>Send message</span><i>↗</i></button><p class="form__status" role="status" aria-live="polite"></p></div>
         </form>
-        <aside class="contact__info">
-          <div><h2>Email</h2><a href="mailto:${MAIL}">${MAIL}</a></div>
-          <div><h2>Where</h2><p>Pune, Maharashtra, India</p></div>
-          <div><h2>Elsewhere</h2>${Object.entries(SOCIAL).map(([k, v]) => `<a href="${v}" target="_blank" rel="noopener">${k} ↗</a>`).join("")}</div>
+        <aside class="contact__side">
+          <div class="contact__next">
+            <h2>What happens next</h2>
+            <ol>
+              <li><b>You send the brief.</b><span>Even a rough idea is enough to start.</span></li>
+              <li><b>We reply within 24 hours.</b><span>On business days. Urgent? Email us directly.</span></li>
+              <li><b>We set up a call.</b><span>And help you shape the scope from there.</span></li>
+            </ol>
+          </div>
+          <div class="contact__info">
+            <div><h2>Email</h2><a href="mailto:${MAIL}">${MAIL}</a></div>
+            <div><h2>Where</h2><p>Pune, Maharashtra, India</p><p class="clock" data-clock="Asia/Kolkata" hidden></p></div>
+            <div><h2>Elsewhere</h2><p class="contact__links">${Object.entries(SOCIAL).map(([k, v]) => `<a href="${v}" target="_blank" rel="noopener">${k} ↗</a>`).join("")}</p></div>
+          </div>
         </aside>
       </div>
     </section>

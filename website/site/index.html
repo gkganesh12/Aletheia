@@ -25,6 +25,8 @@
       <span>Pune, India</span>
     </div>
   </div>
+  <!-- visitors who skip the intro (already seen this session, or arriving on a section link) get a plain cover, not a stuck 0% -->
+  <script>try{if(location.hash.length>1||/[?&]skip\b/.test(location.search)||sessionStorage.getItem('aletheia-intro-seen'))document.documentElement.classList.add('no-intro')}catch(e){}</script>
 
   <!-- NAV -->
   <header class="nav" data-tone="dark">
@@ -68,10 +70,10 @@
 
         <div class="hero__cards" aria-hidden="true">
           <figure class="hc" data-depth=".9" data-name="Live demo" data-kind="a tampered record gets refused"><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--night" data-demo="sec"><div class="demo__bar"><i class="dot"></i>verify record</div><ul class="dm-checks"><li><span>signature</span><b class="ok">valid</b></li><li><span>issuer key</span><b class="ok">match</b></li><li><span>document hash</span><b class="bad">changed</b></li></ul><p class="dm-verdict">Rejected · tampered</p></div></div></div></figure>
-          <figure class="hc" data-depth=".5" data-name="HeuriSight" data-kind="AI assessment platform"><div class="hc__p"><div class="hc__in hc__in--ui"><img src="assets/work/heuri-dash.webp" alt="" /></div></div></figure>
+          <figure class="hc" data-depth=".5" data-name="HeuriSight" data-kind="AI assessment platform"><div class="hc__p"><div class="hc__in hc__in--shot"><img src="assets/work/shot-heurisight.webp" alt="" /></div></div></figure>
           <figure class="hc" data-depth=".3" data-name="At the desk" data-kind="first wireframe"><div class="hc__p"><div class="art hc__in" style="--c:var(--paper-2); --pos:64% 52%;" data-shot="02 · sketch"><img src="assets/art/a02-sketch.webp" alt="" onerror="this.parentNode.classList.add('is-missing')" /></div></div></figure>
           <figure class="hc" data-depth=".7" data-name="Live demo" data-kind="an assistant reads a contract"><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--night" data-demo="agent"><div class="demo__bar"><i class="dot"></i>assistant</div><div class="dm-body"><p class="dm-user" data-text="Summarise the 40-page vendor contract."></p><ul class="dm-ans"><li><b>3 risks found</b></li><li>Auto-renews, 60-day notice</li><li>Liability capped at fees</li><li>Data kept for 7 years</li></ul><div class="dm-chips"><span>p.4</span><span>p.12</span><span>p.31</span></div></div></div></div></div></figure>
-          <figure class="hc" data-depth="1" data-name="NANDA Resolver" data-kind="Verified agent directory"><div class="hc__p"><div class="hc__in hc__in--ui"><img src="assets/work/nanda.webp" alt="" /></div></div></figure>
+          <figure class="hc" data-depth="1" data-name="NANDA Resolver" data-kind="Verified agent directory"><div class="hc__p"><div class="hc__in hc__in--shot"><img src="assets/work/shot-nanda.webp" alt="" /></div></div></figure>
           <figure class="hc" data-depth=".6" data-name="Inscrape" data-kind="Python SDK"><div class="hc__p"><div class="hc__in hc__in--code">
 <pre><b>from</b> inscrape <b>import</b> Inscrape
 
@@ -83,8 +85,7 @@ page = client.scrape(
           <figure class="hc" data-depth=".8" data-name="Live demo" data-kind="a shop taking orders at 2 a.m."><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--night" data-demo="store"><div class="demo__bar"><span class="dm-clock">02:14</span><span>everyone’s asleep</span></div><ul class="dm-toasts"><li><b>New order</b><span>#1042</span></li><li><b>Payment received</b><span>₹2,299</span></li><li><b>Stock updated</b><span>4 left</span></li><li><b>Receipt sent</b><span>email</span></li></ul></div></div></div></figure>
           <figure class="hc" data-depth=".4" data-name="Live demo" data-kind="a forecast drawing itself"><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--paper" data-demo="data"><div class="dm-plot"><svg viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path class="dm-grid" d="M0 20H200M0 50H200M0 80H200"/></svg><svg class="dm-linesvg" viewBox="0 0 200 100" preserveAspectRatio="none" aria-hidden="true"><path class="dm-line" d="M4 78 L52 58 L100 66 L148 38"/></svg><i class="dm-f" style="left:78.8%;top:33.2%"></i><i class="dm-f" style="left:83.6%;top:28.4%"></i><i class="dm-f" style="left:88.4%;top:23.6%"></i><i class="dm-f" style="left:93.2%;top:18.8%"></i><i class="dm-dot" style="left:98%;top:14%"></i></div><div class="dm-days"><span>M</span><span>T</span><span>W</span><span>T</span><span class="on">F</span></div><span class="dm-tag">forecast</span></div></div></div></figure>
           <figure class="hc" data-depth="1" data-name="Live demo" data-kind="a sketch becoming a product"><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--paper" data-demo="mvp"><div class="dm-win"><div class="dm-top"><i></i><i></i><i></i></div><div class="dm-nav"></div><div class="dm-hero"></div><div class="dm-row"><i></i><i></i><i></i></div><div class="dm-btn"></div></div><span class="dm-stage">Week 1 · sketch</span></div></div></div></figure>
-          <figure class="hc" data-depth=".6" data-name="Oxide OS" data-kind="Agent-native kernel, Rust"><div class="hc__p"><div class="hc__in hc__in--ui"><img src="assets/work/oxide.webp" alt="" /></div></div></figure>
-          <figure class="hc" data-depth=".5" data-name="Nirvana" data-kind="Identity"><div class="hc__p"><div class="hc__in hc__in--mark" style="--c:var(--paper-2)"><img src="assets/work/nirvana-bird.png" alt="" /></div></div></figure>
+          <figure class="hc" data-depth=".6" data-name="Oxide OS" data-kind="Agent-native kernel, Rust"><div class="hc__p"><div class="hc__in hc__in--shot"><img src="assets/work/shot-oxide.webp" alt="" /></div></div></figure>
         </div>
 
         <div class="hero__copy">
@@ -174,24 +175,24 @@ page = client.scrape(
       </div>
 
       <div class="work__tiles">
-        <a class="tile tile--a tile--frame" style="--c:var(--blush)" href="https://the-curate-crate.vercel.app" target="_blank" rel="noopener" data-lag=".5" data-cursor="Open live site">
-          <div class="tile__m"><img src="assets/work/cc-hero.webp" alt="The Curate Crate storefront home page" /></div>
+        <a class="tile tile--a tile--shot" style="--c:var(--blush)" href="https://the-curate-crate.vercel.app" target="_blank" rel="noopener" data-lag=".5" data-cursor="Open live site">
+          <div class="tile__m"><img src="assets/work/shot-curate.webp" alt="The Curate Crate storefront on desktop and phone" /></div>
           <div class="tile__c"><b>The Curate Crate</b><span>Storefront, checkout &amp; admin</span><i>Live ↗</i></div>
         </a>
-        <a class="tile tile--b tile--frame" style="--c:var(--lilac)" href="/case-studies/heurisight-rag" data-lag="1.1" data-cursor="Read the case study">
-          <div class="tile__m"><img src="assets/work/heuri-dash.webp" alt="HeuriSight learner dashboard" /></div>
+        <a class="tile tile--b tile--shot" style="--c:var(--lilac)" href="/case-studies/heurisight-rag" data-lag="1.1" data-cursor="Read the case study">
+          <div class="tile__m"><img src="assets/work/shot-heurisight.webp" alt="HeuriSight learner dashboard with an AI-scored assessment, shown with a sample learner" /></div>
           <div class="tile__c"><b>HeuriSight</b><span>AI assessment platform</span><i>In production</i></div>
         </a>
-        <a class="tile tile--d tile--frame" style="--c:var(--marigold)" href="https://nanda-resolver.onrender.com/" target="_blank" rel="noopener" data-lag="1.3" data-cursor="Open live demo">
-          <div class="tile__m"><img src="assets/work/nanda.webp" alt="NANDA Resolver interface" /></div>
+        <a class="tile tile--d tile--shot" style="--c:var(--marigold)" href="https://nanda-resolver.onrender.com/" target="_blank" rel="noopener" data-lag="1.3" data-cursor="Open live demo">
+          <div class="tile__m"><img src="assets/work/shot-nanda.webp" alt="NANDA Resolver verifying an agent handle against its signed record" /></div>
           <div class="tile__c"><b>NANDA Resolver</b><span>Verified agent directory</span><i>Live ↗</i></div>
         </a>
-        <div class="tile tile--e tile--mark" style="--c:var(--paper-2)" data-lag=".6">
-          <div class="tile__m"><img src="assets/work/nirvana-bird.png" alt="Nirvana bird identity" /></div>
+        <div class="tile tile--e tile--shot" style="--c:var(--paper-2)" data-lag=".6">
+          <div class="tile__m"><img src="assets/work/shot-nirvana.webp" alt="Nirvana identity: bird mark, wordmark, colours, app icon and an alert card" /></div>
           <div class="tile__c"><b>Nirvana</b><span>Alert management · identity &amp; product</span></div>
         </div>
-        <a class="tile tile--f tile--frame" style="--c:var(--sindoor)" href="https://oxideos.systems" target="_blank" rel="noopener" data-lag="1" data-cursor="Open live site">
-          <div class="tile__m"><img src="assets/work/oxide.webp" alt="Oxide OS website" /></div>
+        <a class="tile tile--f tile--shot" style="--c:var(--sindoor)" href="https://oxideos.systems" target="_blank" rel="noopener" data-lag="1" data-cursor="Open live site">
+          <div class="tile__m"><img src="assets/work/shot-oxide.webp" alt="Oxide OS website and its serial console booting the kernel" /></div>
           <div class="tile__c"><b>Oxide OS</b><span>Agent-native microkernel, Rust</span><i>Live ↗</i></div>
         </a>
         <a class="tile tile--g tile--code" href="https://pypi.org/project/inscrape/" target="_blank" rel="noopener" data-lag=".7" data-cursor="Open on PyPI">
@@ -210,8 +211,8 @@ md = client.markdown(<i>"https://example.com"</i>)</pre>
           </div>
           <div class="tile__c"><b>Inscrape</b><span>Python SDK</span><i>On PyPI ↗</i></div>
         </a>
-        <a class="tile tile--h tile--frame" style="--c:var(--mint)" href="/case-studies/heurisight-rag" data-lag="1.2" data-cursor="Read the case study">
-          <div class="tile__m"><img src="assets/work/heuri-profile.webp" alt="HeuriSight competency profile" /></div>
+        <a class="tile tile--h tile--shot" style="--c:var(--mint)" href="/case-studies/heurisight-rag" data-lag="1.2" data-cursor="Read the case study">
+          <div class="tile__m"><img src="assets/work/shot-heurisight-profile.webp" alt="HeuriSight competency profile and fingerprint, shown with a sample learner" /></div>
           <div class="tile__c"><b>HeuriSight</b><span>Competency profile</span></div>
         </a>
         <div class="tile tile--i tile--term" data-lag=".9">
@@ -225,6 +226,74 @@ md = client.markdown(<i>"https://example.com"</i>)</pre>
           </div>
           <div class="tile__c"><b>CodeCraft CLI</b><span>AI governance for dev teams</span><i>On npm</i></div>
         </div>
+        <div class="tile tile--j tile--shot" style="--c:var(--cobalt)" data-lag="1.1">
+          <div class="tile__m"><img src="assets/work/shot-cook.webp" alt="Cook landing page and a builder card scored on shipped work" /></div>
+          <div class="tile__c"><b>Cook</b><span>Proof-of-work cards for builders</span><i>In build</i></div>
+        </div>
+        <a class="tile tile--k tile--term" href="https://github.com/gkganesh12/gk-stack" target="_blank" rel="noopener" data-lag=".7" data-cursor="Open on GitHub">
+          <div class="tile__m">
+<pre><span class="c">$</span> brew install gkganesh12/tap/gk-stack
+<span class="c">$</span> gk-stack init
+<span class="c">$</span> claude -p "/ship"
+<u>Tests  1 failed</u> <span class="c">| 4579 passed</span>
+<b>›</b> Stopping here. I won’t commit
+  or push broken code.<span class="caret"></span></pre>
+          </div>
+          <div class="tile__c"><b>GK-Stack</b><span>Guardrails for AI-assisted development</span><i>On GitHub ↗</i></div>
+        </a>
+        <div class="tile tile--l tile--shot" style="--c:var(--night)" data-lag="1">
+          <div class="tile__m"><img src="assets/work/shot-signet.webp" alt="Signet scanner landing page with its printed benchmark run" /></div>
+          <div class="tile__c"><b>Signet</b><span>EU Cyber Resilience Act scanner</span><i>In build</i></div>
+        </div>
+        <a class="tile tile--m tile--code" href="https://github.com/gkganesh12/CiteGuard" target="_blank" rel="noopener" data-lag=".8" data-cursor="Open on GitHub">
+          <div class="tile__m">
+<pre><span class="c"># POST /api/v1/documents</span>
+{
+  "evaluator": <i>"citation_existence"</i>,
+  "severity": <u>"CRITICAL"</u>,
+  "confidence": <b>0.95</b>,
+  "explanation": <i>"Citation '123 F.3d 456
+    (9th Cir. 2019)' does not match any
+    opinion in CourtListener."</i>
+}</pre>
+          </div>
+          <div class="tile__c"><b>CiteGuard</b><span>Citation checks for AI-written legal drafts</span><i>On GitHub ↗</i></div>
+        </a>
+        <a class="tile tile--n tile--shot" style="--c:var(--mint)" href="https://cyber-sentinel-sable.vercel.app" target="_blank" rel="noopener" data-lag="1.2" data-cursor="Open demo">
+          <div class="tile__m"><img src="assets/work/shot-cyber.webp" alt="CyberSentinel security dashboard with posture score and alert feed, on sample data" /></div>
+          <div class="tile__c"><b>CyberSentinel</b><span>Security operations dashboard</span><i>Demo ↗</i></div>
+        </a>
+        <div class="tile tile--o tile--shot" style="--c:var(--leaf)" data-lag=".6">
+          <div class="tile__m"><img src="assets/work/shot-basera.webp" alt="Basera student housing finder on desktop and phone" /></div>
+          <div class="tile__c"><b>Basera</b><span>Student housing finder, Pune</span><i>Concept</i></div>
+        </div>
+        <div class="tile tile--p tile--term" data-lag=".9">
+          <div class="tile__m">
+<pre><b>you</b>    scan 10.10.10.5 and find vulnerabilities
+<b>agent</b>  runs nmap -sV -sC
+       <span class="c">→</span> finds Apache 2.4.49
+       <span class="c">→</span> looks up <u>CVE-2021-41773</u> <span class="c">(CVSS 9.8)</span>
+       <span class="c">→</span> stores finding in knowledge graph<span class="caret"></span></pre>
+          </div>
+          <div class="tile__c"><b>Oh-My-Machine</b><span>AI console for authorised security testing</span></div>
+        </div>
+        <a class="tile tile--q tile--shot" style="--c:var(--blush)" href="https://github.com/gkganesh12/Hemolegder" target="_blank" rel="noopener" data-lag="1.1" data-cursor="Open on GitHub">
+          <div class="tile__m"><img src="assets/work/shot-hemo.webp" alt="HemoLedger landing page and its donor, blood bank, hospital and regulator portals" /></div>
+          <div class="tile__c"><b>HemoLedger</b><span>Blood-bank traceability on Hyperledger Fabric</span><i>On GitHub ↗</i></div>
+        </a>
+        <a class="tile tile--r tile--code" href="https://github.com/gkganesh12/Privacy-Preserving-Synthetic-Data-Generator" target="_blank" rel="noopener" data-lag=".8" data-cursor="Open on GitHub">
+          <div class="tile__m">
+<pre><b>from</b> model_train <b>import</b> PrivacyPreservingCTGAN
+
+<span class="c"># CTGAN trained with DP-SGD (Opacus)</span>
+model = PrivacyPreservingCTGAN(
+  use_dp=<b>True</b>, epsilon=<b>1.0</b>, delta=<b>1e-5</b>
+)
+metrics = model.train(df)
+<u>print</u>(metrics[<i>"epsilon"</i>])  <span class="c"># privacy spent</span></pre>
+          </div>
+          <div class="tile__c"><b>Synthetic Data Generator</b><span>Private tabular data, differential privacy</span><i>On GitHub ↗</i></div>
+        </a>
       </div>
 
     </section>
@@ -374,7 +443,7 @@ md = client.markdown(<i>"https://example.com"</i>)</pre>
       <div class="start__grid" aria-hidden="true"></div>
       <div class="start__in">
         <p class="eyebrow">[ Your turn ]</p>
-        <h2 class="start__h">You’ve built the business.<br /><em>So, what’s next?</em></h2>
+        <h2 class="start__h">Have a hard problem?<br /><em>Let’s build the answer.</em></h2>
         <div class="start__row">
           <a class="btn" href="/contact" data-cursor="Say hello"><span>Start a project</span><i>↗</i></a>
           <a class="start__mail" href="mailto:info@aletheiaai.tech">info@aletheiaai.tech</a>
