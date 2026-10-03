@@ -27,6 +27,16 @@ npm test         # rebuild and check every page: titles, descriptions, links, im
 - **A new blog post, role or case study:** add it to `data/content.json`; the page, sitemap, feed and links follow.
 - **The homepage:** edit `index.html` directly. The build swaps in the shared head, nav and footer.
 
+## Search engines and AI assistants
+
+The build writes these into `dist/` on every run:
+
+- `robots.txt`: everything open, AI crawlers named. To opt out of model training, change `Allow` to `Disallow` under "AI model training" in `buildIndexFiles`.
+- `sitemap.xml`: every indexable page with its images. Dates come from `data/lastmod.json`, which records when each page's content last changed. **Commit that file with content changes**, or the dates drift to the day of the deploy.
+- `llms.txt` and `llms-full.txt`: a linked summary of the site, and the full text of every service, product, case study and article as Markdown, for AI assistants.
+- `<key>.txt`: the IndexNow key. After a deploy, `npm run indexnow` tells Bing, Yandex, Naver and Seznam what changed (Google does not use IndexNow; it reads the sitemap submitted in Search Console).
+- To verify the site with a tag instead of DNS, paste the token into `VERIFY` at the top of `scripts/build-site.mjs`.
+
 ## Before relying on it
 
 - Privacy and Cookies carry a "draft" tag until they have had legal review.

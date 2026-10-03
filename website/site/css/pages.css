@@ -98,6 +98,7 @@
 .prose h2 { font-size: clamp(1.5rem, 2.4vw, 2.2rem); font-stretch: 84%; letter-spacing: -.03em; line-height: 1.05; margin-top: 1.2em; }
 .article .prose { margin-top: 1.4rem; padding-top: 2rem; border-top: 2px solid var(--ink); }
 .article__by { font-family: var(--f-m); font-size: .74rem; text-transform: uppercase; letter-spacing: .04em; }
+.article__by a { border-bottom: 1.5px solid currentColor; }
 .next { margin-top: 2rem; padding: 1.6rem; border-radius: clamp(16px, 1.6vw, 26px); background: var(--night); color: var(--paper); display: grid; grid-template-columns: 1fr auto; gap: .4rem 2rem; align-items: end; rotate: -.8deg; transition: rotate .5s var(--ease), background .5s var(--ease); }
 .next:hover { rotate: 0deg; background: var(--cobalt); }
 .next span { grid-column: 1 / -1; font-family: var(--f-m); font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; opacity: .7; }
@@ -122,8 +123,8 @@
 .case__results { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.2rem; padding-top: 2rem; border-top: 2px solid var(--ink); }
 .case__results b { display: block; font-size: clamp(1.7rem, 3.4vw, 3.6rem); font-stretch: 78%; letter-spacing: -.035em; line-height: 1; }
 .case__results span { font-size: .95rem; opacity: .8; }
-.picks { display: flex; flex-wrap: wrap; gap: .4rem; }
-.picks span { font-family: var(--f-m); font-size: .72rem; padding: .25rem .7rem; border-radius: 99px; border: 1.5px solid var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chips span { font-family: var(--f-m); font-size: .72rem; padding: .25rem .7rem; border-radius: 99px; border: 1.5px solid var(--ink); }
 
 /* ───────────── talks ───────────── */
 .topics { border-top: 1.5px solid rgba(245, 240, 230, .3); }
@@ -154,7 +155,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .value, .founder__pic, .case__shot, .then { rotate: 0deg; }
+  .value, .founder__pic, .case__shot, .next { rotate: 0deg; }
 }
 
 /* ───────────── forms (contact, applications) ───────────── */
