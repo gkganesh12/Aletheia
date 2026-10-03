@@ -82,6 +82,13 @@
     if (/^[A-Z0-9_-]{1,40}$/.test(code)) refInput.value = code;
   }
 
+  /* contact: the studio's local time, so visitors know when we're awake */
+  $$('[data-clock]').forEach((el) => {
+    const fmt = new Intl.DateTimeFormat('en-IN', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: el.dataset.clock });
+    const tick = () => { el.textContent = `${fmt.format(new Date())} IST, right now`; };
+    tick(); el.hidden = false; setInterval(tick, 30000);
+  });
+
   /* forms: same delivery as the current site (Web3Forms → the studio inbox) */
   const W3F_KEY = 'b1d6246c-dfe6-41f6-8c93-7374d0c9919c';
   const payloadFor = {

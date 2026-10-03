@@ -108,7 +108,7 @@
     const blocks = fillGrid($('.loader__grid'), ...gridDims());
     const num = $('.loader__num');
     const count = { v: 0 };
-    gsap.set('.loader__w > span', { yPercent: (i) => (i ? -112 : 112) });
+    gsap.set('.loader__w > span', { yPercent: (i) => (i ? -112 : 112), visibility: 'visible' });
 
     gsap.timeline()
       .to(count, {
@@ -162,20 +162,8 @@
       .to('.scribble path', { drawSVG: '100%', duration: 0.8, ease: 'power2.inOut' }, '-=0.45')
       .to(['.nav', '.hero__meta'], { autoAlpha: 1, duration: 0.8, ease: 'power2.out' }, '-=0.9');
 
-    if (!fine) return;
-
-    // depth parallax
-    const par = heroCards.map((c) => {
-      const p = $('.hc__p', c);
-      return { d: +c.dataset.depth, x: gsap.quickTo(p, 'x', { duration: 1, ease: 'power3' }), y: gsap.quickTo(p, 'y', { duration: 1, ease: 'power3' }) };
-    });
-    pin.addEventListener('pointermove', (e) => {
-      const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
-      par.forEach((p) => { p.x(-nx * 54 * p.d); p.y(-ny * 54 * p.d); });
-    });
-
     // focus one, the rest step back
-    // resting state is soft so the headline leads; the card under the cursor comes into focus
+    // resting state is soft so the headline leads; a card comes into focus under the cursor, or on tap
     const rest = { x: 0, y: 0, scale: 1, opacity: 0.82, filter: 'blur(3px)' };
     gsap.to(ins, { ...rest, duration: 1.1, ease: 'power2.out', delay: delay + 3.1 });
     const focus = (k) => {
@@ -189,6 +177,25 @@
         gsap.to(inn, { x: (dx / dist) * push, y: (dy / dist) * push, scale: 0.96, opacity: 0.7, filter: 'blur(4px)', duration: 0.8, ease: 'power3.out', overwrite: 'auto' });
       });
     };
+
+    if (!fine) {
+      // touch: tap a card to bring it forward, tap it again or anywhere else to let it go
+      let on = -1;
+      ins.forEach((inn, i) => inn.addEventListener('click', (e) => { e.stopPropagation(); on = on === i ? -1 : i; focus(on); }));
+      pin.addEventListener('click', () => { if (on > -1) { on = -1; focus(-1); } });
+      return;
+    }
+
+    // depth parallax
+    const par = heroCards.map((c) => {
+      const p = $('.hc__p', c);
+      return { d: +c.dataset.depth, x: gsap.quickTo(p, 'x', { duration: 1, ease: 'power3' }), y: gsap.quickTo(p, 'y', { duration: 1, ease: 'power3' }) };
+    });
+    pin.addEventListener('pointermove', (e) => {
+      const nx = e.clientX / innerWidth - 0.5, ny = e.clientY / innerHeight - 0.5;
+      par.forEach((p) => { p.x(-nx * 54 * p.d); p.y(-ny * 54 * p.d); });
+    });
+
     ins.forEach((inn, i) => {
       inn.addEventListener('pointerenter', () => focus(i));
       inn.addEventListener('pointerleave', () => focus(-1));
