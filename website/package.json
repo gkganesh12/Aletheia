@@ -8,6 +8,7 @@
     "build": "node scripts/build-site.mjs",
     "build:prerender": "node scripts/build-site.mjs",
     "preview": "node scripts/serve-site.mjs",
+    "indexnow": "node scripts/indexnow.mjs",
     "lint": "eslint .",
     "test": "node --test scripts/build-site.test.mjs src/components/sections/FeaturedProjects/previewPosition.test.mjs src/lib/submitContact.test.mjs src/lib/careerApplication.test.mjs",
     "legacy:dev": "vite",

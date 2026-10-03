@@ -25,6 +25,13 @@ const SOCIAL = {
   X: "https://x.com/ai_aletheia",
 };
 
+// Search engine ownership tokens. Verifying by DNS needs nothing here; to verify with a tag instead,
+// paste the token the console gives you and rebuild.
+const VERIFY = { google: "", bing: "" };
+// IndexNow: Bing, Yandex, Naver and Seznam fetch /<key>.txt to confirm URL submissions really come from this site.
+export const INDEXNOW_KEY = "077c367aeb370bc6d382f00d1e3c0450";
+export { SITE };
+
 const e = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const lis = (xs) => xs.map((x) => `<li>${e(x)}</li>`).join("");
 const niceDate = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
@@ -136,12 +143,19 @@ const ORG = {
   "@id": `${SITE}/#organization`,
   name: NAME,
   url: SITE,
-  logo: `${SITE}/assets/brand/logo.png`,
+  logo: { "@type": "ImageObject", url: `${SITE}/assets/brand/logo.png`, width: 826, height: 160 },
+  image: `${SITE}/assets/brand/og.png`,
   email: MAIL,
   description: "Design and engineering studio building AI products, MVPs, websites, software, security and data systems.",
+  contactPoint: { "@type": "ContactPoint", contactType: "sales", email: MAIL, url: `${SITE}/contact`, availableLanguage: "English" },
+  areaServed: "Worldwide",
+  knowsAbout: DATA.services.map((s) => s.name),
   foundingLocation: { "@type": "Place", name: "Pune, India" },
   address: { "@type": "PostalAddress", addressLocality: "Pune", addressRegion: "Maharashtra", addressCountry: "IN" },
-  founder: { "@type": "Person", name: "Ganesh Khetawat", url: "https://www.linkedin.com/in/ganeshkhetawat/" },
+  founder: {
+    "@type": "Person", "@id": `${SITE}/about/#founder`, name: "Ganesh Khetawat", jobTitle: "Founder & CEO", url: `${SITE}/about`,
+    sameAs: ["https://www.linkedin.com/in/ganeshkhetawat/", "https://github.com/gkganesh12"],
+  },
   sameAs: Object.values(SOCIAL),
 };
 const ld = (obj) => ({ "@context": "https://schema.org", ...obj });
@@ -159,7 +173,8 @@ const clip = (text, max = 158) => (text.length <= max ? text : `${text.slice(0, 
 
 function head({ url, title, desc: rawDesc, type = "website", jsonLd = [], article, noindex, inner = true }) {
   const desc = clip(rawDesc);
-  const full = url === "/" ? title : `${title} | ${NAME}`;
+  // results cut titles near 60 characters, so the studio name is left off when a title has no room for it
+  const full = url === "/" || `${title} | ${NAME}`.length > 60 ? title : `${title} | ${NAME}`;
   const canonical = SITE + (url === "/" ? "/" : url);
   const image = `${SITE}/assets/brand/og.png`;
   return `<head>
@@ -169,7 +184,9 @@ function head({ url, title, desc: rawDesc, type = "website", jsonLd = [], articl
   <meta name="description" content="${e(desc)}" />
   <link rel="canonical" href="${canonical}" />
   <meta name="robots" content="${noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}" />
-  <meta name="author" content="${NAME}" />
+  <meta name="author" content="${NAME}" />${VERIFY.google ? `
+  <meta name="google-site-verification" content="${e(VERIFY.google)}" />` : ""}${VERIFY.bing ? `
+  <meta name="msvalidate.01" content="${e(VERIFY.bing)}" />` : ""}
   <meta name="theme-color" content="#f5f0e6" />
   <meta property="og:site_name" content="${NAME}" />
   <meta property="og:locale" content="en_IN" />
@@ -219,8 +236,33 @@ function withSlashes(html) {
 /** If the host hands this document out for an address it does not belong to, move to the right one. */
 const guard = (self) => `<script>(function(){var p=location.pathname,s=${JSON.stringify(self)};if(p===s||p===s+"index.html")return;if(p.slice(-1)!=="/"&&!/\\.[a-z0-9]+$/i.test(p))location.replace(p+"/"+location.search+location.hash);else location.replace("/404.html");})();</script>`;
 
+/** On the not-found page: an address typed without its trailing slash gets one more try at the real page. */
+const SLASH_GUARD = `<script>(function(){var p=location.pathname;if(p.slice(-1)!=="/"&&!/\\.[a-z0-9]+$/i.test(p))location.replace(p+"/"+location.search+location.hash);})();</script>`;
+
+/* Each article points at the service it relates to, and each service at its articles and case studies,
+   so readers (and crawlers) can get from writing to work and back. */
+const SERVICE_FOR = {
+  AI: ["ai-products", "AI product engineering"], Building: ["mvp-development", "MVP development"],
+  Cybersecurity: ["cybersecurity", "cybersecurity and auditing"], Engineering: ["full-stack", "full-stack development"],
+  Research: ["data-ml", "data engineering and ML"],
+};
+
 /* ───────────────────────── page assembly ───────────────────────── */
-const pages = []; // { url, lastmod, priority } for the sitemap
+const pages = []; // { url, lastmod, priority, images } for the sitemap
+
+/* Sitemap dates move only when a page's own content does, so search engines can trust them.
+   data/lastmod.json remembers each page's content fingerprint and the day it last changed. Commit it with content changes. */
+const STAMPS_FILE = path.join(SRC, "data/lastmod.json");
+const stamps = fs.existsSync(STAMPS_FILE) ? JSON.parse(fs.readFileSync(STAMPS_FILE, "utf8")) : {};
+function stamp(url, content, firstSeen = TODAY) {
+  const hash = crypto.createHash("sha1").update(content.replace(/\?v=[0-9a-f]{8}/g, "")).digest("hex").slice(0, 12);
+  const was = stamps[url];
+  if (was?.hash === hash) return was.date;
+  stamps[url] = { hash, date: was ? TODAY : firstSeen };
+  return stamps[url].date;
+}
+/** The page's own pictures (not the logo), for the image entries in the sitemap. */
+const imagesIn = (html) => [...new Set([...html.matchAll(/<img\b[^>]*\ssrc="\/(assets\/(?!brand\/)[^"?]+)/g)].map((m) => `${SITE}/${m[1]}`))];
 
 function write(url, html) {
   const file = url.endsWith(".html") || url.endsWith(".xml") || url.endsWith(".txt")
@@ -230,7 +272,7 @@ function write(url, html) {
   fs.writeFileSync(file, file.endsWith(".html") ? withSlashes(html) : html);
 }
 
-function page({ url, title, desc, body, tone = "dark", cls = "", type, jsonLd = [], article, trail, lastmod = TODAY, priority = 0.7, noindex = false, cta }) {
+function page({ url, title, desc, body, tone = "dark", cls = "", type, jsonLd = [], article, trail, lastmod, fingerprint, priority = 0.7, noindex = false, cta }) {
   const all = [ld(ORG), ...(trail ? [crumbs(trail)] : []), ...jsonLd];
   const html = `<!doctype html>
 <html lang="en">
@@ -253,8 +295,10 @@ ${scripts([...VENDOR, "assets/vendor/lenis.min.js", "js/chrome.js", "js/page.js"
 </body>
 </html>
 `;
-  write(url === "/404" ? "/404.html" : url, sizeImages(html, { lazyAfter: "</section>" }));
-  if (!noindex) pages.push({ url, lastmod, priority });
+  const out = sizeImages(html, { lazyAfter: "</section>" });
+  write(url === "/404" ? "/404.html" : url, url === "/404" ? out.replace("<head>", `<head>\n  ${SLASH_GUARD}`) : out);
+  // articles are fingerprinted by their own words, so a change to the shared template does not re-date all of them
+  if (!noindex) pages.push({ url, lastmod: stamp(url, fingerprint || body, lastmod), priority, images: imagesIn(out) });
 }
 
 const hero = (eyebrow, h1, lede, cls = "", tone = "dark") => `    <section class="phero ${cls}" data-tone="${tone}">
@@ -280,15 +324,16 @@ const faqBlock = (items) => `<div class="roles">${items.map((f) => `
 /* ───────────────────────── home ───────────────────────── */
 function buildHome() {
   let html = fs.readFileSync(path.join(SRC, "index.html"), "utf8");
+  const lastmod = stamp("/", html);
   const swap = (re, to) => {
     if (!re.test(html)) throw new Error(`home: pattern not found: ${re}`);
     html = html.replace(re, to);
   };
-  const title = "Aletheia AI | AI Product, Software & Web Engineering Studio";
-  const desc = "Aletheia AI is a design and engineering studio in Pune. We build AI products, MVPs, websites, software, security and data systems that hold up in production.";
+  const title = "Aletheia AI | AI & Software Development Studio in Pune, India";
+  const desc = "Aletheia AI is a design and engineering studio in Pune, India. We build AI products, MVPs, websites and software, and run security audits, for teams anywhere.";
   const jsonLd = [
     ld(ORG),
-    ld({ "@type": "WebSite", "@id": `${SITE}/#website`, url: SITE, name: NAME, publisher: { "@id": `${SITE}/#organization` }, inLanguage: "en" }),
+    ld({ "@type": "WebSite", "@id": `${SITE}/#website`, url: SITE, name: NAME, description: desc, publisher: { "@id": `${SITE}/#organization` }, inLanguage: "en" }),
     ld({
       "@type": "ItemList", name: "Services",
       itemListElement: DATA.services.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: s.name, url: `${SITE}/services/${s.slug}` })),
@@ -300,8 +345,9 @@ function buildHome() {
   swap(/<div class="cookie"[\s\S]*?\n {2}<\/div>/, COOKIE);
   swap(/( *<script src="[^"]+"><\/script>\n)+/, `${scripts([...VENDOR, "assets/vendor/DrawSVGPlugin.min.js", "assets/vendor/lenis.min.js", "js/chrome.js", "js/main.js"])}\n`);
   html = html.replace(/(src|poster|data-img)="assets\//g, '$1="/assets/');
-  write("/", sizeImages(html, { lazyAfter: '<section class="work"' }));
-  pages.push({ url: "/", lastmod: TODAY, priority: 1 });
+  const out = sizeImages(html, { lazyAfter: '<section class="work"' });
+  write("/", out);
+  pages.push({ url: "/", lastmod, priority: 1, images: imagesIn(out) });
 }
 
 /* ───────────────────────── about ───────────────────────── */
@@ -472,21 +518,15 @@ function buildBlog() {
   page({
     url: "/blog", title: "Blog: AI engineering, software and security",
     desc: "Practical writing from Aletheia AI on RAG pipelines, multi-agent systems, LLM security, MVPs and shipping software that works in production.",
-    body, trail: [["Blog", "/blog"]], priority: 0.9, lastmod: posts[0].date,
+    body, trail: [["Blog", "/blog"]], priority: 0.9, lastmod: posts[0].date, fingerprint: posts.map((p) => p.slug + p.title + p.excerpt).join("\n"),
     jsonLd: [ld({
       "@type": "Blog", url: `${SITE}/blog`, name: `${NAME} blog`, publisher: { "@id": `${SITE}/#organization` },
       blogPost: posts.map((p) => ({ "@type": "BlogPosting", headline: p.title, url: `${SITE}/blog/${p.slug}`, datePublished: p.date })),
     })],
   });
 
-  // each article points at the service it relates to, so readers (and crawlers) can get from writing to work
-  const serviceFor = {
-    AI: ["ai-products", "AI product engineering"], Building: ["mvp-development", "MVP development"],
-    Cybersecurity: ["cybersecurity", "cybersecurity and auditing"], Engineering: ["full-stack", "full-stack development"],
-    Research: ["data-ml", "data engineering and ML"],
-  };
   posts.forEach((p, i) => {
-    const svc = serviceFor[p.category];
+    const svc = SERVICE_FOR[p.category];
     const paras = p.content.split(/\n\s*\n/).map((x) => x.trim()).filter(Boolean);
     const next = posts[(i + 1) % posts.length];
     const related = posts.filter((o) => o.category === p.category && o.slug !== p.slug).slice(0, 3);
@@ -496,7 +536,7 @@ function buildBlog() {
       <h1>${e(p.title)}</h1>
       <p class="article__lede">${e(p.excerpt)}</p>
       <div class="prose">${paras.map((x) => `<p>${e(x)}</p>`).join("")}</div>
-      <p class="article__by">Written by ${e(p.author)}</p>
+      <p class="article__by">Written by <a href="/about">${e(p.author)}</a>, founder of ${NAME}</p>
       ${svc ? `<p class="article__cta">Need this built? See our <a href="/services/${svc[0]}">${svc[1]}</a> work, or <a href="/contact">tell us what you’re building</a>.</p>` : ""}
       ${related.length ? `<nav class="related" aria-label="Related writing"><h2>More on ${e(p.category)}</h2>${related.map((o) => `<a href="/blog/${o.slug}">${e(o.title)}</a>`).join("")}</nav>` : ""}
       <a class="next" href="/blog/${next.slug}"><span>Read next</span><b>${e(next.title)}</b><i aria-hidden="true">→</i></a>
@@ -504,12 +544,13 @@ function buildBlog() {
     page({
       url: `/blog/${p.slug}`, title: p.title, desc: p.excerpt, body, type: "article",
       article: { date: p.date, author: p.author, section: p.category },
-      trail: [["Blog", "/blog"], [p.title, `/blog/${p.slug}`]], lastmod: p.date, priority: 0.6,
+      trail: [["Blog", "/blog"], [p.title, `/blog/${p.slug}`]], lastmod: p.date, fingerprint: [p.title, p.excerpt, p.content].join("\n"), priority: 0.6,
       jsonLd: [ld({
         "@type": "BlogPosting", headline: p.title, description: p.excerpt, datePublished: p.date, dateModified: p.date,
         articleSection: p.category, wordCount: p.content.split(/\s+/).length, inLanguage: "en",
-        author: { "@type": "Person", name: p.author }, publisher: { "@id": `${SITE}/#organization` },
-        image: `${SITE}/assets/brand/og.png`, mainEntityOfPage: `${SITE}/blog/${p.slug}`,
+        author: { "@type": "Person", "@id": ORG.founder["@id"], name: p.author, url: `${SITE}/about` }, publisher: { "@id": `${SITE}/#organization` },
+        image: `${SITE}/assets/brand/og.png`, url: `${SITE}/blog/${p.slug}`, mainEntityOfPage: `${SITE}/blog/${p.slug}`,
+        isPartOf: { "@type": "Blog", name: `${NAME} blog`, url: `${SITE}/blog` },
       })],
     });
   });
@@ -551,7 +592,7 @@ function buildCases() {
     </section>`;
 
   page({
-    url: "/case-studies", title: "Case studies: AI platforms, SDKs and products we shipped",
+    url: "/case-studies", title: "Case Studies: AI Products We Shipped",
     desc: "How Aletheia AI built HeuriSight’s AI assessment platform, the Inscrape SDK, the CodeCraft CLI and more: the problem, the build and what it does now.",
     body: `${hero("Case studies", "Proof, <em>in production.</em>", "What the problem was, what we built and what it does now. Told plainly.", "phero--night", "light")}
 ${DATA.cases.map((c, i) => section(c, i, { link: true })).join("")}`,
@@ -562,7 +603,7 @@ ${DATA.cases.map((c, i) => section(c, i, { link: true })).join("")}`,
   DATA.cases.forEach((c, i) => {
     const next = DATA.cases[(i + 1) % DATA.cases.length];
     page({
-      url: `/case-studies/${c.slug}`, title: `${c.title}: ${c.client}`,
+      url: `/case-studies/${c.slug}`, title: c.title,
       desc: c.challenge,
       body: `${hero(`Case study · ${e(c.industry)}`, e(c.title), `${e(c.client)} · ${e(c.service)}`, "phero--night phero--short", "light")}
 ${section(c, i, { heading: "h2" }).replace(`<h2>${e(c.title)}</h2>`, `<h2>${e(c.client)}</h2>`).replace(`<p class="case__client">${e(c.client)}</p>`, "")}
@@ -587,7 +628,7 @@ function buildServices() {
           <span class="post__read">Details <i aria-hidden="true">→</i></span>
         </a>`).join("");
   page({
-    url: "/services", title: "Services: AI products, MVPs, software, security, data and Web3",
+    url: "/services", title: "AI, Software, Security & Data Services",
     desc: "Six things Aletheia AI builds: AI products, MVPs and prototypes, full-stack software, cybersecurity audits, data and ML systems, and Web3. All shipped to production.",
     body: `${hero("Services", "Six things we build, <em>and build properly.</em>", "From a first prototype to a system that runs your business. Pick the one that sounds like your problem.", "phero--cobalt", "light")}
 
@@ -608,12 +649,25 @@ function buildServices() {
     ],
   });
 
+  // what people type when they are looking to hire for each service, and a description written to be read whole in a result
+  const seo = {
+    "ai-products": ["AI Product Development Services", "AI product development from Aletheia AI: LLM applications, multi-agent systems, RAG pipelines, computer vision and NLP, built to run in production."],
+    "mvp-development": ["MVP Development Services for Startups", "MVP development for founders: we scope, build and deploy a working first version in weeks, on a codebase you can keep growing instead of throwing away."],
+    "full-stack": ["Full-Stack Web Development Services", "Full-stack web development: responsive frontends, robust backends, APIs, real-time systems, databases and deployment, delivered as maintainable code."],
+    cybersecurity: ["Security Audits & Penetration Testing", "Security audits, penetration testing and vulnerability assessments for web, API, cloud and network, led by a Certified Ethical Hacker."],
+    blockchain: ["Blockchain & Web3 Development Services", "Blockchain and Web3 development: Solidity smart contracts, decentralised applications, token systems and full-stack DApps on Ethereum and Polygon."],
+    "data-ml": ["Data Engineering & Machine Learning Services", "Data engineering and machine learning services: pipelines, processing systems and ML infrastructure that turn raw data into models running in production."],
+  };
+  const posts = [...DATA.blog].sort((a, b) => b.date.localeCompare(a.date));
+
   DATA.services.forEach((s) => {
     const others = DATA.services.filter((o) => o.slug !== s.slug);
+    const cases = DATA.cases.filter((c) => c.service === s.name);
+    const reads = posts.filter((p) => SERVICE_FOR[p.category]?.[0] === s.slug).slice(0, 3);
     page({
-      url: `/services/${s.slug}`, title: `${s.name}: ${s.headline}`,
-      desc: s.description,
-      body: `${hero(e(s.overline), e(s.headline), e(s.description), "phero--cobalt", "light")}
+      url: `/services/${s.slug}`, title: seo[s.slug]?.[0] || `${s.name}: ${s.headline}`,
+      desc: seo[s.slug]?.[1] || s.description,
+      body: `${hero(e(s.name), e(s.headline), e(s.description), "phero--cobalt", "light")}
 
     <section class="sheet" data-tone="dark">
       <h2 class="eyebrow">[ What’s included ]</h2>
@@ -627,13 +681,22 @@ function buildServices() {
       <div class="chips">${s.technologies.map((t) => `<span>${e(t)}</span>`).join("")}</div>
     </section>
 
+${cases.length || reads.length ? `
+    <section class="sheet" data-tone="dark">
+      <nav class="related" aria-label="Related case studies and writing"><h2>Proof and further reading</h2>${cases.map((c) => `<a href="/case-studies/${c.slug}">Case study: ${e(c.title)}</a>`).join("")}${reads.map((r) => `<a href="/blog/${r.slug}">${e(r.title)}</a>`).join("")}</nav>
+    </section>
+` : ""}
     <section class="sheet sheet--night" data-tone="light">
       <p class="eyebrow">[ Also from the studio ]</p>
       <ol class="topics">${others.map((o, i) => `<li><span>0${i + 1}</span><h3><a href="/services/${o.slug}">${e(o.name)}</a></h3><b>Service</b></li>`).join("")}</ol>
       <div class="links"><a href="/case-studies">See the case studies →</a><a href="/contact">Talk to us →</a></div>
     </section>`,
       tone: "light", trail: [["Services", "/services"], [s.name, `/services/${s.slug}`]], priority: 0.8,
-      jsonLd: [ld({ "@type": "Service", name: s.name, serviceType: s.name, description: s.description, url: `${SITE}/services/${s.slug}`, provider: { "@id": `${SITE}/#organization` }, areaServed: "Worldwide" })],
+      jsonLd: [ld({
+        "@type": "Service", name: s.name, serviceType: s.name, description: s.description, url: `${SITE}/services/${s.slug}`,
+        provider: { "@id": `${SITE}/#organization` }, areaServed: "Worldwide",
+        hasOfferCatalog: { "@type": "OfferCatalog", name: `${s.name}: what’s included`, itemListElement: s.features.map((f) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: f.title, description: f.description } })) },
+      })],
     });
   });
 }
@@ -660,10 +723,12 @@ function buildProducts() {
     jsonLd: [ld({ "@type": "ItemList", name: "Products", itemListElement: DATA.products.map((p, i) => ({ "@type": "ListItem", position: i + 1, name: p.name, url: `${SITE}/products/${p.slug}` })) })],
   });
 
+  // taglines are slogans; a title has to say what the thing is
+  const titles = { nirvana: "Nirvana: Alert Management for Dev Teams", swarmscope: "SwarmScope: Multi-Agent Simulation Engine", inscrape: "Inscrape: AI Web Scraping SDK for Python" };
   DATA.products.forEach((p) => {
     const price = /\$(\d+)/.exec(p.pricing?.[0]?.price || "")?.[1];
     page({
-      url: `/products/${p.slug}`, title: `${p.name}: ${p.tagline}`,
+      url: `/products/${p.slug}`, title: titles[p.slug] || `${p.name}: ${p.tagline}`,
       desc: p.description,
       body: `${hero(`Product · ${e(p.tagline)}`, e(p.name), e(p.description), "phero--marigold")}
 
@@ -698,7 +763,7 @@ function buildProducts() {
 function buildIndustries() {
   const tint = ["sheet--lilac", "sheet--blush", "sheet--paper2", "sheet--mint", ""];
   page({
-    url: "/industries", title: "Industries: healthcare, SaaS, developer tools, security and Web3",
+    url: "/industries", title: "Industries: Healthcare, SaaS, Security & Web3",
     desc: `Where Aletheia AI works: ${DATA.industries.map((i) => i.name).join(", ")}. The problems in each and what we build for them.`,
     body: `${hero("Industries", "Different fields, <em>the same rigour.</em>", "The problems change from one industry to the next. How carefully we build doesn’t.", "phero--night", "light")}
 ${DATA.industries.map((ind, i) => `
@@ -813,20 +878,53 @@ function buildLegal() {
   });
 }
 
-/* ───────────────────────── sitemap, robots, llms.txt ───────────────────────── */
+/* ───────────────────────── sitemap, robots, llms.txt, IndexNow ───────────────────────── */
 function buildIndexFiles() {
   write("/sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages.map((p) => `  <url><loc>${SITE}${slash(p.url)}</loc><lastmod>${p.lastmod}</lastmod><priority>${p.priority.toFixed(1)}</priority></url>`).join("\n")}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${pages.map((p) => `  <url><loc>${SITE}${slash(p.url)}</loc><lastmod>${p.lastmod}</lastmod><priority>${p.priority.toFixed(1)}</priority>${(p.images || []).map((i) => `<image:image><image:loc>${i}</image:loc></image:image>`).join("")}</url>`).join("\n")}
 </urlset>
 `);
-  write("/robots.txt", `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`);
+  fs.writeFileSync(STAMPS_FILE, `${JSON.stringify(Object.fromEntries(Object.keys(stamps).sort().map((k) => [k, stamps[k]])), null, 2)}\n`);
+
+  // Everything is open. The AI crawlers are named so the policy is explicit: this site wants to be read,
+  // quoted and linked by search assistants. To opt out of model training, change Allow to Disallow under those names.
+  write("/robots.txt", `# ${NAME}: open to search engines and AI assistants.
+User-agent: *
+Allow: /
+
+# AI search and assistants (answers that cite and link back)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+Allow: /
+
+# AI model training
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+Allow: /
+
+Sitemap: ${SITE}/sitemap.xml
+`);
+  write(`/${INDEXNOW_KEY}.txt`, INDEXNOW_KEY);
+
   const posts = [...DATA.blog].sort((a, b) => b.date.localeCompare(a.date));
+  const founder = DATA.team[0];
+  const summary = "Design and engineering studio in Pune, India. We build AI products, MVPs, websites and software, and provide cybersecurity, data/ML and Web3 engineering for teams anywhere.";
   write("/llms.txt", `# ${NAME}
 
-> Design and engineering studio in Pune, India. We build AI products, MVPs, websites and software, and provide cybersecurity, data/ML and Web3 engineering.
+> ${summary}
 
-Contact: ${MAIL}
+- Founder: ${founder.name} (${founder.role}), Certified Ethical Hacker
+- Location: Pune, Maharashtra, India. Works with clients remotely, worldwide
+- Contact: ${MAIL} or ${SITE}/contact/
+- Full text of every page below in one file: ${SITE}/llms-full.txt
 
 ## Services
 ${DATA.services.map((s) => `- [${s.name}](${SITE}/services/${s.slug}/): ${s.headline}`).join("\n")}
@@ -838,12 +936,101 @@ ${DATA.products.map((p) => `- [${p.name}](${SITE}/products/${p.slug}/): ${p.tagl
 ${DATA.cases.map((c) => `- [${c.title}](${SITE}/case-studies/${c.slug}/): ${c.client}, ${c.industry}`).join("\n")}
 
 ## Writing
-${posts.map((p) => `- [${p.title}](${SITE}/blog/${p.slug}/)`).join("\n")}
+${posts.map((p) => `- [${p.title}](${SITE}/blog/${p.slug}/): ${p.excerpt}`).join("\n")}
 
 ## Company
-- [About](${SITE}/about/)
-- [Careers](${SITE}/careers/)
-- [Contact](${SITE}/contact/)
+- [About](${SITE}/about/): who we are and what we hold to
+- [Industries](${SITE}/industries/): where we work and what we build there
+- [Careers](${SITE}/careers/): open roles
+- [Contact](${SITE}/contact/): start a project
+
+## Optional
+- [Full site content](${SITE}/llms-full.txt): every service, product, case study and article as plain Markdown
+- [Blog feed](${SITE}/blog/feed.xml)
+- [Sitemap](${SITE}/sitemap.xml)
+`);
+
+  const bullets = (xs) => xs.map((x) => `- ${x}`).join("\n");
+  write("/llms-full.txt", `# ${NAME}: full site content
+
+> ${summary}
+
+Source: ${SITE}/ · Contact: ${MAIL}
+
+## About
+
+${NAME} is an engineering-first studio founded in Pune by ${founder.name}. Aletheia is Greek for truth: honest timelines, real systems, nothing hidden.
+
+${founder.name}, ${founder.role}: ${founder.bio}
+
+## Services
+
+${DATA.services.map((s) => `### ${s.name}: ${s.headline}
+${SITE}/services/${s.slug}/
+
+${s.description}
+
+What’s included:
+${bullets(s.features.map((f) => `${f.title}: ${f.description}`))}
+
+How it goes:
+${s.process.map((x, i) => `${i + 1}. ${x.title}: ${x.description}`).join("\n")}
+
+Technologies: ${s.technologies.join(", ")}`).join("\n\n")}
+
+## Products
+
+${DATA.products.map((p) => `### ${p.name}: ${p.tagline}
+${SITE}/products/${p.slug}/
+
+${p.description}
+
+Features:
+${bullets(p.features.map((f) => `${f.title}: ${f.description}`))}
+
+Used for:
+${bullets(p.useCases)}
+
+Pricing:
+${bullets(p.pricing.map((t) => `${t.tier} (${t.price}): ${t.features.join("; ")}`))}`).join("\n\n")}
+
+## Case studies
+
+${DATA.cases.map((c) => `### ${c.title}
+${SITE}/case-studies/${c.slug}/
+Client: ${c.client} · Industry: ${c.industry} · Service: ${c.service}
+
+Challenge: ${c.challenge}
+
+Approach:
+${bullets(c.approach.map((a) => `${a.phase}: ${a.description}`))}
+
+Solution: ${c.solution}
+
+Results:
+${bullets(c.results.map((r) => `${r.value}: ${r.label}`))}
+
+Built with: ${c.techStack.join(", ")}`).join("\n\n")}
+
+## Industries
+
+${DATA.industries.map((i) => `### ${i.name}
+${i.description}
+
+What we build:
+${bullets(i.solutions)}`).join("\n\n")}
+
+## Questions and answers
+
+${[...DATA.faq.home, ...DATA.faq.contact].map((f) => `Q: ${f.question}\nA: ${f.answer}`).join("\n\n")}
+
+## Writing
+
+${posts.map((p) => `### ${p.title}
+${SITE}/blog/${p.slug}/
+${p.category} · ${p.date} · ${p.author}
+
+${p.content.trim()}`).join("\n\n")}
 `);
 }
 
