@@ -79,7 +79,6 @@ export const serviceDetails: ServiceDetail[] = [
     stats: [
       { value: "3", label: "AI products shipped to production" },
       { value: "5,000+", label: "Concurrent agents in SwarmScope" },
-      { value: "Dual-Engine", label: "RAG+HAG system built (HeuriSight)" },
       { value: "< 4 weeks", label: "Typical prototype-to-production" },
     ],
   },
@@ -377,7 +376,7 @@ export const serviceDetails: ServiceDetail[] = [
     overline: "Data Infrastructure",
     headline: "Clean Data In. Intelligent Decisions Out.",
     description:
-      "AI is only as good as the data that feeds it. We build the pipelines, processing systems and ML infrastructure that transform raw data into intelligent applications. From data ingestion and transformation to model training and deployment — reliable, monitored and scalable. Our own products are proof: HeuriSight processes educational assessments through a dual-engine RAG+HAG pipeline, and SwarmScope's GraphRAG extracts entity graphs from unstructured text.",
+      "AI is only as good as the data that feeds it. We build the pipelines, processing systems and ML infrastructure that transform raw data into intelligent applications. From data ingestion and transformation to model training and deployment — reliable, monitored and scalable. Our own products are proof: SwarmScope's GraphRAG extracts entity graphs from unstructured text.",
     features: [
       {
         title: "Data Pipelines",
@@ -437,7 +436,6 @@ export const serviceDetails: ServiceDetail[] = [
       },
     ],
     stats: [
-      { value: "Dual-Engine", label: "RAG+HAG system shipped (HeuriSight)" },
       { value: "GraphRAG", label: "Entity extraction pipeline (SwarmScope)" },
       { value: "Production", label: "All ML systems deployed live" },
       { value: "End-to-End", label: "Data to deployment" },

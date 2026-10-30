@@ -6,7 +6,7 @@ The user rejected the abstract engineering illustration direction and requested 
 
 - Sunlit workspace hero with oversized sans-serif type and a restrained italic serif accent. Warm ivory, terracotta and sage keep the page light.
 - Hero frame expands from inset to full width as the visitor scrolls. The photograph and headline move at different speeds.
-- HeuriSight and RD Fitness receive large, staggered photographic features; CodeCraft and Inscrape retain accessible hover/focus previews and real case-study links.
+- RD Fitness receives a large photographic feature; CodeCraft and Inscrape retain accessible hover/focus previews and real case-study links.
 - The three-stage process uses a sticky photographic sequence, parallax and a progress line. Phones show the photographs inline with their text.
 - All six service areas, products, verified repository commits, actual founder portrait and contact routes remain available. Repository history sits after the products.
 - Photography is clearly identified as stock. It does not claim to show Aletheia employees, premises, client facilities or shipped product interfaces. See `website/public/images/editorial/SOURCES.md` for attribution.

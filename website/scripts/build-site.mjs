@@ -567,7 +567,6 @@ ${posts.map((p) => `<item><title>${e(p.title)}</title><link>${SITE}/blog/${p.slu
 /* ───────────────────────── case studies ───────────────────────── */
 function buildCases() {
   const shot = {
-    "heurisight-rag": '<img src="/assets/work/heuri-dash2.webp" alt="HeuriSight learner dashboard showing assessments and competency scores" />',
     "inscrape-sdk": '<img src="/assets/work/pypi.webp" alt="Inscrape package page on the Python Package Index" />',
     "codecraft-cli": '<pre><span class="c">$</span> npm i -g @gkganesh12/codecraft-cli\n<span class="c">$</span> codecraft init\n<b>›</b> /plan   <span class="c">scope the change</span>\n<b>›</b> /code   <span class="c">write inside the guard</span>\n<b>›</b> /verify <span class="c">check it against the rules</span></pre>',
   };
@@ -593,7 +592,7 @@ function buildCases() {
 
   page({
     url: "/case-studies", title: "Case Studies: AI Products We Shipped",
-    desc: "How Aletheia AI built HeuriSight’s AI assessment platform, the Inscrape SDK, the CodeCraft CLI and more: the problem, the build and what it does now.",
+    desc: "How Aletheia AI built the Inscrape SDK, the CodeCraft CLI, the RD Fitness platform and more: the problem, the build and what it does now.",
     body: `${hero("Case studies", "Proof, <em>in production.</em>", "What the problem was, what we built and what it does now. Told plainly.", "phero--night", "light")}
 ${DATA.cases.map((c, i) => section(c, i, { link: true })).join("")}`,
     tone: "light", trail: [["Case studies", "/case-studies"]], priority: 0.9,
@@ -777,7 +776,7 @@ ${DATA.industries.map((ind, i) => `
         <div><h3>What’s hard</h3><ul class="ticks">${lis(ind.challenges)}</ul></div>
         <div><h3>What we build</h3><ul class="ticks">${lis(ind.solutions)}</ul></div>
       </div>
-      <div class="case__results">${ind.stats.map((r) => `<div><b>${e(r.value)}</b><span>${e(r.label)}</span></div>`).join("")}</div>
+      ${ind.stats.length ? `<div class="case__results">${ind.stats.map((r) => `<div><b>${e(r.value)}</b><span>${e(r.label)}</span></div>`).join("")}</div>` : ""}
       <div class="chips">${ind.useCases.map((t) => `<span>${e(t)}</span>`).join("")}</div>
     </section>`).join("")}`,
     tone: "light", trail: [["Industries", "/industries"]], priority: 0.7,

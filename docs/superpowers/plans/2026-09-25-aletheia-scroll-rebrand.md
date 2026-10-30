@@ -75,7 +75,7 @@ body { background:var(--paper); color:var(--ink); }
 
 **Interfaces:** `FeaturedProject = {slug:string; name:string; category:string; summary:string; image:string; imageAlt:string; illustrative:boolean}`. Export `featuredProjects: FeaturedProject[]`. `FeaturedProjects()` renders `<section id="work" aria-labelledby="work-title">`. `previewPosition(x,y,width,height,viewportWidth,viewportHeight)` returns `{left:number,top:number}`.
 
-- [x] Populate four records using existing case slugs: `heurisight-rag`, `rd-fitness-platform`, `codecraft-cli`, `inscrape-sdk`. Use correct project names and categories. Check candidate local images visually; use clearly labeled project illustrations until genuine screenshots are supplied.
+- [x] Populate records using existing case slugs: `rd-fitness-platform`, `codecraft-cli`, `inscrape-sdk`. Use correct project names and categories. Check candidate local images visually; use clearly labeled project illustrations until genuine screenshots are supplied.
 - [x] Write the edge-position tests before the utility:
 
 ```js

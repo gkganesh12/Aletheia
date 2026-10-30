@@ -71,7 +71,7 @@ const frames = [
     { ry: 0.45, rx: -0.1, s: 1.1, spread: 1.6, cards: 0.4, cardShift: 0 },
   ],
   [
-    "HeuriSight",
+    "Selected work",
     "First project: a deliberate pause to read.",
     { ry: 0.2, s: 1.2, spread: 2, solid: 0.65, cards: 1, cardShift: 0 },
   ],
@@ -348,14 +348,6 @@ function start() {
   const projects = [
     [
       "01",
-      "HeuriSight",
-      "AI / EDUCATION",
-      "Intelligent assessment.",
-      "Retrieval + reasoning.",
-      "#2839ff",
-    ],
-    [
-      "02",
       "RD Fitness",
       "WEB / PLATFORM",
       "A connected digital home.",
@@ -363,7 +355,7 @@ function start() {
       "#ff6548",
     ],
     [
-      "03",
+      "02",
       "CodeCraft",
       "AI / DEVELOPER TOOLS",
       "Intelligence in the terminal.",

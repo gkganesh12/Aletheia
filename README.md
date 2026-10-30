@@ -203,7 +203,6 @@ website/dist/
 
 | Project | What We Built |
 |---------|---------------|
-| **HeuriSight** | RAG-powered analytics platform with real-time document intelligence |
 | **RD Fitness** | Full-stack fitness platform with AI-driven workout and nutrition planning |
 | **CodeCraft CLI** | Developer productivity CLI tool with AI-assisted code generation |
 | **Inscrape SDK** | Python SDK for AI-powered web scraping, published on PyPI |

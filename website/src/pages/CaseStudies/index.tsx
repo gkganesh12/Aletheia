@@ -36,7 +36,7 @@ export default function CaseStudiesPage() {
     <PageTransition>
       <PageSEO
         title="Case Studies"
-        description="Real-world AI and engineering case studies from Aletheia AI — HeuriSight RAG, RD Fitness, CodeCraft CLI, Inscrape SDK. Results, not theory."
+        description="Real-world AI and engineering case studies from Aletheia AI — RD Fitness, CodeCraft CLI, Inscrape SDK. Results, not theory."
         path="/case-studies"
         keywords="AI case studies, AI implementation examples, machine learning projects, AI success stories"
         jsonLd={breadcrumbJsonLd([

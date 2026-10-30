@@ -9,15 +9,6 @@ export interface FeaturedProject {
 }
 export const featuredProjects: FeaturedProject[] = [
   {
-    slug: "heurisight-rag",
-    name: "HeuriSight",
-    category: "AI / EDUCATION",
-    summary: "Turning knowledge into a more intelligent assessment experience.",
-    image: "/brand/project-heurisight.svg",
-    imageAlt: "HeuriSight retrieval and reasoning architecture illustration",
-    illustrative: true,
-  },
-  {
     slug: "rd-fitness-platform",
     name: "RD Fitness",
     category: "WEB / PLATFORM",

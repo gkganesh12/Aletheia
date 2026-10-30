@@ -24,7 +24,7 @@ const exists = (url) => {
 
 test("builds every route the old site had, plus the new ones", () => {
   const sitemap = fs.readFileSync(path.join(out, "sitemap.xml"), "utf8");
-  for (const route of ["/about", "/services", "/services/ai-products", "/products/inscrape", "/industries", "/case-studies/heurisight-rag", "/blog", "/blog/rag-pipeline-architecture-complete-guide", "/contact", "/careers", "/talks", "/privacy", "/cookies"]) {
+  for (const route of ["/about", "/services", "/services/ai-products", "/products/inscrape", "/industries", "/case-studies/inscrape-sdk", "/blog", "/blog/rag-pipeline-architecture-complete-guide", "/contact", "/careers", "/talks", "/privacy", "/cookies"]) {
     assert.ok(exists(route), `missing page ${route}`);
     assert.ok(sitemap.includes(`<loc>https://aletheiaai.tech${route}/</loc>`), `sitemap is missing ${route}/`);
   }
