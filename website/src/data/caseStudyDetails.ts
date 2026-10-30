@@ -15,57 +15,6 @@ export interface CaseStudyDetail {
 
 export const caseStudyDetails: CaseStudyDetail[] = [
   {
-    slug: "heurisight-rag",
-    title: "Building a Dual-Engine AI Assessment Platform",
-    client: "HeuriSight Education",
-    industry: "EdTech",
-    service: "AI Product Engineering",
-    techStack: [
-      "React",
-      "FastAPI",
-      "Pinecone",
-      "Neo4j",
-      "S3",
-      "Redis",
-      "Three.js",
-      "Auth0",
-    ],
-    heroImage: "/images/blog/ai-neural-network-1.jpg",
-    challenge:
-      "HeuriSight needed an AI system that could do something no existing tool handles well: analyse student work, extract the cognitive decision-making patterns embedded in their responses, and map those patterns to educational competencies. This required combining document understanding (RAG) with heuristic reasoning (HAG) in a novel dual-engine architecture. The system needed to process diverse assessment formats, build knowledge graphs of student cognitive patterns, and present actionable insights to facilitators — all while maintaining the accuracy required for educational assessment.",
-    approach: [
-      {
-        phase: "Phase 1: Architecture Design",
-        description:
-          "We designed a dual-engine architecture combining Retrieval-Augmented Generation for document understanding with Heuristics-Augmented Generation for cognitive pattern extraction. A triple-store data layer was planned — Pinecone for vector similarity search, Neo4j for relationship graphs and S3 for document storage — coordinated through a Redis caching layer.",
-      },
-      {
-        phase: "Phase 2: Core Engine Development",
-        description:
-          "Built the RAG engine for processing assessment documents and the HAG engine for applying a 10-category cognitive classification framework. The Goal-Precondition-Confidence framework was implemented to evaluate the strength of heuristic-to-competency translations. Both engines feed into a unified knowledge graph in Neo4j.",
-      },
-      {
-        phase: "Phase 3: Dashboard & Analytics",
-        description:
-          "Developed a facilitator dashboard with cohort management, assessment processing workflows, competency extraction views and analytics. 3D visualisation using Three.js and React Force Graph for exploring knowledge graphs. At-risk student identification and learning pathway derivation built into the analytics layer.",
-      },
-    ],
-    solution:
-      "The dual-engine architecture allows HeuriSight to do what neither RAG nor traditional rule-based systems can do alone: understand the content of student work AND extract the cognitive patterns that reveal how students think and make decisions. The triple-store data coordination ensures each type of data is stored in the right system — vectors for similarity, graphs for relationships, objects for documents — while presenting a unified view to facilitators.",
-    results: [
-      { value: "Dual-Engine", label: "RAG+HAG architecture in production" },
-      { value: "10", label: "Cognitive classification categories" },
-      { value: "3", label: "Coordinated data stores (Pinecone, Neo4j, S3)" },
-      { value: "3D", label: "Knowledge graph visualisation" },
-    ],
-    testimonial: {
-      quote:
-        "Ganesh built our entire assessment pipeline — dual-engine RAG system, knowledge graphs, competency extraction. The kind of complex AI architecture that most agencies wouldn't even attempt. It works beautifully.",
-      author: "Dr. Meera Joshi",
-      role: "Director of Learning Innovation, HeuriSight Education",
-    },
-  },
-  {
     slug: "rd-fitness-platform",
     title: "Shipping a Modern Fitness Platform in 4 Weeks",
     client: "RD Fitness",

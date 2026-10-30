@@ -18,8 +18,6 @@ const OUT = path.join(HERE, "..", "site", "assets", "work");
 // name → [page, output file, scale, query]
 const SHOTS = {
   curate: ["curate.html", "shot-curate.webp", 1.25],
-  heurisight: ["heurisight.html", "shot-heurisight.webp", 1.25, "?view=learning"],
-  "heurisight-profile": ["heurisight.html", "shot-heurisight-profile.webp", 1.25, "?view=profile"],
   nanda: ["nanda.html", "shot-nanda.webp", 1.25],
   nirvana: ["nirvana.html", "shot-nirvana.webp", 1],
   oxide: ["oxide.html", "shot-oxide.webp", 1.25],
@@ -29,7 +27,6 @@ const SHOTS = {
   cyber: ["cyber.html", "shot-cyber.webp", 1.25],
   hemo: ["hemo.html", "shot-hemo.webp", 1.25],
   // flat screens for the "under the surface" panels and the case-study page
-  "heuri-flat": ["heurisight.html", "heuri-dash2.webp", 1.25, "?view=learning&flat"],
 };
 
 const want = process.argv.slice(2);

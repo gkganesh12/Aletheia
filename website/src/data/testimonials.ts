@@ -16,14 +16,6 @@ export const testimonials: Testimonial[] = [
     company: "RD Fitness",
   },
   {
-    id: "testimonial-2",
-    quote:
-      "Ganesh built our entire assessment pipeline — dual-engine RAG system, knowledge graphs, competency extraction. The kind of complex AI architecture that most agencies wouldn't even attempt. It works beautifully.",
-    author: "Dr. Meera Joshi",
-    role: "Director of Learning Innovation",
-    company: "HeuriSight Education",
-  },
-  {
     id: "testimonial-3",
     quote:
       "We were drowning in alerts from Sentry and Datadog. After Nirvana, alert noise dropped by 80%. Our engineers finally stopped ignoring notifications. It's genuinely changed how our team operates.",

@@ -61,7 +61,6 @@ services=[
  ('Data Engineering & ML','Data pipelines, model development and MLOps. The foundations for reliable intelligent applications.'),
 ]
 projects=[
- ('HeuriSight','AI ASSESSMENT PLATFORM','Combining document understanding and heuristic reasoning to connect student work with educational competencies.','heurisight-rag'),
  ('RD Fitness','WEBSITE & MEMBERSHIP PLATFORM','A responsive fitness platform connecting brand storytelling, membership registration and class booking.','rd-fitness-platform'),
  ('CodeCraft','AI DEVELOPER TOOL','A command-line coding assistant with role-based reasoning, project rules and safeguards for development workflows.','codecraft-cli'),
  ('Inscrape','PYTHON DATA SDK','A developer toolkit for structured web extraction, Markdown output and screenshots with asynchronous support.','inscrape-sdk'),

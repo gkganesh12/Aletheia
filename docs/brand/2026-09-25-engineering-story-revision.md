@@ -6,7 +6,7 @@ The first bright rebrand relied on condensed all-caps headlines and generic geom
 
 The revised identity uses normal-width DM Sans, a cobalt opening with coral strands drawn in SVG, and quiet ivory, sage and lavender chapters. The visual idea is many strands becoming one working system. The approved logo remains. Featured work immediately follows the opening.
 
-Homepage order: positioning and Signal/Code toggle → featured HeuriSight architecture and four project links → three-stage build narrative → public repository commits → six capabilities → three owned products → founder → contact.
+Homepage order: positioning and Signal/Code toggle → featured project architecture and project links → three-stage build narrative → public repository commits → six capabilities → three owned products → founder → contact.
 
 ## References and sources
 
@@ -36,7 +36,7 @@ Desktop/tablet storytelling runs from 600px wide and 650px tall, with reduced mo
 - Tablet board observed at stages 1 and 2 with changing progress; desktop sticky stage progression observed.
 - Signal/Code toggle checked on desktop and mobile. Mobile SDK source link fits inside its panel.
 - All 47 routes audited at 320px: meaningful H1, one canonical link, no horizontal document overflow. Audit saved in `website-previews-v2/route-audit-320.json`.
-- Narrow-phone HeuriSight diagram node bounds verified within the illustration. Shared detail navigation now stacks on phones; form inputs/grid children can shrink.
+- Narrow-phone architecture diagram node bounds verified within the illustration. Shared detail navigation now stacks on phones; form inputs/grid children can shrink.
 - No console warnings/errors seen in the desktop review.
 - Independent source review found two responsive issues; both corrected and reviewed again with no remaining actionable findings.
 - Reduced-motion support reviewed in source; OS-level reduced-motion emulation was not performed in this revision.

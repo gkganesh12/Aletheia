@@ -12,32 +12,27 @@ export interface Industry {
 export const industries: Industry[] = [
   {
     slug: "healthcare",
-    name: "Healthcare & EdTech",
+    name: "Healthcare",
     icon: "heart",
     description:
-      "AI-powered platforms for healthcare systems and educational institutions — from patient data analysis to cognitive assessment pipelines and adaptive learning tools.",
+      "AI-powered platforms for healthcare systems — from patient data analysis to clinical document processing and compliance-aware data pipelines.",
     challenges: [
-      "Complex data processing across medical and educational records",
-      "HIPAA and FERPA compliance requirements",
-      "Need for intelligent assessment and diagnostic tools",
-      "Real-time analytics for student/patient outcomes",
+      "Complex data processing across medical records",
+      "HIPAA and data-protection compliance requirements",
+      "Need for intelligent diagnostic and triage tools",
+      "Real-time analytics for patient outcomes",
     ],
     solutions: [
-      "Dual-engine RAG+HAG systems for assessment analysis (HeuriSight)",
-      "Knowledge graph construction for competency mapping",
+      "RAG pipelines for clinical document processing",
       "AI-powered diagnostic and triage tools",
       "Compliance-aware data pipelines",
+      "Traceability systems for medical supply chains",
     ],
-    stats: [
-      { value: "Dual-Engine", label: "RAG+HAG Shipped" },
-      { value: "10", label: "Cognitive Categories" },
-      { value: "Production", label: "Live Systems" },
-    ],
+    stats: [],
     useCases: [
-      "AI-assisted educational assessment",
-      "Cognitive pattern extraction from student work",
-      "Knowledge graph-powered competency mapping",
-      "Adaptive learning and at-risk identification",
+      "Clinical document extraction and summarisation",
+      "Patient data analysis and reporting",
+      "Blood-bank and supply traceability",
     ],
   },
   {

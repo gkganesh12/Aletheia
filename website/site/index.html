@@ -70,7 +70,7 @@
 
         <div class="hero__cards" aria-hidden="true">
           <figure class="hc" data-depth=".9" data-name="Live demo" data-kind="a tampered record gets refused"><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--night" data-demo="sec"><div class="demo__bar"><i class="dot"></i>verify record</div><ul class="dm-checks"><li><span>signature</span><b class="ok">valid</b></li><li><span>issuer key</span><b class="ok">match</b></li><li><span>document hash</span><b class="bad">changed</b></li></ul><p class="dm-verdict">Rejected · tampered</p></div></div></div></figure>
-          <figure class="hc" data-depth=".5" data-name="HeuriSight" data-kind="AI assessment platform"><div class="hc__p"><div class="hc__in hc__in--shot"><img src="assets/work/shot-heurisight.webp" alt="" /></div></div></figure>
+          <figure class="hc" data-depth=".5" data-name="The Curate Crate" data-kind="Storefront, checkout &amp; admin"><div class="hc__p"><div class="hc__in hc__in--shot"><img src="assets/work/shot-curate.webp" alt="" /></div></div></figure>
           <figure class="hc" data-depth=".3" data-name="At the desk" data-kind="first wireframe"><div class="hc__p"><div class="art hc__in" style="--c:var(--paper-2); --pos:64% 52%;" data-shot="02 · sketch"><img src="assets/art/a02-sketch.webp" alt="" onerror="this.parentNode.classList.add('is-missing')" /></div></div></figure>
           <figure class="hc" data-depth=".7" data-name="Live demo" data-kind="an assistant reads a contract"><div class="hc__p"><div class="hc__in hc__in--live"><div class="demo demo--night" data-demo="agent"><div class="demo__bar"><i class="dot"></i>assistant</div><div class="dm-body"><p class="dm-user" data-text="Summarise the 40-page vendor contract."></p><ul class="dm-ans"><li><b>3 risks found</b></li><li>Auto-renews, 60-day notice</li><li>Liability capped at fees</li><li>Data kept for 7 years</li></ul><div class="dm-chips"><span>p.4</span><span>p.12</span><span>p.31</span></div></div></div></div></div></figure>
           <figure class="hc" data-depth="1" data-name="NANDA Resolver" data-kind="Verified agent directory"><div class="hc__p"><div class="hc__in hc__in--shot"><img src="assets/work/shot-nanda.webp" alt="" /></div></div></figure>
@@ -118,7 +118,7 @@ page = client.scrape(
               <header><span class="ans__n">01</span><span class="ans__s">AI products</span></header>
               <h3>It could do the reading <em>for you.</em></h3>
               <p>Assistants, agents and retrieval systems that read, sort and draft, so your people decide instead of dig.</p>
-              <figure class="ans__proof"><div class="demo demo--night" data-demo="agent"><div class="demo__bar"><i class="dot"></i>assistant</div><div class="dm-body"><p class="dm-user" data-text="Summarise the 40-page vendor contract."></p><ul class="dm-ans"><li><b>3 risks found</b></li><li>Auto-renews, 60-day notice</li><li>Liability capped at fees</li><li>Data kept for 7 years</li></ul><div class="dm-chips"><span>p.4</span><span>p.12</span><span>p.31</span></div></div></div><figcaption>Shipped: <a href="/case-studies/heurisight-rag">HeuriSight, AI assessment platform</a> · <a href="/services/ai-products">AI product engineering →</a></figcaption></figure>
+              <figure class="ans__proof"><div class="demo demo--night" data-demo="agent"><div class="demo__bar"><i class="dot"></i>assistant</div><div class="dm-body"><p class="dm-user" data-text="Summarise the 40-page vendor contract."></p><ul class="dm-ans"><li><b>3 risks found</b></li><li>Auto-renews, 60-day notice</li><li>Liability capped at fees</li><li>Data kept for 7 years</li></ul><div class="dm-chips"><span>p.4</span><span>p.12</span><span>p.31</span></div></div></div><figcaption><a href="/services/ai-products">AI product engineering →</a></figcaption></figure>
             </article>
 
             <article class="ans" data-i="2">
@@ -179,9 +179,9 @@ page = client.scrape(
           <div class="tile__m"><img src="assets/work/shot-curate.webp" alt="The Curate Crate storefront on desktop and phone" /></div>
           <div class="tile__c"><b>The Curate Crate</b><span>Storefront, checkout &amp; admin</span><i>Live ↗</i></div>
         </a>
-        <a class="tile tile--b tile--shot" style="--c:var(--lilac)" href="/case-studies/heurisight-rag" data-lag="1.1" data-cursor="Read the case study">
-          <div class="tile__m"><img src="assets/work/shot-heurisight.webp" alt="HeuriSight learner dashboard with an AI-scored assessment, shown with a sample learner" /></div>
-          <div class="tile__c"><b>HeuriSight</b><span>AI assessment platform</span><i>In production</i></div>
+        <a class="tile tile--b tile--shot" style="--c:var(--blush)" href="https://github.com/gkganesh12/Hemolegder" target="_blank" rel="noopener" data-lag="1.1" data-cursor="Open on GitHub">
+          <div class="tile__m"><img src="assets/work/shot-hemo.webp" alt="HemoLedger landing page and its donor, blood bank, hospital and regulator portals" /></div>
+          <div class="tile__c"><b>HemoLedger</b><span>Blood-bank traceability on Hyperledger Fabric</span><i>On GitHub ↗</i></div>
         </a>
         <a class="tile tile--d tile--shot" style="--c:var(--marigold)" href="https://nanda-resolver.onrender.com/" target="_blank" rel="noopener" data-lag="1.3" data-cursor="Open live demo">
           <div class="tile__m"><img src="assets/work/shot-nanda.webp" alt="NANDA Resolver verifying an agent handle against its signed record" /></div>
@@ -211,9 +211,18 @@ md = client.markdown(<i>"https://example.com"</i>)</pre>
           </div>
           <div class="tile__c"><b>Inscrape</b><span>Python SDK</span><i>On PyPI ↗</i></div>
         </a>
-        <a class="tile tile--h tile--shot" style="--c:var(--mint)" href="/case-studies/heurisight-rag" data-lag="1.2" data-cursor="Read the case study">
-          <div class="tile__m"><img src="assets/work/shot-heurisight-profile.webp" alt="HeuriSight competency profile and fingerprint, shown with a sample learner" /></div>
-          <div class="tile__c"><b>HeuriSight</b><span>Competency profile</span></div>
+        <a class="tile tile--h tile--code" href="https://github.com/gkganesh12/Privacy-Preserving-Synthetic-Data-Generator" target="_blank" rel="noopener" data-lag=".8" data-cursor="Open on GitHub">
+          <div class="tile__m">
+<pre><b>from</b> model_train <b>import</b> PrivacyPreservingCTGAN
+
+<span class="c"># CTGAN trained with DP-SGD (Opacus)</span>
+model = PrivacyPreservingCTGAN(
+  use_dp=<b>True</b>, epsilon=<b>1.0</b>, delta=<b>1e-5</b>
+)
+metrics = model.train(df)
+<u>print</u>(metrics[<i>"epsilon"</i>])  <span class="c"># privacy spent</span></pre>
+          </div>
+          <div class="tile__c"><b>Synthetic Data Generator</b><span>Private tabular data, differential privacy</span><i>On GitHub ↗</i></div>
         </a>
         <div class="tile tile--i tile--term" data-lag=".9">
           <div class="tile__m">
@@ -277,23 +286,6 @@ md = client.markdown(<i>"https://example.com"</i>)</pre>
           </div>
           <div class="tile__c"><b>Oh-My-Machine</b><span>AI console for authorised security testing</span></div>
         </div>
-        <a class="tile tile--q tile--shot" style="--c:var(--blush)" href="https://github.com/gkganesh12/Hemolegder" target="_blank" rel="noopener" data-lag="1.1" data-cursor="Open on GitHub">
-          <div class="tile__m"><img src="assets/work/shot-hemo.webp" alt="HemoLedger landing page and its donor, blood bank, hospital and regulator portals" /></div>
-          <div class="tile__c"><b>HemoLedger</b><span>Blood-bank traceability on Hyperledger Fabric</span><i>On GitHub ↗</i></div>
-        </a>
-        <a class="tile tile--r tile--code" href="https://github.com/gkganesh12/Privacy-Preserving-Synthetic-Data-Generator" target="_blank" rel="noopener" data-lag=".8" data-cursor="Open on GitHub">
-          <div class="tile__m">
-<pre><b>from</b> model_train <b>import</b> PrivacyPreservingCTGAN
-
-<span class="c"># CTGAN trained with DP-SGD (Opacus)</span>
-model = PrivacyPreservingCTGAN(
-  use_dp=<b>True</b>, epsilon=<b>1.0</b>, delta=<b>1e-5</b>
-)
-metrics = model.train(df)
-<u>print</u>(metrics[<i>"epsilon"</i>])  <span class="c"># privacy spent</span></pre>
-          </div>
-          <div class="tile__c"><b>Synthetic Data Generator</b><span>Private tabular data, differential privacy</span><i>On GitHub ↗</i></div>
-        </a>
       </div>
 
     </section>
@@ -349,28 +341,9 @@ metrics = model.train(df)
         </div></div>
       </article>
 
-      <article class="panel panel--flip" style="--bg:var(--lilac)">
+      <article class="panel panel--flip" style="--bg:#ffe39a">
         <div class="panel__txt">
-          <span class="label">Surface 02 · HeuriSight</span>
-          <h3>A dashboard a student can read <em>in one glance.</em></h3>
-          <p>Underneath: two engines, retrieval and heuristics, mapping every conversation to a competency framework.</p>
-        </div>
-        <div class="panel__surface"><img src="assets/work/heuri-dash2.webp" alt="HeuriSight dashboard" /></div>
-        <div class="lens"><div class="lens__card lens__card--map">
-          <header><i></i><i></i><i></i><span>how an answer is made</span></header>
-          <ol class="flow">
-            <li><b>Conversation</b><span>student work comes in</span></li>
-            <li><b>Retrieve</b><span>vector store · documents</span></li>
-            <li><b>Reason</b><span>knowledge graph · heuristics</span></li>
-            <li><b>Map</b><span>10-category competency model</span></li>
-            <li><b>Show</b><span>dashboard · cohort view</span></li>
-          </ol>
-        </div></div>
-      </article>
-
-      <article class="panel" style="--bg:#ffe39a">
-        <div class="panel__txt">
-          <span class="label">Surface 03 · NANDA Resolver</span>
+          <span class="label">Surface 02 · NANDA Resolver</span>
           <h3>A handle you can type. <em>An answer you can trust.</em></h3>
           <p>Underneath: every record is signed, canonicalised and checked. A tampered document is rejected, on screen, in real time.</p>
         </div>

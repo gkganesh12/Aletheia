@@ -117,56 +117,6 @@ export default function FeaturedProjects() {
           <br />A closer look at the things we’ve built.
         </p>
       </div>
-      <Link to="/case-studies/heurisight-rag" className="work-feature">
-        <div className="work-feature-copy">
-          <span className="eyebrow">FEATURED / AI PRODUCT ENGINEERING</span>
-          <h3>HeuriSight</h3>
-          <p>
-            Helping educators see
-            <br />
-            how students think.
-          </p>
-          <div className="work-feature-tags">
-            <span>RAG + HAG</span>
-            <span>Knowledge graphs</span>
-            <span>React / FastAPI</span>
-          </div>
-          <span className="work-feature-link">
-            Explore the architecture <span aria-hidden="true">↗</span>
-          </span>
-        </div>
-        <div
-          className="architecture-study"
-          aria-label="Illustration of HeuriSight's dual-engine architecture"
-        >
-          <div className="architecture-bar">
-            <span>HEURISIGHT / SYSTEM ARCHITECTURE</span>
-            <span>01.0</span>
-          </div>
-          <div className="architecture-flow">
-            <div className="architecture-node source-node">
-              <small>INPUT</small>Student work
-              <span>documents / assessments</span>
-            </div>
-            <div className="architecture-branch">
-              <div className="architecture-node">
-                <small>RETRIEVAL ENGINE</small>RAG
-                <span>understand the content</span>
-              </div>
-              <span className="architecture-plus">+</span>
-              <div className="architecture-node">
-                <small>REASONING ENGINE</small>HAG
-                <span>find cognitive patterns</span>
-              </div>
-            </div>
-            <div className="architecture-node output-node">
-              <small>CONNECTED OUTPUT</small>Knowledge graph
-              <span>patterns → competencies → insight</span>
-            </div>
-          </div>
-          <p>Architecture illustration · not a product screenshot</p>
-        </div>
-      </Link>
       <div className="project-list">
         {featuredProjects.map((p, i) => (
           <Link

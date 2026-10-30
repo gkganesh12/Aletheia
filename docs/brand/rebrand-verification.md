@@ -33,7 +33,7 @@ Used the actual local application through the supported browser tools.
 - All four project links were reached by Tab; associated artwork changes with focus. Enter opens the correct project.
 - Pointer movement across project rows switches artwork. Near bottom-right at 1440 × 900, preview ends at x=1424 and y=884, preserving 16px margins. Its `pointer-events` is `none`.
 - Short desktop keyboard preview remained within the 900 × 320 viewport.
-- Temporarily removed HeuriSight artwork to force a real image failure: branded HeuriSight fallback retained the preview dimensions and active case-study link. Asset restored afterwards.
+- Temporarily removed a featured project's artwork to force a real image failure: the branded fallback retained the preview dimensions and active case-study link. Asset restored afterwards.
 - Case-study navigation resets to top and removes the preview. Back navigation and header links remain usable.
 - All 47 sitemap routes loaded a meaningful heading, had exactly one canonical and no desktop horizontal overflow. `/concept` intentionally redirects home. Four unknown detail slugs render the appropriate not-found state.
 - Case-study EdTech filter leaves one case-study link. FAQ expands. Empty contact submission shows validation errors and focuses the name input without sending an inquiry.

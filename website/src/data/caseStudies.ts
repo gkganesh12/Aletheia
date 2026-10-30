@@ -10,22 +10,6 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
-    id: "heurisight-rag",
-    title: "Building a Dual-Engine AI Assessment Platform",
-    client: "HeuriSight Education",
-    industry: "EdTech",
-    challenge:
-      "HeuriSight needed an AI system that could analyse student work, extract cognitive patterns and map them to educational competencies — combining document understanding with heuristic reasoning in a way no existing tool could handle.",
-    solution:
-      "We designed and built a dual-engine architecture combining Retrieval-Augmented Generation (RAG) with Heuristics-Augmented Generation (HAG). The system uses Pinecone for vector storage, Neo4j for knowledge graphs and a 10-category cognitive classification framework to extract decision-making patterns from student assessments.",
-    results: [
-      "Dual-engine RAG+HAG system processing educational assessments in production",
-      "10-category cognitive classification framework with competency mapping",
-      "Triple-store architecture (Pinecone + Neo4j + S3) for hybrid data coordination",
-      "Facilitator dashboard with cohort analytics and at-risk student identification",
-    ],
-  },
-  {
     id: "rd-fitness-platform",
     title: "Shipping a Modern Fitness Platform in 4 Weeks",
     client: "RD Fitness",
